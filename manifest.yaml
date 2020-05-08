@@ -3,9 +3,6 @@ include:
   - fedora-coreos-config/manifests/ignition-and-ostree.yaml
   - fedora-coreos-config/manifests/file-transfer.yaml
 
-automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
-mutate-os-release: "${releasever}"
-
 initramfs-args:
   - --no-hostonly
   # We don't support root on NFS, so we don't need it in the initramfs. It also
@@ -19,23 +16,12 @@ initramfs-args:
   - --omit=multipath
   - --omit=iscsi
 
-ignore-removed-users:
-  - root
-ignore-removed-groups:
-  - root
 etc-group-members:
   - wheel
   - sudo
   - systemd-journal
   - adm
   - libvirt
-
-check-passwd:
-  type: "file"
-  filename: "workstation-ostree-config/passwd"
-check-groups:
-  type: "file"
-  filename: "workstation-ostree-config/group"
 
 default-target: graphical.target
 
@@ -58,16 +44,6 @@ postprocess:
     cat /usr/etc/rpm-ostreed.conf >> /tmp/rpm-ostreed.conf
     cp /tmp/rpm-ostreed.conf /usr/etc/rpm-ostreed.conf
     rm /tmp/rpm-ostreed.conf
-
-  # This will be dropped once rpm-ostree because module-aware.
-  # https://github.com/projectatomic/rpm-ostree/issues/1542#issuecomment-419684977
-  # https://github.com/projectatomic/rpm-ostree/issues/1435
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    for x in /etc/yum.repos.d/*modular.repo; do
-      sed -i -e 's,enabled=[01],enabled=0,' ${x}
-    done
 
   # Disable the default-enabled AuthorizedKeysFile directive so we can
   # override it in a config fragment
@@ -113,3 +89,4 @@ repos:
 packages:
   - libvirt-daemon-kvm
   - ksmtuned
+  - coreos-installer
