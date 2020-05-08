@@ -1,9 +1,8 @@
 ref: fedora/${basearch}/coreos/testing-devel
 include:
-  - manifests/ignition-and-ostree.yaml
-  - manifests/file-transfer.yaml
+  - fedora-coreos-config/manifests/ignition-and-ostree.yaml
+  - fedora-coreos-config/manifests/file-transfer.yaml
   - workstation-ostree-config/fedora-common-ostree-pkgs.yaml
-  - workstation-ostree-config/fedora-common-ostree.yaml
   - workstation-ostree-config/fedora-common-ostree.yaml
   - workstation-ostree-config/gnome-desktop-pkgs.yaml
 
