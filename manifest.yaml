@@ -85,6 +85,8 @@ repos:
   - fedora-modular
   - fedora-updates-modular
   - fedora-rawhide
+  - rpmfusion-free
+  - rpmfusion-free-updates
 
 packages:
   - coreos-installer
@@ -103,18 +105,14 @@ packages:
   - nmap
   - ldns-utils
   - jq
-  - unrar
   - p7zip
   - libva-vdpau-driver
   - libva-utils
   - htop
-  # - mpv
-  # - youtube-dl
-  # - awscli
-  # - gimp
-  # - vlc
-  # - ncmpcpp
-
-exclude-packages:
-  - gnome-boxes
-  - gnome-initial-setup
+  - unrar
+  - mpv
+  - youtube-dl
+  - awscli
+  - gimp
+  - vlc
+  - ncmpcpp
