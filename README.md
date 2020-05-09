@@ -25,7 +25,7 @@ cosa() {
    rc=$?; set +x; return $rc
 }
 
-cosa init https://github.com/randomcoww/fedora-coreos-custom.git
+cosa init https://github.com/randomcoww/fedora-silverblue-custom.git
 ```
 
 Add ignition file from https://github.com/randomcoww/terraform-infra 
