@@ -5,9 +5,8 @@ metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-$releasever&arc
 enabled=1
 metadata_expire=14d
 type=rpm-md
-gpgcheck=1
+gpgcheck=0
 repo_gpgcheck=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
 
 [rpmfusion-free-updates]
 name=RPM Fusion for Fedora $releasever - Free - Updates
@@ -16,9 +15,8 @@ metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-release
 enabled=1
 enabled_metadata=1
 type=rpm-md
-gpgcheck=1
+gpgcheck=0
 repo_gpgcheck=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
 
 [rpmfusion-nonfree]
 name=RPM Fusion for Fedora $releasever - Nonfree
@@ -28,9 +26,8 @@ enabled=1
 enabled_metadata=1
 metadata_expire=14d
 type=rpm-md
-gpgcheck=1
+gpgcheck=0
 repo_gpgcheck=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-$releasever
 
 [rpmfusion-nonfree-updates]
 name=RPM Fusion for Fedora $releasever - Nonfree - Updates
@@ -39,6 +36,5 @@ metalink=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-updates-rele
 enabled=1
 enabled_metadata=1
 type=rpm-md
-gpgcheck=1
+gpgcheck=0
 repo_gpgcheck=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-$releasever

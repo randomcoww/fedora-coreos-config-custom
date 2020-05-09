@@ -8,6 +8,7 @@
         "gecos": "CoreOS Admin",
         "groups": [
           "adm",
+          "sudo",
           "systemd-journal",
           "wheel"
         ],

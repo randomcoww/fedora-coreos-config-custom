@@ -23,6 +23,15 @@ etc-group-members:
   - adm
   - libvirt
 
+selinux: false
+
+check-passwd:
+  type: "file"
+  filename: "fedora-coreos-config/manifests/passwd"
+check-groups:
+  type: "file"
+  filename: "fedora-coreos-config/manifests/group"
+
 default-target: graphical.target
 
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
@@ -87,6 +96,9 @@ repos:
   - fedora-rawhide
   - rpmfusion-free
   - rpmfusion-free-updates
+  - rpmfusion-nonfree
+  - rpmfusion-nonfree-updates
+  - kubernetes
 
 packages:
   - coreos-installer
@@ -116,3 +128,4 @@ packages:
   - gimp
   - vlc
   - ncmpcpp
+  - kubectl
