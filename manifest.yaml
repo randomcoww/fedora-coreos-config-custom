@@ -87,6 +87,34 @@ repos:
   - fedora-rawhide
 
 packages:
+  - coreos-installer
+  # Custom
   - libvirt-daemon-kvm
   - ksmtuned
-  - coreos-installer
+  - libvirt-client
+  - virt-viewer
+  - podman-compose
+  - tmux
+  - xclip
+  - vim-enhanced
+  - hdparm
+  - ipmitool
+  - lm_sensors
+  - nmap
+  - ldns-utils
+  - jq
+  - unrar
+  - p7zip
+  - libva-vdpau-driver
+  - libva-utils
+  - htop
+  # - mpv
+  # - youtube-dl
+  # - awscli
+  # - gimp
+  # - vlc
+  # - ncmpcpp
+
+exclude-packages:
+  - gnome-boxes
+  - gnome-initial-setup
