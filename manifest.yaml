@@ -1,3 +1,12 @@
+selinux: false
+
+check-passwd:
+  type: "file"
+  filename: "fedora-coreos-config/manifests/passwd"
+check-groups:
+  type: "file"
+  filename: "fedora-coreos-config/manifests/group"
+
 include:
   - workstation-ostree-config/fedora-silverblue.yaml
   - fedora-coreos-config/manifests/ignition-and-ostree.yaml
@@ -22,17 +31,6 @@ etc-group-members:
   - systemd-journal
   - adm
   - libvirt
-
-selinux: false
-
-check-passwd:
-  type: "file"
-  filename: "fedora-coreos-config/manifests/passwd"
-check-groups:
-  type: "file"
-  filename: "fedora-coreos-config/manifests/group"
-
-default-target: graphical.target
 
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
 # See also the version of this in fedora-coreos.yaml
@@ -102,13 +100,10 @@ repos:
 packages:
   - coreos-installer
   # Custom
-  - libvirt-daemon-kvm
-  - ksmtuned
-  - libvirt-client
+  - libvirt-daemon-kvm ksmtuned libvirt-client
   - virt-viewer
-  - podman-compose
-  - tmux
-  - xclip
+  - podman podman-compose skopeo runc systemd-container libvarlink-util
+  - tmux xclip
   - vim-enhanced
   - hdparm
   - ipmitool
@@ -116,11 +111,9 @@ packages:
   - nmap
   - ldns-utils
   - jq
-  - p7zip
-  - libva-vdpau-driver
-  - libva-utils
+  - unrar p7zip
+  - vdpauinfo libva-vdpau-driver libva-utils
   - htop
-  - unrar
   - mpv
   - youtube-dl
   - awscli

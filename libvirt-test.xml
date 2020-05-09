@@ -1,7 +1,7 @@
 <domain type='kvm'>
   <name>silverblue-test</name>
-  <memory unit='GiB'>4</memory>
-  <currentMemory unit='GiB'>4</currentMemory>
+  <memory unit='GiB'>8</memory>
+  <currentMemory unit='GiB'>8</currentMemory>
   <vcpu placement='static'>4</vcpu>
   <os>
     <type arch='x86_64' machine='q35'>hvm</type>
