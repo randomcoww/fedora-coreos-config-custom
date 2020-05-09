@@ -1,0 +1,287 @@
+# This file is most of a Fedora CoreOS like system; it inherits from "core".
+# Add things in this file which are somewhat "opinionated", not necessarily
+# core functionality.
+
+include:
+  - manifests/ignition-and-ostree.yaml
+  - manifests/file-transfer.yaml
+  - workstation-ostree-config/fedora-common-ostree-pkgs.yaml
+
+automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
+mutate-os-release: "${releasever}"
+
+initramfs-args:
+  - --no-hostonly
+  # We don't support root on NFS, so we don't need it in the initramfs. It also
+  # conflicts with /var mount support in ignition because NFS tries to mount stuff
+  # in /var/ and then ignition can't cleanly unmount it. For example:
+  # https://github.com/dracutdevs/dracut/blob/1856ae95c873a6fe855b3dccd0144f1a96b9e71c/modules.d/95nfs/nfs-start-rpc.sh#L7
+  # See also discussion in https://github.com/coreos/fedora-coreos-config/pull/60
+  - --omit=nfs
+  # Omit these since we don't use them
+  - --omit=lvm
+  - --omit=multipath
+  - --omit=iscsi
+
+selinux: false
+documentation: true
+boot_location: new
+tmp-is-dir: true
+
+postprocess-script: workstation-ostree-config/post.sh
+
+# Be minimal
+recommends: false
+
+ignore-removed-users:
+  - root
+ignore-removed-groups:
+  - root
+etc-group-members:
+  - wheel
+  - sudo
+  - systemd-journal
+  - adm
+
+check-passwd:
+  type: "file"
+  filename: "manifests/passwd"
+check-groups:
+  type: "file"
+  filename: "manifests/group"
+
+default-target: graphical.target
+
+remove-files:
+  # We don't ship man(1) or info(1)
+  - usr/share/info
+  - usr/share/man
+  # Drop text docs too
+  - usr/share/doc
+
+# ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
+# See also the version of this in fedora-coreos.yaml
+postprocess:
+  # Users shouldn't be configuring `rpm-ostreed.conf`
+  # https://github.com/coreos/fedora-coreos-tracker/issues/271
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    cat > /tmp/rpm-ostreed.conf << 'EOF'
+    # By default, this system has its OS updates managed by
+    # `zincati.service`.  Changes made to this file may
+    # conflict with the configuation of `zincati.service`.
+    # See https://github.com/coreos/zincati for additional
+    # information.
+
+    EOF
+    cat /usr/etc/rpm-ostreed.conf >> /tmp/rpm-ostreed.conf
+    cp /tmp/rpm-ostreed.conf /usr/etc/rpm-ostreed.conf
+    rm /tmp/rpm-ostreed.conf
+
+  # This will be dropped once rpm-ostree because module-aware.
+  # https://github.com/projectatomic/rpm-ostree/issues/1542#issuecomment-419684977
+  # https://github.com/projectatomic/rpm-ostree/issues/1435
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    for x in /etc/yum.repos.d/*modular.repo; do
+      sed -i -e 's,enabled=[01],enabled=0,' ${x}
+    done
+
+  # Disable the default-enabled AuthorizedKeysFile directive so we can
+  # override it in a config fragment
+  # https://github.com/coreos/fedora-coreos-tracker/issues/139
+  # https://bugzilla.redhat.com/1824913
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    sed -i 's/^AuthorizedKeysFile[[:blank:]]/#&/' /etc/ssh/sshd_config
+
+  # Enable systemd-resolved
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+
+remove-from-packages:
+  # Drop NetworkManager support for ifcfg files, see also corresponding
+  # overlay.d/14NetworkManager-plugins
+  - [NetworkManager, /usr/lib64/NetworkManager/.*/libnm-settings-plugin-ifcfg-rh.so]
+
+packages:
+  # - fedora-release-coreos
+  - fedora-release-silverblue
+  - fedora-repos-ostree
+  # # CL ships this.
+  # - moby-engine
+  # # User metrics
+  # - fedora-coreos-pinger
+  # Updates
+  # - zincati
+  # Security
+  - selinux-policy-targeted
+  - polkit
+  # System setup
+  - afterburn
+  - afterburn-dracut
+  - passwd
+  # SSH
+  - openssh-server openssh-clients
+  # Containers
+  - podman skopeo runc systemd-container
+  - fuse-overlayfs slirp4netns
+  # Remote IPC for podman
+  - libvarlink-util
+  # Networking
+  - nfs-utils-coreos
+  - NetworkManager hostname
+  - iproute-tc
+  - adcli
+  ## Teaming https://github.com/coreos/fedora-coreos-config/pull/289 and http://bugzilla.redhat.com/1758162
+  - NetworkManager-team teamd
+  # Static firewalling
+  # - iptables nftables iptables-nft iptables-services
+  - nftables iptables-nft
+  # Interactive Networking configuration during coreos-install
+  # - NetworkManager-tui
+  # Storage
+  - cloud-utils-growpart
+  - lvm2 iscsi-initiator-utils sg3_utils
+  - device-mapper-multipath
+  - xfsprogs e2fsprogs btrfs-progs mdadm
+  - cryptsetup
+  # - cifs-utils
+  # Time sync
+  - chrony
+  # Allow communication between sudo and SSSD 
+  # for caching sudo rules by SSSD.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/445
+  - libsss_sudo
+  # Extra runtime
+  - sssd shadow-utils
+  # There are things that write outside of the journal still (such as the classic wtmp, etc.)
+  # (auditd also writes outside the journal but it has its own log rotation.)
+  # Anything package layered will also tend to expect files dropped in
+  # /etc/logrotate.d to work.  Really, this is a legacy thing, but if we don't
+  # have it then people's disks will slowly fill up with logs.
+  - logrotate
+  # Used by admins interactively
+  - sudo coreutils attr less tar xz gzip bzip2
+  # - socat net-tools bind-utils
+  - socat net-tools ldns-utils
+  - bash-completion
+  - openssl
+  - vim-minimal
+  - lsof
+  - ipvsadm
+  # file-transfer: note fuse-sshfs is not in RHEL
+  # so we can't put it in file-transfer.yaml
+  - fuse-sshfs
+  # User experience
+  - console-login-helper-messages-issuegen
+  - console-login-helper-messages-motdgen
+  - console-login-helper-messages-profile
+  - toolbox
+  # CoreOS Installer
+  # - coreos-installer coreos-installer-systemd
+  - coreos-installer
+  # i18n
+  - kbd
+  # Parsing/Interacting with JSON data
+  - jq
+  ### gnome-desktop-pkg
+  - ModemManager
+  - NetworkManager-adsl
+  - NetworkManager-openconnect-gnome
+  - NetworkManager-openvpn-gnome
+  - NetworkManager-ppp
+  - NetworkManager-pptp-gnome
+  - NetworkManager-ssh-gnome
+  - NetworkManager-vpnc-gnome
+  - NetworkManager-wwan
+  - adobe-source-code-pro-fonts
+  - at-spi2-atk
+  - at-spi2-core
+  - avahi
+  - chrome-gnome-shell
+  - dconf
+  - gdm
+  - glib-networking
+  - gnome-backgrounds
+  - gnome-bluetooth
+  # - gnome-classic-session
+  - gnome-color-manager
+  - gnome-control-center
+  - gnome-disk-utility
+  - gnome-getting-started-docs
+  # - gnome-initial-setup
+  - gnome-remote-desktop
+  - gnome-session-wayland-session
+  - gnome-session-xsession
+  - gnome-settings-daemon
+  - gnome-shell
+  - gnome-software
+  - gnome-system-monitor
+  - gnome-terminal
+  - gnome-terminal-nautilus
+  - gnome-themes-extra
+  - gnome-user-docs
+  - gnome-user-share
+  - gvfs-afc
+  - gvfs-afp
+  - gvfs-archive
+  - gvfs-fuse
+  - gvfs-goa
+  - gvfs-gphoto2
+  - gvfs-mtp
+  - gvfs-smb
+  - libcanberra-gtk2
+  - libcanberra-gtk3
+  - libproxy-mozjs
+  - librsvg2
+  - libsane-hpaio
+  - mesa-libEGL
+  - mousetweaks
+  - nautilus
+  - nautilus-sendto
+  - orca
+  - polkit
+  - rygel
+  - tracker
+  - tracker-miners
+  - xdg-desktop-portal
+  - xdg-desktop-portal-gtk
+  - xdg-user-dirs-gtk
+  - yelp
+  ### fedora-common-ostree
+  - git-core
+  - lvm2
+  - rpm-ostree
+  # Container management
+  - buildah
+  - skopeo
+  - toolbox
+  # Flatpak support
+  - flatpak
+  - flatpak-builder
+  - xdg-desktop-portal
+
+# This thing is crying out to be pulled into systemd, but that hasn't happened
+# yet.  Also we may want to add to rpm-ostree something like arch negation;
+# basically right now it doesn't exist on s390x.
+# Anyways, it was requested by the Red Hat perf team for RHCOS, so we have it here.
+# https://serverfault.com/questions/513807/is-there-still-a-use-for-irqbalance-on-modern-hardware
+# https://access.redhat.com/solutions/41535
+packages-x86_64:
+  - irqbalance
+packages-ppc64le:
+  - irqbalance
+packages-aarch64:
+  - irqbalance
+
+# Things we don't expect to ship on the host.  We currently
+# have recommends: false so these could only come in via
+# hard requirement, in which case the build will fail.
+exclude-packages:
+  - PackageKit

@@ -1,86 +1,13 @@
-selinux: false
-
-check-passwd:
-  type: "file"
-  filename: "fedora-coreos-config/manifests/passwd"
-check-groups:
-  type: "file"
-  filename: "fedora-coreos-config/manifests/group"
-
+ref: fedora/rawhide/${basearch}/silverblue
 include:
-  - workstation-ostree-config/fedora-silverblue.yaml
-  - fedora-coreos-config/manifests/ignition-and-ostree.yaml
-  - fedora-coreos-config/manifests/file-transfer.yaml
-
-initramfs-args:
-  - --no-hostonly
-  # We don't support root on NFS, so we don't need it in the initramfs. It also
-  # conflicts with /var mount support in ignition because NFS tries to mount stuff
-  # in /var/ and then ignition can't cleanly unmount it. For example:
-  # https://github.com/dracutdevs/dracut/blob/1856ae95c873a6fe855b3dccd0144f1a96b9e71c/modules.d/95nfs/nfs-start-rpc.sh#L7
-  # See also discussion in https://github.com/coreos/fedora-coreos-config/pull/60
-  - --omit=nfs
-  # Omit these since we don't use them
-  - --omit=lvm
-  - --omit=multipath
-  - --omit=iscsi
-
-etc-group-members:
-  - wheel
-  - sudo
-  - systemd-journal
-  - adm
-  - libvirt
-
-# ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
-# See also the version of this in fedora-coreos.yaml
-postprocess:
-  # Users shouldn't be configuring `rpm-ostreed.conf`
-  # https://github.com/coreos/fedora-coreos-tracker/issues/271
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    cat > /tmp/rpm-ostreed.conf << 'EOF'
-    # By default, this system has its OS updates managed by
-    # `zincati.service`.  Changes made to this file may
-    # conflict with the configuation of `zincati.service`.
-    # See https://github.com/coreos/zincati for additional
-    # information.
-
-    EOF
-    cat /usr/etc/rpm-ostreed.conf >> /tmp/rpm-ostreed.conf
-    cp /tmp/rpm-ostreed.conf /usr/etc/rpm-ostreed.conf
-    rm /tmp/rpm-ostreed.conf
-
-  # Disable the default-enabled AuthorizedKeysFile directive so we can
-  # override it in a config fragment
-  # https://github.com/coreos/fedora-coreos-tracker/issues/139
-  # https://bugzilla.redhat.com/1824913
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    sed -i 's/^AuthorizedKeysFile[[:blank:]]/#&/' /etc/ssh/sshd_config
-
-  # Enable systemd-resolved
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
-
-# This thing is crying out to be pulled into systemd, but that hasn't happened
-# yet.  Also we may want to add to rpm-ostree something like arch negation;
-# basically right now it doesn't exist on s390x.
-# Anyways, it was requested by the Red Hat perf team for RHCOS, so we have it here.
-# https://serverfault.com/questions/513807/is-there-still-a-use-for-irqbalance-on-modern-hardware
-# https://access.redhat.com/solutions/41535
-packages-x86_64:
-  - irqbalance
-packages-ppc64le:
-  - irqbalance
-packages-aarch64:
-  - irqbalance
+  - fedora-silverblue-custom-base.yaml
 
 releasever: "32"
+
+rojig:
+  name: fedora-silverblue
+  summary: "Fedora Silverblue base image"
+  license: MIT
 
 repos:
   - fedora-coreos-pool
@@ -102,7 +29,6 @@ packages:
   # Custom
   - libvirt-daemon-kvm ksmtuned libvirt-client
   - virt-viewer
-  - podman podman-compose skopeo runc systemd-container libvarlink-util
   - tmux xclip
   - vim-enhanced
   - hdparm
