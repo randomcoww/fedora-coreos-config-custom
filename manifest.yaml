@@ -98,7 +98,6 @@ repos:
   - rpmfusion-free-updates
   - rpmfusion-nonfree
   - rpmfusion-nonfree-updates
-  - kubernetes
 
 packages:
   - coreos-installer
@@ -128,4 +127,3 @@ packages:
   - gimp
   - vlc
   - ncmpcpp
-  - kubectl
