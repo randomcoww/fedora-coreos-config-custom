@@ -1,13 +1,75 @@
-ref: fedora/rawhide/${basearch}/silverblue
 include:
-  - fedora-silverblue-custom-base.yaml
+  - manifests/ignition-and-ostree.yaml
+  - manifests/file-transfer.yaml
+  - workstation-ostree-config/fedora-silverblue-custom-base.yaml
 
 releasever: "32"
 
+ref: fedora/rawhide/${basearch}/silverblue
 rojig:
   name: fedora-silverblue
   summary: "Fedora Silverblue base image"
   license: MIT
+
+automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
+mutate-os-release: "${releasever}"
+
+initramfs-args:
+  - --no-hostonly
+  # We don't support root on NFS, so we don't need it in the initramfs. It also
+  # conflicts with /var mount support in ignition because NFS tries to mount stuff
+  # in /var/ and then ignition can't cleanly unmount it. For example:
+  # https://github.com/dracutdevs/dracut/blob/1856ae95c873a6fe855b3dccd0144f1a96b9e71c/modules.d/95nfs/nfs-start-rpc.sh#L7
+  # See also discussion in https://github.com/coreos/fedora-coreos-config/pull/60
+  - --omit=nfs
+  # Omit these since we don't use them
+  - --omit=lvm
+  - --omit=multipath
+  - --omit=iscsi
+
+etc-group-members:
+  - wheel
+  - sudo
+  - systemd-journal
+  - adm
+
+check-passwd:
+  type: "file"
+  filename: "manifests/passwd"
+check-groups:
+  type: "file"
+  filename: "manifests/group"
+
+# ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
+# See also the version of this in fedora-coreos.yaml
+postprocess:
+  # This will be dropped once rpm-ostree because module-aware.
+  # https://github.com/projectatomic/rpm-ostree/issues/1542#issuecomment-419684977
+  # https://github.com/projectatomic/rpm-ostree/issues/1435
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    for x in /etc/yum.repos.d/*modular.repo; do
+      sed -i -e 's,enabled=[01],enabled=0,' ${x}
+    done
+  # Disable the default-enabled AuthorizedKeysFile directive so we can
+  # override it in a config fragment
+  # https://github.com/coreos/fedora-coreos-tracker/issues/139
+  # https://bugzilla.redhat.com/1824913
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    sed -i 's/^AuthorizedKeysFile[[:blank:]]/#&/' /etc/ssh/sshd_config
+  # Enable systemd-resolved
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+
+remove-from-packages:
+  # Drop NetworkManager support for ifcfg files, see also corresponding
+  # overlay.d/14NetworkManager-plugins
+  - [NetworkManager, /usr/lib64/NetworkManager/.*/libnm-settings-plugin-ifcfg-rh.so]
 
 repos:
   - fedora-coreos-pool
@@ -25,10 +87,15 @@ repos:
   - rpmfusion-nonfree-updates
 
 packages:
-  - coreos-installer
-  # Custom
-  - fuse-sshfs
+  - afterburn
+  - afterburn-dracut
+  - socat net-tools ldns-utils
   - fuse-overlayfs slirp4netns
+  - openssl
+  - fuse-sshfs
+  - coreos-installer
+  - jq
+  ### Custom
   - libvirt-daemon-kvm ksmtuned libvirt-client
   - virt-viewer
   - tmux xclip
@@ -37,8 +104,6 @@ packages:
   - ipmitool
   - lm_sensors
   - nmap
-  - ldns-utils
-  - jq
   - unrar p7zip
   - vdpauinfo libva-vdpau-driver libva-utils
   - htop
