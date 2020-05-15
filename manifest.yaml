@@ -27,6 +27,8 @@ repos:
 packages:
   - coreos-installer
   # Custom
+  - fuse-sshfs
+  - fuse-overlayfs slirp4netns
   - libvirt-daemon-kvm ksmtuned libvirt-client
   - virt-viewer
   - tmux xclip
