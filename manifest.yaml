@@ -1,7 +1,7 @@
 include:
   - manifests/ignition-and-ostree.yaml
   - manifests/file-transfer.yaml
-  - workstation-ostree-config/fedora-silverblue-custom-base.yaml
+  - workstation-ostree-config/fedora-silverblue.yaml
 
 releasever: "32"
 
