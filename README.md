@@ -3,7 +3,7 @@
 #### Update from upstream
 
 ```
-git submodule foreach git pull origin testing-devel
+git submodule foreach git pull origin
 ```
 
 #### Build image
