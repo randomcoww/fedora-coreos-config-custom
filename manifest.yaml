@@ -72,36 +72,27 @@ repos:
   - fedora-modular
   - fedora-updates
   - fedora-updates-modular
-  - fedora-rawhide
-  - rpmfusion-free
-  - rpmfusion-free-updates
-  - rpmfusion-nonfree
-  - rpmfusion-nonfree-updates
 
 packages:
   - afterburn
   - afterburn-dracut
-  - socat net-tools ldns-utils
+  - socat ldns-utils
   - fuse-overlayfs slirp4netns
   - openssl
   - fuse-sshfs
   - coreos-installer
   - jq
   ### Custom
+  - vdpauinfo libva-vdpau-driver libva-utils xorg-x11-drv-amdgpu
   - libvirt-daemon-kvm ksmtuned libvirt-client
+  - hdparm lm_sensors
+  - ipmitool
+  - podman-compose
+  - p7zip
+  - nmap
+  ### Extra
+  - youtube-dl
+  - htop
   - virt-viewer
   - tmux xclip
   - vim-enhanced
-  - hdparm
-  - ipmitool
-  - lm_sensors
-  - nmap
-  - unrar p7zip
-  - vdpauinfo libva-vdpau-driver libva-utils
-  - htop
-  - mpv
-  - youtube-dl
-  - gimp
-  - ncmpcpp
-  - podman-compose
-  - xorg-x11-drv-amdgpu
