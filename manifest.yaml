@@ -72,6 +72,10 @@ repos:
   - fedora-modular
   - fedora-updates
   - fedora-updates-modular
+  - rpmfusion-free
+  - rpmfusion-free-updates
+  - rpmfusion-nonfree
+  - rpmfusion-nonfree-updates
 
 packages:
   - afterburn
@@ -96,3 +100,5 @@ packages:
   - virt-viewer
   - tmux xclip
   - vim-enhanced
+  # This also adds useful codecs to the system
+  - mpv
