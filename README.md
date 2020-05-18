@@ -30,6 +30,5 @@ curl http://127.0.0.1:8080/ignition?ign=desktop \
 
 Run build
 ```
-cosa clean && cosa fetch && cosa build metal
-cosa buildextend-live
+cosa clean && cosa fetch && cosa build metal && cosa buildextend-live
 ```
