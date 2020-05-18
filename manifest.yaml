@@ -1,9 +1,14 @@
 include:
   - manifests/ignition-and-ostree.yaml
   - manifests/file-transfer.yaml
-  - workstation-ostree-config/fedora-silverblue.yaml
+  - workstation-ostree-config/gnome-desktop-pkgs.yaml
 
 releasever: "32"
+ref: fedora/${releasever}/${basearch}/silverblue
+rojig:
+  name: fedora-silverblue
+  summary: "Fedora Silverblue base image"
+  license: MIT
 automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
 mutate-os-release: "${releasever}"
 
