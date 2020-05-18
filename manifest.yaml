@@ -80,7 +80,7 @@ packages:
   - coreos-installer
   - jq
   ### Custom
-  - vdpauinfo libva-vdpau-driver libva-utils xorg-x11-drv-amdgpu
+  - libva-utils xorg-x11-drv-amdgpu vulkan-tools
   - libvirt-daemon-kvm ksmtuned libvirt-client
   - hdparm lm_sensors
   - ipmitool
