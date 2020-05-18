@@ -87,6 +87,7 @@ packages:
   - podman-compose
   - p7zip
   - nmap
+  - strace
   ### Extra
   - youtube-dl
   - htop
