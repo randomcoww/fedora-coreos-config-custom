@@ -4,13 +4,6 @@ include:
   - workstation-ostree-config/fedora-silverblue.yaml
 
 releasever: "32"
-
-ref: fedora/rawhide/${basearch}/silverblue
-rojig:
-  name: fedora-silverblue
-  summary: "Fedora Silverblue base image"
-  license: MIT
-
 automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
 mutate-os-release: "${releasever}"
 
