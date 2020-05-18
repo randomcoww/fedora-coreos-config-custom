@@ -14,7 +14,7 @@ From upstream: https://github.com/coreos/coreos-assembler
 cosa() {
    env | grep COREOS_ASSEMBLER
    set -x
-   podman run --rm -ti --security-opt label=disable --privileged --cap-add CAP_SYS_ADMIN            \
+   podman run --rm -ti --security-opt label=disable --privileged -w /srv                            \
               --uidmap=10000:0:1 --uidmap=0:1:10000 --uidmap 10001:10001:55536                      \
               -v ${PWD}:/srv/ --device /dev/kvm --device /dev/fuse                                  \
               --tmpfs /tmp -v /var/tmp:/var/tmp --name cosa-silverblue                              \
