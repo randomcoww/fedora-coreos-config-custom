@@ -28,29 +28,13 @@ initramfs-args:
 
 etc-group-members:
   - wheel
-  - sudo
   - systemd-journal
   - adm
   - libvirt
 
-check-passwd:
-  type: "file"
-  filename: "manifests/passwd"
-check-groups:
-  type: "file"
-  filename: "manifests/group"
-
 # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
 # See also the version of this in fedora-coreos.yaml
 postprocess:
-  # Disable the default-enabled AuthorizedKeysFile directive so we can
-  # override it in a config fragment
-  # https://github.com/coreos/fedora-coreos-tracker/issues/139
-  # https://bugzilla.redhat.com/1824913
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    sed -i 's/^AuthorizedKeysFile[[:blank:]]/#&/' /etc/ssh/sshd_config
   # Enable systemd-resolved
   - |
     #!/usr/bin/env bash
