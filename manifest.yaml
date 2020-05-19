@@ -11,6 +11,7 @@ rojig:
   license: MIT
 automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
 mutate-os-release: "${releasever}"
+boot-location: modules
 
 initramfs-args:
   - --no-hostonly
