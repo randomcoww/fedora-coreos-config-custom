@@ -86,3 +86,8 @@ packages:
   - vim-enhanced
   # This also adds useful codecs to the system
   - mpv
+
+arch-include:
+  x86_64: manifests/grub2-removals.yaml
+  aarch64: manifests/grub2-removals.yaml
+  ppc64le: manifests/grub2-removals.yaml
