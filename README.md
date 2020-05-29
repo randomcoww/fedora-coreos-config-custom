@@ -22,15 +22,6 @@ cosa() {
 cosa init https://github.com/randomcoww/fedora-silverblue-custom.git
 ```
 
-Optionally add some udev rules for controller support in steam flatpak
-```
-curl https://raw.githubusercontent.com/ValveSoftware/steam-devices/master/60-steam-input.rules \
-   | sudo tee src/config/overlay.d/10custom/etc/udev/rules.d/60-steam-input.rules
-
-curl https://raw.githubusercontent.com/ValveSoftware/steam-devices/master/60-steam-vr.rules \
-   | sudo tee src/config/overlay.d/10custom/etc/udev/rules.d/60-steam-vr.rules
-```
-
 Run build
 ```
 cosa clean && cosa fetch && cosa build metal && cosa buildextend-live
