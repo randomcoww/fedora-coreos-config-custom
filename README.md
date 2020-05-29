@@ -22,12 +22,6 @@ cosa() {
 cosa init https://github.com/randomcoww/fedora-silverblue-custom.git
 ```
 
-Add ignition file from https://github.com/randomcoww/terraform-infra 
-```
-curl http://127.0.0.1:8080/ignition?ign=desktop \
-   | sudo tee src/config/overlay.d/10custom/usr/lib/dracut/modules.d/40ignition-conf/base.ign
-```
-
 Optionally add some udev rules for controller support in steam flatpak
 ```
 curl https://raw.githubusercontent.com/ValveSoftware/steam-devices/master/60-steam-input.rules \
@@ -40,4 +34,10 @@ curl https://raw.githubusercontent.com/ValveSoftware/steam-devices/master/60-ste
 Run build
 ```
 cosa clean && cosa fetch && cosa build metal && cosa buildextend-live
+```
+
+Embed ignition from https://github.com/randomcoww/terraform-infra
+```
+curl http://127.0.0.1:8080/ignition?ign=desktop \
+  | sudo coreos-installer iso embed builds/latest/x86_64/fedora-silverblue-*.dev.0-live.x86_64.iso -o desktop.iso
 ```
