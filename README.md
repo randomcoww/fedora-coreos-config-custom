@@ -33,7 +33,7 @@ cosa clean && cosa fetch && cosa build metal && cosa buildextend-live
 Embed ignition from https://github.com/randomcoww/terraform-infra
 ```
 curl http://127.0.0.1:8080/ignition?ign=desktop \
-  | sudo coreos-installer iso embed builds/latest/x86_64/fedora-silverblue-*.dev.0-live.x86_64.iso -o desktop.iso
+  | sudo coreos-installer iso embed builds/latest/x86_64/fedora-silverblue-*-live.x86_64.iso -o desktop.iso
 ```
 
 Replace on running system
