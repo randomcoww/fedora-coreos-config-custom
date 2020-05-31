@@ -44,15 +44,6 @@ check-groups:
   type: "file"
   filename: "manifests/group"
 
-# ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
-# See also the version of this in fedora-coreos.yaml
-postprocess:
-  # Enable systemd-resolved
-  - |
-    #!/usr/bin/env bash
-    set -xeuo pipefail
-    ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
-
 remove-from-packages:
   # Drop NetworkManager support for ifcfg files, see also corresponding
   # overlay.d/14NetworkManager-plugins
