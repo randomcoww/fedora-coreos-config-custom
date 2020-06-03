@@ -9,7 +9,7 @@ rojig:
   name: fedora-silverblue
   summary: "Fedora Silverblue base image"
   license: MIT
-automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
+automatic-version-prefix: "${releasever}"
 mutate-os-release: "${releasever}"
 boot-location: modules
 
@@ -69,8 +69,7 @@ repos:
   - fedora-updates-modular
   - rpmfusion-free
   - rpmfusion-free-updates
-  - rpmfusion-nonfree
-  - rpmfusion-nonfree-updates
+  - gitlab.com_paulcarroty_vscodium_repo
 
 packages:
   - afterburn
@@ -84,6 +83,7 @@ packages:
   ### Custom
   - libva-utils xorg-x11-drv-amdgpu vulkan-tools
   - libvirt-daemon-kvm ksmtuned libvirt-client virt-viewer
+  - kubernetes-client
   - hdparm lm_sensors
   - ipmitool
   - podman-compose
@@ -95,8 +95,10 @@ packages:
   - htop
   - tmux xclip
   - vim-enhanced
-  # This also adds useful codecs to the system
+  - gimp
+  # External repo
   - mpv
+  - codium
 
 arch-include:
   x86_64: manifests/grub2-removals.yaml
