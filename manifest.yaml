@@ -67,6 +67,7 @@ repos:
   - fedora-modular
   - fedora-updates
   - fedora-updates-modular
+  - fedora-rawhide
   - rpmfusion-free
   - rpmfusion-free-updates
   - gitlab.com_paulcarroty_vscodium_repo
