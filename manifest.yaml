@@ -78,7 +78,19 @@ packages:
   - afterburn
   - afterburn-dracut
   - socat ldns-utils
+  # Podman
+  - runc systemd-container catatonit
   - fuse-overlayfs slirp4netns
+  - libvarlink-util
+  # Storage
+  - cloud-utils-growpart
+  - iscsi-initiator-utils sg3_utils
+  - device-mapper-multipath
+  - xfsprogs
+  - libsss_sudo
+  #
+  - xz gzip socat
+  - iproute-tc
   - openssl
   - fuse-sshfs
   - coreos-installer
@@ -94,7 +106,6 @@ packages:
   - nmap
   - strace
   - git-crypt
-  ### Extra
   - youtube-dl
   - htop
   - tmux xclip
