@@ -26,6 +26,8 @@ initramfs-args:
   - --omit=multipath
   - --omit=iscsi
 
+recommends: false
+
 ignore-removed-users:
   - root
 ignore-removed-groups:
@@ -91,6 +93,7 @@ packages:
   - p7zip
   - nmap
   - strace
+  - git-crypt
   ### Extra
   - youtube-dl
   - htop
