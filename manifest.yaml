@@ -72,6 +72,8 @@ repos:
   - fedora-rawhide
   - rpmfusion-free
   - rpmfusion-free-updates
+  - rpmfusion-nonfree
+  - rpmfusion-nonfree-updates
   - gitlab.com_paulcarroty_vscodium_repo
 
 packages:
@@ -114,6 +116,7 @@ packages:
   # External repo
   - mpv
   - codium
+  - unrar
 
 arch-include:
   x86_64: manifests/grub2-removals.yaml
