@@ -73,7 +73,6 @@ repos:
   - rpmfusion-free
   - rpmfusion-free-updates
   - rpmfusion-nonfree
-  - rpmfusion-nonfree-updates
   - gitlab.com_paulcarroty_vscodium_repo
 
 packages:
