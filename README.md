@@ -15,14 +15,14 @@ cosa() {
               ${COREOS_ASSEMBLER_CONFIG_GIT:+-v $COREOS_ASSEMBLER_CONFIG_GIT:/srv/src/config/:ro}   \
               ${COREOS_ASSEMBLER_GIT:+-v $COREOS_ASSEMBLER_GIT/src/:/usr/lib/coreos-assembler/:ro}  \
               ${COREOS_ASSEMBLER_CONTAINER_RUNTIME_ARGS}                                            \
-              ${COREOS_ASSEMBLER_CONTAINER:-quay.io/coreos-assembler/coreos-assembler:v0.8.0} "$@"
+              ${COREOS_ASSEMBLER_CONTAINER:-quay.io/coreos-assembler/coreos-assembler:latest} "$@"
    rc=$?; set +x; return $rc
 }
 ```
 
 Check out config
 ```
-cosa init https://github.com/randomcoww/fedora-silverblue-custom.git
+cosa init https://github.com/randomcoww/fedora-silverblue-custom.git --force
 ```
 
 Run build
