@@ -1,0 +1,49 @@
+<domain type='kvm'>
+  <name>test-silverblue</name>
+  <memory unit='GiB'>8</memory>
+  <currentMemory unit='GiB'>8</currentMemory>
+  <vcpu placement='static'>8</vcpu>
+  <os>
+    <type arch='x86_64' machine='q35'>hvm</type>
+    <loader readonly='yes' type='pflash'>/usr/share/OVMF/OVMF_CODE.fd</loader>
+    <nvram template='/usr/share/OVMF/OVMF_VARS.fd'/>
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+    <pae/>
+    <vmport state='off'/>
+  </features>
+  <cpu mode='host-passthrough'>
+    <topology sockets='1' cores='8' threads='1'/>
+    <cache level='3' mode='emulate'/>
+  </cpu>
+  <devices>
+    <emulator>/usr/bin/qemu-system-x86_64</emulator>
+    <disk type='file' device='cdrom'>
+      <driver name='qemu' type='raw'/>
+      <source file='/var/lib/libvirt/boot/desktop.iso'/>
+      <target dev='sda' bus='sata'/>
+      <boot order='1'/>
+      <readonly/>
+    </disk>
+    <controller type='scsi' model='virtio-scsi'/>
+    <console>
+      <target type='virtio'/>
+    </console>
+    <input type='mouse' bus='virtio'/>
+    <input type='keyboard' bus='virtio'/>
+    <graphics type='spice' port='5900'/>
+    <channel type='spicevmc'>
+      <target type='virtio' name='com.redhat.spice.0'/>
+      <address type='virtio-serial'/>
+    </channel>
+    <video>
+      <model type='virtio'/>
+    </video>
+    <memballoon model='virtio'/>
+    <rng model='virtio'>
+      <backend model='random'>/dev/urandom</backend>
+    </rng>
+  </devices>
+</domain>
