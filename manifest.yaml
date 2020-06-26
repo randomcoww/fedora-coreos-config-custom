@@ -1,16 +1,32 @@
+ref: fedora/${releasever}/${basearch}/silverblue
 include:
   - manifests/ignition-and-ostree.yaml
   - manifests/file-transfer.yaml
   - workstation-ostree-config/gnome-desktop-pkgs.yaml
 
 releasever: "32"
-ref: fedora/${releasever}/${basearch}/silverblue
 rojig:
   name: fedora-silverblue
   summary: "Fedora Silverblue base image"
   license: MIT
+
 automatic-version-prefix: "${releasever}"
 mutate-os-release: "${releasever}"
+
+repos:
+  - fedora-coreos-pool
+  # these repos are there to make it easier to add new packages to the OS and to
+  # use `cosa fetch --update-lockfile`; but note that all package versions are
+  # still pinned
+  - fedora
+  - fedora-modular
+  - fedora-updates
+  - fedora-updates-modular
+  - fedora-rawhide
+  - rpmfusion-free
+  - rpmfusion-free-updates
+  - rpmfusion-nonfree
+  - gitlab.com_paulcarroty_vscodium_repo
 
 initramfs-args:
   - --no-hostonly
@@ -59,21 +75,6 @@ remove-from-packages:
   # overlay.d/14NetworkManager-plugins
   - [NetworkManager, /usr/lib64/NetworkManager/.*/libnm-settings-plugin-ifcfg-rh.so]
 
-repos:
-  - fedora-coreos-pool
-  # these repos are there to make it easier to add new packages to the OS and to
-  # use `cosa fetch --update-lockfile`; but note that all package versions are
-  # still pinned
-  - fedora
-  - fedora-modular
-  - fedora-updates
-  - fedora-updates-modular
-  - fedora-rawhide
-  - rpmfusion-free
-  - rpmfusion-free-updates
-  - rpmfusion-nonfree
-  - gitlab.com_paulcarroty_vscodium_repo
-
 packages:
   - afterburn
   - afterburn-dracut
@@ -111,6 +112,9 @@ packages:
   - tmux xclip
   - vim-enhanced
   - gimp
+  # gnome components
+  - appstream-data
+  - eog
   # External repo
   - mpv
   - codium
