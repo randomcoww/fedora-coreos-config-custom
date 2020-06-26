@@ -41,7 +41,7 @@ initramfs-args:
   - --omit=multipath
   - --omit=iscsi
 
-recommends: false
+recommends: true
 
 ignore-removed-users:
   - root
@@ -113,7 +113,6 @@ packages:
   - vim-enhanced
   - gimp
   # gnome components
-  - appstream-data
   - eog
   # External repo
   - mpv
