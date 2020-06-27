@@ -27,7 +27,7 @@ cosa init https://github.com/randomcoww/fedora-silverblue-custom.git --force
 
 Run build
 ```
-cosa clean && cosa fetch && cosa build metal && cosa buildextend-live
+cosa clean && cosa fetch && cosa build metal && cosa buildextend-live --no-pxe
 ```
 
 Embed ignition from https://github.com/randomcoww/terraform-infra
