@@ -99,7 +99,6 @@ packages:
   ### Custom
   - libva-utils xorg-x11-drv-amdgpu vulkan-tools
   - libvirt-daemon-kvm ksmtuned libvirt-client virt-viewer
-  - kubernetes-client
   - hdparm lm_sensors
   - ipmitool
   - podman-compose

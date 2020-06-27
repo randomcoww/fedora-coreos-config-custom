@@ -36,6 +36,7 @@ baseurl=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/rpms/
 enabled=1
 gpgcheck=0
 repo_gpgcheck=0
+includepkgs=codium
 
 [fedora-rawhide]
 name=Fedora rawhide $basearch
