@@ -34,10 +34,16 @@ Embed ignition from https://github.com/randomcoww/terraform-infra
 ```
 curl http://127.0.0.1:8080/ignition?ign=desktop \
   | sudo coreos-installer iso embed builds/latest/x86_64/fedora-silverblue-*-live.x86_64.iso -o desktop.iso
+
+curl http://127.0.0.1:8080/ignition?ign=laptop \
+  | sudo coreos-installer iso embed builds/latest/x86_64/fedora-silverblue-*-live.x86_64.iso -o laptop.iso
 ```
 
-Replace on running system
+Write to disk
 ```
 curl http://127.0.0.1:8080/ignition?ign=desktop \
-   | sudo coreos-installer iso embed /dev/sda --force
+   | sudo coreos-installer iso embed /dev/sdb --force
+
+curl http://127.0.0.1:8080/ignition?ign=laptop \
+   | sudo coreos-installer iso embed /dev/sdb --force
 ```
