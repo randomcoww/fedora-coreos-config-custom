@@ -1,1 +1,0 @@
-@@KERNEL-ARGS@@ ignition.firstboot ignition.platform.id=metal rd.neednet=0 intel_iommu=on amd_iommu=on iommu=pt console=tty0 console=ttyS1,115200n8 selinux=0
