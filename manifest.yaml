@@ -114,6 +114,7 @@ packages:
   # gnome components
   - eog
   # External repo
+  - kubernetes-client
   - mpv
   - codium
   - unrar
