@@ -8,7 +8,6 @@ extra-kargs:
     # https://github.com/coreos/fedora-coreos-tracker/issues/292
     # https://fedoraproject.org/wiki/Changes/CGroupsV2
     - systemd.unified_cgroup_hierarchy=0
-    - ignition.firstboot
     - ignition.platform.id=metal
     - rd.neednet=0
     - intel_iommu=on
