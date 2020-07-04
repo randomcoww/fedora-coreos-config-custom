@@ -118,6 +118,9 @@ packages:
   - vim-enhanced
   - gimp
   - eog
+  # PXE boot
+  - kea
+  - keepalived
   # External repo
   - kubernetes-client
   - mpv
@@ -128,3 +131,6 @@ arch-include:
   x86_64: manifests/grub2-removals.yaml
   aarch64: manifests/grub2-removals.yaml
   ppc64le: manifests/grub2-removals.yaml
+
+add-files:
+  - [resources/matchbox.tar, /etc/container-save/matchbox.tar]

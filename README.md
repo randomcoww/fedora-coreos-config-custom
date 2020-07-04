@@ -25,6 +25,13 @@ Check out config
 cosa init https://github.com/randomcoww/fedora-silverblue-custom.git --force
 ```
 
+Add matchbox image. This host has no internet access and cannot download containers.
+```
+podman pull quay.io/poseidon/matchbox:latest
+podman save --format oci-archive -o matchbox.tar quay.io/poseidon/matchbox:latest
+sudo mv matchbox.tar src/config/resources
+```
+
 Run build
 ```
 cosa clean && cosa fetch && cosa build metal && cosa buildextend-live --no-pxe
