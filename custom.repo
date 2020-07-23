@@ -30,14 +30,6 @@ gpgcheck=0
 repo_gpgcheck=0
 includepkgs=unrar
 
-[gitlab.com_paulcarroty_vscodium_repo]
-name=gitlab.com_paulcarroty_vscodium_repo
-baseurl=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/rpms/
-enabled=1
-gpgcheck=0
-repo_gpgcheck=0
-includepkgs=codium
-
 [fedora-rawhide]
 name=Fedora rawhide $basearch
 #baseurl=http://download.fedoraproject.org/pub/fedora/linux//development/rawhide/$basearch/os/

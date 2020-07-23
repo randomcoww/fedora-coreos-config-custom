@@ -26,7 +26,6 @@ repos:
   - rpmfusion-free
   - rpmfusion-free-updates
   - rpmfusion-nonfree
-  - gitlab.com_paulcarroty_vscodium_repo
 
 initramfs-args:
   - --no-hostonly
@@ -105,26 +104,19 @@ packages:
   ## Custom
   - libva-utils xorg-x11-drv-amdgpu vulkan-tools
   - libvirt-daemon-kvm ksmtuned libvirt-client virt-viewer
-  - hdparm lm_sensors
-  - ipmitool
+  - hdparm lm_sensors ipmitool
   - podman-compose
   - p7zip
-  - nmap
-  - strace
-  - git-crypt
-  - youtube-dl
-  - htop
+  - strace htop
   - tmux xclip
+  - nmap
   - vim-enhanced
-  - gimp
   - eog
   # PXE boot
-  - kea
-  - keepalived
+  - kea keepalived
   # External repo
   - kubernetes-client
   - mpv
-  - codium
   - unrar
 
 arch-include:
