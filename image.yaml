@@ -12,6 +12,7 @@ extra-kargs:
     - amd_iommu=on
     - iommu=pt
     - selinux=0
+    - rd.driver.pre=vfio-pci
 
 # Kernel arguments to be used on first-boot.
 ignition-network-kcmdline:

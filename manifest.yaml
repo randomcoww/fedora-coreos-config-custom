@@ -6,9 +6,9 @@ include:
 
 releasever: "32"
 rojig:
+  license: MIT
   name: fedora-silverblue
   summary: "Fedora Silverblue base image"
-  license: MIT
 
 automatic-version-prefix: "${releasever}"
 mutate-os-release: "${releasever}"
@@ -22,10 +22,9 @@ repos:
   - fedora-modular
   - fedora-updates
   - fedora-updates-modular
-  - fedora-rawhide
   - rpmfusion-free
   - rpmfusion-free-updates
-  - rpmfusion-nonfree
+  - fedora-rawhide
 
 initramfs-args:
   - --no-hostonly
@@ -39,6 +38,10 @@ initramfs-args:
   - --omit=lvm
   - --omit=multipath
   - --omit=iscsi
+  - --add-drivers=vfio
+  - --add-drivers=vfio_iommu_type1
+  - --add-drivers=vfio_pci
+  - --add-drivers=vfio_virqfd
 
 recommends: true
 
@@ -95,29 +98,52 @@ packages:
   - fuse-sshfs
   # User experience
   - console-login-helper-messages-issuegen
-  - console-login-helper-messages-motdgen
-  - console-login-helper-messages-profile
+  # - console-login-helper-messages-motdgen
+  # - console-login-helper-messages-profile
   # CoreOS Installer
   - coreos-installer
   # Parsing/Interacting with JSON data
   - jq
   ## Custom
-  - libva-utils xorg-x11-drv-amdgpu vulkan-tools
-  - libvirt-daemon-kvm ksmtuned libvirt-client virt-viewer
-  - hdparm lm_sensors ipmitool
-  - podman-compose
-  - p7zip
-  - strace htop
-  - tmux xclip
-  - nmap
-  - vim-enhanced
-  - eog
-  # PXE boot
+  - hdparm
+  - libvirt-daemon-kvm
   - kea keepalived
-  # External repo
+  - libva-utils xorg-x11-drv-amdgpu vulkan-tools
+  - libvirt-client virt-viewer
+  - ipmitool
   - kubernetes-client
-  - mpv
-  - unrar
+  - podman-compose
+  - tmux xclip vim-enhanced strace
+  - eog mpv
+
+# This thing is crying out to be pulled into systemd, but that hasn't happened
+# yet.  Also we may want to add to rpm-ostree something like arch negation;
+# basically right now it doesn't exist on s390x.
+# Anyways, it was requested by the Red Hat perf team for RHCOS, so we have it here.
+# https://serverfault.com/questions/513807/is-there-still-a-use-for-irqbalance-on-modern-hardware
+# https://access.redhat.com/solutions/41535
+packages-x86_64:
+  - irqbalance
+packages-ppc64le:
+  - irqbalance
+packages-aarch64:
+  - irqbalance
+
+# Things we don't expect to ship on the host.  We currently
+# have recommends: false so these could only come in via
+# hard requirement, in which case the build will fail.
+exclude-packages:
+  - python
+  - python2
+  # - python3
+  - perl
+  - nodejs
+  - dnf
+  - grubby
+  - cowsay  # Just in case
+  # Let's make sure initscripts doesn't get pulled back in
+  # https://github.com/coreos/fedora-coreos-tracker/issues/220#issuecomment-611566254
+  # - initscripts
 
 arch-include:
   x86_64: manifests/grub2-removals.yaml
