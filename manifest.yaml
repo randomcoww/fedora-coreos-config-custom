@@ -99,13 +99,14 @@ packages:
   - hdparm
   - libvirt-daemon-kvm
   - kea keepalived
-  - libva-utils xorg-x11-drv-amdgpu vulkan-tools
+  - libva-utils vulkan-tools
   - libvirt-client virt-viewer
   - ipmitool
   - kubernetes-client
   - podman-compose
   - tmux xclip vim-enhanced strace
   - eog mpv
+  - librtmp
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened
 # yet.  Also we may want to add to rpm-ostree something like arch negation;
