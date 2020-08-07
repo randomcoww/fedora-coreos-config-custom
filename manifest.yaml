@@ -96,7 +96,7 @@ packages:
   # Parsing/Interacting with JSON data
   - jq
   ## Custom
-  - hdparm
+  - hdparm nvme-cli
   - libvirt-daemon-kvm
   - kea keepalived
   - libva-utils vulkan-tools
