@@ -22,8 +22,8 @@ repos:
   - fedora-coreos-pool
   - rpmfusion-free
   - rpmfusion-free-updates
-  - rpmfusion-nonfree
-  - rpmfusion-nonfree-updates
+  # - rpmfusion-nonfree
+  # - rpmfusion-nonfree-updates
   - fedora-rawhide
 
 initramfs-args:
@@ -143,7 +143,7 @@ packages:
   - nvme-cli
   ## Custom
   - libva-utils vulkan-tools
-  - intel-media-driver
+  - libva-intel-hybrid-driver libva-intel-driver
   - hdparm
   - libvirt-daemon-kvm
   - libvirt-client virt-viewer
