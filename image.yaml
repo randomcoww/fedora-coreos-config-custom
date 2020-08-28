@@ -11,12 +11,11 @@ extra-kargs:
     - intel_iommu=on
     - amd_iommu=on
     - iommu=pt
-    - rd.driver.pre=vfio-pci
     - selinux=0
 
-# Kernel arguments to be used on first-boot.
-ignition-network-kcmdline:
-    # - 'rd.neednet=1'
+# Disable networking by default on firstboot. We can drop this once cosa stops
+# defaulting to `ip=dhcp,dhcp6 rd.neednet=1` when it doesn't see this key.
+ignition-network-kcmdline: []
 
 # Optional remote by which to prefix the deployed OSTree ref
 ostree-remote: fedora

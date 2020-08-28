@@ -5,6 +5,7 @@ include:
   - workstation-ostree-config/gnome-desktop-pkgs.yaml
 
 releasever: "32"
+
 rojig:
   license: MIT
   name: fedora-silverblue
@@ -14,14 +15,11 @@ automatic-version-prefix: "${releasever}"
 mutate-os-release: "${releasever}"
 
 repos:
-  - fedora-coreos-pool
-  # these repos are there to make it easier to add new packages to the OS and to
-  # use `cosa fetch --update-lockfile`; but note that all package versions are
-  # still pinned
   - fedora
   - fedora-modular
   - fedora-updates
   - fedora-updates-modular
+  - fedora-coreos-pool
   - rpmfusion-free
   - rpmfusion-free-updates
   - fedora-rawhide
@@ -38,10 +36,6 @@ initramfs-args:
   - --omit=lvm
   - --omit=multipath
   - --omit=iscsi
-  - --add-drivers=vfio
-  - --add-drivers=vfio_iommu_type1
-  - --add-drivers=vfio_pci
-  - --add-drivers=vfio_virqfd
 
 recommends: true
 
@@ -69,36 +63,86 @@ remove-from-packages:
   - [NetworkManager, /usr/lib64/NetworkManager/.*/libnm-settings-plugin-ifcfg-rh.so]
 
 packages:
+  - fedora-release-coreos
+  - fedora-repos-ostree
+  # # CL ships this.
+  - containerd cri-tools
+  # Security
+  - selinux-policy-targeted
+  - polkit
+  # System setup
   - afterburn
   - afterburn-dracut
-  - socat ldns-utils
+  - passwd
+  # Dependency of 20live dracut module
+  - bsdtar
+  # SSH
+  - openssh-server openssh-clients
+  - ssh-key-dir
   # Containers
-  - runc systemd-container catatonit
+  - podman skopeo runc systemd-container catatonit
   - fuse-overlayfs slirp4netns
+  # Remote IPC for podman
   - libvarlink-util
+  # Networking
+  - NetworkManager hostname
+  - iproute-tc
+  - adcli
+  ## Teaming https://github.com/coreos/fedora-coreos-config/pull/289 and http://bugzilla.redhat.com/1758162
+  - NetworkManager-team teamd
+  # Static firewalling
+  - nftables iptables-nft
+  # Interactive Networking configuration during coreos-install
+  # - NetworkManager-tui
+  # WireGuard https://github.com/coreos/fedora-coreos-tracker/issues/362
+  - wireguard-tools
   # Storage
   - cloud-utils-growpart
-  - iscsi-initiator-utils sg3_utils
+  - lvm2 iscsi-initiator-utils sg3_utils
   - device-mapper-multipath
-  - xfsprogs
+  - xfsprogs e2fsprogs btrfs-progs mdadm
+  - cryptsetup
+  # Time sync
+  - chrony
   # Allow communication between sudo and SSSD
+  # for caching sudo rules by SSSD.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/445
   - libsss_sudo
-  - xz gzip socat
-  - iproute-tc
+  # Extra runtime
+  - sssd shadow-utils
+  # There are things that write outside of the journal still (such as the classic wtmp, etc.)
+  # (auditd also writes outside the journal but it has its own log rotation.)
+  # Anything package layered will also tend to expect files dropped in
+  # /etc/logrotate.d to work.  Really, this is a legacy thing, but if we don't
+  # have it then people's disks will slowly fill up with logs.
+  - logrotate
+  # Used by admins interactively
+  - sudo coreutils attr less tar xz gzip bzip2
+  - socat ldns-utils
+  - bash-completion
   - openssl
+  - vim-minimal
+  - lsof
+  - ipvsadm
+  # file-transfer: note fuse-sshfs is not in RHEL
+  # so we can't put it in file-transfer.yaml
   - fuse-sshfs
   # User experience
   - console-login-helper-messages-issuegen
   # - console-login-helper-messages-motdgen
   # - console-login-helper-messages-profile
+  # - toolbox
   # CoreOS Installer
-  - coreos-installer
+  - coreos-installer coreos-installer-bootinfra
+  # i18n
+  - kbd
   # Parsing/Interacting with JSON data
   - jq
+  # nvme-cli for managing nvme disks
+  - nvme-cli
   ## Custom
-  - hdparm nvme-cli
+  - hdparm
   - libvirt-daemon-kvm
-  - kea keepalived
   - libva-utils vulkan-tools
   - libvirt-client virt-viewer
   - ipmitool
@@ -106,6 +150,7 @@ packages:
   - podman-compose
   - tmux xclip vim-enhanced strace
   - eog mpv
+  ## Shadow client
   - librtmp
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened
@@ -141,6 +186,3 @@ arch-include:
   x86_64: manifests/grub2-removals.yaml
   aarch64: manifests/grub2-removals.yaml
   ppc64le: manifests/grub2-removals.yaml
-
-add-files:
-  - [resources/matchbox.tar, /etc/container-save/matchbox.tar]
