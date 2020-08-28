@@ -63,7 +63,6 @@ remove-from-packages:
   - [NetworkManager, /usr/lib64/NetworkManager/.*/libnm-settings-plugin-ifcfg-rh.so]
 
 packages:
-  - fedora-release-coreos
   - fedora-repos-ostree
   # # CL ships this.
   - containerd cri-tools

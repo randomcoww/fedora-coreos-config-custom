@@ -1,6 +1,6 @@
 # This replaces image.ks
 # size is the target disk size in GB.
-size: 2
+size: 3
 
 extra-kargs:
     # Disable SMT on systems vulnerable to MDS or any similar future issue.

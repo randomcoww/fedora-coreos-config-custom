@@ -25,30 +25,29 @@ Check out config
 cosa init https://github.com/randomcoww/fedora-silverblue-custom.git --force
 ```
 
-Add matchbox image. This host has no internet access and cannot download containers.
-```
-podman pull quay.io/poseidon/matchbox:latest
-podman save --format oci-archive -o matchbox.tar quay.io/poseidon/matchbox:latest
-sudo mv matchbox.tar src/config/resources
-```
-
 Run build
 ```
 cosa clean && \
 cosa fetch && \
 cosa build metal4k && \
 cosa buildextend-metal && \
-cosa buildextend-live --no-pxe
+cosa buildextend-live
 ```
 
 Embed ignition from https://github.com/randomcoww/terraform-infra
 ```
-curl http://127.0.0.1:8080/ignition?ign=desktop \
-  | sudo coreos-installer iso embed builds/latest/x86_64/fedora-silverblue-*-live.x86_64.iso -o desktop.iso
+curl http://127.0.0.1:8080/ignition?ign=client-0 \
+  | sudo coreos-installer iso embed builds/latest/x86_64/fedora-silverblue-*-live.x86_64.iso -o client-0.iso
+
+curl http://127.0.0.1:8080/ignition?ign=client-1 \
+  | sudo coreos-installer iso embed builds/latest/x86_64/fedora-silverblue-*-live.x86_64.iso -o client-1.iso
 ```
 
 Write to disk
 ```
-curl http://127.0.0.1:8080/ignition?ign=desktop \
+curl http://127.0.0.1:8080/ignition?ign=client-0 \
+   | sudo coreos-installer iso embed /dev/sdb --force
+
+curl http://127.0.0.1:8080/ignition?ign=client-1 \
    | sudo coreos-installer iso embed /dev/sdb --force
 ```
