@@ -36,18 +36,12 @@ cosa buildextend-live
 
 Embed ignition from https://github.com/randomcoww/terraform-infra
 ```
-curl http://127.0.0.1:8080/ignition?ign=client-0 \
-  | sudo coreos-installer iso embed builds/latest/x86_64/fedora-silverblue-*-live.x86_64.iso -o client-0.iso
-
-curl http://127.0.0.1:8080/ignition?ign=client-1 \
-  | sudo coreos-installer iso embed builds/latest/x86_64/fedora-silverblue-*-live.x86_64.iso -o client-1.iso
+curl http://127.0.0.1:8080/ignition?ign=client \
+  | sudo coreos-installer iso embed builds/latest/x86_64/fedora-silverblue-*-live.x86_64.iso -o client.iso
 ```
 
 Write to disk
 ```
-curl http://127.0.0.1:8080/ignition?ign=client-0 \
-   | sudo coreos-installer iso embed /dev/sdb --force
-
-curl http://127.0.0.1:8080/ignition?ign=client-1 \
-   | sudo coreos-installer iso embed /dev/sdb --force
+curl http://127.0.0.1:8080/ignition?ign=client \
+   | sudo coreos-installer iso embed /dev/sda --force
 ```
