@@ -2,7 +2,7 @@ ref: fedora/${releasever}/${basearch}/silverblue
 include:
   - manifests/ignition-and-ostree.yaml
   - manifests/file-transfer.yaml
-  - workstation-ostree-config/gnome-desktop-pkgs.yaml
+  - workstation-ostree-config/fedora-common-ostree-pkgs.yaml
 
 releasever: "32"
 
@@ -39,14 +39,13 @@ initramfs-args:
   - --omit=multipath
   - --omit=iscsi
 
-recommends: true
+recommends: false
 
 ignore-removed-users:
   - root
 ignore-removed-groups:
   - root
 etc-group-members:
-  - wheel
   - sudo
   - systemd-journal
   - adm
@@ -59,6 +58,8 @@ check-groups:
   type: "file"
   filename: "manifests/group"
 
+default_target: graphical.target
+
 remove-from-packages:
   # Drop NetworkManager support for ifcfg files, see also corresponding
   # overlay.d/14NetworkManager-plugins
@@ -66,20 +67,12 @@ remove-from-packages:
 
 packages:
   - fedora-repos-ostree
-  # # CL ships this.
-  - containerd cri-tools
-  # Security
-  - selinux-policy-targeted
-  - polkit
   # System setup
-  - afterburn
-  - afterburn-dracut
   - passwd
   # Dependency of 20live dracut module
   - bsdtar
   # SSH
-  - openssh-server openssh-clients
-  - ssh-key-dir
+  - openssh-clients
   # Containers
   - podman skopeo runc systemd-container catatonit
   - fuse-overlayfs slirp4netns
@@ -88,13 +81,8 @@ packages:
   # Networking
   - NetworkManager hostname
   - iproute-tc
-  - adcli
-  ## Teaming https://github.com/coreos/fedora-coreos-config/pull/289 and http://bugzilla.redhat.com/1758162
-  - NetworkManager-team teamd
   # Static firewalling
   - nftables iptables-nft
-  # Interactive Networking configuration during coreos-install
-  # - NetworkManager-tui
   # WireGuard https://github.com/coreos/fedora-coreos-tracker/issues/362
   - wireguard-tools
   # Storage
@@ -122,17 +110,7 @@ packages:
   - socat ldns-utils
   - bash-completion
   - openssl
-  - vim-minimal
   - lsof
-  - ipvsadm
-  # file-transfer: note fuse-sshfs is not in RHEL
-  # so we can't put it in file-transfer.yaml
-  - fuse-sshfs
-  # User experience
-  - console-login-helper-messages-issuegen
-  # - console-login-helper-messages-motdgen
-  # - console-login-helper-messages-profile
-  # - toolbox
   # CoreOS Installer
   - coreos-installer coreos-installer-bootinfra
   # i18n
@@ -141,10 +119,62 @@ packages:
   - jq
   # nvme-cli for managing nvme disks
   - nvme-cli
+
+  ## from fedora-common-ostree.yaml
+  - flatpak
+  - flatpak-builder
+  ## from gnome-desktop-pkgs.yaml
+  - ModemManager
+  - NetworkManager-adsl
+  - NetworkManager-openconnect-gnome
+  - NetworkManager-openvpn-gnome
+  - NetworkManager-ppp
+  - NetworkManager-pptp-gnome
+  - NetworkManager-ssh-gnome
+  - NetworkManager-vpnc-gnome
+  - NetworkManager-wwan
+  - adobe-source-code-pro-fonts
+  - at-spi2-atk
+  - at-spi2-core
+  - chrome-gnome-shell
+  - dconf
+  - gdm
+  - glib-networking
+  - gnome-bluetooth
+  - gnome-color-manager
+  - gnome-control-center
+  - gnome-remote-desktop
+  - gnome-session-wayland-session
+  - gnome-session-xsession
+  - gnome-settings-daemon
+  - gnome-shell
+  - gnome-terminal
+  - gnome-terminal-nautilus
+  - gnome-themes-extra
+  - gvfs-afc
+  - gvfs-afp
+  - gvfs-archive
+  - gvfs-fuse
+  - gvfs-goa
+  - gvfs-gphoto2
+  - gvfs-mtp
+  - gvfs-smb
+  - libcanberra-gtk2
+  - libcanberra-gtk3
+  - libproxy-mozjs
+  - librsvg2
+  - libsane-hpaio
+  - mesa-libEGL
+  - mousetweaks
+  - nautilus
+  - nautilus-sendto
+  - xdg-desktop-portal
+  - xdg-desktop-portal-gtk
+  - xdg-user-dirs-gtk
+
   ## Custom
   - libva-utils vulkan-tools
-  - libva-intel-hybrid-driver libva-intel-driver
-  - hdparm
+  - libva-intel-hybrid-driver
   - libvirt-daemon-kvm
   - libvirt-client virt-viewer
   - ipmitool
@@ -152,7 +182,6 @@ packages:
   - podman-compose
   - tmux xclip vim-enhanced strace
   - eog mpv
-  ## Shadow client
   - librtmp
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened
@@ -183,6 +212,7 @@ exclude-packages:
   # Let's make sure initscripts doesn't get pulled back in
   # https://github.com/coreos/fedora-coreos-tracker/issues/220#issuecomment-611566254
   # - initscripts
+  - PackageKit
 
 arch-include:
   x86_64: manifests/grub2-removals.yaml
