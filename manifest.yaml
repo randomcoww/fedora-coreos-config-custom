@@ -50,6 +50,7 @@ etc-group-members:
   - systemd-journal
   - adm
   - libvirt
+  - wheel
 
 check-passwd:
   type: "file"
@@ -119,10 +120,20 @@ packages:
   - jq
   # nvme-cli for managing nvme disks
   - nvme-cli
+  ## Custom
+  - libva-utils vulkan-tools
+  - libva-intel-hybrid-driver libva-intel-driver
+  - libvirt-daemon-kvm
+  - libvirt-client virt-viewer
+  - ipmitool
+  - kubernetes-client
+  - tmux xclip vim-enhanced strace
+  - eog mpv
+  - toolbox
+  - buildah podman-compose
+  - flatpak flatpak-builder
+  - librtmp
 
-  ## from fedora-common-ostree.yaml
-  - flatpak
-  - flatpak-builder
   ## from gnome-desktop-pkgs.yaml
   - ModemManager
   - NetworkManager-adsl
@@ -143,7 +154,6 @@ packages:
   - gnome-bluetooth
   - gnome-color-manager
   - gnome-control-center
-  - gnome-remote-desktop
   - gnome-session-wayland-session
   - gnome-session-xsession
   - gnome-settings-daemon
@@ -151,6 +161,7 @@ packages:
   - gnome-terminal
   - gnome-terminal-nautilus
   - gnome-themes-extra
+  - gnome-user-docs
   - gvfs-afc
   - gvfs-afp
   - gvfs-archive
@@ -168,21 +179,14 @@ packages:
   - mousetweaks
   - nautilus
   - nautilus-sendto
+  - orca
+  - polkit
+  - tracker
+  - tracker-miners
   - xdg-desktop-portal
   - xdg-desktop-portal-gtk
   - xdg-user-dirs-gtk
-
-  ## Custom
-  - libva-utils vulkan-tools
-  - libva-intel-hybrid-driver
-  - libvirt-daemon-kvm
-  - libvirt-client virt-viewer
-  - ipmitool
-  - kubernetes-client
-  - podman-compose
-  - tmux xclip vim-enhanced strace
-  - eog mpv
-  - librtmp
+  - yelp
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened
 # yet.  Also we may want to add to rpm-ostree something like arch negation;
