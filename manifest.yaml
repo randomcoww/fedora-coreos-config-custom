@@ -1,8 +1,7 @@
 ref: fedora/${releasever}/${basearch}/silverblue
 include:
   - manifests/ignition-and-ostree.yaml
-  - manifests/file-transfer.yaml
-  - workstation-ostree-config/fedora-common-ostree-pkgs.yaml
+  # - workstation-ostree-config/fedora-common-ostree-pkgs.yaml
 
 releasever: "32"
 
@@ -132,6 +131,9 @@ packages:
   - toolbox
   - buildah podman-compose
   - flatpak flatpak-builder
+  - git-core
+  - gnupg2
+  - rsync
   - librtmp
 
   ## from gnome-desktop-pkgs.yaml
@@ -151,9 +153,11 @@ packages:
   - dconf
   - gdm
   - glib-networking
+  - gnome-backgrounds
   - gnome-bluetooth
   - gnome-color-manager
   - gnome-control-center
+  - gnome-remote-desktop
   - gnome-session-wayland-session
   - gnome-session-xsession
   - gnome-settings-daemon
@@ -162,14 +166,14 @@ packages:
   - gnome-terminal-nautilus
   - gnome-themes-extra
   - gnome-user-docs
-  - gvfs-afc
-  - gvfs-afp
+  # - gvfs-afc
+  # - gvfs-afp
   - gvfs-archive
   - gvfs-fuse
   - gvfs-goa
-  - gvfs-gphoto2
+  # - gvfs-gphoto2
   - gvfs-mtp
-  - gvfs-smb
+  # - gvfs-smb
   - libcanberra-gtk2
   - libcanberra-gtk3
   - libproxy-mozjs
@@ -187,6 +191,229 @@ packages:
   - xdg-desktop-portal-gtk
   - xdg-user-dirs-gtk
   - yelp
+
+  ## from fedora-common-ostree-pkgs.yaml
+  - NetworkManager
+  - NetworkManager-bluetooth
+  - NetworkManager-config-connectivity-fedora
+  - NetworkManager-wifi
+  - NetworkManager-wwan
+  - aajohan-comfortaa-fonts
+  - abattis-cantarell-fonts
+  - acl
+  # - adwaita-qt4
+  # - adwaita-qt5
+  - alsa-plugins-pulseaudio
+  - alsa-sof-firmware
+  - alsa-ucm
+  - alsa-utils
+  - atmel-firmware
+  - attr
+  # - audit
+  - b43-fwcutter
+  - b43-openfwwf
+  - basesystem
+  - bash
+  - bash-completion
+  - bc
+  # - bind-utils
+  - bluez-cups
+  - bridge-utils
+  - btrfs-progs
+  - bzip2
+  - chrony
+  # - cifs-utils
+  - colord
+  - coreutils
+  - cpio
+  - cryptsetup
+  - cups
+  - cups-filters
+  - curl
+  - cyrus-sasl-plain
+  - dejavu-sans-fonts
+  - dejavu-sans-mono-fonts
+  - dejavu-serif-fonts
+  - dhcp-client
+  - dnsmasq
+  - e2fsprogs
+  - earlyoom
+  - ethtool
+  - fedora-bookmarks
+  - fedora-chromium-config
+  - fedora-workstation-backgrounds
+  - file
+  - filesystem
+  - firefox
+  # - firewalld
+  - foomatic
+  - foomatic-db-ppds
+  - fpaste
+  - fros-gnome
+  - gamemode
+  - glibc
+  - glibc-all-langpacks
+  - glx-utils
+  - gnupg2
+  - google-noto-emoji-color-fonts
+  - google-noto-sans-cjk-ttc-fonts
+  - google-noto-sans-gurmukhi-fonts
+  - google-noto-sans-sinhala-vf-fonts
+  - gstreamer1-plugins-bad-free
+  - gstreamer1-plugins-good
+  - gutenprint
+  - gutenprint-cups
+  - hostname
+  - hplip
+  - hunspell
+  - ibus-gtk3
+  - ibus-hangul
+  - ibus-kkc
+  - ibus-libpinyin
+  - ibus-libzhuyin
+  - ibus-m17n
+  # - ibus-qt
+  - ibus-typing-booster
+  # - iproute
+  # - iptables
+  - iptstate
+  - iputils
+  - ipw2100-firmware
+  - ipw2200-firmware
+  - iwl100-firmware
+  - iwl1000-firmware
+  - iwl105-firmware
+  - iwl135-firmware
+  - iwl2000-firmware
+  - iwl2030-firmware
+  - iwl3160-firmware
+  - iwl3945-firmware
+  - iwl4965-firmware
+  - iwl5000-firmware
+  - iwl5150-firmware
+  - iwl6000-firmware
+  - iwl6000g2a-firmware
+  - iwl6000g2b-firmware
+  - iwl6050-firmware
+  - iwl7260-firmware
+  - jomolhari-fonts
+  - julietaula-montserrat-fonts
+  - kbd
+  - kernel
+  - kernel-modules-extra
+  - khmeros-base-fonts
+  - less
+  - liberation-mono-fonts
+  - liberation-sans-fonts
+  - liberation-serif-fonts
+  - libertas-usb8388-firmware
+  - linux-firmware
+  - logrotate
+  - lohit-assamese-fonts
+  - lohit-bengali-fonts
+  - lohit-devanagari-fonts
+  - lohit-gujarati-fonts
+  - lohit-kannada-fonts
+  - lohit-odia-fonts
+  - lohit-tamil-fonts
+  - lohit-telugu-fonts
+  - lrzsz
+  - lsof
+  - man-db
+  - man-pages
+  - mdadm
+  - mesa-dri-drivers
+  - mesa-vulkan-drivers
+  - mlocate
+  - mpage
+  - mtr
+  # - nano
+  - nfs-utils
+  - nss-altfiles
+  - nss-mdns
+  # - ntfsprogs
+  - openssh-clients
+  # - openssh-server
+  - paktype-naskh-basic-fonts
+  - pam_afs_session
+  - paps
+  - paratype-pt-sans-fonts
+  - passwd
+  - passwdqc
+  - pciutils
+  - pinfo
+  - plymouth
+  - plymouth-system-theme
+  - policycoreutils
+  - policycoreutils-python-utils
+  - procps-ng
+  - psmisc
+  - pulseaudio
+  - pulseaudio-module-x11
+  - pulseaudio-utils
+  - qemu-guest-agent
+  # - qt
+  # - qt-settings
+  # - qt-x11
+  # - qt5-qtbase
+  # - qt5-qtbase-gui
+  # - qt5-qtdeclarative
+  # - qt5-qtxmlpatterns
+  - quota
+  - realmd
+  - rng-tools
+  - rootfiles
+  - rp-pppoe
+  - rpm
+  - rsync
+  # - samba-client
+  - selinux-policy-targeted
+  - setup
+  - shadow-utils
+  - sil-abyssinica-fonts
+  - sil-mingzat-fonts
+  - sil-nuosu-fonts
+  - sil-padauk-fonts
+  - smc-meera-fonts
+  - sos
+  - spice-vdagent
+  - sssd
+  - sssd-common
+  - sssd-kcm
+  - stix-fonts
+  - sudo
+  - system-config-printer-udev
+  - systemd
+  - systemd-udev
+  - tar
+  - thai-scalable-waree-fonts
+  - time
+  - tree
+  - unzip
+  - usb_modeswitch
+  - usbutils
+  - util-linux
+  - vconfig
+  # - vim-minimal
+  - wget
+  - which
+  - wireless-tools
+  - words
+  - xorg-x11-drv-amdgpu
+  - xorg-x11-drv-ati
+  - xorg-x11-drv-evdev
+  - xorg-x11-drv-fbdev
+  - xorg-x11-drv-libinput
+  - xorg-x11-drv-nouveau
+  - xorg-x11-drv-qxl
+  - xorg-x11-drv-wacom
+  - xorg-x11-server-Xorg
+  - xorg-x11-utils
+  - xorg-x11-xauth
+  - xorg-x11-xinit
+  - zd1211-firmware
+  - zip
+  - zram
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened
 # yet.  Also we may want to add to rpm-ostree something like arch negation;
@@ -215,7 +442,7 @@ exclude-packages:
   - cowsay  # Just in case
   # Let's make sure initscripts doesn't get pulled back in
   # https://github.com/coreos/fedora-coreos-tracker/issues/220#issuecomment-611566254
-  # - initscripts
+  - initscripts
   - PackageKit
 
 arch-include:
