@@ -110,6 +110,7 @@ packages:
   - socat ldns-utils
   - bash-completion
   - openssl
+  - vim-minimal
   - lsof
   # CoreOS Installer
   - coreos-installer coreos-installer-bootinfra
