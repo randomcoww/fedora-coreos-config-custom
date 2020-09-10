@@ -132,6 +132,7 @@ packages:
   - toolbox
   - buildah podman-compose
   - flatpak flatpak-builder
+  - mkpasswd
   - git-core
   - gnupg2
   - rsync
