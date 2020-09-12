@@ -34,14 +34,17 @@ cosa buildextend-metal && \
 cosa buildextend-live
 ```
 
-Embed ignition from https://github.com/randomcoww/terraform-infra
+Embed ignition from https://github.com/randomcoww/terraform-infra generated under `outputs/ignition`
 ```
-curl http://127.0.0.1:8080/ignition?ign=client \
-  | sudo coreos-installer iso ignition embed builds/latest/x86_64/fedora-silverblue-*-live.x86_64.iso -o client.iso
+coreos-installer iso ignition embed \
+  -i <ignition_file> \
+  -o client.iso \
+  builds/latest/x86_64/fedora-silverblue-*-live.x86_64.iso
 ```
 
 Write to disk
 ```
-curl http://127.0.0.1:8080/ignition?ign=client \
-   | sudo coreos-installer iso ignition embed /dev/sda --force
+sudo coreos-installer iso ignition embed \
+  -i <ignition_file> \
+  /dev/sda --force
 ```
