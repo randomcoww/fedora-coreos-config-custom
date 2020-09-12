@@ -137,6 +137,7 @@ packages:
   - gnupg2
   - rsync
   - librtmp
+  - powertop
 
   ## from gnome-desktop-pkgs.yaml
   - ModemManager
@@ -241,8 +242,8 @@ packages:
   - e2fsprogs
   - earlyoom
   - ethtool
-  - fedora-bookmarks
-  - fedora-chromium-config
+  # - fedora-bookmarks
+  # - fedora-chromium-config
   - fedora-workstation-backgrounds
   - file
   - filesystem
