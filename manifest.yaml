@@ -79,7 +79,7 @@ packages:
   # Remote IPC for podman
   - libvarlink-util
   # Networking
-  - NetworkManager hostname
+  - hostname
   - iproute-tc
   # Static firewalling
   - nftables iptables-nft
@@ -140,15 +140,15 @@ packages:
   - powertop
 
   ## from gnome-desktop-pkgs.yaml
-  - ModemManager
-  - NetworkManager-adsl
-  - NetworkManager-openconnect-gnome
-  - NetworkManager-openvpn-gnome
-  - NetworkManager-ppp
-  - NetworkManager-pptp-gnome
-  - NetworkManager-ssh-gnome
-  - NetworkManager-vpnc-gnome
-  - NetworkManager-wwan
+  # - ModemManager
+  # - NetworkManager-adsl
+  # - NetworkManager-openconnect-gnome
+  # - NetworkManager-openvpn-gnome
+  # - NetworkManager-ppp
+  # - NetworkManager-pptp-gnome
+  # - NetworkManager-ssh-gnome
+  # - NetworkManager-vpnc-gnome
+  # - NetworkManager-wwan
   - adobe-source-code-pro-fonts
   - at-spi2-atk
   - at-spi2-core
@@ -198,7 +198,7 @@ packages:
   ## from fedora-common-ostree-pkgs.yaml
   - NetworkManager
   - NetworkManager-bluetooth
-  - NetworkManager-config-connectivity-fedora
+  # - NetworkManager-config-connectivity-fedora
   - NetworkManager-wifi
   - NetworkManager-wwan
   - aajohan-comfortaa-fonts
@@ -352,9 +352,9 @@ packages:
   - procps-ng
   - psmisc
   - pulseaudio
-  - pulseaudio-module-x11
+  # - pulseaudio-module-x11
   - pulseaudio-utils
-  - qemu-guest-agent
+  # - qemu-guest-agent
   # - qt
   # - qt-settings
   # - qt-x11
@@ -397,23 +397,23 @@ packages:
   - usbutils
   - util-linux
   - vconfig
-  # - vim-minimal
+  - vim-minimal
   - wget
   - which
   - wireless-tools
   - words
-  - xorg-x11-drv-amdgpu
-  - xorg-x11-drv-ati
-  - xorg-x11-drv-evdev
-  - xorg-x11-drv-fbdev
-  - xorg-x11-drv-libinput
-  - xorg-x11-drv-nouveau
-  - xorg-x11-drv-qxl
-  - xorg-x11-drv-wacom
-  - xorg-x11-server-Xorg
-  - xorg-x11-utils
-  - xorg-x11-xauth
-  - xorg-x11-xinit
+  # - xorg-x11-drv-amdgpu
+  # - xorg-x11-drv-ati
+  # - xorg-x11-drv-evdev
+  # - xorg-x11-drv-fbdev
+  # - xorg-x11-drv-libinput
+  # - xorg-x11-drv-nouveau
+  # - xorg-x11-drv-qxl
+  # - xorg-x11-drv-wacom
+  # - xorg-x11-server-Xorg
+  # - xorg-x11-utils
+  # - xorg-x11-xauth
+  # - xorg-x11-xinit
   - zd1211-firmware
   - zip
   - zram

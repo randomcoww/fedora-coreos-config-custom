@@ -41,10 +41,12 @@ sudo coreos-installer iso ignition embed \
   -o client.iso \
   builds/latest/x86_64/fedora-silverblue-*-live.x86_64.iso
 ```
+Write client.iso to disk
 
-Write to disk
+Optionally write directly to disk on running system
 ```
 sudo coreos-installer iso ignition embed \
   -i ../terraform-infra/resourcesv2/output/ignition/client.ign \
   /dev/sda --force
 ```
+Reboot to apply changes
