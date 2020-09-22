@@ -137,7 +137,8 @@ packages:
   - gnupg2
   - rsync
   - librtmp
-  - powertop
+  - youtube-dl
+  - gimp
 
   ## from gnome-desktop-pkgs.yaml
   - ModemManager
@@ -152,7 +153,7 @@ packages:
   - adobe-source-code-pro-fonts
   - at-spi2-atk
   - at-spi2-core
-  - chrome-gnome-shell
+  # - chrome-gnome-shell
   - dconf
   - gdm
   - glib-networking
@@ -169,12 +170,12 @@ packages:
   - gnome-terminal-nautilus
   - gnome-themes-extra
   - gnome-user-docs
-  # - gvfs-afc
-  # - gvfs-afp
+  - gvfs-afc
+  - gvfs-afp
   - gvfs-archive
   - gvfs-fuse
   - gvfs-goa
-  # - gvfs-gphoto2
+  - gvfs-gphoto2
   - gvfs-mtp
   # - gvfs-smb
   - libcanberra-gtk2
