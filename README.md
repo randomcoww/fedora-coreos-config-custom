@@ -34,6 +34,8 @@ cosa buildextend-metal && \
 cosa buildextend-live
 ```
 
+This build expects a home directory device with label `localhome` and a swap device with label `swap`
+
 Embed ignition from https://github.com/randomcoww/terraform-infra generated under `outputs/ignition`
 ```
 sudo coreos-installer iso ignition embed \

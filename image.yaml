@@ -11,9 +11,8 @@ extra-kargs:
     - intel_iommu=on
     - amd_iommu=on
     - iommu=pt
-    - selinux=0
     # This breaks boot unless the disk exists but there is no other way to add this
-    # - resume=LABEL=swap
+    - resume=LABEL=swap
 
 # Disable networking by default on firstboot. We can drop this once cosa stops
 # defaulting to `ip=dhcp,dhcp6 rd.neednet=1` when it doesn't see this key.
