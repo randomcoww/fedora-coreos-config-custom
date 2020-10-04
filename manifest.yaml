@@ -3,7 +3,7 @@ include:
   - manifests/ignition-and-ostree.yaml
   # - workstation-ostree-config/fedora-common-ostree-pkgs.yaml
 
-releasever: "33"
+releasever: "32"
 
 rojig:
   license: MIT
@@ -139,6 +139,7 @@ packages:
   - librtmp
   - youtube-dl
   - gimp
+  - powertop
 
   ## from gnome-desktop-pkgs.yaml
   - ModemManager
@@ -153,30 +154,23 @@ packages:
   - adobe-source-code-pro-fonts
   - at-spi2-atk
   - at-spi2-core
-  # - avahi
   # - chrome-gnome-shell
   - dconf
   - gdm
   - glib-networking
   - gnome-backgrounds
   - gnome-bluetooth
-  # - gnome-classic-session
   - gnome-color-manager
   - gnome-control-center
-  # - gnome-disk-utility
-  # - gnome-getting-started-docs
-  # - gnome-initial-setup
   - gnome-remote-desktop
   - gnome-session-wayland-session
   - gnome-session-xsession
   - gnome-settings-daemon
   - gnome-shell
-  # - gnome-software
   - gnome-terminal
   - gnome-terminal-nautilus
   - gnome-themes-extra
   - gnome-user-docs
-  # - gnome-user-share
   - gvfs-afc
   - gvfs-afp
   - gvfs-archive
@@ -193,9 +187,9 @@ packages:
   - mesa-libEGL
   - mousetweaks
   - nautilus
+  - nautilus-sendto
   - orca
   - polkit
-  # - rygel
   - tracker
   - tracker-miners
   - xdg-desktop-portal
@@ -252,7 +246,6 @@ packages:
   - ethtool
   # - fedora-bookmarks
   # - fedora-chromium-config
-  - fedora-repos-modular
   - fedora-workstation-backgrounds
   - file
   - filesystem
@@ -318,8 +311,6 @@ packages:
   - liberation-mono-fonts
   - liberation-sans-fonts
   - liberation-serif-fonts
-  - libertas-sd8686-firmware
-  - libertas-sd8787-firmware
   - libertas-usb8388-firmware
   - linux-firmware
   - logrotate
@@ -342,7 +333,6 @@ packages:
   - mpage
   - mtr
   # - nano
-  # - nano-default-editor
   - nfs-utils
   - nss-altfiles
   - nss-mdns
@@ -352,6 +342,7 @@ packages:
   - paktype-naskh-basic-fonts
   - pam_afs_session
   - paps
+  - paratype-pt-sans-fonts
   - passwd
   - passwdqc
   - pciutils
@@ -362,7 +353,6 @@ packages:
   - policycoreutils-python-utils
   - procps-ng
   - psmisc
-  - pt-sans-fonts
   - pulseaudio
   # - pulseaudio-module-x11
   - pulseaudio-utils
@@ -405,13 +395,14 @@ packages:
   - time
   - tree
   - unzip
-  - uresourced
   - usb_modeswitch
   - usbutils
   - util-linux
+  - vconfig
   - vim-minimal
   - wget
   - which
+  - wireless-tools
   - words
   # - xorg-x11-drv-amdgpu
   # - xorg-x11-drv-ati
@@ -427,7 +418,7 @@ packages:
   # - xorg-x11-xinit
   - zd1211-firmware
   - zip
-  - zram-generator-defaults
+  - zram
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened
 # yet.  Also we may want to add to rpm-ostree something like arch negation;
