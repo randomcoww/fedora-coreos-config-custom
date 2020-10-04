@@ -139,7 +139,6 @@ packages:
   - librtmp
   - youtube-dl
   - gimp
-  - powertop
 
   ## from gnome-desktop-pkgs.yaml
   - ModemManager
