@@ -24,7 +24,7 @@ repos:
   # - rpmfusion-nonfree
   # - rpmfusion-nonfree-updates
   - fedora-rawhide
-  - code
+  # - code
 
 initramfs-args:
   - --no-hostonly
@@ -141,7 +141,6 @@ packages:
   - youtube-dl
   - gimp
   - pulseaudio-module-zeroconf
-  - vscode
 
   ## from gnome-desktop-pkgs.yaml
   - ModemManager
