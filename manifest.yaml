@@ -141,6 +141,7 @@ packages:
   - youtube-dl
   - gimp
   - pulseaudio-module-zeroconf
+  # - code
 
   ## from gnome-desktop-pkgs.yaml
   - ModemManager
