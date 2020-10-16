@@ -47,3 +47,9 @@ enabled=1
 gpgcheck=0
 metadata_expire=1d
 includepkgs=kubernetes-client
+
+[code]
+name=Visual Studio Code
+baseurl=https://packages.microsoft.com/yumrepos/vscode
+enabled=1
+gpgcheck=0
