@@ -13,6 +13,10 @@ extra-kargs:
     - iommu=pt
     # This breaks boot unless the disk exists but there is no other way to add this
     # - resume=LABEL=swap
+    # FCOS is not able to load these from modules.d
+    - mlx4_core.num_vfs=16
+    - mlx4_core.port_type_array=2
+    - mlx4_core.probe_vf=16
 
 # Disable networking by default on firstboot. We can drop this once cosa stops
 # defaulting to `ip=dhcp,dhcp6 rd.neednet=1` when it doesn't see this key.
