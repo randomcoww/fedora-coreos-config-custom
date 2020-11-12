@@ -11,6 +11,7 @@ extra-kargs:
     - intel_iommu=on
     - amd_iommu=on
     - iommu=pt
+    - enforcing=0
     # This breaks boot unless the disk exists but there is no other way to add this
     # - resume=LABEL=swap
     # FCOS is not able to load these from modules.d

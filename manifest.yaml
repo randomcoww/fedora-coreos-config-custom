@@ -132,11 +132,10 @@ packages:
   - ipmitool
   - libva-utils vulkan-tools
   - libva-intel-hybrid-driver libva-intel-driver
-  - libvirt-daemon-kvm
-  - libvirt-client virt-viewer
+  - libvirt-daemon-kvm libvirt-client virt-viewer
   - kubernetes-client
   - tmux xclip vim-enhanced strace
-  - eog gimp
+  - eog
   - mpv
   - toolbox
   - buildah podman-compose
@@ -175,7 +174,7 @@ packages:
   # - gnome-initial-setup
   - gnome-remote-desktop
   - gnome-session-wayland-session
-  - gnome-session-xsession
+  # - gnome-session-xsession
   - gnome-settings-daemon
   - gnome-shell
   # - gnome-software
