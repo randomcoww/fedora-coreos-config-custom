@@ -4,7 +4,7 @@
 
 From upstream: https://github.com/coreos/coreos-assembler
 
-```
+```bash
 cosa() {
    env | grep COREOS_ASSEMBLER
    set -x
@@ -21,12 +21,12 @@ cosa() {
 ```
 
 Check out config
-```
+```bash
 cosa init https://github.com/randomcoww/fedora-silverblue-custom.git --force
 ```
 
 Run build
-```
+```bash
 cosa clean && \
 cosa fetch && \
 cosa build metal4k && \
@@ -37,7 +37,7 @@ cosa buildextend-live
 This build expects a home directory device with label `localhome` and a swap device with label `swap`
 
 Embed ignition from https://github.com/randomcoww/terraform-infra generated under `outputs/ignition`
-```
+```bash
 sudo coreos-installer iso ignition embed \
   -i ../terraform-infra/resources/output/ignition/client-0.ign \
   -o client-0.iso \
@@ -46,7 +46,7 @@ sudo coreos-installer iso ignition embed \
 Write client-0.iso to disk
 
 Optionally write directly to disk on running system
-```
+```bash
 sudo coreos-installer iso ignition embed \
   -i ../terraform-infra/resources/output/ignition/client-0.ign \
   /dev/sda --force
