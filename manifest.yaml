@@ -211,6 +211,7 @@ packages:
   - yelp
 
   ## from fedora-common-ostree-pkgs.yaml
+  - fedora-release-silverblue
   - NetworkManager
   - NetworkManager-bluetooth
   - NetworkManager-config-connectivity-fedora
