@@ -64,7 +64,7 @@ default_target: graphical.target
 remove-from-packages:
   # Drop NetworkManager support for ifcfg files, see also corresponding
   # overlay.d/14NetworkManager-plugins
-  - [NetworkManager, /usr/lib64/NetworkManager/.*/libnm-settings-plugin-ifcfg-rh.so]
+  # - [NetworkManager, /usr/lib64/NetworkManager/.*/libnm-settings-plugin-ifcfg-rh.so]
 
 packages:
   - fedora-repos-ostree
@@ -132,7 +132,7 @@ packages:
   - ipmitool
   - libva-utils vulkan-tools
   - libva-intel-hybrid-driver libva-intel-driver
-  - libvirt-daemon-kvm libvirt-client virt-viewer
+  - libvirt-client virt-viewer
   - kubernetes-client
   - tmux xclip vim-enhanced strace
   - eog
@@ -145,21 +145,26 @@ packages:
   - rsync
   - mkpasswd
   # - code
+  # KVM
+  - systemd-networkd
+  - libvirt-daemon-kvm
+  - kea keepalived
+  - qemu-guest-agent
 
   ## from gnome-desktop-pkgs.yaml
-  - ModemManager
-  - NetworkManager-adsl
-  - NetworkManager-openconnect-gnome
-  - NetworkManager-openvpn-gnome
-  - NetworkManager-ppp
-  - NetworkManager-pptp-gnome
-  - NetworkManager-ssh-gnome
-  - NetworkManager-vpnc-gnome
-  - NetworkManager-wwan
+  # - ModemManager
+  # - NetworkManager-adsl
+  # - NetworkManager-openconnect-gnome
+  # - NetworkManager-openvpn-gnome
+  # - NetworkManager-ppp
+  # - NetworkManager-pptp-gnome
+  # - NetworkManager-ssh-gnome
+  # - NetworkManager-vpnc-gnome
+  # - NetworkManager-wwan
   - adobe-source-code-pro-fonts
   - at-spi2-atk
   - at-spi2-core
-  - avahi
+  # - avahi
   # - chrome-gnome-shell
   - dconf
   - gdm
@@ -212,11 +217,11 @@ packages:
 
   ## from fedora-common-ostree-pkgs.yaml
   - fedora-release-silverblue
-  - NetworkManager
-  - NetworkManager-bluetooth
-  - NetworkManager-config-connectivity-fedora
-  - NetworkManager-wifi
-  - NetworkManager-wwan
+  # - NetworkManager
+  # - NetworkManager-bluetooth
+  # - NetworkManager-config-connectivity-fedora
+  # - NetworkManager-wifi
+  # - NetworkManager-wwan
   - aajohan-comfortaa-fonts
   - abattis-cantarell-fonts
   - acl
