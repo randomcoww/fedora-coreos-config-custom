@@ -149,7 +149,6 @@ packages:
   - systemd-networkd
   - libvirt-daemon-kvm
   - kea keepalived
-  - qemu-guest-agent
 
   ## from gnome-desktop-pkgs.yaml
   # - ModemManager
@@ -379,7 +378,7 @@ packages:
   - pulseaudio
   # - pulseaudio-module-x11
   - pulseaudio-utils
-  # - qemu-guest-agent
+  - qemu-guest-agent
   # - qt
   # - qt-settings
   # - qt-x11
