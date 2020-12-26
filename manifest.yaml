@@ -164,7 +164,7 @@ packages:
   - adobe-source-code-pro-fonts
   - at-spi2-atk
   - at-spi2-core
-  # - avahi
+  - avahi
   # - chrome-gnome-shell
   - dconf
   - gdm
@@ -469,9 +469,16 @@ exclude-packages:
   # Let's make sure initscripts doesn't get pulled back in
   # https://github.com/coreos/fedora-coreos-tracker/issues/220#issuecomment-611566254
   - initscripts
+  # Custom - replace with systemd-networkd
+  - NetworkManager
   - PackageKit
 
 arch-include:
-  x86_64: manifests/grub2-removals.yaml
-  aarch64: manifests/grub2-removals.yaml
-  ppc64le: manifests/grub2-removals.yaml
+  x86_64:
+    - manifests/grub2-removals.yaml
+    - manifests/bootupd.yaml
+  aarch64:
+    - manifests/grub2-removals.yaml
+    - manifests/bootupd.yaml
+  ppc64le:
+    - manifests/grub2-removals.yaml
