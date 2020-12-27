@@ -1,0 +1,35 @@
+# This replaces image.ks
+# size is the target disk size in GB.
+size: 1
+
+extra-kargs:
+    # Disable SMT on systems vulnerable to MDS or any similar future issue.
+    # - mitigations=auto,nosmt
+    # https://github.com/coreos/fedora-coreos-tracker/issues/292
+    # https://fedoraproject.org/wiki/Changes/CGroupsV2
+    - systemd.unified_cgroup_hierarchy=0
+    - intel_iommu=on
+    - amd_iommu=on
+    - iommu=pt
+    - console=tty0
+    - console=ttyS0,115200n8
+    - console=ttyS1,115200n8
+    - video=efifb:off
+    - rd.driver.pre=vfio-pci
+    # FCOS is not able to load these from modules.d
+    - vfio-pci.ids=1002:ffffffff:ffffffff:ffffffff:00030000:ffff00ff,1002:ffffffff:ffffffff:ffffffff:00040300:ffffffff,10de:ffffffff:ffffffff:ffffffff:00030000:ffff00ff,10de:ffffffff:ffffffff:ffffffff:00040300:ffffffff
+
+# Disable networking by default on firstboot. We can drop this once cosa stops
+# defaulting to `ip=dhcp,dhcp6 rd.neednet=1` when it doesn't see this key.
+ignition-network-kcmdline: []
+
+# Optional remote by which to prefix the deployed OSTree ref
+ostree-remote: fedora
+
+# We want read-only /sysroot to protect from unintentional damage.
+# https://github.com/ostreedev/ostree/issues/1265
+sysroot-readonly: true
+
+# After this, we plan to add support for the Ignition
+# storage/filesystems sections.  (Although one can do
+# that on boot as well)

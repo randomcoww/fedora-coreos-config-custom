@@ -1,0 +1,96 @@
+releasever: "33"
+
+# This file is most of a Fedora CoreOS like system; it inherits from "core".
+# Add things in this file which are somewhat "opinionated", not necessarily
+# core functionality.
+ref: fedora/${releasever}/${basearch}/coreos
+include:
+  - manifests/ignition-and-ostree.yaml
+
+automatic-version-prefix: "${releasever}"
+mutate-os-release: "${releasever}"
+
+repos:
+  - fedora
+  - fedora-updates
+  - fedora-modular
+  - fedora-updates-modular
+  - fedora-coreos-pool
+
+initramfs-args:
+  - --no-hostonly
+  # We don't support root on NFS, so we don't need it in the initramfs. It also
+  # conflicts with /var mount support in ignition because NFS tries to mount stuff
+  # in /var/ and then ignition can't cleanly unmount it. For example:
+  # https://github.com/dracutdevs/dracut/blob/1856ae95c873a6fe855b3dccd0144f1a96b9e71c/modules.d/95nfs/nfs-start-rpc.sh#L7
+  # See also discussion in https://github.com/coreos/fedora-coreos-config/pull/60
+  - --omit=nfs
+  # Omit these since we don't use them
+  - --omit=lvm
+  - --omit=multipath
+  - --omit=iscsi
+  - --add-drivers=vfio
+  - --add-drivers=vfio_iommu_type1
+  - --add-drivers=vfio_pci
+  - --add-drivers=vfio_virqfd
+
+# Be minimal
+recommends: false
+
+ignore-removed-users:
+  - root
+ignore-removed-groups:
+  - root
+etc-group-members:
+  - sudo
+  - systemd-journal
+  - adm
+  - libvirt
+  - wheel
+
+check-passwd:
+  type: "file"
+  filename: "manifests/passwd"
+check-groups:
+  type: "file"
+  filename: "manifests/group"
+
+# This thing is crying out to be pulled into systemd, but that hasn't happened
+# yet.  Also we may want to add to rpm-ostree something like arch negation;
+# basically right now it doesn't exist on s390x.
+# Anyways, it was requested by the Red Hat perf team for RHCOS, so we have it here.
+# https://serverfault.com/questions/513807/is-there-still-a-use-for-irqbalance-on-modern-hardware
+# https://access.redhat.com/solutions/41535
+packages-x86_64:
+  - irqbalance
+packages-ppc64le:
+  - irqbalance
+packages-aarch64:
+  - irqbalance
+
+# Things we don't expect to ship on the host.  We currently
+# have recommends: false so these could only come in via
+# hard requirement, in which case the build will fail.
+exclude-packages:
+  - python
+  - python2
+  # - python3
+  - perl
+  - nodejs
+  - dnf
+  - grubby
+  - cowsay  # Just in case
+  # Let's make sure initscripts doesn't get pulled back in
+  # https://github.com/coreos/fedora-coreos-tracker/issues/220#issuecomment-611566254
+  - initscripts
+  - PackageKit
+
+arch-include:
+  x86_64:
+    - manifests/grub2-removals.yaml
+    - manifests/bootupd.yaml
+  aarch64:
+    - manifests/grub2-removals.yaml
+    - manifests/bootupd.yaml
+  ppc64le:
+    - manifests/grub2-removals.yaml
