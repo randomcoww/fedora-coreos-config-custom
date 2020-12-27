@@ -55,6 +55,72 @@ check-groups:
   type: "file"
   filename: "manifests/group"
 
+packages:
+  - fedora-repos-ostree
+  - fedora-repos-modular
+  - fedora-repos-archive
+  ## fedora-coreos-base
+  # Security
+  - selinux-policy-targeted
+  - polkit
+  # System setup
+  - passwd
+  # Dependency of 20live dracut module
+  - bsdtar
+  # SSH
+  # - openssh-server openssh-clients
+  - openssh-clients
+  # Containers
+  - podman skopeo runc systemd-container catatonit
+  - fuse-overlayfs slirp4netns
+  # Remote IPC for podman
+  - libvarlink-util
+  # Networking
+  - hostname
+  - iproute-tc
+  # Static firewalling
+  - nftables iptables-nft
+  # WireGuard https://github.com/coreos/fedora-coreos-tracker/issues/362
+  # - wireguard-tools
+  # Storage
+  - cloud-utils-growpart
+  - lvm2 iscsi-initiator-utils sg3_utils
+  - device-mapper-multipath
+  - xfsprogs e2fsprogs btrfs-progs mdadm
+  - cryptsetup
+  # Time sync
+  - chrony
+  # Allow communication between sudo and SSSD
+  # for caching sudo rules by SSSD.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/445
+  - libsss_sudo
+  # Extra runtime
+  - sssd shadow-utils
+  # There are things that write outside of the journal still (such as the classic wtmp, etc.)
+  # (auditd also writes outside the journal but it has its own log rotation.)
+  # Anything package layered will also tend to expect files dropped in
+  # /etc/logrotate.d to work.  Really, this is a legacy thing, but if we don't
+  # have it then people's disks will slowly fill up with logs.
+  - logrotate
+  # Used by admins interactively
+  - sudo coreutils attr less tar xz gzip bzip2
+  - socat ldns-utils
+  - bash-completion
+  - openssl
+  - vim-minimal
+  - lsof
+  # CoreOS Installer
+  - coreos-installer coreos-installer-bootinfra
+  # i18n
+  - kbd
+  # Parsing/Interacting with JSON data
+  - jq
+  # nvme-cli for managing nvme disks
+  - nvme-cli
+  # zram-generator (but not zram-generator-defaults) for F33 change
+  # https://github.com/coreos/fedora-coreos-tracker/issues/509
+  - zram-generator
+
 # This thing is crying out to be pulled into systemd, but that hasn't happened
 # yet.  Also we may want to add to rpm-ostree something like arch negation;
 # basically right now it doesn't exist on s390x.

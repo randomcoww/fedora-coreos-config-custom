@@ -1,0 +1,37 @@
+include:
+  - base.yaml
+
+rojig:
+  license: MIT
+  name: fedora-coreos
+  summary: Fedora CoreOS
+
+default-target: multi-user.target
+
+remove-files:
+  # We don't ship man(1) or info(1)
+  - usr/share/info
+  - usr/share/man
+  # Drop text docs too
+  - usr/share/doc
+
+packages:
+  - fedora-release-coreos
+  - openssh-server
+  - containerd cri-tools
+
+  ## Custom
+  - systemd-networkd
+  - libvirt-daemon-kvm
+  - kea keepalived
+  - qemu-guest-agent
+
+# Things we don't expect to ship on the host.  We currently
+# have recommends: false so these could only come in via
+# hard requirement, in which case the build will fail.
+exclude-packages:
+  - NetworkManager
+
+add-files:
+  - [resources/matchbox.tar, /etc/container-save/matchbox.tar]
+  - [resources/SAS9300_8i_IT.bin, /etc/libvirt/boot/SAS9300_8i_IT.bin]
