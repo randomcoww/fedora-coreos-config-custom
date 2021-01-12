@@ -12,7 +12,6 @@ repos:
   # - rpmfusion-nonfree
   # - rpmfusion-nonfree-updates
   - fedora-rawhide
-  - brave-browser
 
 default_target: graphical.target
 
@@ -36,7 +35,6 @@ packages:
   - rsync
   - mkpasswd
   - wireguard-tools
-  - brave-browser-beta
   - mpv
 
   ## from gnome-desktop-pkgs.yaml
@@ -156,7 +154,7 @@ packages:
   - fedora-workstation-backgrounds
   - file
   - filesystem
-  # - firefox
+  - firefox
   # - firewalld
   - foomatic
   - foomatic-db-ppds
