@@ -50,6 +50,6 @@ includepkgs=kubernetes-client
 
 [brave-browser]
 name=Brave Browser
-baseurl=https://brave-browser-rpm-release.s3.brave.com/x86_64/
+baseurl=https://brave-browser-rpm-beta.s3.brave.com/x86_64/
 enabled=1
 gpgcheck=0
