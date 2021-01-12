@@ -27,7 +27,6 @@ packages:
   - kubernetes-client
   - tmux xclip vim-enhanced strace
   - eog
-  - mpv
   - toolbox
   - buildah podman-compose
   - flatpak flatpak-builder
