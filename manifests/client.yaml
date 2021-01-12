@@ -12,8 +12,6 @@ repos:
   # - rpmfusion-nonfree
   # - rpmfusion-nonfree-updates
   - fedora-rawhide
-  # - code
-  - brave-browser
 
 default_target: graphical.target
 
@@ -37,8 +35,6 @@ packages:
   - gnupg2
   - rsync
   - mkpasswd
-  - brave-browser
-  # - code
 
   ## from gnome-desktop-pkgs.yaml
   # - ModemManager
