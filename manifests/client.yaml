@@ -35,6 +35,7 @@ packages:
   - gnupg2
   - rsync
   - mkpasswd
+  - wireguard-tools
 
   ## from gnome-desktop-pkgs.yaml
   # - ModemManager
