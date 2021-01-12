@@ -37,6 +37,7 @@ packages:
   - mkpasswd
   - wireguard-tools
   - brave-browser-beta
+  - mpv
 
   ## from gnome-desktop-pkgs.yaml
   # - ModemManager
@@ -144,8 +145,8 @@ packages:
   - dejavu-sans-fonts
   - dejavu-sans-mono-fonts
   - dejavu-serif-fonts
-  - dhcp-client
-  - dnsmasq
+  # - dhcp-client
+  # - dnsmasq
   - e2fsprogs
   - earlyoom
   - ethtool
