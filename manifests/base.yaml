@@ -13,9 +13,6 @@ mutate-os-release: "${releasever}"
 repos:
   - fedora
   - fedora-updates
-  - fedora-modular
-  - fedora-updates-modular
-  - fedora-coreos-pool
 
 initramfs-args:
   - --no-hostonly
@@ -56,9 +53,6 @@ check-groups:
   filename: "manifests/group"
 
 packages:
-  - fedora-repos-ostree
-  - fedora-repos-modular
-  - fedora-repos-archive
   ## fedora-coreos-base
   # Security
   - selinux-policy-targeted
