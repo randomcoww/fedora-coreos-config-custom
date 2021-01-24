@@ -18,9 +18,7 @@ default_target: graphical.target
 packages:
   ## Custom
   - hdparm
-  - lm_sensors
   - nmap
-  - ipmitool
   - libva-utils vulkan-tools
   - libva-intel-hybrid-driver libva-intel-driver
   - libvirt-daemon-kvm libvirt-client virt-viewer
