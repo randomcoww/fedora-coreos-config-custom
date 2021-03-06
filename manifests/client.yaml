@@ -36,6 +36,7 @@ packages:
   - wireguard-tools
   - mpv
   - brave-browser
+  - dymo-cups-drivers
 
   ## from gnome-desktop-pkgs.yaml
   # - ModemManager
