@@ -25,7 +25,6 @@ packages:
   - libvirt-daemon-kvm libvirt-client virt-viewer
   - kubernetes-client
   - tmux xclip vim-enhanced strace
-  - eog
   - toolbox
   - buildah podman-compose
   - flatpak flatpak-builder
@@ -34,9 +33,8 @@ packages:
   - rsync
   - mkpasswd
   - wireguard-tools
-  - mpv
-  - brave-browser
   - dymo-cups-drivers
+  - eog mpv inkscape gimp brave-browser
 
   ## from gnome-desktop-pkgs.yaml
   # - ModemManager
