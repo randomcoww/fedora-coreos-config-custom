@@ -1,6 +1,3 @@
-[submodule "workstation-ostree-config"]
-	path = workstation-ostree-config
-	url = https://pagure.io/workstation-ostree-config.git
 [submodule "fedora-coreos-config"]
 	path = fedora-coreos-config
 	url = https://github.com/coreos/fedora-coreos-config.git
