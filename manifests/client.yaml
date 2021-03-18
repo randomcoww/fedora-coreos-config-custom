@@ -49,7 +49,7 @@ packages:
   - adobe-source-code-pro-fonts
   - at-spi2-atk
   - at-spi2-core
-  - avahi
+  # - avahi
   # - chrome-gnome-shell
   - dconf
   - gdm
