@@ -3,6 +3,7 @@ include:
 
 packages:
   - openssh-server
+  - containerd cri-tools
 
   ## Custom
   - systemd-networkd
