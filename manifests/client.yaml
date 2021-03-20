@@ -13,6 +13,7 @@ repos:
   # - rpmfusion-nonfree-updates
   - fedora-rawhide
   - brave-browser
+  - gitlab.com_paulcarroty_vscodium_repo
 
 default_target: graphical.target
 
@@ -34,7 +35,7 @@ packages:
   - mkpasswd
   - wireguard-tools
   - dymo-cups-drivers
-  - eog mpv inkscape gimp brave-browser
+  - eog mpv inkscape gimp brave-browser codium
 
   ## from gnome-desktop-pkgs.yaml
   # - ModemManager

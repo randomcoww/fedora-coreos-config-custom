@@ -53,3 +53,9 @@ name=Brave Browser
 baseurl=https://brave-browser-rpm-beta.s3.brave.com/x86_64/
 enabled=1
 gpgcheck=0
+
+[gitlab.com_paulcarroty_vscodium_repo]
+name=gitlab.com_paulcarroty_vscodium_repo
+baseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/
+enabled=1
+gpgcheck=0
