@@ -31,12 +31,11 @@ packages:
   - flatpak flatpak-builder
   - git-core
   - gnupg2
-  - rsync
   - mkpasswd
   - wireguard-tools
   - dymo-cups-drivers
   - eog mpv
-  - inkscape gimp brave-browser codium
+  - inkscape brave-browser codium
 
   ## from gnome-desktop-pkgs.yaml
   # - ModemManager
@@ -73,7 +72,7 @@ packages:
   # - gnome-system-monitor
   - gnome-terminal
   - gnome-terminal-nautilus
-  - gnome-themes-extra
+  # - gnome-themes-extra
   - gnome-user-docs
   # - gnome-user-share
   - gvfs-afc
@@ -152,7 +151,7 @@ packages:
   # - fedora-bookmarks
   # - fedora-chromium-config
   - fedora-repos-modular
-  - fedora-workstation-backgrounds
+  # - fedora-workstation-backgrounds
   - file
   - filesystem
   # - firefox
