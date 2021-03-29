@@ -12,6 +12,7 @@ extra-kargs:
     - amd_iommu=on
     - iommu=pt
     - enforcing=0
+    - elevator=noop
     # This breaks boot unless the disk exists but there is no other way to add this
     - resume=LABEL=swap
 
