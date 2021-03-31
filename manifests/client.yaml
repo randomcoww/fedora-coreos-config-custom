@@ -111,9 +111,7 @@ packages:
   - aajohan-comfortaa-fonts
   - abattis-cantarell-fonts
   - acl
-  # - adwaita-qt4
   # - adwaita-qt5
-  - alsa-plugins-pulseaudio
   - alsa-sof-firmware
   - alsa-ucm
   - alsa-utils
@@ -146,8 +144,8 @@ packages:
   # - dhcp-client
   # - dnsmasq
   - e2fsprogs
-  - earlyoom
   - ethtool
+  - exfatprogs
   # - fedora-bookmarks
   # - fedora-chromium-config
   - fedora-repos-modular
@@ -171,18 +169,18 @@ packages:
   - google-noto-sans-sinhala-vf-fonts
   - gstreamer1-plugins-bad-free
   - gstreamer1-plugins-good
+  - gstreamer1-plugins-ugly-free
   - gutenprint
   - gutenprint-cups
   - hostname
   - hplip
   - hunspell
+  - ibus-anthy
   - ibus-gtk3
   - ibus-hangul
-  - ibus-kkc
   - ibus-libpinyin
   - ibus-libzhuyin
   - ibus-m17n
-  # - ibus-qt
   - ibus-typing-booster
   # - iproute
   # - iptables
@@ -241,13 +239,14 @@ packages:
   - mtr
   # - nano
   # - nano-default-editor
-  - nfs-utils
+  # - nfs-utils
+  - nss-altfiles
   - nss-altfiles
   - nss-mdns
   # - ntfsprogs
   - opensc
   - openssh-clients
-  # - openssh-server
+  - openssh-server
   - paktype-naskh-basic-fonts
   - pam_afs_session
   - paps
@@ -255,6 +254,10 @@ packages:
   - passwdqc
   - pciutils
   - pinfo
+  - pipewire-alsa
+  - pipewire-gstreamer
+  - pipewire-pulseaudio
+  - pipewire-utils
   # - plymouth
   # - plymouth-system-theme
   - policycoreutils
@@ -262,20 +265,13 @@ packages:
   - procps-ng
   - psmisc
   - pt-sans-fonts
-  - pulseaudio
-  # - pulseaudio-module-x11
-  - pulseaudio-utils
   # - qemu-guest-agent
-  # - qt
-  # - qt-settings
-  # - qt-x11
   # - qt5-qtbase
   # - qt5-qtbase-gui
   # - qt5-qtdeclarative
   # - qt5-qtxmlpatterns
   - quota
   - realmd
-  - rng-tools
   - rootfiles
   - rpm
   - rsync
@@ -297,6 +293,7 @@ packages:
   - sudo
   - system-config-printer-udev
   - systemd
+  - systemd-oomd-defaults
   - systemd-udev
   - tar
   - thai-scalable-waree-fonts

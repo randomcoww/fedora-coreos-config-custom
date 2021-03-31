@@ -2,10 +2,6 @@ include:
   - client.yaml
 
 packages:
-  - openssh-server
-  - containerd cri-tools
-
-  ## Custom
   - systemd-networkd
   - kea keepalived
   - qemu-guest-agent

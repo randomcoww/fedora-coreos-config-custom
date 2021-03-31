@@ -1,4 +1,4 @@
-releasever: "33"
+releasever: "34"
 
 # This file is most of a Fedora CoreOS like system; it inherits from "core".
 # Add things in this file which are somewhat "opinionated", not necessarily
@@ -62,9 +62,9 @@ packages:
   # Dependency of 20live dracut module
   - bsdtar
   # SSH
-  # - openssh-server openssh-clients
-  - openssh-clients
+  - openssh-server openssh-clients
   # Containers
+  - containerd cri-tools
   - podman skopeo runc systemd-container catatonit
   - fuse-overlayfs slirp4netns
   # Remote IPC for podman
@@ -96,6 +96,7 @@ packages:
   # /etc/logrotate.d to work.  Really, this is a legacy thing, but if we don't
   # have it then people's disks will slowly fill up with logs.
   - logrotate
+  - stalld
   # Used by admins interactively
   - sudo coreutils attr less tar xz gzip bzip2
   - socat ldns-utils
@@ -135,7 +136,9 @@ packages-aarch64:
 exclude-packages:
   - python
   - python2
-  # - python3
+  - python2-libs
+  - python3
+  - python3-libs
   - perl
   - nodejs
   - dnf
@@ -145,6 +148,7 @@ exclude-packages:
   # https://github.com/coreos/fedora-coreos-tracker/issues/220#issuecomment-611566254
   - initscripts
   - PackageKit
+  - plymouth
 
 arch-include:
   x86_64:
