@@ -2,6 +2,8 @@
 
 From upstream: https://github.com/coreos/coreos-assembler
 
+Workstation upstream: https://pagure.io/workstation-ostree-config.git
+
 ```bash
 cosa() {
    env | grep COREOS_ASSEMBLER

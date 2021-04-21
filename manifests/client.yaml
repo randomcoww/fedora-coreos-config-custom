@@ -53,6 +53,7 @@ packages:
   # - avahi
   # - chrome-gnome-shell
   - dconf
+  - fprintd-pam
   - gdm
   - glib-networking
   # - gnome-backgrounds
@@ -61,7 +62,6 @@ packages:
   - gnome-color-manager
   - gnome-control-center
   # - gnome-disk-utility
-  # - gnome-getting-started-docs
   # - gnome-initial-setup
   - gnome-remote-desktop
   - gnome-session-wayland-session
@@ -83,13 +83,12 @@ packages:
   - gvfs-gphoto2
   - gvfs-mtp
   # - gvfs-smb
-  # - libcanberra-gtk2
   - libcanberra-gtk3
-  - libproxy-mozjs
+  - libproxy-webkitgtk4
   - librsvg2
   - libsane-hpaio
+  - mesa-dri-drivers
   - mesa-libEGL
-  - mousetweaks
   - nautilus
   - orca
   - polkit
@@ -102,7 +101,6 @@ packages:
   - yelp
 
   ## from fedora-common-ostree-pkgs.yaml
-  - fedora-release-silverblue
   # - NetworkManager
   # - NetworkManager-bluetooth
   # - NetworkManager-config-connectivity-fedora
@@ -131,6 +129,7 @@ packages:
   - chrony
   # - cifs-utils
   - colord
+  - compsize
   - coreutils
   - cpio
   - cryptsetup
@@ -209,7 +208,7 @@ packages:
   - kbd
   - kernel
   - kernel-modules-extra
-  - khmeros-base-fonts
+  - khmer-os-system-fonts
   - less
   - liberation-mono-fonts
   - liberation-sans-fonts
@@ -241,8 +240,8 @@ packages:
   # - nano-default-editor
   # - nfs-utils
   - nss-altfiles
-  - nss-altfiles
   - nss-mdns
+  # - ntfs-3g
   # - ntfsprogs
   - opensc
   - openssh-clients
@@ -258,7 +257,6 @@ packages:
   - pipewire-gstreamer
   - pipewire-pulseaudio
   - pipewire-utils
-  # - plymouth
   # - plymouth-system-theme
   - policycoreutils
   # - policycoreutils-python-utils
