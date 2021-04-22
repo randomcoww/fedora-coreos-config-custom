@@ -17,8 +17,6 @@ remove-files:
 
 packages:
   - fedora-release-coreos
-  - openssh-server
-  - containerd cri-tools
 
   ## Custom
   - systemd-networkd

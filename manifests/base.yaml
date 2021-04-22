@@ -53,68 +53,130 @@ check-groups:
   filename: "manifests/group"
 
 packages:
-  ## fedora-coreos-base
-  # Security
-  - selinux-policy-targeted
-  - polkit
-  # System setup
-  - passwd
-  # Dependency of 20live dracut module
-  - bsdtar
-  # SSH
-  - openssh-server openssh-clients
-  # Containers
-  - containerd cri-tools
-  - podman skopeo runc systemd-container catatonit
-  - fuse-overlayfs slirp4netns
-  # Remote IPC for podman
-  - libvarlink-util
-  # Networking
-  - hostname
-  - iproute-tc
-  # Static firewalling
-  - nftables iptables-nft
-  # WireGuard https://github.com/coreos/fedora-coreos-tracker/issues/362
-  # - wireguard-tools
-  # Storage
-  - cloud-utils-growpart
-  - lvm2 iscsi-initiator-utils sg3_utils
-  - device-mapper-multipath
-  - xfsprogs e2fsprogs btrfs-progs mdadm
-  - cryptsetup
-  # Time sync
+  # system-configuration
+  # Configuring SSH keys, cloud provider check-in, etc
+  # - afterburn
+  # NTP support
   - chrony
-  # Allow communication between sudo and SSSD
-  # for caching sudo rules by SSSD.
-  # https://github.com/coreos/fedora-coreos-tracker/issues/445
-  - libsss_sudo
-  # Extra runtime
-  - sssd shadow-utils
-  # There are things that write outside of the journal still (such as the classic wtmp, etc.)
-  # (auditd also writes outside the journal but it has its own log rotation.)
+  # Installing CoreOS itself
+  - coreos-installer coreos-installer-bootinfra
+  # Storage configuration/management
+  # - cifs-utils
+  - cloud-utils-growpart
+  - cryptsetup
+  - device-mapper-multipath
+  - e2fsprogs
+  - iscsi-initiator-utils
+  - lvm2
+  - mdadm
+  - sg3_utils
+  - xfsprogs
+  # User configuration
+  - passwd
+  - shadow-utils
+  # SELinux policy
+  - selinux-policy-targeted
+  # There are things that write outside of the journal still (such as the 
+  # classic wtmp, etc.)
+  #(auditd also writes outside the journal but it has its own log rotation.)
   # Anything package layered will also tend to expect files dropped in
   # /etc/logrotate.d to work.  Really, this is a legacy thing, but if we don't
   # have it then people's disks will slowly fill up with logs.
   - logrotate
+  # Boost starving threads
+  # https://github.com/coreos/fedora-coreos-tracker/issues/753
   - stalld
-  # Used by admins interactively
-  - sudo coreutils attr less tar xz gzip bzip2
-  - socat ldns-utils
+
+  # user-experience
+  # Basic user tools
+  ## jq - parsing/interacting with JSON data
   - bash-completion
-  - openssl
+  - coreutils
+  - jq
+  - less
+  - sudo
   - vim-minimal
+  # File compression/decompression
+  ## (bsdtar - dependency of 35coreos-live dracut module)
+  - bsdtar
+  - bzip2
+  - gzip
+  - tar
+  - xz
+  # Improved MOTD experience
+  # - console-login-helper-messages-issuegen
+  # - console-login-helper-messages-profile
+  # DNS/DHCP server
+  # - dnsmasq
+  # kdump support
+  # https://github.com/coreos/fedora-coreos-tracker/issues/622
+  - kexec-tools
+  # Remote Access
+  - openssh-clients openssh-server
+  # Container tooling
+  - podman
+  - runc
+  - skopeo
+  # - toolbox
+
+  # fedora-coreos-base
+  # Security
+  - polkit
+  # System setup
+  # - afterburn-dracut
+  # SSH
+  - ssh-key-dir
+  # Containers
+  - systemd-container catatonit
+  - fuse-overlayfs slirp4netns
+  # name resolution for podman containers
+  # https://github.com/coreos/fedora-coreos-tracker/issues/519
+  # - podman-plugins
+  # Remote IPC for podman
+  - libvarlink-util
+  # Minimal NFS client
+  # - nfs-utils-coreos
+  # Active Directory support
+  # - adcli
+  # Additional firewall support; we aren't including these in RHCOS or they
+  # don't exist in RHEL
+  # - iptables-nft iptables-services
+  # WireGuard https://github.com/coreos/fedora-coreos-tracker/issues/362
+  # - wireguard-tools
+  # Storage
+  - btrfs-progs
+  # - WALinuxAgent-udev
+  # Allow communication between sudo and SSSD
+  # for caching sudo rules by SSSD.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/445
+  # - libsss_sudo
+  # SSSD; we only ship a subset of the backends
+  # - sssd-client sssd-ad sssd-ipa sssd-krb5 sssd-ldap
+  # Used by admins interactively
+  - attr
+  - openssl
   - lsof
-  # CoreOS Installer
-  - coreos-installer coreos-installer-bootinfra
+  # Provides terminal tools like clear, reset, tput, and tset
+  - ncurses
+  # file-transfer: note fuse-sshfs is not in RHEL
+  # so we can't put it in file-transfer.yaml
+  # - fuse-sshfs
+  # User experience
+  # - console-login-helper-messages-motdgen
   # i18n
   - kbd
-  # Parsing/Interacting with JSON data
-  - jq
   # nvme-cli for managing nvme disks
   - nvme-cli
   # zram-generator (but not zram-generator-defaults) for F33 change
   # https://github.com/coreos/fedora-coreos-tracker/issues/509
   - zram-generator
+
+  # custom
+  - hostname
+  - iproute-tc
+  - nftables iptables-nft
+  - socat ldns-utils
+  - containerd cri-tools
   - ipmitool
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened
