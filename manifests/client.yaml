@@ -35,6 +35,7 @@ packages:
   - wireguard-tools
   - dymo-cups-drivers
   - eog mpv
+  - usbmuxd
   - inkscape brave-browser codium
 
   ## from gnome-desktop-pkgs.yaml
