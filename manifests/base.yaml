@@ -11,8 +11,8 @@ automatic-version-prefix: "${releasever}"
 mutate-os-release: "${releasever}"
 
 repos:
-  - fedora-next
-  - fedora-next-updates
+  - fedora
+  - fedora-updates
 
 initramfs-args:
   - --no-hostonly
