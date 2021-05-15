@@ -9,8 +9,8 @@ rojig:
 repos:
   - rpmfusion-free
   - rpmfusion-free-updates
-  # - rpmfusion-nonfree
-  # - rpmfusion-nonfree-updates
+  - rpmfusion-nonfree
+  - rpmfusion-nonfree-updates
   - fedora-rawhide
   - brave-browser
   - gitlab.com_paulcarroty_vscodium_repo
