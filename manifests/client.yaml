@@ -38,6 +38,7 @@ packages:
   - iwd wpa_supplicant
   # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse
   - inkscape brave-browser codium
+  - akmod-nvidia
 
   ## from gnome-desktop-pkgs.yaml
   # - ModemManager
