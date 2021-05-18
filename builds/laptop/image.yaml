@@ -14,7 +14,8 @@ extra-kargs:
     - enforcing=0
     - elevator=noop
     # This breaks boot unless the disk exists but there is no other way to add this
-    - resume=LABEL=swap
+    - rd.driver.blacklist=nouveau
+    - modprobe.blacklist=nouveau
 
 # Disable networking by default on firstboot. We can drop this once cosa stops
 # defaulting to `ip=dhcp,dhcp6 rd.neednet=1` when it doesn't see this key.

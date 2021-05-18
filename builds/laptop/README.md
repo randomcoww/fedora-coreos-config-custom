@@ -17,16 +17,16 @@ This build expects a home directory device with label `localhome` and a swap dev
 Embed ignition from https://github.com/randomcoww/terraform-infra generated under `outputs/ignition`
 ```bash
 sudo coreos-installer iso ignition embed \
-  -i ../terraform-infra/resources/output/ignition/client-1.ign \
-  -o client-1.iso \
+  -i ../terraform-infra/resources/output/ignition/client-0.ign \
+  -o client-0.iso \
   builds/latest/x86_64/fedora-silverblue-*-live.x86_64.iso
 ```
-Write `client-1.iso` to disk
+Write `client-0.iso` to disk
 
 Optionally write directly to disk on running system
 ```bash
 sudo coreos-installer iso ignition embed \
-  -i ../terraform-infra/resources/output/ignition/client-1.ign \
+  -i ../terraform-infra/resources/output/ignition/client-0.ign \
   /dev/sdb --force
 ```
 Reboot to apply changes
