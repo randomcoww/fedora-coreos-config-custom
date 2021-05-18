@@ -35,11 +35,9 @@ packages:
   - wireguard-tools
   - dymo-cups-drivers
   - eog mpv
-  - iwd wpa_supplicant
-  # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse
   - inkscape brave-browser codium
-  - keepassxc
-  - akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-cuda
+  ## Mobile WAN
+  # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse
 
   ## from gnome-desktop-pkgs.yaml
   # - ModemManager
@@ -69,7 +67,7 @@ packages:
   # - gnome-initial-setup
   - gnome-remote-desktop
   - gnome-session-wayland-session
-  - gnome-session-xsession
+  # - gnome-session-xsession
   - gnome-settings-daemon
   - gnome-shell
   # - gnome-software
