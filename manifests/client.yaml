@@ -36,6 +36,7 @@ packages:
   - dymo-cups-drivers
   - eog mpv
   - inkscape brave-browser codium
+  - openconnect
   ## Mobile WAN
   # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse
 

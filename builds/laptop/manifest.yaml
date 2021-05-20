@@ -8,7 +8,6 @@ packages:
   - NetworkManager-config-connectivity-fedora
   - NetworkManager-wifi
   - NetworkManager-wwan
-  - openconnect
   ## Nonfree and dependencies
   - akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-cuda
   - gnome-session-xsession
