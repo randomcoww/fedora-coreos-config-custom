@@ -3,11 +3,9 @@ include:
 
 packages:
   ## from fedora-common-ostree-pkgs.yaml
-  # - NetworkManager
-  # - NetworkManager-bluetooth
-  # - NetworkManager-config-connectivity-fedora
-  # - NetworkManager-wifi
-  - iwd wpa_supplicant
+  - NetworkManager
+  - NetworkManager-config-connectivity-fedora
+  - NetworkManager-wifi
   ## Nonfree and dependencies
   - akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-cuda
   - gnome-session-xsession
@@ -17,4 +15,4 @@ packages:
 # have recommends: false so these could only come in via
 # hard requirement, in which case the build will fail.
 exclude-packages:
-  - NetworkManager
+  - systemd-networkd
