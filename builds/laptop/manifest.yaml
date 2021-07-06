@@ -1,13 +1,17 @@
 include:
   - client.yaml
 
+repos:
+  - libnvidia-container
+  - nvidia-container-runtime
+
 packages:
   ## from fedora-common-ostree-pkgs.yaml
   - NetworkManager
   - NetworkManager-config-connectivity-fedora
   - NetworkManager-wifi
   ## Nonfree and dependencies
-  - akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-cuda
+  - akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-cuda nvidia-container-runtime
   - gnome-session-xsession
   - akmod-wl
 

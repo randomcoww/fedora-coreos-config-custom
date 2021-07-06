@@ -59,3 +59,17 @@ name=gitlab.com_paulcarroty_vscodium_repo
 baseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/
 enabled=1
 gpgcheck=0
+
+[libnvidia-container]
+name=libnvidia-container
+baseurl=https://nvidia.github.io/libnvidia-container/stable/centos8/$basearch
+repo_gpgcheck=0
+gpgcheck=0
+enabled=1
+
+[nvidia-container-runtime]
+name=nvidia-container-runtime
+baseurl=https://nvidia.github.io/nvidia-container-runtime/stable/centos8/$basearch
+repo_gpgcheck=0
+gpgcheck=0
+enabled=1
