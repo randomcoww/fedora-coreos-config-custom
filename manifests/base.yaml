@@ -115,7 +115,7 @@ packages:
   - openssh-clients openssh-server
   # Container tooling
   - podman
-  - runc crun
+  - crun
   - skopeo
   # - toolbox
 
