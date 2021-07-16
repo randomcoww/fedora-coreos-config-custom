@@ -11,7 +11,7 @@ packages:
   - NetworkManager-config-connectivity-fedora
   - NetworkManager-wifi
   ## Nonfree and dependencies
-  - akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-cuda nvidia-container-runtime
+  - akmod-nvidia xorg-x11-drv-nvidia-newest xorg-x11-drv-nvidia-cuda nvidia-container-runtime
   - gnome-session-xsession
   - akmod-wl
 
