@@ -39,6 +39,7 @@ type=rpm-md
 gpgcheck=0
 repo_gpgcheck=0
 
+
 [fedora-rawhide]
 name=Fedora rawhide $basearch
 #baseurl=http://download.fedoraproject.org/pub/fedora/linux//development/rawhide/$basearch/os/
@@ -47,6 +48,27 @@ enabled=1
 gpgcheck=0
 metadata_expire=1d
 includepkgs=kubernetes-client
+
+[rpmfusion-free-rawhide]
+name=RPM Fusion for Fedora Rawhide - Free
+#baseurl=http://download1.rpmfusion.org/free/fedora/development/$basearch/os/
+metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-rawhide&arch=$basearch
+enabled=1
+enabled_metadata=1
+type=rpm-md
+gpgcheck=0
+repo_gpgcheck=0
+
+[rpmfusion-nonfree-rawhide]
+name=RPM Fusion for Fedora Rawhide - Nonfree
+#baseurl=http://download1.rpmfusion.org/nonfree/fedora/development/$basearch/os/
+metalink=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-rawhide&arch=$basearch
+enabled=1
+enabled_metadata=1
+type=rpm-md
+gpgcheck=0
+repo_gpgcheck=0
+
 
 [brave-browser]
 name=Brave Browser
@@ -59,6 +81,7 @@ name=gitlab.com_paulcarroty_vscodium_repo
 baseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/
 enabled=1
 gpgcheck=0
+
 
 [libnvidia-container]
 name=libnvidia-container
