@@ -1,0 +1,2 @@
+# Re-enable watland for nvidia (run after 61-gdm.rules)
+DRIVER=="nvidia", RUN+="/usr/libexec/gdm-runtime-config set daemon WaylandEnable true"

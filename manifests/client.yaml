@@ -35,8 +35,7 @@ packages:
   - wireguard-tools
   - dymo-cups-drivers
   - eog mpv
-  - inkscape brave-browser codium
-  - openconnect
+  - inkscape krita brave-browser codium
   ## Mobile WAN
   # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse
 
