@@ -1,6 +1,6 @@
 # This replaces image.ks
 # size is the target disk size in GB.
-size: 4
+size: 6
 
 extra-kargs:
     # Disable SMT on systems vulnerable to MDS or any similar future issue.
@@ -14,7 +14,7 @@ extra-kargs:
     - enforcing=0
     - elevator=noop
     # This breaks boot unless the disk exists but there is no other way to add this
-    - rd.driver.blacklist=nouveau
+    # - rd.driver.blacklist=nouveau
     - modprobe.blacklist=nouveau
 
 # Disable networking by default on firstboot. We can drop this once cosa stops
