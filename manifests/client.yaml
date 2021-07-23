@@ -14,6 +14,7 @@ repos:
   - rpmfusion-nonfree-updates-testing
   - fedora-rawhide
   - brave-browser
+  - gitlab.com_paulcarroty_vscodium_repo
 
 default_target: graphical.target
 
@@ -35,7 +36,7 @@ packages:
   - wireguard-tools
   - dymo-cups-drivers
   - eog mpv
-  - brave-browser
+  - brave-browser codium
   ## Mobile WAN
   # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse
 
