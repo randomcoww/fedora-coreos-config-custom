@@ -13,6 +13,7 @@ packages:
   - NetworkManager-openconnect-gnome
   ## Nonfree and dependencies
   - akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-cuda nvidia-container-runtime
+  - akmod-wl
 
 # Things we don't expect to ship on the host.  We currently
 # have recommends: false so these could only come in via
