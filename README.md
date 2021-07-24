@@ -22,4 +22,3 @@ cosa() {
 
 - [Server](builds/server/README.md)
 - [Client](builds/client/README.md)
-- [Laptop](builds/laptop/README.md)

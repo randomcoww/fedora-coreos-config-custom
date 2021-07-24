@@ -1,6 +1,6 @@
 Check out config
 ```bash
-cosa init --force https://github.com/randomcoww/fedora-coreos-config-custom.git builds/client
+cosa init --force https://github.com/randomcoww/fedora-coreos-config-custom.git builds/laptop
 ```
 
 Run build
@@ -12,7 +12,7 @@ cosa buildextend-metal && \
 cosa buildextend-live
 ```
 
-This build expects a home directory device with label `localhome`
+This build expects a home directory device with label `localhome` and a swap device with label `swap`
 
 Embed ignition from https://github.com/randomcoww/terraform-infra generated under `outputs/ignition`
 ```bash
