@@ -12,7 +12,7 @@ repos:
   - rpmfusion-nonfree
   - rpmfusion-nonfree-updates
   - fedora-rawhide
-  - brave-browser
+  - brave-browser-beta
 
 default_target: graphical.target
 
