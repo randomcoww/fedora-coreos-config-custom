@@ -1,6 +1,6 @@
 Check out config
 ```bash
-cosa init --force https://github.com/randomcoww/fedora-coreos-config-custom.git builds/laptop
+cosa init --force https://github.com/randomcoww/fedora-coreos-config-custom.git builds/client
 ```
 
 Run build
