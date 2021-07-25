@@ -7,7 +7,7 @@ ref: fedora/${releasever}/${basearch}/coreos
 include:
   - manifests/ignition-and-ostree.yaml
 
-automatic-version-prefix: "${releasever}"
+automatic-version-prefix: "${releasever}.<date:%Y%m%d>"
 mutate-os-release: "${releasever}"
 
 repos:

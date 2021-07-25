@@ -13,7 +13,6 @@ extra-kargs:
     - iommu=pt
     - enforcing=0
     - elevator=noop
-    - modprobe.blacklist=nouveau
     - rd.driver.blacklist=nouveau
     # Uncomment to enable nvidia wayland
     # - nvidia-drm.modeset=1
