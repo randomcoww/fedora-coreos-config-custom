@@ -14,8 +14,8 @@ extra-kargs:
     - enforcing=0
     - elevator=noop
     - rd.driver.blacklist=nouveau
-    # Uncomment to enable nvidia wayland
-    # - nvidia-drm.modeset=1
+    - modprobe.blacklist=nouveau
+    - nvidia-drm.modeset=1
 
 # Disable networking by default on firstboot. We can drop this once cosa stops
 # defaulting to `ip=dhcp,dhcp6 rd.neednet=1` when it doesn't see this key.
