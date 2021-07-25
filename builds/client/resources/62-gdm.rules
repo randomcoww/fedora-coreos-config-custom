@@ -1,2 +1,2 @@
 # re-enable Wayland when using the proprietary nvidia driver
-DRIVER=="nvidia", RUN+="/usr/libexec/gdm-runtime-config set daemon WaylandEnable truee"
+DRIVER=="nvidia", RUN+="/usr/libexec/gdm-runtime-config set daemon WaylandEnable true"

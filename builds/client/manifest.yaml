@@ -4,7 +4,6 @@ include:
 repos:
   - libnvidia-container
   - nvidia-container-runtime
-  - gitlab.com_paulcarroty_vscodium_repo
   - rpmfusion-nonfree-updates-testing
 
 packages:
@@ -13,7 +12,6 @@ packages:
   - NetworkManager-config-connectivity-fedora
   - NetworkManager-wifi
   - NetworkManager-openconnect-gnome
-  - codium inkscape krita
   - dymo-cups-drivers
   ## Nonfree and dependencies
   - akmod-nvidia xorg-x11-drv-nvidia
