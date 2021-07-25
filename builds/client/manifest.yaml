@@ -2,9 +2,13 @@ include:
   - client.yaml
 
 repos:
+  - rpmfusion-free
+  - rpmfusion-free-updates
+  - rpmfusion-nonfree
+  - rpmfusion-nonfree-updates
+  - rpmfusion-nonfree-updates-testing
   - libnvidia-container
   - nvidia-container-runtime
-  - rpmfusion-nonfree-updates-testing
 
 packages:
   ## from fedora-common-ostree-pkgs.yaml

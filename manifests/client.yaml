@@ -7,10 +7,6 @@ rojig:
   summary: Fedora Silverblue
 
 repos:
-  - rpmfusion-free
-  - rpmfusion-free-updates
-  - rpmfusion-nonfree
-  - rpmfusion-nonfree-updates
   - fedora-rawhide
   - brave-browser-beta
 
@@ -32,7 +28,7 @@ packages:
   - gnupg2
   - mkpasswd
   - wireguard-tools
-  - eog mpv
+  - eog
   - brave-browser
   ## Mobile WAN
   # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse
