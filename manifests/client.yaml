@@ -8,7 +8,6 @@ rojig:
 
 repos:
   - fedora-rawhide
-  - brave-browser-beta
 
 default_target: graphical.target
 
@@ -28,8 +27,6 @@ packages:
   - gnupg2
   - mkpasswd
   - wireguard-tools
-  - eog
-  - brave-browser
   ## Mobile WAN
   # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse
 

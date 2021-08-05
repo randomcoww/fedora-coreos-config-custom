@@ -108,6 +108,12 @@ baseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/
 enabled=1
 gpgcheck=0
 
+[code]
+name=Visual Studio Code
+baseurl=https://packages.microsoft.com/yumrepos/vscode
+enabled=1
+gpgcheck=0
+
 
 [libnvidia-container]
 name=libnvidia-container
