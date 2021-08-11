@@ -6,7 +6,6 @@ repos:
   - rpmfusion-free-updates
   - rpmfusion-nonfree
   - rpmfusion-nonfree-updates
-  - rpmfusion-nonfree-updates-testing
   - libnvidia-container
   - nvidia-container-runtime
   - brave-browser-beta
