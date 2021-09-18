@@ -1,8 +1,15 @@
 ## Custom Fedora CoreOS builds
 
-From upstream: https://github.com/coreos/coreos-assembler
+COSA upstream with full instructions: https://github.com/coreos/coreos-assembler
 
-Workstation upstream: https://pagure.io/workstation-ostree-config.git
+CoreOS packages: https://github.com/coreos/fedora-coreos-config.git
+Workstation packages: https://pagure.io/workstation-ostree-config.git
+
+Update image
+```bash
+mkdir build
+TMPDIR=$(pwd)/build podman pull quay.io/coreos-assembler/coreos-assembler:latest
+```
 
 ```bash
 cosa() {
