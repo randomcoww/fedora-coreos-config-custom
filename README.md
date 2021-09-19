@@ -6,6 +6,7 @@ CoreOS packages: https://github.com/coreos/fedora-coreos-config.git
 Workstation packages: https://pagure.io/workstation-ostree-config.git
 
 Update image
+
 ```bash
 mkdir build
 TMPDIR=$(pwd)/build podman pull quay.io/coreos-assembler/coreos-assembler:latest

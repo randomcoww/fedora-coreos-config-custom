@@ -52,6 +52,8 @@ check-groups:
   type: "file"
   filename: "manifests/group"
 
+rpmdb: sqlite
+
 packages:
   # system-configuration
   # Configuring SSH keys, cloud provider check-in, etc
@@ -115,11 +117,13 @@ packages:
   - openssh-clients openssh-server
   # Container tooling
   - podman
-  - runc crun
+  - runc
   - skopeo
   # - toolbox
 
   # fedora-coreos-base
+  # Container tooling
+  - crun
   # Security
   - polkit
   # System setup
@@ -160,7 +164,7 @@ packages:
   - ncurses
   # file-transfer: note fuse-sshfs is not in RHEL
   # so we can't put it in file-transfer.yaml
-  # - fuse-sshfs
+  - fuse-sshfs
   # User experience
   # - console-login-helper-messages-motdgen
   # i18n
