@@ -7,18 +7,6 @@ extra-kargs:
     # - mitigations=auto,nosmt
     # https://github.com/coreos/fedora-coreos-tracker/issues/292
     # https://fedoraproject.org/wiki/Changes/CGroupsV2
-    - systemd.unified_cgroup_hierarchy=0
-    - intel_iommu=on
-    - amd_iommu=on
-    - iommu=pt
-    - console=tty0
-    - console=ttyS0,115200n8
-    - console=ttyS1,115200n8
-    - elevator=noop
-    - video=efifb:off
-    - rd.driver.pre=vfio-pci
-    # FCOS is not able to load these from modules.d
-    - vfio-pci.ids=1002:ffffffff:ffffffff:ffffffff:00030000:ffff00ff,1002:ffffffff:ffffffff:ffffffff:00040300:ffffffff,10de:ffffffff:ffffffff:ffffffff:00030000:ffff00ff,10de:ffffffff:ffffffff:ffffffff:00040300:ffffffff
 
 # Disable networking by default on firstboot. We can drop this once cosa stops
 # defaulting to `ip=dhcp,dhcp6 rd.neednet=1` when it doesn't see this key.
