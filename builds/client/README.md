@@ -27,6 +27,6 @@ Optionally write directly to disk on running system
 ```bash
 sudo coreos-installer iso ignition embed \
   -i ../terraform-infra/resources/output/ignition/client-0.ign \
-  /dev/sda --force
+  /dev/sdb --force
 ```
 Reboot to apply changes

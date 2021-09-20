@@ -33,5 +33,5 @@ Write to existing device
 ```bash
 sudo coreos-installer iso ignition embed \
   -i ../terraform-infra/resources/output/ignition/kvm-0.ign \
-  /dev/sda --force
+  /dev/sdb --force
 ```
