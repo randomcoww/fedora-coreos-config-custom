@@ -20,8 +20,9 @@ packages:
   - eog mpv
   - dymo-cups-drivers
   - brave-browser
-  - code
+  - fuse-sshfs
   ## Nonfree and dependencies
+  - code
   - akmod-nvidia xorg-x11-drv-nvidia
   - xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
   - nvidia-container-runtime
@@ -38,4 +39,4 @@ exclude-packages:
 add-files:
   - [resources/BCM20702A1-0a5c-21e8.hcd, /lib/firmware/brcm/BCM20702A1-0a5c-21e8.hcd]
   # Enable nvidia wayland
-  # - [resources/62-gdm-nvidia-wayland.rules, /usr/lib/udev/rules.d/62-gdm-nvidia-wayland.rules]
+  - [resources/62-gdm-nvidia-wayland.rules, /usr/lib/udev/rules.d/62-gdm-nvidia-wayland.rules]

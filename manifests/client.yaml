@@ -27,7 +27,6 @@ packages:
   - gnupg2
   - mkpasswd
   - wireguard-tools
-  - fuse-sshfs
   ## Mobile WAN
   # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse
 
