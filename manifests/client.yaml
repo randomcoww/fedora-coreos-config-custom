@@ -20,7 +20,6 @@ packages:
   - libvirt-daemon-kvm libvirt-client virt-viewer
   - kubernetes-client
   - tmux xclip vim-enhanced strace
-  - toolbox
   - buildah podman-compose
   - flatpak flatpak-builder
   - git-core
@@ -196,6 +195,7 @@ packages:
   - iwl6000g2b-firmware
   - iwl6050-firmware
   - iwl7260-firmware
+  - iwlax2xx-firmware
   - jomolhari-fonts
   - julietaula-montserrat-fonts
   - kbd
