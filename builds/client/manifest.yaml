@@ -9,7 +9,7 @@ repos:
   - libnvidia-container
   - nvidia-container-runtime
   - brave-browser-beta
-  - code
+  - gitlab.com_paulcarroty_vscodium_repo
 
 packages:
   ## from fedora-common-ostree-pkgs.yaml
@@ -20,7 +20,7 @@ packages:
   - fuse-sshfs
   - eog
   - mpv
-  - code
+  - codium
   - brave-browser
   ## Nonfree and dependencies
   - akmod-nvidia xorg-x11-drv-nvidia
