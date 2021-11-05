@@ -26,6 +26,7 @@ packages:
   - gnupg2
   - mkpasswd
   - wireguard-tools
+  - iwlax2xx-firmware
   ## Mobile WAN
   # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse
 
@@ -98,7 +99,6 @@ packages:
   # - NetworkManager-config-connectivity-fedora
   # - NetworkManager-wifi
   # - NetworkManager-wwan
-  - aajohan-comfortaa-fonts
   - abattis-cantarell-fonts
   - acl
   # - adwaita-qt5
@@ -145,8 +145,6 @@ packages:
   - filesystem
   # - firefox
   # - firewalld
-  - foomatic
-  - foomatic-db-ppds
   - fpaste
   - fros-gnome
   - gamemode
@@ -195,9 +193,7 @@ packages:
   - iwl6000g2b-firmware
   - iwl6050-firmware
   - iwl7260-firmware
-  - iwlax2xx-firmware
   - jomolhari-fonts
-  - julietaula-montserrat-fonts
   - kbd
   - kernel
   - kernel-modules-extra
@@ -209,6 +205,7 @@ packages:
   - libertas-sd8686-firmware
   - libertas-sd8787-firmware
   - libertas-usb8388-firmware
+  - libglvnd-gles
   - linux-firmware
   - logrotate
   - lohit-assamese-fonts
@@ -255,7 +252,6 @@ packages:
   # - policycoreutils-python-utils
   - procps-ng
   - psmisc
-  - pt-sans-fonts
   # - qemu-guest-agent
   # - qt5-qtbase
   # - qt5-qtbase-gui
@@ -285,6 +281,7 @@ packages:
   - system-config-printer-udev
   - systemd
   - systemd-oomd-defaults
+  - systemd-resolved
   - systemd-udev
   - tar
   - thai-scalable-waree-fonts
@@ -298,6 +295,7 @@ packages:
   # - vim-minimal
   - wget
   - which
+  - wireplumber
   - words
   # - xorg-x11-drv-amdgpu
   # - xorg-x11-drv-ati
