@@ -180,7 +180,7 @@ packages:
   - iproute-tc
   - nftables iptables-nft
   - socat ldns-utils
-  - containerd cri-tools
+  - containerd
   - ipmitool
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened

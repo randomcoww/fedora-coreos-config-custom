@@ -8,8 +8,8 @@ repos:
   - rpmfusion-nonfree-updates
   - libnvidia-container
   - nvidia-container-runtime
-  - brave-browser-beta
-  - gitlab.com_paulcarroty_vscodium_repo
+  # - brave-browser-beta
+  # - gitlab.com_paulcarroty_vscodium_repo
 
 packages:
   ## from fedora-common-ostree-pkgs.yaml
@@ -20,8 +20,11 @@ packages:
   - fuse-sshfs
   - eog
   - mpv
-  - codium
-  - brave-browser
+  # - inkspace
+  # - krita
+  # - blender
+  # - codium
+  # - brave-browser
   ## Nonfree and dependencies
   - akmod-nvidia xorg-x11-drv-nvidia
   - xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
@@ -38,5 +41,3 @@ exclude-packages:
 # bluetooth firmware
 add-files:
   - [resources/BCM20702A1-0a5c-21e8.hcd, /lib/firmware/brcm/BCM20702A1-0a5c-21e8.hcd]
-  # Enable nvidia wayland
-  - [resources/62-gdm-nvidia-wayland.rules, /usr/lib/udev/rules.d/62-gdm-nvidia-wayland.rules]
