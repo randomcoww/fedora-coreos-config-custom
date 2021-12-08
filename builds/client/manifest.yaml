@@ -1,6 +1,12 @@
 include:
   - client.yaml
 
+initramfs-args:
+  - --add-drivers=nvidia
+  - --add-drivers=nvidia_modeset
+  - --add-drivers=nvidia_drm
+  - --add-drivers=nvidia_uvm
+
 repos:
   - rpmfusion-free
   - rpmfusion-free-updates
@@ -8,7 +14,7 @@ repos:
   - rpmfusion-nonfree-updates
   - libnvidia-container
   - nvidia-container-runtime
-  # - brave-browser-beta
+  - brave-browser-beta
   # - gitlab.com_paulcarroty_vscodium_repo
 
 packages:
@@ -24,7 +30,7 @@ packages:
   # - krita
   # - blender
   # - codium
-  # - brave-browser
+  - brave-browser
   ## Nonfree and dependencies
   - akmod-nvidia xorg-x11-drv-nvidia
   - xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
