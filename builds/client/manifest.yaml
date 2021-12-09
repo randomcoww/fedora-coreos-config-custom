@@ -16,8 +16,8 @@ repos:
   - libnvidia-container
   - nvidia-container-runtime
   - brave-browser-beta
-  # - code
-  - gitlab.com_paulcarroty_vscodium_repo
+  - code
+  # - gitlab.com_paulcarroty_vscodium_repo
 
 packages:
   ## from fedora-common-ostree-pkgs.yaml
@@ -32,8 +32,8 @@ packages:
   # - krita
   # - blender
   - brave-browser
-  # - code
-  - codium
+  - code
+  # - codium
   ## Nonfree and dependencies
   - akmod-nvidia xorg-x11-drv-nvidia
   - xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
