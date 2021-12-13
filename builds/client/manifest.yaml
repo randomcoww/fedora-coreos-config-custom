@@ -15,7 +15,7 @@ repos:
   - rpmfusion-nonfree-updates
   - libnvidia-container
   - nvidia-container-runtime
-  - brave-browser-beta
+  # - brave-browser-beta
   - code
   # - gitlab.com_paulcarroty_vscodium_repo
 
@@ -31,7 +31,8 @@ packages:
   # - inkspace
   # - krita
   # - blender
-  - brave-browser
+  # - brave-browser
+  - firefox
   - code
   # - codium
   ## Nonfree and dependencies
