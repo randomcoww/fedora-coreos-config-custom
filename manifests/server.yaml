@@ -29,4 +29,3 @@ packages:
 # hard requirement, in which case the build will fail.
 exclude-packages:
   - NetworkManager
-  - grubby
