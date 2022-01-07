@@ -1,2 +1,19 @@
 include:
   - server.yaml
+
+repos:
+  - rpmfusion-free
+  - rpmfusion-free-updates
+  - rpmfusion-nonfree
+  - rpmfusion-nonfree-updates
+  - libnvidia-container
+  - nvidia-container-runtime
+
+packages:
+  - akmod-nvidia
+  - nvidia-container-runtime
+  - akmod-wl
+  - iwlax2xx-firmware
+
+add-files:
+  - [resources/matchbox.tar, /var/lib/image-load/matchbox.tar]

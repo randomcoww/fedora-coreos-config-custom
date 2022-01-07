@@ -30,7 +30,3 @@ packages:
 exclude-packages:
   - NetworkManager
   - grubby
-
-add-files:
-  - [resources/matchbox.tar, /etc/container-save/matchbox.tar]
-  - [resources/SAS9300_8i_IT.bin, /etc/libvirt/boot/SAS9300_8i_IT.bin]

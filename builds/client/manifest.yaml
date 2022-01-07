@@ -15,7 +15,7 @@ repos:
   - rpmfusion-nonfree-updates
   - libnvidia-container
   - nvidia-container-runtime
-  # - brave-browser-beta
+  - brave-browser-beta
   - code
   # - gitlab.com_paulcarroty_vscodium_repo
 
@@ -31,8 +31,8 @@ packages:
   # - inkspace
   # - krita
   # - blender
-  # - brave-browser
-  - firefox
+  # - firefox
+  - brave-browser
   - code
   # - codium
   ## Nonfree and dependencies
@@ -50,4 +50,4 @@ exclude-packages:
 
 # bluetooth firmware
 add-files:
-  - [resources/BCM20702A1-0a5c-21e8.hcd, /lib/firmware/brcm/BCM20702A1-0a5c-21e8.hcd]
+  # - [resources/BCM20702A1-0a5c-21e8.hcd, /lib/firmware/brcm/BCM20702A1-0a5c-21e8.hcd]
