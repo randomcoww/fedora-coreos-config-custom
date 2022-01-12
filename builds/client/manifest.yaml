@@ -31,8 +31,8 @@ packages:
   # - inkspace
   # - krita
   # - blender
-  # - firefox
-  - brave-browser
+  - firefox
+  # - brave-browser
   - code
   # - codium
   ## Nonfree and dependencies
