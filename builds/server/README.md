@@ -3,13 +3,6 @@ Check out config
 cosa init --force https://github.com/randomcoww/fedora-coreos-config-custom.git builds/server
 ```
 
-Add matchbox image. This host has no internet access and cannot download containers.
-```bash
-podman pull quay.io/poseidon/matchbox:latest
-podman save --format oci-archive -o matchbox.tar quay.io/poseidon/matchbox:latest
-sudo mv matchbox.tar src/config/resources
-```
-
 Run build
 ```bash
 cosa clean && \

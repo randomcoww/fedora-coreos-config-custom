@@ -14,6 +14,3 @@ packages:
   - nvidia-container-runtime
   - akmod-wl
   - iwlax2xx-firmware
-
-add-files:
-  - [resources/matchbox.tar, /etc/container-image-load/matchbox.tar]
