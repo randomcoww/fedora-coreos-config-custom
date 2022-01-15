@@ -13,6 +13,8 @@ mutate-os-release: "${releasever}"
 repos:
   - fedora
   - fedora-updates
+  - fedora-modular
+  - fedora-updates-modular
 
 initramfs-args:
   - --no-hostonly
@@ -182,7 +184,7 @@ packages:
   - iproute-tc
   - nftables iptables-nft
   - socat ldns-utils
-  - containerd
+  - cri-o
   - ipmitool
   - pciutils
 
