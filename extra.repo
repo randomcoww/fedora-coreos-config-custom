@@ -95,7 +95,14 @@ name=Kubernetes
 baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-$basearch
 enabled=1
 gpgcheck=0
-repo_gpgcheck=1
+repo_gpgcheck=0
+
+[cri-o_1.23.0]
+name=cri-o_1.23.0
+type=rpm-md
+baseurl=https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/1.23:/1.23.0/Fedora_Rawhide/
+gpgcheck=0
+enabled=1
 
 
 [brave-browser]

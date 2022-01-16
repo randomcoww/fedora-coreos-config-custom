@@ -15,6 +15,8 @@ repos:
   - fedora-updates
   - fedora-modular
   - fedora-updates-modular
+  - kubernetes
+  - cri-o_1.23.0
 
 initramfs-args:
   - --no-hostonly
@@ -184,9 +186,10 @@ packages:
   - iproute-tc
   - nftables iptables-nft
   - socat ldns-utils
-  - cri-o
   - ipmitool
   - pciutils
+  - cri-o
+  - cri-tools
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened
 # yet.  Also we may want to add to rpm-ostree something like arch negation;
