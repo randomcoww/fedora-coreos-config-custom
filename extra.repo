@@ -90,6 +90,14 @@ gpgcheck=0
 repo_gpgcheck=0
 
 
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-$basearch
+enabled=1
+gpgcheck=0
+repo_gpgcheck=1
+
+
 [brave-browser]
 name=Brave Browser
 baseurl=https://brave-browser-rpm-release.s3.brave.com/x86_64/
