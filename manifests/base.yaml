@@ -25,11 +25,8 @@ initramfs-args:
   # in /var/ and then ignition can't cleanly unmount it. For example:
   # https://github.com/dracutdevs/dracut/blob/1856ae95c873a6fe855b3dccd0144f1a96b9e71c/modules.d/95nfs/nfs-start-rpc.sh#L7
   # See also discussion in https://github.com/coreos/fedora-coreos-config/pull/60
-  - --omit=nfs
   # Omit these since we don't use them
-  - --omit=lvm
   - --omit=multipath
-  - --omit=iscsi
   - --add-drivers=vfio
   - --add-drivers=vfio_iommu_type1
   - --add-drivers=vfio_pci
@@ -72,10 +69,10 @@ packages:
   - cryptsetup
   - device-mapper-multipath
   - e2fsprogs
-  - iscsi-initiator-utils
-  - lvm2
+  # - iscsi-initiator-utils
+  # - lvm2
   - mdadm
-  - sg3_utils
+  # - sg3_utils
   - xfsprogs
   # User configuration
   - passwd
@@ -142,7 +139,7 @@ packages:
   # Remote IPC for podman
   # - libvarlink-util
   # Minimal NFS client
-  - nfs-utils-coreos
+  # - nfs-utils-coreos
   # Active Directory support
   # - adcli
   # Additional firewall support; we aren't including these in RHCOS or they
