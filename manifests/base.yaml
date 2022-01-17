@@ -120,10 +120,9 @@ packages:
   # Remote Access
   - openssh-clients openssh-server
   # Container tooling
-  - podman
+  # - podman
   # - runc
-  - skopeo
-  # - toolbox
+  # - skopeo
 
   # fedora-coreos-base
   # Container tooling
@@ -135,15 +134,15 @@ packages:
   # SSH
   - ssh-key-dir
   # Containers
-  - systemd-container catatonit
-  - fuse-overlayfs slirp4netns
+  # - systemd-container catatonit
+  # - fuse-overlayfs slirp4netns
   # name resolution for podman containers
   # https://github.com/coreos/fedora-coreos-tracker/issues/519
   # - podman-plugins
   # Remote IPC for podman
-  - libvarlink-util
+  # - libvarlink-util
   # Minimal NFS client
-  # - nfs-utils-coreos
+  - nfs-utils-coreos
   # Active Directory support
   # - adcli
   # Additional firewall support; we aren't including these in RHCOS or they

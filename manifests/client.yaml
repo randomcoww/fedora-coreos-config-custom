@@ -6,9 +6,6 @@ rojig:
   name: fedora-silverblue
   summary: Fedora Silverblue
 
-repos:
-  - fedora-rawhide
-
 default_target: graphical.target
 
 packages:
@@ -18,9 +15,9 @@ packages:
   - libva-utils vulkan vulkan-tools
   - libva-intel-hybrid-driver libva-intel-driver
   - libvirt-daemon-kvm libvirt-client virt-viewer
-  - kubernetes-client
+  - kubectl
   - tmux xclip vim-enhanced strace
-  - buildah podman-compose
+  - podman buildah podman-compose
   - flatpak flatpak-builder
   - git-core
   - gnupg2
