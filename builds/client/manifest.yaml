@@ -40,7 +40,7 @@ packages:
   - xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
   - nvidia-container-runtime
   - vdpauinfo libva-vdpau-driver libva-utils
-  - akmod-wl
+  - akmod-wl iwlax2xx-firmware hostapd iw
 
 # Things we don't expect to ship on the host.  We currently
 # have recommends: false so these could only come in via
@@ -50,4 +50,4 @@ exclude-packages:
 
 # bluetooth firmware
 add-files:
-  # - [resources/BCM20702A1-0a5c-21e8.hcd, /lib/firmware/brcm/BCM20702A1-0a5c-21e8.hcd]
+  - [resources/BCM20702A1-0a5c-21e8.hcd, /lib/firmware/brcm/BCM20702A1-0a5c-21e8.hcd]

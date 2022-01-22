@@ -12,5 +12,7 @@ repos:
 packages:
   - akmod-nvidia
   - nvidia-container-runtime
-  - akmod-wl
-  - iwlax2xx-firmware
+  - akmod-wl iwlax2xx-firmware hostapd iw
+
+add-files:
+  - [resources/BCM20702A1-0a5c-21e8.hcd, /lib/firmware/brcm/BCM20702A1-0a5c-21e8.hcd]
