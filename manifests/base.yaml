@@ -184,6 +184,7 @@ packages:
   - socat ldns-utils
   - ipmitool
   - pciutils
+  - smartmontools hdparm
   - cri-o cri-tools conntrack-tools kubelet
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened
