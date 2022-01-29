@@ -15,6 +15,7 @@ extra-kargs:
     - console=ttyS0,115200n8
     - console=ttyS1,115200n8
     - elevator=noop
+    - enforcing=0
     # - video=efifb:off
     - rd.driver.pre=vfio-pci
     # - vfio-pci.ids=1002:ffffffff:ffffffff:ffffffff:00030000:ffff00ff,1002:ffffffff:ffffffff:ffffffff:00040300:ffffffff,10de:ffffffff:ffffffff:ffffffff:00030000:ffff00ff,10de:ffffffff:ffffffff:ffffffff:00040300:ffffffff

@@ -21,7 +21,7 @@ packages:
   ## Custom
   - systemd-networkd
   - libvirt-daemon-kvm
-  - kea keepalived
+  - keepalived
   - qemu-guest-agent
 
 # Things we don't expect to ship on the host.  We currently
