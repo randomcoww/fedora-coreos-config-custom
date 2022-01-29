@@ -143,3 +143,20 @@ baseurl=https://nvidia.github.io/nvidia-container-runtime/stable/centos8/$basear
 repo_gpgcheck=0
 gpgcheck=0
 enabled=1
+
+
+[tlp]
+name=tlp RPM packages
+#baseurl=https://repo.linrunner.de/fedora/tlp/repos/releases/$releasever/$basearch/os/
+mirrorlist=https://repo.linrunner.de/fedora/tlp/mirrors/$releasever/$basearch/tlp.txt
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+
+[tlp-updates]
+name=tlp RPM packages
+#baseurl=https://repo.linrunner.de/fedora/tlp/repos/updates/$releasever/$basearch/
+mirrorlist=https://repo.linrunner.de/fedora/tlp/mirrors/$releasever/$basearch/tlp-updates.txt
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
