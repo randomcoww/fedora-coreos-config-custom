@@ -15,6 +15,8 @@ repos:
   - rpmfusion-nonfree-updates
   - libnvidia-container
   - nvidia-container-runtime
+  - tlp
+  - tlp-updates
   - brave-browser-beta
   - code
   # - gitlab.com_paulcarroty_vscodium_repo
@@ -36,11 +38,10 @@ packages:
   - code
   # - codium
   ## Nonfree and dependencies
-  - akmod-nvidia xorg-x11-drv-nvidia
-  - xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
-  - nvidia-container-runtime
+  - kmod-nvidia nvidia-container-runtime xorg-x11-drv-nvidia-cuda
   - vdpauinfo libva-vdpau-driver libva-utils
-  - akmod-wl iwlax2xx-firmware hostapd iw
+  - kmod-wl iwlax2xx-firmware iw
+  - acpi_call
 
 # Things we don't expect to ship on the host.  We currently
 # have recommends: false so these could only come in via
