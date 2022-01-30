@@ -12,9 +12,8 @@ repos:
   - tlp-updates
 
 packages:
-  - akmod-nvidia
-  - nvidia-container-runtime
-  - akmod-wl iwlax2xx-firmware hostapd iw
+  - kmod-nvidia nvidia-container-runtime xorg-x11-drv-nvidia-cuda
+  - kmod-wl iwlax2xx-firmware hostapd iw
   - acpi_call
 
 add-files:
