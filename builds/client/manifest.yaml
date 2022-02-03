@@ -43,12 +43,6 @@ packages:
   - kmod-wl iwlax2xx-firmware iw
   - acpi_call
 
-# Things we don't expect to ship on the host.  We currently
-# have recommends: false so these could only come in via
-# hard requirement, in which case the build will fail.
-exclude-packages:
-  - systemd-networkd
-
 # bluetooth firmware
 add-files:
   - [resources/BCM20702A1-0a5c-21e8.hcd, /lib/firmware/brcm/BCM20702A1-0a5c-21e8.hcd]

@@ -24,6 +24,7 @@ packages:
   - mkpasswd
   - wireguard-tools
   - iwlax2xx-firmware
+  - systemd-networkd
   ## Mobile WAN
   # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse
 
