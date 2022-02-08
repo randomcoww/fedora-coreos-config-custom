@@ -16,7 +16,8 @@ extra-kargs:
     - rd.driver.blacklist=nouveau
     - modprobe.blacklist=nouveau
     - nvidia-drm.modeset=1
-    - nvidia.NVreg_RegistryDwords=EnableBrightnessControl=1
+    # Brightness control in wayland
+    # - nvidia.NVreg_RegistryDwords=EnableBrightnessControl=1
 
 # Disable networking by default on firstboot. We can drop this once cosa stops
 # defaulting to `ip=dhcp,dhcp6 rd.neednet=1` when it doesn't see this key.
