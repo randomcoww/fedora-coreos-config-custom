@@ -1,3 +1,7 @@
+### Prepare
+
+[Define cosa command](../../README.md)
+
 ### Check out config
 
 ```bash

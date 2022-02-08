@@ -1,3 +1,7 @@
+### Prepare
+
+[Define cosa command](../../README.md)
+
 ### Check out config
 
 ```bash
@@ -15,7 +19,6 @@ cosa buildextend-live
 ```
 
 ### Write bootable image to disk
-
 
 Embed ignition from https://github.com/randomcoww/terraform-infra generated under `outputs/ignition`
 
