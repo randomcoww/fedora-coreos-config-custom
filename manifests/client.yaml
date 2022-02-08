@@ -56,7 +56,7 @@ packages:
   # - gnome-initial-setup
   - gnome-remote-desktop
   - gnome-session-wayland-session
-  # - gnome-session-xsession
+  - gnome-session-xsession
   - gnome-settings-daemon
   - gnome-shell
   # - gnome-software
