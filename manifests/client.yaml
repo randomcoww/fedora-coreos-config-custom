@@ -10,21 +10,22 @@ default_target: graphical.target
 
 packages:
   ## Custom
-  - hdparm
+  - tmux xclip
   - nmap
-  - libva-utils vulkan vulkan-tools
-  - libva-intel-hybrid-driver libva-intel-driver
-  - libvirt-daemon-kvm libvirt-client virt-viewer
-  - kubectl
-  - tmux xclip vim-enhanced strace
-  - podman buildah skopeo podman-compose slirp4netns
-  - flatpak flatpak-builder
+  - strace
   - git-core
+  - vim-enhanced
+  - smartmontools
   - gnupg2
   - mkpasswd
   - wireguard-tools
+  - libva-utils vulkan vulkan-tools
+  - podman buildah skopeo podman-compose slirp4netns
+  - flatpak flatpak-builder
+  - libvirt-daemon-kvm libvirt-client virt-viewer
   - iwlax2xx-firmware
-  - systemd-networkd
+  - libva-intel-hybrid-driver libva-intel-driver
+
   ## Mobile WAN
   # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse
 
@@ -92,10 +93,10 @@ packages:
   - yelp
 
   ## from fedora-common-ostree-pkgs.yaml
-  # - NetworkManager
+  - NetworkManager
   # - NetworkManager-bluetooth
-  # - NetworkManager-config-connectivity-fedora
-  # - NetworkManager-wifi
+  - NetworkManager-config-connectivity-fedora
+  - NetworkManager-wifi
   # - NetworkManager-wwan
   - abattis-cantarell-fonts
   - acl
