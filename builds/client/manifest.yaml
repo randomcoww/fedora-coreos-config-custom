@@ -13,6 +13,8 @@ repos:
   - rpmfusion-free-updates
   - rpmfusion-nonfree
   - rpmfusion-nonfree-updates
+  - tlp
+  - tlp-updates
   - libnvidia-container
   - nvidia-container-runtime
   - brave-browser-beta
@@ -26,6 +28,7 @@ packages:
   - brave-browser
   - code
   - dymo-cups-drivers
+  - acpi_call
   ## Nonfree and dependencies
   - kmod-nvidia nvidia-container-runtime xorg-x11-drv-nvidia-cuda
   - vdpauinfo libva-vdpau-driver
