@@ -7,12 +7,8 @@ extra-kargs:
     # - mitigations=auto,nosmt
     # https://github.com/coreos/fedora-coreos-tracker/issues/292
     # https://fedoraproject.org/wiki/Changes/CGroupsV2
-    - systemd.unified_cgroup_hierarchy=0
-    - intel_iommu=on
-    - amd_iommu=on
-    - iommu=pt
-    - enforcing=0
     - elevator=noop
+    - enforcing=0
     - rd.driver.blacklist=nouveau
     - modprobe.blacklist=nouveau
     - nvidia_drm.modeset=1

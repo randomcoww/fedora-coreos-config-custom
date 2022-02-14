@@ -7,7 +7,6 @@ extra-kargs:
     # - mitigations=auto,nosmt
     # https://github.com/coreos/fedora-coreos-tracker/issues/292
     # https://fedoraproject.org/wiki/Changes/CGroupsV2
-    - systemd.unified_cgroup_hierarchy=0
     - console=tty0
     - console=ttyS0,115200n8
     - elevator=noop

@@ -32,4 +32,5 @@ packages:
   ## Nonfree and dependencies
   - kmod-nvidia nvidia-container-runtime xorg-x11-drv-nvidia-cuda
   - vdpauinfo libva-vdpau-driver
-  - kmod-wl
+  ## Broadcom
+  # - kmod-wl
