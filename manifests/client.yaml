@@ -15,17 +15,13 @@ packages:
   - strace
   - git-core
   - vim-enhanced
-  - smartmontools
   - gnupg2
   - mkpasswd
   - wireguard-tools
-  - libva-utils vulkan vulkan-tools
   - podman buildah skopeo podman-compose slirp4netns
   - flatpak flatpak-builder
-  - libvirt-daemon-kvm libvirt-client virt-viewer
   - iwlax2xx-firmware
-  - libva-intel-hybrid-driver libva-intel-driver
-
+  - libva-utils vulkan vulkan-tools
   ## Mobile WAN
   # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse
 

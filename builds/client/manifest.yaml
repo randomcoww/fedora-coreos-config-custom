@@ -25,12 +25,15 @@ packages:
   - cri-o cri-tools conntrack-tools kubelet kubectl
   - eog
   - mpv
+  - smartmontools
   - brave-browser
   - code
   - dymo-cups-drivers
   - acpi_call
   ## Nonfree and dependencies
-  - kmod-nvidia nvidia-container-runtime xorg-x11-drv-nvidia-cuda
+  - kmod-nvidia xorg-x11-drv-nvidia-cuda
   - vdpauinfo libva-vdpau-driver
+  - nvidia-container-runtime
+  - libva-intel-hybrid-driver libva-intel-driver
   ## Broadcom
   # - kmod-wl
