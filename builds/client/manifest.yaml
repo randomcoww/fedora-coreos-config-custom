@@ -20,13 +20,17 @@ repos:
 
 packages:
   ## from fedora-common-ostree-pkgs.yaml
-  - cri-o cri-tools conntrack-tools kubelet kubectl
+  - kubectl
   - eog
   - mpv
   - smartmontools
   - brave-browser
   - code
   - dymo-cups-drivers
+  ## server functions
+  - systemd-networkd
+  - keepalived
+  - cri-o cri-tools conntrack-tools kubelet
   ## Nonfree and dependencies
   - kmod-nvidia xorg-x11-drv-nvidia-cuda
   - vdpauinfo libva-vdpau-driver
