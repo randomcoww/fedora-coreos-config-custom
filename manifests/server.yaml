@@ -18,7 +18,6 @@ remove-files:
 packages:
   - fedora-release-coreos
   ## Custom
-  - systemd-networkd
   - keepalived
   - cri-o cri-tools conntrack-tools kubelet
 
