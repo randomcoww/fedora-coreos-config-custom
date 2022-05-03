@@ -1,4 +1,4 @@
-releasever: "35"
+releasever: "36"
 
 # This file is most of a Fedora CoreOS like system; it inherits from "core".
 # Add things in this file which are somewhat "opinionated", not necessarily

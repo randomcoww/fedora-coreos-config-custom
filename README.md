@@ -8,7 +8,7 @@ Workstation packages: https://pagure.io/workstation-ostree-config.git
 Update image
 
 ```bash
-mkdir build
+mkdir -p build tmp
 TMPDIR=$(pwd)/build podman pull quay.io/coreos-assembler/coreos-assembler:latest
 ```
 
@@ -18,7 +18,7 @@ cosa() {
    set -x
    podman run --rm -ti --security-opt label=disable --privileged -w /srv \
       --uidmap=$(id -u):0:1 --uidmap=0:1:$(id -u) --uidmap $(( $(id -u) + 1 )):$(( $(id -u) + 1 )):55536 \
-      -v ${PWD}:/srv/ --device /dev/kvm --device /dev/fuse \
+      -v ${PWD}:/srv/ -v $(pwd)/tmp:/var/tmp --device /dev/kvm --device /dev/fuse \
       --tmpfs /tmp --name cosa-coreos \
       ${COREOS_ASSEMBLER_CONFIG_GIT:+-v $COREOS_ASSEMBLER_CONFIG_GIT:/srv/src/config/:ro} \
       ${COREOS_ASSEMBLER_GIT:+-v $COREOS_ASSEMBLER_GIT/src/:/usr/lib/coreos-assembler/:ro} \
