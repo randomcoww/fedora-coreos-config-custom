@@ -20,7 +20,7 @@ repos:
   - fedora-next-modular
   - fedora-next-updates-modular
   - kubernetes
-  - cri-o_1.23.0
+  - cri-o_1.24.0
 
 initramfs-args:
   - --no-hostonly
