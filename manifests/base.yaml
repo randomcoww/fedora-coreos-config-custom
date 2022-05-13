@@ -15,10 +15,10 @@ automatic-version-prefix: "${releasever}.<date:%Y%m%d>"
 mutate-os-release: "${releasever}"
 
 repos:
-  - fedora-next
-  - fedora-next-updates
-  - fedora-next-modular
-  - fedora-next-updates-modular
+  - fedora
+  - fedora-updates
+  - fedora-modular
+  - fedora-updates-modular
   - kubernetes
   - cri-o_1.24.0
 
