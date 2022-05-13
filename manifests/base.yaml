@@ -7,6 +7,10 @@ ref: fedora/${releasever}/${basearch}/coreos
 include:
   - manifests/ignition-and-ostree.yaml
 
+ostree-layers:
+  - overlay/05core
+  - overlay/15fcos
+
 automatic-version-prefix: "${releasever}.<date:%Y%m%d>"
 mutate-os-release: "${releasever}"
 
@@ -25,7 +29,10 @@ initramfs-args:
   # in /var/ and then ignition can't cleanly unmount it. For example:
   # https://github.com/dracutdevs/dracut/blob/1856ae95c873a6fe855b3dccd0144f1a96b9e71c/modules.d/95nfs/nfs-start-rpc.sh#L7
   # See also discussion in https://github.com/coreos/fedora-coreos-config/pull/60
+  - --omit=nfs
   # Omit these since we don't use them
+  - --omit=lvm
+  - --omit=iscsi
   - --omit=multipath
   - --add-drivers=vfio
   - --add-drivers=vfio_iommu_type1
