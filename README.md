@@ -8,7 +8,7 @@ Workstation packages: https://pagure.io/workstation-ostree-config.git
 Update image
 
 ```bash
-mkdir -p build tmp
+mkdir -p build
 TMPDIR=$(pwd)/build podman pull quay.io/coreos-assembler/coreos-assembler:latest
 ```
 

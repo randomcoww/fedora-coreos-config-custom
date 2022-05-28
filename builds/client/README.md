@@ -8,6 +8,14 @@
 cosa init --force https://github.com/randomcoww/fedora-coreos-config-custom.git builds/client
 ```
 
+### Hack
+
+```
+cosa shell
+```
+
+Apply https://github.com/randomcoww/fedora-coreos-config-custom/issues/3 as needed
+
 ### Run build
 
 ```bash
