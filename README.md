@@ -2,8 +2,8 @@
 
 COSA upstream with full instructions: https://github.com/coreos/coreos-assembler
 
-CoreOS packages: https://github.com/coreos/fedora-coreos-config.git
-Workstation packages: https://pagure.io/workstation-ostree-config.git
+* CoreOS packages: https://github.com/coreos/fedora-coreos-config.git
+* Workstation packages: https://pagure.io/workstation-ostree-config.git
 
 Update image
 
