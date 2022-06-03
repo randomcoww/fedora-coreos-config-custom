@@ -5,7 +5,7 @@
 ### Check out config
 
 ```bash
-cosa init --force https://github.com/randomcoww/fedora-coreos-config-custom.git builds/client
+cosa init --force https://github.com/randomcoww/fedora-coreos-config-custom.git --branch f35 builds/client
 ```
 
 ### Hack
