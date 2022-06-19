@@ -88,6 +88,7 @@ enabled_metadata=1
 type=rpm-md
 gpgcheck=0
 repo_gpgcheck=0
+includepkgs=nvidia-akmod,nvidia-kmod
 
 
 [kubernetes]

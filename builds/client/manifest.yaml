@@ -16,6 +16,7 @@ repos:
   - libnvidia-container
   - nvidia-container-runtime
   - brave-browser-beta
+  - rpmfusion-nonfree-rawhide
 
 packages:
   ## from fedora-common-ostree-pkgs.yaml
