@@ -11,6 +11,8 @@ extra-kargs:
     - console=ttyS0,115200n8
     - elevator=noop
     - enforcing=0
+    - rfkill.master_switch_mode=2
+    - rfkill.default_state=1
 
 # Disable networking by default on firstboot. We can drop this once cosa stops
 # defaulting to `ip=dhcp,dhcp6 rd.neednet=1` when it doesn't see this key.
