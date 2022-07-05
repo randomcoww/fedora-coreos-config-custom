@@ -18,6 +18,12 @@ cosa buildextend-metal && \
 cosa buildextend-live
 ```
 
+### Upload images for PXE boot
+
+```bash
+mc cp -r builds/latest/x86_64/fedora-coreos-*-live-* minio/boot/
+```
+
 ### Write bootable image to disk
 
 Embed ignition from https://github.com/randomcoww/terraform-infra generated under `outputs/ignition`
