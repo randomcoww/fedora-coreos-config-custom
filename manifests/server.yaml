@@ -18,7 +18,7 @@ remove-files:
 packages:
   - fedora-release-coreos
   ## Custom
-  - keepalived ipvsadm nginx
+  - keepalived ipvsadm haproxy
   - cri-o cri-tools conntrack-tools kubelet
 
 exclude-packages:
