@@ -18,10 +18,11 @@ remove-files:
 packages:
   - fedora-release-coreos
   ## Custom
-  - keepalived ipvsadm haproxy
   - cri-o cri-tools conntrack-tools kubelet
+  - keepalived haproxy
 
 exclude-packages:
-  - NetworkManager
   - python3
   - python3-libs
+  - grubby
+  - NetworkManager

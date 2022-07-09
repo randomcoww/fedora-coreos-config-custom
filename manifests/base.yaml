@@ -76,10 +76,10 @@ packages:
   - cryptsetup
   - device-mapper-multipath
   - e2fsprogs
-  # - iscsi-initiator-utils
-  # - lvm2
+  - iscsi-initiator-utils
+  - lvm2
   - mdadm
-  # - sg3_utils
+  - sg3_utils
   - xfsprogs
   # User configuration
   - passwd
@@ -95,7 +95,7 @@ packages:
   - logrotate
   # Boost starving threads
   # https://github.com/coreos/fedora-coreos-tracker/issues/753
-  - stalld
+  # - stalld
 
   # user-experience
   # Basic user tools
@@ -120,7 +120,7 @@ packages:
   # - dnsmasq
   # kdump support
   # https://github.com/coreos/fedora-coreos-tracker/issues/622
-  - kexec-tools
+  # - kexec-tools
   # Remote Access
   - openssh-clients openssh-server
   # Container tooling
@@ -189,10 +189,9 @@ packages:
   - systemd-networkd
   - iproute-tc
   - nftables iptables-nft
-  - socat ldns-utils
-  - ipmitool
+  - ldns-utils
   - pciutils
-  - hdparm
+  - ipvsadm
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened
 # yet.  Also we may want to add to rpm-ostree something like arch negation;
