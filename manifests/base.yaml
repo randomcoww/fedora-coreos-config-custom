@@ -85,7 +85,7 @@ packages:
   - passwd
   - shadow-utils
   # SELinux policy
-  - selinux-policy-targeted
+  # - selinux-policy-targeted
   # There are things that write outside of the journal still (such as the 
   # classic wtmp, etc.)
   #(auditd also writes outside the journal but it has its own log rotation.)
@@ -132,7 +132,7 @@ packages:
   # Container tooling
   - crun
   # Security
-  - polkit
+  # - polkit
   # System setup
   # - afterburn-dracut
   # SSH
