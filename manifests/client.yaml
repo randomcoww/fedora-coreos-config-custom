@@ -95,6 +95,7 @@ packages:
   - NetworkManager-config-connectivity-fedora
   - NetworkManager-wifi
   # - NetworkManager-wwan
+  - abattis-cantarell-vf-fonts
   - acl
   # - adwaita-qt5
   - alsa-sof-firmware
@@ -251,6 +252,7 @@ packages:
   - pipewire-pulseaudio
   - pipewire-utils
   - plocate
+  # - plymouth
   # - plymouth-system-theme
   - policycoreutils
   # - policycoreutils-python-utils

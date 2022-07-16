@@ -67,7 +67,6 @@ mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=rawhide&arch=$basearc
 enabled=1
 gpgcheck=0
 metadata_expire=1d
-includepkgs=kubernetes-client
 
 [rpmfusion-free-rawhide]
 name=RPM Fusion for Fedora Rawhide - Free
@@ -118,18 +117,6 @@ baseurl=https://brave-browser-rpm-beta.s3.brave.com/x86_64/
 enabled=1
 gpgcheck=0
 
-[gitlab.com_paulcarroty_vscodium_repo]
-name=gitlab.com_paulcarroty_vscodium_repo
-baseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/
-enabled=1
-gpgcheck=0
-
-[code]
-name=Visual Studio Code
-baseurl=https://packages.microsoft.com/yumrepos/vscode
-enabled=1
-gpgcheck=0
-
 
 [libnvidia-container]
 name=libnvidia-container
@@ -144,20 +131,3 @@ baseurl=https://nvidia.github.io/nvidia-container-runtime/stable/centos8/$basear
 repo_gpgcheck=0
 gpgcheck=0
 enabled=1
-
-
-[tlp]
-name=tlp RPM packages
-#baseurl=https://repo.linrunner.de/fedora/tlp/repos/releases/$releasever/$basearch/os/
-mirrorlist=https://repo.linrunner.de/fedora/tlp/mirrors/$releasever/$basearch/tlp.txt
-enabled=1
-skip_if_unavailable=1
-gpgcheck=0
-
-[tlp-updates]
-name=tlp RPM packages
-#baseurl=https://repo.linrunner.de/fedora/tlp/repos/updates/$releasever/$basearch/
-mirrorlist=https://repo.linrunner.de/fedora/tlp/mirrors/$releasever/$basearch/tlp-updates.txt
-enabled=1
-skip_if_unavailable=1
-gpgcheck=0

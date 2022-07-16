@@ -15,7 +15,6 @@ repos:
   - rpmfusion-nonfree-updates
   - libnvidia-container
   - nvidia-container-runtime
-  - brave-browser-beta
   - rpmfusion-nonfree-rawhide
 
 packages:
@@ -23,7 +22,6 @@ packages:
   - eog
   - mpv
   - smartmontools
-  - brave-browser
   - dymo-cups-drivers
   - kubectl
   ## server functions
@@ -32,6 +30,6 @@ packages:
   - akmod-nvidia xorg-x11-drv-nvidia-cuda
   - vdpauinfo libva-vdpau-driver libva-utils
   - nvidia-container-runtime
-  - libva-intel-hybrid-driver libva-intel-driver
+  # - libva-intel-hybrid-driver libva-intel-driver
   ## Broadcom
   # - akmod-wl
