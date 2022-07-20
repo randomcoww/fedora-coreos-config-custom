@@ -192,6 +192,7 @@ packages:
   - ldns-utils
   - pciutils
   - ipvsadm
+  - cri-o cri-tools conntrack-tools kubelet
 
 # This thing is crying out to be pulled into systemd, but that hasn't happened
 # yet.  Also we may want to add to rpm-ostree something like arch negation;

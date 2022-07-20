@@ -18,15 +18,9 @@ repos:
   - rpmfusion-nonfree-rawhide
 
 packages:
-  ## from fedora-common-ostree-pkgs.yaml
-  # - eog
-  # - mpv
   - dymo-cups-drivers
-  ## server functions
-  - cri-o cri-tools conntrack-tools kubelet
-  ## Nonfree and dependencies
   - akmod-nvidia xorg-x11-drv-nvidia-cuda
-  - vdpauinfo libva-vdpau-driver libva-utils
+  - vdpauinfo libva-vdpau-driver
   - nvidia-container-runtime
   # - libva-intel-hybrid-driver libva-intel-driver
   ## Broadcom

@@ -18,7 +18,6 @@ remove-files:
 packages:
   - fedora-release-coreos
   ## Custom
-  - cri-o cri-tools conntrack-tools kubelet
   - keepalived haproxy
 
 exclude-packages:
