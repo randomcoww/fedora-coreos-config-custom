@@ -19,8 +19,8 @@ repos:
 
 packages:
   ## from fedora-common-ostree-pkgs.yaml
-  - eog
-  - mpv
+  # - eog
+  # - mpv
   - smartmontools
   - dymo-cups-drivers
   - kubectl
