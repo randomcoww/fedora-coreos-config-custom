@@ -21,9 +21,7 @@ packages:
   ## from fedora-common-ostree-pkgs.yaml
   # - eog
   # - mpv
-  - smartmontools
   - dymo-cups-drivers
-  - kubectl
   ## server functions
   - cri-o cri-tools conntrack-tools kubelet
   ## Nonfree and dependencies

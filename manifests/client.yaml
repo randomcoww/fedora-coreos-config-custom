@@ -14,15 +14,16 @@ packages:
   - nmap
   - strace
   - git-core
-  - hdparm
+  - hdparm smartmontools
   - vim-enhanced
   - gnupg2
   - mkpasswd
-  - wireguard-tools
   - podman buildah skopeo podman-compose slirp4netns podman-plugins libvarlink-util
   - flatpak flatpak-builder
   - iwlax2xx-firmware
   - libva-utils vulkan vulkan-tools
+  - kubectl
+
   ## Mobile WAN
   # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse
 
