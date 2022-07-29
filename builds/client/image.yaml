@@ -1,6 +1,6 @@
 # This replaces image.ks
 # size is the target disk size in GB.
-size: 10
+size: 5
 
 extra-kargs:
     # Disable SMT on systems vulnerable to MDS or any similar future issue.
@@ -9,10 +9,6 @@ extra-kargs:
     # https://fedoraproject.org/wiki/Changes/CGroupsV2
     - elevator=noop
     - enforcing=0
-    - rd.driver.blacklist=nouveau
-    - modprobe.blacklist=nouveau
-    - nvidia_drm.modeset=1
-    # - nvidia.NVreg_RegistryDwords=EnableBrightnessControl=1
 
 # Disable networking by default on firstboot. We can drop this once cosa stops
 # defaulting to `ip=dhcp,dhcp6 rd.neednet=1` when it doesn't see this key.
