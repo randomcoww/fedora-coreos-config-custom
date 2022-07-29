@@ -13,89 +13,46 @@ packages:
   - tmux xclip
   - nmap
   - strace
-  - git-core
   - hdparm smartmontools
   - vim-enhanced
-  - gnupg2
   - mkpasswd
-  - podman buildah skopeo podman-compose slirp4netns podman-plugins libvarlink-util
-  - flatpak flatpak-builder
-  - iwlax2xx-firmware
+  - slirp4netns podman-plugins libvarlink-util
+  - podman-compose
   - libva-utils vulkan vulkan-tools
   - kubectl
-
   ## Mobile WAN
   # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse
 
-  ## from gnome-desktop-pkgs.yaml
-  # - ModemManager
-  # - NetworkManager-adsl
-  # - NetworkManager-openconnect-gnome
-  # - NetworkManager-openvpn-gnome
-  # - NetworkManager-ppp
-  # - NetworkManager-pptp-gnome
-  # - NetworkManager-ssh-gnome
-  # - NetworkManager-vpnc-gnome
-  # - NetworkManager-wwan
-  - adobe-source-code-pro-fonts
-  - at-spi2-atk
-  - at-spi2-core
-  # - avahi
-  # - chrome-gnome-shell
-  - dconf
-  - fprintd-pam
-  - gdm
-  - glib-networking
-  # - gnome-backgrounds
-  - gnome-bluetooth
-  # - gnome-classic-session
-  - gnome-color-manager
-  - gnome-control-center
-  # - gnome-disk-utility
-  # - gnome-initial-setup
-  - gnome-remote-desktop
-  - gnome-session-wayland-session
-  - gnome-session-xsession
-  - gnome-settings-daemon
-  - gnome-shell
-  # - gnome-software
-  # - gnome-system-monitor
-  - gnome-terminal
-  - gnome-terminal-nautilus
-  # - gnome-themes-extra
-  - gnome-user-docs
-  # - gnome-user-share
-  - gvfs-afc
-  - gvfs-afp
-  - gvfs-archive
-  - gvfs-fuse
-  - gvfs-goa
-  - gvfs-gphoto2
-  - gvfs-mtp
-  # - gvfs-smb
-  - libcanberra-gtk3
-  - libproxy-webkitgtk4
-  - librsvg2
-  - libsane-hpaio
-  - mesa-dri-drivers
-  - mesa-libEGL
-  - nautilus
-  - orca
-  - polkit
-  # - rygel
-  - tracker
-  - tracker-miners
+  ## from fedora-common-ostree.yaml
+  - git-core
+  - lvm2
+  - rpm-ostree
+  # Container management
+  - buildah
+  - podman
+  - skopeo
+  # - toolbox
+  # Provides terminal tools like clear, reset, tput, and tset
+  - ncurses
+  # Flatpak support
+  - flatpak
   - xdg-desktop-portal
-  - xdg-desktop-portal-gtk
-  - xdg-user-dirs-gtk
-  - yelp
+  # HFS filesystem tools for Apple hardware
+  # See https://github.com/projectatomic/rpm-ostree/issues/1380
+  # - hfsplus-tools
+  # Contains default ostree remote config to be used on client's
+  # system for fetching ostree update
+  - fedora-repos-ostree
+  # the archive repo for more reliable package layering
+  # https://github.com/coreos/fedora-coreos-tracker/issues/400
+  - fedora-repos-archive
 
   ## from fedora-common-ostree-pkgs.yaml
   - NetworkManager
-  # - NetworkManager-bluetooth
+  - NetworkManager-bluetooth
   - NetworkManager-config-connectivity-fedora
   - NetworkManager-wifi
-  # - NetworkManager-wwan
+  - NetworkManager-wwan
   - abattis-cantarell-vf-fonts
   - acl
   # - adwaita-qt5
@@ -104,7 +61,7 @@ packages:
   - alsa-utils
   - atmel-firmware
   - attr
-  # - audit
+  - audit
   - b43-fwcutter
   - b43-openfwwf
   - basesystem
@@ -126,6 +83,7 @@ packages:
   - cups-filters
   - curl
   - cyrus-sasl-plain
+  # - default-editor
   # - dhcp-client
   # - dnsmasq
   - e2fsprogs
@@ -141,6 +99,7 @@ packages:
   # - firewalld
   - fpaste
   - fros-gnome
+  - fwupd
   - gamemode
   - glibc
   - glibc-all-langpacks
@@ -173,13 +132,14 @@ packages:
   - hunspell
   - ibus-anthy
   - ibus-gtk3
+  - ibus-gtk4
   - ibus-hangul
   - ibus-libpinyin
   - ibus-libzhuyin
   - ibus-m17n
   - ibus-typing-booster
   # - iproute
-  # - iptables
+  - iptables-nft
   - iptstate
   - iputils
   - iwl100-firmware
@@ -198,6 +158,7 @@ packages:
   - iwl6000g2b-firmware
   - iwl6050-firmware
   - iwl7260-firmware
+  - iwlax2xx-firmware
   - jomolhari-fonts
   - kbd
   - kernel
@@ -231,8 +192,6 @@ packages:
   - mesa-vulkan-drivers
   - mpage
   - mtr
-  # - nano
-  # - nano-default-editor
   # - nfs-utils
   - nss-altfiles
   - nss-mdns
@@ -260,6 +219,7 @@ packages:
   - procps-ng
   - psmisc
   # - qemu-guest-agent
+  # - qgnomeplatform-qt5
   # - qt5-qtbase
   # - qt5-qtbase-gui
   # - qt5-qtdeclarative
@@ -279,6 +239,7 @@ packages:
   - sil-padauk-fonts
   - sos
   - spice-vdagent
+  - spice-webdavd
   - sssd
   - sssd-common
   - sssd-kcm
@@ -292,15 +253,18 @@ packages:
   - tar
   - thai-scalable-waree-fonts
   - time
+  # - toolbox
   - tree
   - unzip
   - uresourced
   - usb_modeswitch
   - usbutils
   - util-linux
+  - vazirmatn-vf-fonts
   # - vim-minimal
   - wget
   - which
+  - whois
   - wireplumber
   - words
   # - xorg-x11-drv-amdgpu
@@ -312,9 +276,73 @@ packages:
   # - xorg-x11-drv-qxl
   # - xorg-x11-drv-wacom
   # - xorg-x11-server-Xorg
-  # - xorg-x11-utils
   # - xorg-x11-xauth
   # - xorg-x11-xinit
   - zd1211-firmware
   - zip
   - zram-generator-defaults
+
+  ## from gnome-desktop-pkgs.yaml
+  # - ModemManager
+  # - NetworkManager-adsl
+  # - NetworkManager-openconnect-gnome
+  # - NetworkManager-openvpn-gnome
+  # - NetworkManager-ppp
+  # - NetworkManager-pptp-gnome
+  # - NetworkManager-ssh-gnome
+  # - NetworkManager-vpnc-gnome
+  # - NetworkManager-wwan
+  - adobe-source-code-pro-fonts
+  - at-spi2-atk
+  - at-spi2-core
+  # - avahi
+  # - chrome-gnome-shell
+  - dconf
+  - fprintd-pam
+  - gdm
+  - glib-networking
+  # - gnome-backgrounds
+  - gnome-bluetooth
+  # - gnome-classic-session
+  - gnome-color-manager
+  - gnome-control-center
+  # - gnome-disk-utility
+  # - gnome-initial-setup
+  - gnome-remote-desktop
+  - gnome-session-wayland-session
+  # - gnome-session-xsession
+  - gnome-settings-daemon
+  - gnome-shell
+  # - gnome-software
+  # - gnome-system-monitor
+  - gnome-terminal
+  - gnome-terminal-nautilus
+  # - gnome-themes-extra
+  - gnome-user-docs
+  # - gnome-user-share
+  # - gvfs-afc
+  # - gvfs-afp
+  - gvfs-archive
+  # - gvfs-fuse
+  # - gvfs-goa
+  # - gvfs-gphoto2
+  # - gvfs-mtp
+  # - gvfs-smb
+  - libcanberra-gtk3
+  - libproxy-duktape
+  - librsvg2
+  - libsane-hpaio
+  - mesa-dri-drivers
+  - mesa-libEGL
+  - nautilus
+  - orca
+  - polkit
+  # - rygel
+  - systemd-oomd-defaults
+  - tracker
+  - tracker-miners
+  - xdg-desktop-portal
+  - xdg-desktop-portal-gnome
+  - xdg-desktop-portal-gtk
+  - xdg-user-dirs-gtk
+  - yelp
