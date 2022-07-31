@@ -8,7 +8,7 @@ include:
   - manifests/ignition-and-ostree.yaml
 
 ostree-layers:
-  - overlay/05core
+  - overlay/01custom
 
 automatic-version-prefix: "${releasever}.<date:%Y%m%d>"
 mutate-os-release: "${releasever}"
