@@ -1,0 +1,9 @@
+[Unit]
+Description=CoreOS Enable Network
+ConditionPathExists=/etc/initrd-release
+DefaultDependencies=false
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/coreos-enable-network

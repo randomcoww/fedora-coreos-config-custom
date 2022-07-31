@@ -1,0 +1,10 @@
+[Unit]
+Description=Copy CoreOS Firstboot Networking Config
+ConditionPathExists=/usr/lib/initrd-release
+DefaultDependencies=false
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+MountFlags=slave
+ExecStart=/usr/sbin/coreos-copy-firstboot-network
