@@ -19,4 +19,4 @@ packages:
   - iwl6050-firmware
   - iwl7260-firmware
   - iwlax2xx-firmware
-  - hostapd iw
+  - iw wireless-regdb

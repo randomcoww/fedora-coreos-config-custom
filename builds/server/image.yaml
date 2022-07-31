@@ -3,14 +3,13 @@
 size: 1
 
 extra-kargs:
-    # Disable SMT on systems vulnerable to MDS or any similar future issue.
-    # - mitigations=auto,nosmt
-    # https://github.com/coreos/fedora-coreos-tracker/issues/292
-    # https://fedoraproject.org/wiki/Changes/CGroupsV2
     - elevator=noop
     - enforcing=0
     - rfkill.master_switch_mode=2
     - rfkill.default_state=1
+    - rd.live.image
+    - rd.live.ram=1
+    - root=live:LABEL=${releasever}.<date:%Y%m%d>
 
 # Disable networking by default on firstboot. We can drop this once cosa stops
 # defaulting to `ip=dhcp,dhcp6 rd.neednet=1` when it doesn't see this key.
