@@ -30,14 +30,14 @@ Embed ignition from https://github.com/randomcoww/terraform-infra generated unde
 
 ```bash
 sudo coreos-installer iso ignition embed \
-  -i ../terraform-infra/output/ignition/aio-0.ign \
-  -o aio-0.iso \
+  -i ../terraform-infra/output/ignition/gw-0.ign \
+  -o gw-0.iso \
   builds/latest/x86_64/fedora-coreos-*-live.x86_64.iso
 ```
 ```bash
 sudo coreos-installer iso ignition embed \
-  -i ../terraform-infra/output/ignition/aio-1.ign \
-  -o aio-1.iso \
+  -i ../terraform-infra/output/ignition/gw-1.ign \
+  -o gw-1.iso \
   builds/latest/x86_64/fedora-coreos-*-live.x86_64.iso
 ```
 
@@ -45,11 +45,11 @@ Write to existing device
 
 ```bash
 sudo coreos-installer iso ignition embed \
-  -i ../terraform-infra/output/ignition/aio-0.ign \
+  -i ../terraform-infra/output/ignition/gw-0.ign \
   /dev/sda --force
 ```
 ```bash
 sudo coreos-installer iso ignition embed \
-  -i ../terraform-infra/output/ignition/aio-1.ign \
+  -i ../terraform-infra/output/ignition/gw-1.ign \
   /dev/sda --force
 ```

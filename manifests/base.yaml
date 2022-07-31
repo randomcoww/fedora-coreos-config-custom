@@ -9,7 +9,6 @@ include:
 
 ostree-layers:
   - overlay/05core
-  - overlay/15fcos
 
 automatic-version-prefix: "${releasever}.<date:%Y%m%d>"
 mutate-os-release: "${releasever}"
@@ -22,23 +21,6 @@ repos:
   - kubernetes
   - cri-o_1.24.0
 
-initramfs-args:
-  - --no-hostonly
-  # We don't support root on NFS, so we don't need it in the initramfs. It also
-  # conflicts with /var mount support in ignition because NFS tries to mount stuff
-  # in /var/ and then ignition can't cleanly unmount it. For example:
-  # https://github.com/dracutdevs/dracut/blob/1856ae95c873a6fe855b3dccd0144f1a96b9e71c/modules.d/95nfs/nfs-start-rpc.sh#L7
-  # See also discussion in https://github.com/coreos/fedora-coreos-config/pull/60
-  - --omit=nfs
-  # Omit these since we don't use them
-  - --omit=lvm
-  - --omit=iscsi
-  - --omit=multipath
-  - --add-drivers=vfio
-  - --add-drivers=vfio_iommu_type1
-  - --add-drivers=vfio_pci
-  - --add-drivers=vfio_virqfd
-
 # Be minimal
 recommends: false
 
@@ -50,7 +32,6 @@ etc-group-members:
   - sudo
   - systemd-journal
   - adm
-  - libvirt
   - wheel
 
 check-passwd:
@@ -220,12 +201,10 @@ exclude-packages:
   - nodejs
   - dnf
   # - grubby
-  - cowsay  # Just in case
-  # Let's make sure initscripts doesn't get pulled back in
-  # https://github.com/coreos/fedora-coreos-tracker/issues/220#issuecomment-611566254
+  - cowsay
   - initscripts
-  - PackageKit
   - plymouth
+  - PackageKit
 
 arch-include:
   x86_64:

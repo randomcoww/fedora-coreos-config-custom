@@ -7,8 +7,6 @@ extra-kargs:
     # - mitigations=auto,nosmt
     # https://github.com/coreos/fedora-coreos-tracker/issues/292
     # https://fedoraproject.org/wiki/Changes/CGroupsV2
-    - console=tty0
-    - console=ttyS0,115200n8
     - elevator=noop
     - enforcing=0
     - rfkill.master_switch_mode=2
