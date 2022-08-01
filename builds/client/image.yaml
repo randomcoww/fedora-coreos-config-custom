@@ -1,4 +1,4 @@
-include: nvidia-gpu-image.yaml
+# include: nvidia-gpu-image.yaml
 
 size: 5
 

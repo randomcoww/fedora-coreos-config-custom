@@ -1,6 +1,6 @@
 include:
   - client.yaml
-  - nvidia-gpu.yaml
+  # - nvidia-gpu.yaml
 
 packages:
   - dymo-cups-drivers
