@@ -3,9 +3,9 @@ repos:
   - rpmfusion-free-updates
   - rpmfusion-nonfree
   - rpmfusion-nonfree-updates
+  - rpmfusion-nonfree-updates-nvidia
   - libnvidia-container
   - nvidia-container-runtime
-  - rpmfusion-nonfree-rawhide
 
 packages:
   - akmod-nvidia xorg-x11-drv-nvidia-cuda
