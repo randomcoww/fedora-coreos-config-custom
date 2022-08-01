@@ -1,8 +1,11 @@
 include:
   - client.yaml
+  - nvidia-gpu.yaml
 
 packages:
   - dymo-cups-drivers
   # - libva-intel-hybrid-driver libva-intel-driver
   ## Broadcom
   # - akmod-wl
+  ## Mobile WAN
+  # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse

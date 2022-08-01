@@ -1,1 +1,27 @@
-../../manifests/server.yaml
+include:
+  - base.yaml
+
+rojig:
+  license: MIT
+  name: fedora-coreos
+  summary: Fedora CoreOS
+
+default-target: multi-user.target
+
+remove-files:
+  # We don't ship man(1) or info(1)
+  - usr/share/info
+  - usr/share/man
+  # Drop text docs too
+  - usr/share/doc
+
+packages:
+  - fedora-release-coreos
+  ## Custom
+  - keepalived haproxy
+
+exclude-packages:
+  - python3
+  - python3-libs
+  - grubby
+  - NetworkManager

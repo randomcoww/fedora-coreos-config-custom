@@ -1,0 +1,20 @@
+initramfs-args:
+  - --omit=nouveau
+  - --add-drivers=nvidia
+  - --add-drivers=nvidia_modeset
+  - --add-drivers=nvidia_drm
+  - --add-drivers=nvidia_uvm
+
+repos:
+  - rpmfusion-free
+  - rpmfusion-free-updates
+  - rpmfusion-nonfree
+  - rpmfusion-nonfree-updates
+  - libnvidia-container
+  - nvidia-container-runtime
+  - rpmfusion-nonfree-rawhide
+
+packages:
+  - akmod-nvidia xorg-x11-drv-nvidia-cuda
+  - vdpauinfo libva-vdpau-driver
+  - nvidia-container-runtime

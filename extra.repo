@@ -105,19 +105,6 @@ gpgcheck=0
 enabled=1
 
 
-[brave-browser]
-name=Brave Browser
-baseurl=https://brave-browser-rpm-release.s3.brave.com/x86_64/
-enabled=1
-gpgcheck=0
-
-[brave-browser-beta]
-name=Brave Browser
-baseurl=https://brave-browser-rpm-beta.s3.brave.com/x86_64/
-enabled=1
-gpgcheck=0
-
-
 [libnvidia-container]
 name=libnvidia-container
 baseurl=https://nvidia.github.io/libnvidia-container/stable/centos8/$basearch

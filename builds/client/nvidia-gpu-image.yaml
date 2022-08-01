@@ -1,0 +1,4 @@
+extra-kargs:
+  - rd.driver.blacklist=nouveau
+  - modprobe.blacklist=nouveau
+  - nvidia_drm.modeset=1
