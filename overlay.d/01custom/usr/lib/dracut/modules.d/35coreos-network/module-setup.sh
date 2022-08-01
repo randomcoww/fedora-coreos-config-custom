@@ -18,9 +18,8 @@ install() {
     # install_and_enable_unit "coreos-copy-firstboot-network.service" \
     #     "ignition-complete.target"
 
-    # # Dropin with firstboot network configuration kargs, applied via
-    # # Afterburn.
-    # inst_simple "$moddir/50-afterburn-network-kargs-default.conf" \
-    #     "/usr/lib/systemd/system/afterburn-network-kargs.service.d/50-afterburn-network-kargs-default.conf"
-
+    # Dropin with firstboot network configuration kargs, applied via
+    # Afterburn.
+    inst_simple "$moddir/50-afterburn-network-kargs-default.conf" \
+        "/usr/lib/systemd/system/afterburn-network-kargs.service.d/50-afterburn-network-kargs-default.conf"
 }
