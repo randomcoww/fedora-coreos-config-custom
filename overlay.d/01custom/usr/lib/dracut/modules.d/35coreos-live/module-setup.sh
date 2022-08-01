@@ -23,14 +23,14 @@ install() {
         curl \
         truncate
 
-    inst_script "$moddir/is-live-image.sh" \
-        "/usr/bin/is-live-image"
+    # inst_script "$moddir/is-live-image.sh" \
+    #     "/usr/bin/is-live-image"
 
-    inst_script "$moddir/ostree-cmdline.sh" \
-        "/usr/sbin/ostree-cmdline"
+    # inst_script "$moddir/ostree-cmdline.sh" \
+    #     "/usr/sbin/ostree-cmdline"
 
-    inst_simple "$moddir/live-generator" \
-        "$systemdutildir/system-generators/live-generator"
+    # inst_simple "$moddir/live-generator" \
+    #     "$systemdutildir/system-generators/live-generator"
 
     # inst_simple "$moddir/coreos-live-unmount-tmpfs-var.sh" \
     #     "/usr/sbin/coreos-live-unmount-tmpfs-var"
