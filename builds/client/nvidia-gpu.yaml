@@ -1,10 +1,3 @@
-initramfs-args:
-  - --omit=nouveau
-  - --add-drivers=nvidia
-  - --add-drivers=nvidia_modeset
-  - --add-drivers=nvidia_drm
-  - --add-drivers=nvidia_uvm
-
 repos:
   - rpmfusion-free
   - rpmfusion-free-updates
