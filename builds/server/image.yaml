@@ -7,9 +7,6 @@ extra-kargs:
     - enforcing=0
     - rfkill.master_switch_mode=2
     - rfkill.default_state=1
-    - rd.live.image
-    - rd.live.ram=1
-    - root=live:LABEL=fedora-coreos-36
 
 # Disable networking by default on firstboot. We can drop this once cosa stops
 # defaulting to `ip=dhcp,dhcp6 rd.neednet=1` when it doesn't see this key.
