@@ -12,17 +12,17 @@ install_unit() {
 }
 
 install() {
-    inst_script "$moddir/coreos-propagate-multipath-conf.sh" \
-        "/usr/sbin/coreos-propagate-multipath-conf"
+    # inst_script "$moddir/coreos-propagate-multipath-conf.sh" \
+    #     "/usr/sbin/coreos-propagate-multipath-conf"
 
-    install_unit coreos-propagate-multipath-conf.service
+    # install_unit coreos-propagate-multipath-conf.service
 
-    inst_simple "$moddir/coreos-multipath-generator" \
-        "$systemdutildir/system-generators/coreos-multipath-generator"
+    # inst_simple "$moddir/coreos-multipath-generator" \
+    #     "$systemdutildir/system-generators/coreos-multipath-generator"
 
-    # we don't enable these; they're enabled dynamically via the generator
-    inst_simple "$moddir/coreos-multipath-wait.target" \
-        "$systemdsystemunitdir/coreos-multipath-wait.target"
-    inst_simple "$moddir/coreos-multipath-trigger.service" \
-        "$systemdsystemunitdir/coreos-multipath-trigger.service"
+    # # we don't enable these; they're enabled dynamically via the generator
+    # inst_simple "$moddir/coreos-multipath-wait.target" \
+    #     "$systemdsystemunitdir/coreos-multipath-wait.target"
+    # inst_simple "$moddir/coreos-multipath-trigger.service" \
+    #     "$systemdsystemunitdir/coreos-multipath-trigger.service"
 }
