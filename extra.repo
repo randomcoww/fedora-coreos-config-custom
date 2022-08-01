@@ -104,6 +104,13 @@ baseurl=https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/
 gpgcheck=0
 enabled=1
 
+[cri-o_1.23.0]
+name=cri-o_1.23.0
+type=rpm-md
+baseurl=https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/1.23:/1.23.0/Fedora_Rawhide/
+gpgcheck=0
+enabled=1
+
 
 [libnvidia-container]
 name=libnvidia-container
