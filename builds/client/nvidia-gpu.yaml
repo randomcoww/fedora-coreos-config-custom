@@ -3,7 +3,6 @@ repos:
   - rpmfusion-free-updates
   - rpmfusion-nonfree
   - rpmfusion-nonfree-updates
-  - rpmfusion-nonfree-updates-nvidia
   - libnvidia-container
   - nvidia-container-runtime
 
