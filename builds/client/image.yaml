@@ -5,6 +5,7 @@ size: 5
 extra-kargs:
   - elevator=noop
   - enforcing=0
+  - rfkill.default_state=1
 
 ignition-network-kcmdline: []
 ostree-remote: fedora

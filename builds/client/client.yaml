@@ -24,6 +24,7 @@ packages:
   - podman-compose
   - libva-utils vulkan vulkan-tools
   - kubectl
+  - qemu-kvm libvirtd
 
   ## from fedora-common-ostree.yaml
   - git-core
