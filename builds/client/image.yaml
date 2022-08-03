@@ -4,6 +4,8 @@ size: 5
 
 extra-kargs:
   - elevator=noop
+  - rd.neednet=1
+  - ip=dhcp
   - enforcing=0
   - rfkill.default_state=1
 
