@@ -7,6 +7,7 @@ extra-kargs:
   - rd.neednet=1
   - ip=dhcp
   - enforcing=0
+  - coreos.no_persist_ip
   - rfkill.default_state=1
 
 ignition-network-kcmdline: []
