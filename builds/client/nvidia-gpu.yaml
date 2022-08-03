@@ -11,5 +11,5 @@ packages:
   - vdpauinfo libva-vdpau-driver
   - nvidia-container-runtime
 
-# ostree-layers:
-#   - overlay/02nvidia
+ostree-layers:
+  - overlay/02nvidia
