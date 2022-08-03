@@ -50,11 +50,11 @@ packages:
   - fedora-repos-archive
 
   ## from fedora-common-ostree-pkgs.yaml
-  - NetworkManager
-  - NetworkManager-bluetooth
-  - NetworkManager-config-connectivity-fedora
-  - NetworkManager-wifi
-  - NetworkManager-wwan
+  # - NetworkManager
+  # - NetworkManager-bluetooth
+  # - NetworkManager-config-connectivity-fedora
+  # - NetworkManager-wifi
+  # - NetworkManager-wwan
   - abattis-cantarell-vf-fonts
   - acl
   # - adwaita-qt5
@@ -302,7 +302,7 @@ packages:
   - dconf
   - fprintd-pam
   - gdm
-  - glib-networking
+  # - glib-networking
   # - gnome-backgrounds
   - gnome-bluetooth
   # - gnome-classic-session

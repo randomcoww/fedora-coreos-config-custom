@@ -24,4 +24,3 @@ exclude-packages:
   - python3
   - python3-libs
   - grubby
-  - NetworkManager

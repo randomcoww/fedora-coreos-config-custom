@@ -3,6 +3,7 @@ include:
   # - nvidia-gpu.yaml
 
 packages:
+  - iw wireless-regdb
   - dymo-cups-drivers
   # - libva-intel-hybrid-driver libva-intel-driver
   ## Broadcom
