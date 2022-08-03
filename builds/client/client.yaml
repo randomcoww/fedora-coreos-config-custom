@@ -8,7 +8,11 @@ rojig:
 
 default_target: graphical.target
 
+exclude-packages:
+  - perl-interpreter
+
 packages:
+  - fedora-release-silverblue
   ## Custom
   - tmux xclip
   - nmap
