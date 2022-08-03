@@ -1,5 +1,10 @@
 ## Custom Fedora CoreOS builds
 
+Add and remove components to support:
+
+* Bare metal live ISO and PXE boot only
+* systemd-networkd instead of NetworkManager
+
 COSA upstream with full instructions: https://github.com/coreos/coreos-assembler
 
 * CoreOS packages: https://github.com/coreos/fedora-coreos-config.git
