@@ -5,6 +5,7 @@ include:
 packages:
   - iw wireless-regdb
   - dymo-cups-drivers
+  - gnome-session-xsession
   # - libva-intel-hybrid-driver libva-intel-driver
   ## Broadcom
   # - akmod-wl
