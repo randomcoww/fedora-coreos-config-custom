@@ -14,7 +14,7 @@ packages:
   - tmux xclip
   - nmap
   - strace
-  - hdparm smartmontools
+  - smartmontools
   - vim-enhanced
   - mkpasswd
   - slirp4netns podman-plugins libvarlink-util
