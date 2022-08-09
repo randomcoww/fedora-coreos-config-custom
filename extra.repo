@@ -18,16 +18,6 @@ type=rpm-md
 gpgcheck=0
 repo_gpgcheck=0
 
-[rpmfusion-free-updates-testing]
-name=RPM Fusion for Fedora $releasever - Free - Test Updates
-#baseurl=http://download1.rpmfusion.org/free/fedora/updates/testing/$releasever/$basearch/
-metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-testing-$releasever&arch=$basearch
-enabled=1
-enabled_metadata=1
-type=rpm-md
-gpgcheck=0
-repo_gpgcheck=0
-
 [rpmfusion-nonfree]
 name=RPM Fusion for Fedora $releasever - Nonfree
 #baseurl=http://download1.rpmfusion.org/nonfree/fedora/releases/$releasever/Everything/$basearch/os/
@@ -43,16 +33,6 @@ repo_gpgcheck=0
 name=RPM Fusion for Fedora $releasever - Nonfree - Updates
 #baseurl=http://download1.rpmfusion.org/nonfree/fedora/updates/$releasever/$basearch/
 metalink=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-updates-released-$releasever&arch=$basearch
-enabled=1
-enabled_metadata=1
-type=rpm-md
-gpgcheck=0
-repo_gpgcheck=0
-
-[rpmfusion-nonfree-updates-testing]
-name=RPM Fusion for Fedora $releasever - Nonfree - Test Updates
-#baseurl=http://download1.rpmfusion.org/nonfree/fedora/updates/testing/$releasever/$basearch/
-metalink=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-updates-testing-$releasever&arch=$basearch
 enabled=1
 enabled_metadata=1
 type=rpm-md
@@ -87,7 +67,6 @@ enabled_metadata=1
 type=rpm-md
 gpgcheck=0
 repo_gpgcheck=0
-includepkgs=nvidia-akmod,nvidia-kmod
 
 
 [kubernetes]
@@ -104,18 +83,12 @@ baseurl=https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/
 gpgcheck=0
 enabled=1
 
-
-[brave-browser]
-name=Brave Browser
-baseurl=https://brave-browser-rpm-release.s3.brave.com/x86_64/
-enabled=1
+[cri-o_1.23.0]
+name=cri-o_1.23.0
+type=rpm-md
+baseurl=https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/1.23:/1.23.0/Fedora_Rawhide/
 gpgcheck=0
-
-[brave-browser-beta]
-name=Brave Browser
-baseurl=https://brave-browser-rpm-beta.s3.brave.com/x86_64/
 enabled=1
-gpgcheck=0
 
 
 [libnvidia-container]

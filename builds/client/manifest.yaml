@@ -1,8 +1,13 @@
 include:
   - client.yaml
+  # - nvidia-gpu.yaml
 
 packages:
+  - iw wireless-regdb
   - dymo-cups-drivers
+  - gnome-session-xsession
   # - libva-intel-hybrid-driver libva-intel-driver
   ## Broadcom
   # - akmod-wl
+  ## Mobile WAN
+  # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse

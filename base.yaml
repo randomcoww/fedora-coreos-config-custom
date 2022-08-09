@@ -1,0 +1,219 @@
+releasever: "36"
+
+# This file is most of a Fedora CoreOS like system; it inherits from "core".
+# Add things in this file which are somewhat "opinionated", not necessarily
+# core functionality.
+ref: fedora/${releasever}/${basearch}/coreos
+include:
+  - manifests/ignition-and-ostree.yaml
+
+ostree-layers:
+  - overlay/01custom
+
+automatic-version-prefix: "${releasever}.<date:%Y%m%d>"
+mutate-os-release: "${releasever}"
+
+repos:
+  - fedora
+  - fedora-updates
+  - fedora-modular
+  - fedora-updates-modular
+  - kubernetes
+  - cri-o_1.24.0
+
+# Be minimal
+recommends: false
+
+ignore-removed-users:
+  - root
+ignore-removed-groups:
+  - root
+etc-group-members:
+  - sudo
+  - systemd-journal
+  - adm
+  - wheel
+
+check-passwd:
+  type: "file"
+  filename: "manifests/passwd"
+check-groups:
+  type: "file"
+  filename: "manifests/group"
+
+rpmdb: sqlite
+
+packages:
+  # system-configuration
+  # Configuring SSH keys, cloud provider check-in, etc
+  # - afterburn
+  # NTP support
+  - chrony
+  # Installing CoreOS itself
+  - coreos-installer coreos-installer-bootinfra
+  # Storage configuration/management
+  # - cifs-utils
+  - cloud-utils-growpart
+  - cryptsetup
+  - device-mapper-multipath
+  - e2fsprogs
+  - iscsi-initiator-utils
+  - lvm2
+  - mdadm
+  - sg3_utils
+  - xfsprogs
+  # User configuration
+  - passwd
+  - shadow-utils
+  # SELinux policy
+  # - selinux-policy-targeted
+  # There are things that write outside of the journal still (such as the 
+  # classic wtmp, etc.)
+  #(auditd also writes outside the journal but it has its own log rotation.)
+  # Anything package layered will also tend to expect files dropped in
+  # /etc/logrotate.d to work.  Really, this is a legacy thing, but if we don't
+  # have it then people's disks will slowly fill up with logs.
+  - logrotate
+  # Boost starving threads
+  # https://github.com/coreos/fedora-coreos-tracker/issues/753
+  # - stalld
+
+  # user-experience
+  # Basic user tools
+  ## jq - parsing/interacting with JSON data
+  - bash-completion
+  - coreutils
+  - jq
+  - less
+  - sudo
+  - vim-minimal
+  # File compression/decompression
+  ## (bsdtar - dependency of 35coreos-live dracut module)
+  - bsdtar
+  - bzip2
+  - gzip
+  - tar
+  - xz
+  # Improved MOTD experience
+  # - console-login-helper-messages-issuegen
+  # - console-login-helper-messages-profile
+  # DNS/DHCP server
+  # - dnsmasq
+  # kdump support
+  # https://github.com/coreos/fedora-coreos-tracker/issues/622
+  # - kexec-tools
+  # Remote Access
+  - openssh-clients openssh-server
+  # Container tooling
+  # - podman
+  # - runc
+  # - skopeo
+
+  # fedora-coreos-base
+  # Container tooling
+  - crun
+  # Security
+  # - polkit
+  # System setup
+  # - afterburn-dracut
+  # SSH
+  - ssh-key-dir
+  # Containers
+  # - systemd-container catatonit
+  # - fuse-overlayfs slirp4netns
+  # name resolution for podman containers
+  # https://github.com/coreos/fedora-coreos-tracker/issues/519
+  # - podman-plugins
+  # Remote IPC for podman
+  # - libvarlink-util
+  # Minimal NFS client
+  # - nfs-utils-coreos
+  # Active Directory support
+  # - adcli
+  # Additional firewall support; we aren't including these in RHCOS or they
+  # don't exist in RHEL
+  # - iptables-nft iptables-services
+  # WireGuard https://github.com/coreos/fedora-coreos-tracker/issues/362
+  # - wireguard-tools
+  # Storage
+  - btrfs-progs
+  # - WALinuxAgent-udev
+  # Allow communication between sudo and SSSD
+  # for caching sudo rules by SSSD.
+  # https://github.com/coreos/fedora-coreos-tracker/issues/445
+  # - libsss_sudo
+  # SSSD; we only ship a subset of the backends
+  # - sssd-client sssd-ad sssd-ipa sssd-krb5 sssd-ldap
+  # Used by admins interactively
+  - attr
+  - openssl
+  - lsof
+  # Provides terminal tools like clear, reset, tput, and tset
+  - ncurses
+  # file-transfer: note fuse-sshfs is not in RHEL
+  # so we can't put it in file-transfer.yaml
+  # - fuse-sshfs
+  # User experience
+  # - console-login-helper-messages-motdgen
+  # i18n
+  - kbd
+  # nvme-cli for managing nvme disks
+  - nvme-cli
+  # zram-generator (but not zram-generator-defaults) for F33 change
+  # https://github.com/coreos/fedora-coreos-tracker/issues/509
+  - zram-generator
+  # resolved was broken out to its own package in rawhide/f35
+  - systemd-resolved
+
+  # custom
+  - hostname
+  - systemd-networkd
+  - iproute-tc
+  - nftables iptables-nft
+  - ldns-utils
+  - pciutils
+  - ipvsadm
+  - cri-o cri-tools conntrack-tools kubelet
+
+# This thing is crying out to be pulled into systemd, but that hasn't happened
+# yet.  Also we may want to add to rpm-ostree something like arch negation;
+# basically right now it doesn't exist on s390x.
+# Anyways, it was requested by the Red Hat perf team for RHCOS, so we have it here.
+# https://serverfault.com/questions/513807/is-there-still-a-use-for-irqbalance-on-modern-hardware
+# https://access.redhat.com/solutions/41535
+packages-x86_64:
+  - irqbalance
+packages-ppc64le:
+  - irqbalance
+packages-aarch64:
+  - irqbalance
+
+# Things we don't expect to ship on the host.  We currently
+# have recommends: false so these could only come in via
+# hard requirement, in which case the build will fail.
+exclude-packages:
+  - python
+  - python2
+  - python2-libs
+  # - python3
+  # - python3-libs
+  - perl
+  # - perl-interpreter
+  - nodejs
+  - dnf
+  # - grubby
+  - cowsay
+  - initscripts
+  - plymouth
+  - NetworkManager
+  - PackageKit
+
+arch-include:
+  x86_64:
+    - manifests/grub2-removals.yaml
+    - manifests/bootupd.yaml
+  aarch64:
+    - manifests/grub2-removals.yaml
+    - manifests/bootupd.yaml
+  ppc64le:
+    - manifests/grub2-removals.yaml

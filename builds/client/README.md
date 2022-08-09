@@ -8,14 +8,6 @@
 cosa init --force https://github.com/randomcoww/fedora-coreos-config-custom.git builds/client
 ```
 
-### Hack for building large images
-
-```
-cosa shell
-```
-
-Apply https://github.com/randomcoww/fedora-coreos-config-custom/issues/3 as needed
-
 ### Run build
 
 ```bash
@@ -38,18 +30,18 @@ Embed ignition from https://github.com/randomcoww/terraform-infra generated unde
 
 ```bash
 sudo coreos-installer iso ignition embed \
-  -i ../terraform-infra/output/ignition/remote-0.ign \
-  -o remote-0.iso \
+  -i ../terraform-infra/output/ignition/re-0.ign \
+  -o re-0.iso \
   builds/latest/x86_64/fedora-silverblue-*-live.x86_64.iso
 ```
 
-Write `remote-0.iso` to disk
+Write `re-0.iso` to disk
 
 Optionally write directly to disk on running system
 
 ```bash
 sudo coreos-installer iso ignition embed \
-  -i ../terraform-infra/output/ignition/remote-0.ign \
+  -i ../terraform-infra/output/ignition/re-0.ign \
   /dev/sda --force
 ```
 Reboot to apply changes

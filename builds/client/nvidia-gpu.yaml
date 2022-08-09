@@ -1,0 +1,16 @@
+repos:
+  - rpmfusion-free
+  - rpmfusion-free-updates
+  - rpmfusion-nonfree
+  - rpmfusion-nonfree-updates
+  - libnvidia-container
+  - nvidia-container-runtime
+
+packages:
+  - gnome-session-xsession
+  - akmod-nvidia xorg-x11-drv-nvidia-cuda
+  - vdpauinfo libva-vdpau-driver
+  - nvidia-container-runtime
+
+ostree-layers:
+  - overlay/02nvidia
