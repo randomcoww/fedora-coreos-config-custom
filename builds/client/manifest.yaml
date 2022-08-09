@@ -3,7 +3,7 @@ include:
   # - nvidia-gpu.yaml
 
 packages:
-  - iw wireless-regdb
+  - iw wireless-regdb wpa_supplicant
   - dymo-cups-drivers
   - gnome-session-xsession
   # - libva-intel-hybrid-driver libva-intel-driver
