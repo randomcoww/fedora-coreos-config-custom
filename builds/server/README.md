@@ -39,10 +39,11 @@ sudo coreos-installer iso ignition embed \
   -i ../terraform-infra/output/ignition/gw-1.ign \
   -o gw-1.iso \
   builds/latest/x86_64/fedora-coreos-*-live.x86_64.iso
-
+```
+```bash
 sudo coreos-installer iso ignition embed \
-  -i ../terraform-infra/output/ignition/k-2.ign \
-  -o k-2.iso \
+  -i ../terraform-infra/output/ignition/q-0.ign \
+  -o q-0.iso \
   builds/latest/x86_64/fedora-coreos-*-live.x86_64.iso
 ```
 
@@ -57,8 +58,9 @@ sudo coreos-installer iso ignition embed \
 sudo coreos-installer iso ignition embed \
   -i ../terraform-infra/output/ignition/gw-1.ign \
   /dev/sda --force
-
+```
+```bash
 sudo coreos-installer iso ignition embed \
-  -i ../terraform-infra/output/ignition/k-2.ign \
+  -i ../terraform-infra/output/ignition/q-0.ign \
   /dev/sda --force
 ```
