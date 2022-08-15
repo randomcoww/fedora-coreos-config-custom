@@ -21,7 +21,7 @@ packages:
   - podman-compose
   - libva-utils vulkan vulkan-tools
   - kubectl
-  - libvirt-daemon-kvm libvirt-client virt-viewer
+  - libvirt-daemon-kvm libvirt-client virt-viewer qemu-guest-agent
 
   ## from fedora-common-ostree.yaml
   - git-core
