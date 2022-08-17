@@ -9,8 +9,8 @@ rojig:
 default-target: multi-user.target
 
 remove-from-packages:
-  - [cri-o, /etc/cni/net.d/*.conf]
-  - [podman, /etc/cni/net.d/*.conf]
+  - [cri-o, /etc/cni/net.d/.*]
+  - [podman, /etc/cni/net.d/.*]
 
 remove-files:
   # We don't ship man(1) or info(1)
