@@ -34,6 +34,9 @@ etc-group-members:
   - adm
   - wheel
 
+remove-from-packages:
+  - [conntrack-tools, /etc/conntrackd/conntrackd.conf]
+
 check-passwd:
   type: "file"
   filename: "manifests/passwd"
