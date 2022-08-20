@@ -30,12 +30,6 @@ Embed ignition from https://github.com/randomcoww/terraform-infra generated unde
 
 ```bash
 sudo coreos-installer iso ignition embed \
-  -i ../terraform-infra/output/ignition/de-0.ign \
-  -o de-0.iso \
-  builds/latest/x86_64/fedora-silverblue-*-live.x86_64.iso
-```
-```bash
-sudo coreos-installer iso ignition embed \
   -i ../terraform-infra/output/ignition/re-0.ign \
   -o re-0.iso \
   builds/latest/x86_64/fedora-silverblue-*-live.x86_64.iso
@@ -45,11 +39,6 @@ Write `re-0.iso` to disk
 
 Optionally write directly to disk on running system
 
-```bash
-sudo coreos-installer iso ignition embed \
-  -i ../terraform-infra/output/ignition/de-0.ign \
-  /dev/sda --force
-```
 ```bash
 sudo coreos-installer iso ignition embed \
   -i ../terraform-infra/output/ignition/re-0.ign \
