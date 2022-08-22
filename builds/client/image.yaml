@@ -1,5 +1,3 @@
-# include: nvidia-gpu-image.yaml
-
 size: 5
 
 extra-kargs:
@@ -9,6 +7,9 @@ extra-kargs:
   - enforcing=0
   - coreos.no_persist_ip
   - rfkill.default_state=1
+  - rd.driver.blacklist=nouveau
+  - modprobe.blacklist=nouveau
+  - nvidia_drm.modeset=1
 
 ignition-network-kcmdline: []
 ostree-remote: fedora
