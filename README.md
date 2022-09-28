@@ -8,9 +8,9 @@ Add and remove components to support:
 COSA upstream with full instructions: https://github.com/coreos/coreos-assembler
 
 * CoreOS packages: https://github.com/coreos/fedora-coreos-config.git
-* Workstation packages: https://pagure.io/workstation-ostree-config.git
+* Silverblue packages: https://pagure.io/workstation-ostree-config.git
 
-Update image
+### Update COSA image
 
 ```bash
 mkdir -p build
@@ -33,5 +33,56 @@ cosa() {
 }
 ```
 
-- [Server](builds/server/README.md)
-- [Client](builds/client/README.md)
+### Set build variant
+
+```bash
+export VARIANT=coreos
+```
+
+or
+
+```bash
+export VARIANT=silverblue
+```
+
+### Run build
+
+```bash
+cosa init -V $VARIANT --force https://github.com/randomcoww/fedora-coreos-config-custom.git 
+```
+
+```bash
+cosa clean && \
+cosa fetch && \
+cosa build metal4k && \
+cosa buildextend-metal && \
+cosa buildextend-live
+```
+
+### Upload images for PXE boot
+
+```bash
+mc cp -r builds/latest/x86_64/fedora-$VARIANT-*-live-* minio/boot/
+```
+
+### Write ISO image
+
+```bash
+HOST=gw-0
+
+sudo coreos-installer iso ignition embed \
+  -i ../terraform-infra/output/ignition/$HOST.ign \
+  -o $HOST.iso \
+  builds/latest/x86_64/fedora-$VARIANT-*-live.x86_64.iso
+```
+
+### Write to disk
+
+```bash
+HOST=gw-0
+DISK=/dev/sda
+
+sudo coreos-installer iso ignition embed \
+  -i ../terraform-infra/output/ignition/$HOST.ign \
+  $DISK --force
+```

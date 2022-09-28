@@ -104,3 +104,10 @@ baseurl=https://nvidia.github.io/nvidia-container-runtime/stable/centos8/$basear
 repo_gpgcheck=0
 gpgcheck=0
 enabled=1
+
+[custom]
+name=custom
+type=rpm-md
+baseurl=https://randomcoww.github.io/fedora-coreos-config-custom/repo/fedora/
+gpgcheck=0
+enabled=1
