@@ -17,7 +17,7 @@ packages:
   - smartmontools
   - vim-enhanced
   - mkpasswd
-  - slirp4netns podman-plugins libvarlink-util
+  - slirp4netns podman-plugins libvarlink-util aardvark-dns
   - podman-compose
   - libva-utils vulkan vulkan-tools
   - kubectl
