@@ -1,0 +1,7 @@
+repos:
+  - rpmfusion-free
+  - rpmfusion-free-updates
+  - custom
+
+packages:
+  - sunshine

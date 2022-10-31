@@ -1,5 +1,6 @@
 include:
   - client.yaml
+  - sunshine-server.yaml
   # - nvidia-gpu.yaml
 
 packages:

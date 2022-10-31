@@ -86,3 +86,16 @@ sudo coreos-installer iso ignition embed \
   -i ../terraform-infra/output/ignition/$HOST.ign \
   $DISK --force
 ```
+
+### Update custom repo
+
+Add package file to `repo/fedora`
+
+Update metadata:
+
+```bash
+podman run -it --rm -v $(pwd):/repo fedora
+
+dnf install -y createrepo
+createrepo repo/fedora
+```
