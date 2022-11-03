@@ -2,12 +2,15 @@ size: 1
 
 extra-kargs:
   - elevator=noop
-  - rd.neednet=1
-  - ip=dhcp
+  - intel_iommu=on
+  - amd_iommu=on
+  - iommu=pt
+  - rd.driver.pre=vfio-pci
   - enforcing=0
   - coreos.no_persist_ip
   - rfkill.master_switch_mode=2
   - rfkill.default_state=1
+  - cfg80211.ieee80211_regdom=US
 
 ignition-network-kcmdline: []
 ostree-remote: fedora

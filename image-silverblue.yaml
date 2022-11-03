@@ -2,11 +2,12 @@ size: 5
 
 extra-kargs:
   - elevator=noop
-  - rd.neednet=1
-  - ip=dhcp
+  - intel_iommu=on
+  - amd_iommu=on
+  - iommu=pt
+  - rd.driver.pre=vfio-pci
   - enforcing=0
   - coreos.no_persist_ip
-  - rfkill.default_state=1
   - rd.driver.blacklist=nouveau
   - modprobe.blacklist=nouveau
   - nvidia_drm.modeset=1
