@@ -68,7 +68,7 @@ mc cp -r builds/latest/x86_64/fedora-$VARIANT-*-live* minio/boot/
 ### Write ISO image
 
 ```bash
-HOST=gw-0
+export HOST=gw-0
 
 sudo coreos-installer iso ignition embed \
   -i ../terraform-infra/output/ignition/$HOST.ign \
@@ -79,8 +79,8 @@ sudo coreos-installer iso ignition embed \
 ### Write to disk
 
 ```bash
-HOST=gw-0
-DISK=/dev/sda
+export HOST=gw-0
+export DISK=/dev/sda
 
 sudo coreos-installer iso ignition embed \
   -i ../terraform-infra/output/ignition/$HOST.ign \
@@ -91,11 +91,31 @@ sudo coreos-installer iso ignition embed \
 
 Add package file to `repo/fedora`
 
-Update metadata:
+Update metadata
 
 ```bash
 podman run -it --rm -v $(pwd):/repo fedora
 
 dnf install -y createrepo
 createrepo repo/fedora
+```
+
+### Update local boot disk from PXE boot environment
+
+```bash
+export IMAGE=fedora-coreos-36.20221101.0
+export IGNITION_URL=$(xargs -n1 -a /proc/cmdline | grep ignition.config.url= | sed 's/ignition.config.url=//')
+export DISK=/dev/$(lsblk -ndo pkname /dev/disk/by-label/$IMAGE)
+
+echo image=$IMAGE
+echo ignition-url=$IGNITION_URL
+echo disk=$DISK
+```
+
+```bash
+curl http://192.168.192.34:9000/boot/$IMAGE-live.x86_64.iso --output coreos.iso
+curl $IGNITION_URL | coreos-installer iso ignition embed coreos.iso
+
+sudo dd if=coreos.iso of=$DISK bs=10M
+rm coreos.iso
 ```
