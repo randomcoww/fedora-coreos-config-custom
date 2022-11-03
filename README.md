@@ -62,7 +62,7 @@ cosa buildextend-live
 ### Upload images for PXE boot
 
 ```bash
-mc cp -r builds/latest/x86_64/fedora-$VARIANT-*-live-* minio/boot/
+mc cp -r builds/latest/x86_64/fedora-$VARIANT-*-live* minio/boot/
 ```
 
 ### Write ISO image
