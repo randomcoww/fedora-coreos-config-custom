@@ -9,21 +9,16 @@ rojig:
 default-target: multi-user.target
 
 remove-from-packages:
-  - [cri-o, /etc/cni/net.d/.*]
-  - [podman, /etc/cni/net.d/.*]
   - [keepalived, /etc/keepalived/keepalived.conf]
   - [haproxy, /etc/haproxy/haproxy.cfg]
 
 remove-files:
-  # We don't ship man(1) or info(1)
   - usr/share/info
   - usr/share/man
-  # Drop text docs too
   - usr/share/doc
 
 packages:
   - fedora-release-coreos
-  ## Custom
   - keepalived haproxy
 
 exclude-packages:

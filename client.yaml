@@ -8,16 +8,18 @@ rojig:
 
 default_target: graphical.target
 
+remove-from-packages:
+  - [podman, /etc/cni/net.d/.*]
+
 packages:
   - fedora-release-silverblue
-  ## Custom
   - tmux xclip
   - nmap
   - strace
   - smartmontools
   - vim-enhanced
   - mkpasswd
-  - slirp4netns podman-plugins libvarlink-util aardvark-dns
+  - slirp4netns podman-plugins aardvark-dns
   - podman-compose
   - libva-utils vulkan vulkan-tools
   - kubectl
@@ -26,11 +28,11 @@ packages:
   ## from fedora-common-ostree.yaml
   - git-core
   - lvm2
-  - rpm-ostree
+  # - rpm-ostree
   # Container management
   - buildah
   - podman
-  - skopeo
+  # - skopeo
   # - toolbox
   # Provides terminal tools like clear, reset, tput, and tset
   - ncurses
@@ -56,9 +58,9 @@ packages:
   - abattis-cantarell-vf-fonts
   - acl
   # - adwaita-qt5
-  - alsa-sof-firmware
   - alsa-ucm
   - alsa-utils
+  - amd-gpu-firmware
   - atmel-firmware
   - attr
   - audit
@@ -100,13 +102,12 @@ packages:
   - fpaste
   - fros-gnome
   - fwupd
-  - gamemode
+  # - gamemode
   - glibc
-  - glibc-all-langpacks
+  # - glibc-all-langpacks
   - glx-utils
   - gnupg2
   - google-noto-emoji-color-fonts
-  - google-noto-naskh-arabic-vf-fonts
   - google-noto-sans-armenian-vf-fonts
   - google-noto-sans-canadian-aboriginal-vf-fonts
   - google-noto-sans-cherokee-vf-fonts
@@ -138,6 +139,7 @@ packages:
   - ibus-libzhuyin
   - ibus-m17n
   - ibus-typing-booster
+  - intel-gpu-firmware
   # - iproute
   - iptables-nft
   - iptstate
@@ -197,6 +199,7 @@ packages:
   - nss-mdns
   # - ntfs-3g
   # - ntfsprogs
+  # - nvidia-gpu-firmware
   - opensc
   - openssh-clients
   - openssh-server
@@ -267,6 +270,7 @@ packages:
   - whois
   - wireplumber
   - words
+  # - wpa_supplicant
   # - xorg-x11-drv-amdgpu
   # - xorg-x11-drv-ati
   # - xorg-x11-drv-evdev
@@ -296,13 +300,13 @@ packages:
   - at-spi2-atk
   - at-spi2-core
   - avahi
-  # - chrome-gnome-shell
   - dconf
   - fprintd-pam
   - gdm
   # - glib-networking
   # - gnome-backgrounds
   - gnome-bluetooth
+  # - gnome-browser-connector
   # - gnome-classic-session
   - gnome-color-manager
   - gnome-control-center
@@ -346,3 +350,6 @@ packages:
   - xdg-desktop-portal-gtk
   - xdg-user-dirs-gtk
   - yelp
+
+packages-x86_64:
+  - alsa-sof-firmware
