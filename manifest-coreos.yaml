@@ -2,6 +2,7 @@ include:
   - server.yaml
 
 packages:
+  - iw wireless-regdb
   - iwl100-firmware
   - iwl1000-firmware
   - iwl105-firmware
@@ -19,4 +20,3 @@ packages:
   - iwl6050-firmware
   - iwl7260-firmware
   - iwlax2xx-firmware
-  - iw wireless-regdb
