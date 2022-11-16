@@ -19,9 +19,5 @@ remove-files:
 
 packages:
   - fedora-release-coreos
-  - keepalived haproxy
-
-exclude-packages:
-  - python3
-  - python3-libs
-  - grubby
+  - keepalived
+  - haproxy
