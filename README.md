@@ -103,9 +103,9 @@ createrepo repo/fedora
 ### Update local boot disk from PXE boot environment
 
 ```bash
-export IMAGE=fedora-coreos-36.20221101.0
+export IMAGE=fedora-coreos-37.20221116.0
 export IGNITION_URL=$(xargs -n1 -a /proc/cmdline | grep ignition.config.url= | sed 's/ignition.config.url=//')
-export DISK=/dev/$(lsblk -ndo pkname /dev/disk/by-label/$IMAGE)
+export DISK=/dev/$(lsblk -ndo pkname /dev/disk/by-label/fedora-*)
 
 echo image=$IMAGE
 echo ignition-url=$IGNITION_URL
