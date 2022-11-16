@@ -233,7 +233,7 @@ packages:
   - rpm
   - rsync
   # - samba-client
-  # - selinux-policy-targeted
+  - selinux-policy-targeted
   - setup
   - shadow-utils
   - sil-mingzat-fonts

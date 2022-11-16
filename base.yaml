@@ -57,6 +57,7 @@ packages:
   - passwd
   - shadow-utils
   - acl
+  - selinux-policy-targeted
 
   # user-experience
   - bash-completion
