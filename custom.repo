@@ -76,13 +76,12 @@ enabled=1
 gpgcheck=0
 repo_gpgcheck=0
 
-[cri-o]
-name=cri-o
+[custom]
+name=custom
 type=rpm-md
-baseurl=https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/1.25:/1.25.1/Fedora_Rawhide/
+baseurl=https://randomcoww.github.io/fedora-coreos-config-custom/repo/fedora/
 gpgcheck=0
 enabled=1
-
 
 [libnvidia-container]
 name=libnvidia-container
@@ -95,12 +94,5 @@ enabled=1
 name=nvidia-container-runtime
 baseurl=https://nvidia.github.io/nvidia-container-runtime/stable/centos8/$basearch
 repo_gpgcheck=0
-gpgcheck=0
-enabled=1
-
-[custom]
-name=custom
-type=rpm-md
-baseurl=https://randomcoww.github.io/fedora-coreos-config-custom/repo/fedora/
 gpgcheck=0
 enabled=1

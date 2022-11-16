@@ -89,7 +89,6 @@ packages:
   # custom
   - hostname
   - ssh-key-dir
-  - systemd-networkd
   - iproute-tc
   - nftables iptables-nft
   - socat
@@ -118,7 +117,6 @@ exclude-packages:
   - cowsay
   - initscripts
   - plymouth
-  - NetworkManager
   - PackageKit
 
 arch-include:

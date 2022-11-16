@@ -12,17 +12,6 @@ remove-from-packages:
   - [podman, /etc/cni/net.d/.*]
 
 packages:
-  - fedora-release-silverblue
-  - tmux xclip
-  - nmap
-  - strace
-  - smartmontools
-  - mkpasswd
-  - slirp4netns podman-plugins aardvark-dns
-  - podman-compose
-  - libva-utils vulkan vulkan-tools
-  - kubectl
-
   ## from fedora-common-ostree.yaml
   - git-core
   - lvm2
@@ -173,7 +162,7 @@ packages:
   - libertas-usb8388-firmware
   - libglvnd-gles
   - linux-firmware
-  - logrotate
+  # - logrotate
   - lohit-assamese-fonts
   - lohit-bengali-fonts
   - lohit-devanagari-fonts
@@ -349,8 +338,22 @@ packages:
   - xdg-user-dirs-gtk
   - yelp
 
+  # custom
+  - fedora-release-silverblue
+  - tmux xclip
+  - nmap
+  - strace
+  - smartmontools
+  - mkpasswd
+  - slirp4netns podman-plugins aardvark-dns
+  - podman-compose
+  - libva-utils vulkan vulkan-tools
+  - kubectl
+  - systemd-networkd
+
 packages-x86_64:
   - alsa-sof-firmware
 
 exclude-packages:
+  - NetworkManager
   - perl-interpreter
