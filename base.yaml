@@ -19,7 +19,6 @@ repos:
   - fedora-modular
   - fedora-updates-modular
   - kubernetes
-  - cri-o
 
 # Be minimal
 recommends: false
@@ -43,10 +42,6 @@ check-groups:
 
 rpmdb: sqlite
 
-remove-from-packages:
-  - [cri-o, /etc/cni/net.d/.*]
-  - [conntrack-tools, /etc/conntrackd/conntrackd.conf]
-
 packages:
   # system-configuration
   - chrony
@@ -55,7 +50,6 @@ packages:
   - cryptsetup
   - device-mapper-multipath
   - e2fsprogs
-  - iscsi-initiator-utils
   - lvm2
   - mdadm
   - sg3_utils
@@ -101,7 +95,6 @@ packages:
   - ldns-utils
   - pciutils
   - hdparm
-  - cri-o cri-tools conntrack-tools kubelet ipvsadm
 
 packages-x86_64:
   - irqbalance

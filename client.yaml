@@ -17,7 +17,6 @@ packages:
   - nmap
   - strace
   - smartmontools
-  - vim-enhanced
   - mkpasswd
   - slirp4netns podman-plugins aardvark-dns
   - podman-compose

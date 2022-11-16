@@ -1,6 +1,4 @@
 repos:
-  - rpmfusion-free
-  - rpmfusion-free-updates
   - rpmfusion-free-rawhide
   - custom
 

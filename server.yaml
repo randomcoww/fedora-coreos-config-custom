@@ -8,7 +8,12 @@ rojig:
 
 default-target: multi-user.target
 
+repos:
+  - cri-o
+
 remove-from-packages:
+  - [cri-o, /etc/cni/net.d/.*]
+  - [conntrack-tools, /etc/conntrackd/conntrackd.conf]
   - [keepalived, /etc/keepalived/keepalived.conf]
   - [haproxy, /etc/haproxy/haproxy.cfg]
 
@@ -19,6 +24,8 @@ remove-files:
 
 packages:
   - fedora-release-coreos
+  - cri-o cri-tools conntrack-tools kubelet ipvsadm
+  - iscsi-initiator-utils
   - keepalived
   - haproxy
 
