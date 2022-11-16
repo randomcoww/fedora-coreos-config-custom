@@ -325,7 +325,7 @@ packages:
   # - gvfs-afc
   # - gvfs-afp
   - gvfs-archive
-  # - gvfs-fuse
+  - gvfs-fuse
   # - gvfs-goa
   # - gvfs-gphoto2
   # - gvfs-mtp
