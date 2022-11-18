@@ -94,6 +94,7 @@ packages:
   - socat
   - ldns-utils
   - pciutils
+  - containernetworking-plugins
   - hdparm
 
 packages-x86_64:
