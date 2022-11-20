@@ -1,7 +1,6 @@
 size: 1
 
 extra-kargs:
-  - elevator=noop
   - intel_iommu=on
   - amd_iommu=on
   - iommu=pt
