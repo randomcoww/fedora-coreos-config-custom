@@ -78,6 +78,7 @@ packages:
 
   # fedora-coreos-base
   - btrfs-progs
+  - sssd-client
   - attr
   - openssl
   - lsof
