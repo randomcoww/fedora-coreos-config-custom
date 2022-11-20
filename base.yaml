@@ -95,7 +95,8 @@ packages:
   - ldns-utils
   - pciutils
   - containernetworking-plugins
-  - hdparm
+  - amd-gpu-firmware
+  - intel-gpu-firmware
 
 packages-x86_64:
   - irqbalance

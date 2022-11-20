@@ -207,17 +207,17 @@ Options=bind
 EOF
 add_requires sysroot-var.mount initrd-root-fs.target
 
-# cat >>"${UNIT_DIR}/sysroot-relabel.service" <<EOF
-# [Unit]
-# DefaultDependencies=false
-# RequiresMountsFor=/sysroot/etc /sysroot/var
-# Before=initrd-root-fs.target
-# [Service]
-# Type=oneshot
-# RemainAfterExit=yes
-# # We don't need the full relabeling spam by default for these
-# StandardOutput=null
-# ExecStart=/bin/coreos-relabel /etc
-# ExecStart=/bin/coreos-relabel /var
-# EOF
-# add_requires sysroot-relabel.service initrd-root-fs.target
+cat >>"${UNIT_DIR}/sysroot-relabel.service" <<EOF
+[Unit]
+DefaultDependencies=false
+RequiresMountsFor=/sysroot/etc /sysroot/var
+Before=initrd-root-fs.target
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# We don't need the full relabeling spam by default for these
+StandardOutput=null
+ExecStart=/bin/coreos-relabel /etc
+ExecStart=/bin/coreos-relabel /var
+EOF
+add_requires sysroot-relabel.service initrd-root-fs.target
