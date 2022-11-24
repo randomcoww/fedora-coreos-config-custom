@@ -4,6 +4,12 @@ include:
   # - nvidia-gpu.yaml
 
 packages:
+  - tmux xclip
+  - mkpasswd
+  - kubectl helm
+  - nmap
+  - strace
+  - podman-compose
   - iw wireless-regdb wpa_supplicant
   - dymo-cups-drivers
   # - libva-intel-hybrid-driver libva-intel-driver

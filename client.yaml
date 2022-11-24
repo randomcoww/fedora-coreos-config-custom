@@ -340,15 +340,8 @@ packages:
 
   # custom
   - fedora-release-silverblue
-  - tmux xclip
-  - nmap
-  - strace
-  - smartmontools
-  - mkpasswd
   - slirp4netns podman-plugins aardvark-dns
-  - podman-compose
   - libva-utils vulkan vulkan-tools
-  - kubectl
   - systemd-networkd
 
 packages-x86_64:
