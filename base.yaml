@@ -77,6 +77,7 @@ packages:
   - nvme-cli
 
   # fedora-coreos-base
+  - iptables-nft
   - btrfs-progs
   - sssd-client
   - attr
@@ -86,15 +87,21 @@ packages:
   - kbd
   - zram-generator
   - systemd-resolved
+  - amd-gpu-firmware intel-gpu-firmware
+
+  # networking-tools
+  - iproute-tc
+  - nftables
+  - socat
 
   # custom
   - hostname
   - ssh-key-dir
-  - iproute-tc
-  - nftables iptables-nft
   - ldns-utils
   - pciutils
   - containernetworking-plugins
+  - systemd-networkd
+  - wireless-regdb
 
 packages-x86_64:
   - irqbalance

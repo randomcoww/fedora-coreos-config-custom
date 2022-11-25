@@ -340,9 +340,8 @@ packages:
 
   # custom
   - fedora-release-silverblue
-  - slirp4netns podman-plugins aardvark-dns
+  - slirp4netns podman-plugins netavark aardvark-dns
   - libva-utils vulkan vulkan-tools
-  - systemd-networkd
   - tmux xclip
   - kubectl helm
   - nmap

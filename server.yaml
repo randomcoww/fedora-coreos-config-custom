@@ -21,7 +21,6 @@ remove-files:
 
 packages:
   - fedora-release-coreos
-  - systemd-networkd
   - cri-o cri-tools conntrack-tools kubelet
   - iscsi-initiator-utils
   - keepalived
