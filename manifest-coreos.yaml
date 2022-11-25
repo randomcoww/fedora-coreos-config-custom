@@ -3,3 +3,5 @@ include:
 
 packages:
   - wireless-regdb
+  - amd-gpu-firmware
+  - intel-gpu-firmware
