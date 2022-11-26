@@ -27,6 +27,5 @@ packages:
   - haproxy
 
 exclude-packages:
-  - NetworkManager
   - python3
   - python3-libs

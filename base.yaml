@@ -125,6 +125,7 @@ exclude-packages:
   - initscripts
   - plymouth
   - PackageKit
+  - NetworkManager
 
 arch-include:
   x86_64:

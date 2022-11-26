@@ -351,5 +351,4 @@ packages-x86_64:
   - alsa-sof-firmware
 
 exclude-packages:
-  - NetworkManager
   - perl-interpreter
