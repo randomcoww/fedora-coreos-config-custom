@@ -257,7 +257,7 @@ packages:
   - whois
   - wireplumber
   - words
-  # - wpa_supplicant
+  - wpa_supplicant
   # - xorg-x11-drv-amdgpu
   # - xorg-x11-drv-ati
   # - xorg-x11-drv-evdev
@@ -290,7 +290,7 @@ packages:
   - dconf
   - fprintd-pam
   - gdm
-  # - glib-networking
+  - glib-networking
   # - gnome-backgrounds
   - gnome-bluetooth
   # - gnome-browser-connector
