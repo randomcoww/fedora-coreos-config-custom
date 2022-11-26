@@ -100,11 +100,11 @@ dnf install -y createrepo
 createrepo repo/fedora
 ```
 
-### Update local boot disk from PXE boot environment
+### Update backup boot disk with current PXE boot image
 
 ```bash
-export IMAGE=fedora-coreos-37.20221116.0
-export IGNITION_URL=$(xargs -n1 -a /proc/cmdline | grep ignition.config.url= | sed 's/ignition.config.url=//')
+export IMAGE=$(xargs -n1 -a /proc/cmdline | grep ^fedora | sed 's/-kernel-x86_64$//')
+export IGNITION_URL=$(xargs -n1 -a /proc/cmdline | grep ^ignition.config.url= | sed 's/ignition.config.url=//')
 export DISK=/dev/$(lsblk -ndo pkname /dev/disk/by-label/fedora-*)
 
 echo image=$IMAGE
@@ -113,7 +113,7 @@ echo disk=$DISK
 ```
 
 ```bash
-curl http://192.168.192.34:9000/boot/$IMAGE-live.x86_64.iso --output coreos.iso
+curl http://192.168.192.34:9000/boot/$IMAGE.x86_64.iso --output coreos.iso
 curl $IGNITION_URL | coreos-installer iso ignition embed coreos.iso
 
 sudo dd if=coreos.iso of=$DISK bs=10M
