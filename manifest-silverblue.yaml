@@ -4,10 +4,7 @@ include:
   # - nvidia-gpu.yaml
 
 packages:
-  - iw wpa_supplicant
+  - iw
   - dymo-cups-drivers
-  # - libva-intel-hybrid-driver libva-intel-driver
-  ## Broadcom
-  # - akmod-wl
-  ## Mobile WAN
-  # - libimobiledevice libplist libusbmuxd usbmuxd libimobiledevice-utils ifuse
+  # https://www.reddit.com/r/Fedora/comments/ocn6ko/usb_tethering_with_ios_146_on_fedora/
+  - libimobiledevice-utils usbmuxd
