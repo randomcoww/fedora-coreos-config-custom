@@ -350,7 +350,7 @@ packages:
   - kubectl helm
   - nmap
   - podman-compose
-  - mesa-va-drivers-freeworld
+  - mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
 
 packages-x86_64:
   - alsa-sof-firmware
