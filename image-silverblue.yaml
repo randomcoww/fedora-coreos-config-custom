@@ -7,9 +7,8 @@ extra-kargs:
   - rd.driver.pre=vfio-pci
   - enforcing=0
   - coreos.no_persist_ip
-  - rd.driver.blacklist=nouveau
-  - modprobe.blacklist=nouveau
-  - nvidia_drm.modeset=1
+  - rfkill.master_switch_mode=2
+  - rfkill.default_state=1
 
 ignition-network-kcmdline: []
 ostree-remote: fedora
