@@ -35,10 +35,10 @@ packages:
   # - hfsplus-tools
   # Contains default ostree remote config to be used on client's
   # system for fetching ostree update
-  - fedora-repos-ostree
+  # - fedora-repos-ostree
   # the archive repo for more reliable package layering
   # https://github.com/coreos/fedora-coreos-tracker/issues/400
-  - fedora-repos-archive
+  # - fedora-repos-archive
 
   ## from fedora-common-ostree-pkgs.yaml
   # - NetworkManager
@@ -75,24 +75,24 @@ packages:
   - cups
   - cups-filters
   - curl
-  - cyrus-sasl-plain
+  # - cyrus-sasl-plain
   # - default-editor
   # - dhcp-client
   # - dnsmasq
   - e2fsprogs
   - ethtool
-  - exfatprogs
+  # - exfatprogs
   # - fedora-bookmarks
   # - fedora-chromium-config
-  - fedora-repos-modular
+  # - fedora-repos-modular
   # - fedora-workstation-backgrounds
   - file
   - filesystem
   # - firefox
   # - firewalld
-  - fpaste
-  - fros-gnome
-  - fwupd
+  # - fpaste
+  # - fros-gnome
+  # - fwupd
   # - gamemode
   - glibc
   # - glibc-all-langpacks
@@ -155,7 +155,7 @@ packages:
   - jomolhari-fonts
   - kbd
   - kernel
-  - kernel-modules-extra
+  # - kernel-modules-extra
   - khmer-os-system-fonts
   - less
   - liberation-mono-fonts
@@ -231,7 +231,7 @@ packages:
   - sil-mingzat-fonts
   - sil-nuosu-fonts
   - sil-padauk-fonts
-  - sos
+  # - sos
   - spice-vdagent
   - spice-webdavd
   - sssd
@@ -313,7 +313,7 @@ packages:
   - gnome-terminal
   - gnome-terminal-nautilus
   # - gnome-themes-extra
-  - gnome-user-docs
+  # - gnome-user-docs
   # - gnome-user-share
   - gvfs-afc
   # - gvfs-afp
@@ -330,7 +330,7 @@ packages:
   - mesa-dri-drivers
   - mesa-libEGL
   - nautilus
-  - orca
+  # - orca
   - polkit
   # - rygel
   - systemd-oomd-defaults
@@ -340,7 +340,7 @@ packages:
   - xdg-desktop-portal-gnome
   - xdg-desktop-portal-gtk
   - xdg-user-dirs-gtk
-  - yelp
+  # - yelp
 
   # custom
   - fedora-release-silverblue
