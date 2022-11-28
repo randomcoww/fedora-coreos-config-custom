@@ -8,6 +8,10 @@ rojig:
 
 default_target: graphical.target
 
+repos:
+  - rpmfusion-free
+  - rpmfusion-free-updates
+
 remove-from-packages:
   - [podman, /etc/cni/net.d/.*]
 
@@ -346,6 +350,7 @@ packages:
   - kubectl helm
   - nmap
   - podman-compose
+  - mesa-va-drivers-freeworld
 
 packages-x86_64:
   - alsa-sof-firmware

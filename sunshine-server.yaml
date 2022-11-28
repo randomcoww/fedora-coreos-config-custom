@@ -1,8 +1,5 @@
 repos:
-  - rpmfusion-free
-  - rpmfusion-free-updates
   - custom
 
 packages:
   - sunshine
-  - mesa-va-drivers-freeworld
