@@ -303,7 +303,7 @@ packages:
   - gnome-control-center
   # - gnome-disk-utility
   # - gnome-initial-setup
-  - gnome-remote-desktop
+  # - gnome-remote-desktop
   - gnome-session-wayland-session
   # - gnome-session-xsession
   - gnome-settings-daemon
