@@ -6,9 +6,6 @@ extra-kargs:
   - iommu=pt
   - rd.driver.pre=vfio-pci
   - enforcing=0
-  - coreos.no_persist_ip
-  - rfkill.master_switch_mode=2
-  - rfkill.default_state=1
 
 ignition-network-kcmdline: []
 ostree-remote: fedora
