@@ -110,6 +110,7 @@ export DISK=/dev/$(lsblk -ndo pkname /dev/disk/by-label/fedora-*)
 echo image=$IMAGE
 echo ignition-url=$IGNITION_URL
 echo disk=$DISK
+sudo lsof $DISK
 ```
 
 ```bash
@@ -117,5 +118,6 @@ curl http://192.168.192.34:9000/boot/$IMAGE.x86_64.iso --output coreos.iso
 curl $IGNITION_URL | coreos-installer iso ignition embed coreos.iso
 
 sudo dd if=coreos.iso of=$DISK bs=10M
+sync
 rm coreos.iso
 ```
