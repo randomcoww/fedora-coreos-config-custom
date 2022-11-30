@@ -124,8 +124,12 @@ exclude-packages:
   - cowsay
   - initscripts
   - plymouth
-  - PackageKit
+  - NetworkManager-initscripts-ifcfg-rh
   - NetworkManager
+  - PackageKit
+
+remove-from-packages:
+  - [dbus-common, /usr/lib/sysusers.d/dbus.conf]
 
 arch-include:
   x86_64:
@@ -134,5 +138,3 @@ arch-include:
   aarch64:
     - manifests/grub2-removals.yaml
     - manifests/bootupd.yaml
-  ppc64le:
-    - manifests/grub2-removals.yaml
