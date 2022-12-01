@@ -54,7 +54,7 @@ packages:
   - amd-gpu-firmware
   - atmel-firmware
   - attr
-  - audit
+  # - audit
   - b43-fwcutter
   - b43-openfwwf
   - basesystem
@@ -232,11 +232,11 @@ packages:
   - sil-nuosu-fonts
   - sil-padauk-fonts
   # - sos
-  - spice-vdagent
-  - spice-webdavd
-  - sssd
-  - sssd-common
-  - sssd-kcm
+  # - spice-vdagent
+  # - spice-webdavd
+  # - sssd
+  # - sssd-common
+  # - sssd-kcm
   - stix-fonts
   - sudo
   - system-config-printer-udev
