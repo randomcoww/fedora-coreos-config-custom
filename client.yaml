@@ -14,6 +14,8 @@ repos:
 
 remove-from-packages:
   - [podman, /etc/cni/net.d/.*]
+  - [cri-o, /etc/cni/net.d/.*]
+  - [conntrack-tools, /etc/conntrackd/conntrackd.conf]
 
 packages:
   ## from fedora-common-ostree.yaml
@@ -351,6 +353,8 @@ packages:
   - nmap
   - podman-compose
   - mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
+  - cri-o cri-tools conntrack-tools kubelet
+  - iscsi-initiator-utils
 
 packages-x86_64:
   - alsa-sof-firmware
