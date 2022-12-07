@@ -87,6 +87,28 @@ sudo coreos-installer iso ignition embed \
   $DISK --force
 ```
 
+Writing directly to disk is broken caused by bug?
+```
+Error: parsing ISO9660 image
+
+Caused by:
+    ISO image is incomplete
+```
+
+Image needs to be copied to a file and then rewritten fully to disk
+```bash
+export HOST=de-0
+export DISK=/dev/sda
+
+cp --sparse=always $DISK coreos.iso
+
+coreos-installer iso ignition embed \
+  -i ../terraform-infra/output/ignition/$HOST.ign \
+  coreos.iso --force
+
+dd if=coreos.iso of=$DISK bs=10M
+```
+
 ### Update custom repo
 
 Add package file to `repo/fedora`
