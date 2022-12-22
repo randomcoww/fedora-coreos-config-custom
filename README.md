@@ -102,10 +102,10 @@ Add package file to `repo/fedora`
 Update metadata
 
 ```bash
-podman run -it --rm -v $(pwd):/repo fedora
+podman run -it --rm -v $(pwd)/docs/repo/fedora:/repo fedora
 
 dnf install -y createrepo
-createrepo repo/fedora
+createrepo /repo
 ```
 
 ### Update backup boot disk with current PXE boot image
