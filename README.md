@@ -87,14 +87,6 @@ sudo coreos-installer iso ignition embed \
   $DISK --force
 ```
 
-Writing directly to disk is broken caused by bug?
-```
-Error: parsing ISO9660 image
-
-Caused by:
-    ISO image is incomplete
-```
-
 ### Update custom repo
 
 Add package file to `repo/fedora`
@@ -128,4 +120,8 @@ curl $IGNITION_URL | coreos-installer iso ignition embed coreos.iso
 sudo dd if=coreos.iso of=$DISK bs=10M
 sync
 rm coreos.iso
+```
+
+```bash
+curl $IGNITION_URL | sudo coreos-installer iso ignition embed $DISK --force
 ```
