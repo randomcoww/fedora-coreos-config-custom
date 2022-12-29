@@ -101,6 +101,7 @@ packages:
   - pciutils
   - containernetworking-plugins
   - systemd-networkd
+  - rsync
   - wireless-regdb
 
 packages-x86_64:
