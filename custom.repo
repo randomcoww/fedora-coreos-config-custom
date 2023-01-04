@@ -40,14 +40,6 @@ gpgcheck=0
 repo_gpgcheck=0
 
 
-[fedora-rawhide]
-name=Fedora rawhide $basearch
-#baseurl=http://download.fedoraproject.org/pub/fedora/linux//development/rawhide/$basearch/os/
-mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=rawhide&arch=$basearch
-enabled=1
-gpgcheck=0
-metadata_expire=1d
-
 [rpmfusion-free-rawhide]
 name=RPM Fusion for Fedora Rawhide - Free
 #baseurl=http://download1.rpmfusion.org/free/fedora/development/$basearch/os/
