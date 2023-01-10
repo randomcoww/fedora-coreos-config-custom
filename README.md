@@ -71,7 +71,7 @@ mc cp -r --disable-multipart builds/latest/x86_64/fedora-$VARIANT-*-live* m/boot
 export HOST=de-0
 
 sudo coreos-installer iso ignition embed \
-  -i ../terraform-infra/output/ignition/$HOST.ign \
+  -i ../homelab/output/ignition/$HOST.ign \
   -o $HOST.iso \
   builds/latest/x86_64/fedora-$VARIANT-*-live.x86_64.iso
 ```
@@ -83,7 +83,7 @@ export HOST=de-0
 export DISK=/dev/sda
 
 sudo coreos-installer iso ignition embed \
-  -i ../terraform-infra/output/ignition/$HOST.ign \
+  -i ../homelab/output/ignition/$HOST.ign \
   $DISK --force
 ```
 
