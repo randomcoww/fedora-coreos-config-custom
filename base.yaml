@@ -16,8 +16,10 @@ mutate-os-release: "${releasever}"
 repos:
   - fedora
   - fedora-updates
+  - fedora-updates-testing
   - fedora-modular
   - fedora-updates-modular
+  - fedora-updates-testing-modular
   - kubernetes
 
 # Be minimal

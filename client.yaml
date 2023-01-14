@@ -11,7 +11,6 @@ default_target: graphical.target
 repos:
   - rpmfusion-free
   - rpmfusion-free-updates
-  - fedora-rawhide-nodebug-kernel
 
 remove-from-packages:
   - [podman, /etc/cni/net.d/.*]
