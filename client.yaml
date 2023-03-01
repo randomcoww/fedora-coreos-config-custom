@@ -95,7 +95,7 @@ packages:
   # - fpaste
   # - fros-gnome
   # - fwupd
-  - gamemode
+  # - gamemode
   - glibc
   # - glibc-all-langpacks
   - glx-utils
