@@ -11,3 +11,4 @@ packages:
   - akmod-nvidia xorg-x11-drv-nvidia-cuda
   - vdpauinfo libva-vdpau-driver
   - nvidia-container-runtime
+  - mesa-vdpau-drivers-freeworld

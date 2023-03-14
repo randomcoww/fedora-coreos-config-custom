@@ -352,7 +352,7 @@ packages:
   - kubectl helm
   - nmap
   - podman-compose
-  - mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
+  - mesa-va-drivers-freeworld
   - cri-o cri-tools conntrack-tools kubelet
   - iscsi-initiator-utils
 
