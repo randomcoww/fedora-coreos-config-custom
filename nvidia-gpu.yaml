@@ -9,8 +9,9 @@ repos:
   - nvidia-container-runtime
 
 packages:
-  - gnome-session-xsession
   - akmod-nvidia xorg-x11-drv-nvidia-cuda
+  - gnome-session-xsession
+  - nvidia-gpu-firmware
   - vdpauinfo libva-vdpau-driver
-  - nvidia-container-runtime
   - mesa-vdpau-drivers-freeworld
+  - nvidia-container-runtime

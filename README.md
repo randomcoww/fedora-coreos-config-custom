@@ -21,12 +21,13 @@ TMPDIR=$(pwd)/build podman pull quay.io/coreos-assembler/coreos-assembler:latest
 cosa() {
    env | grep COREOS_ASSEMBLER
    set -x
-   podman --tmpdir ${PWD}/tmp run --rm -ti --security-opt label=disable --privileged --net host -w /srv \
+   podman --tmpdir ${PWD}/tmp run --rm -ti --security-opt label=disable --privileged -w /srv \
       --uidmap=$(id -u):0:1 --uidmap=0:1:$(id -u) --uidmap $(( $(id -u) + 1 )):$(( $(id -u) + 1 )):55536 \
       -v ${PWD}:/srv/ --device /dev/kvm --device /dev/fuse \
-      --tmpfs /tmp --name cosa-coreos \
+      --tmpfs /tmp -v=/var/tmp:/var/tmp --name cosa-coreos \
       ${COREOS_ASSEMBLER_CONFIG_GIT:+-v $COREOS_ASSEMBLER_CONFIG_GIT:/srv/src/config/:ro} \
       ${COREOS_ASSEMBLER_GIT:+-v $COREOS_ASSEMBLER_GIT/src/:/usr/lib/coreos-assembler/:ro} \
+      ${COREOS_ASSEMBLER_ADD_CERTS:+-v=/etc/pki/ca-trust:/etc/pki/ca-trust:ro} \
       ${COREOS_ASSEMBLER_CONTAINER_RUNTIME_ARGS} \
       ${COREOS_ASSEMBLER_CONTAINER:-quay.io/coreos-assembler/coreos-assembler:latest} "$@"
    rc=$?; set +x; return $rc
@@ -124,4 +125,10 @@ rm coreos.iso
 
 ```bash
 curl $IGNITION_URL | sudo coreos-installer iso ignition embed $DISK --force
+```
+
+### Nvidia driver handling
+
+```bash
+https://gitlab.com/container-toolkit-fcos/driver/-/tree/fedora/fedora
 ```

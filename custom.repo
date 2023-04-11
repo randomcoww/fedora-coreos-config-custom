@@ -62,6 +62,14 @@ type=rpm-md
 gpgcheck=0
 repo_gpgcheck=0
 
+[fedora-updates-archive]
+name=Fedora $releasever - $basearch - Updates Archive
+baseurl=https://fedoraproject-updates-archive.fedoraproject.org/fedora/$releasever/$basearch/
+enabled=1
+repo_gpgcheck=0
+type=rpm
+gpgcheck=0
+
 
 [kubernetes]
 name=Kubernetes
