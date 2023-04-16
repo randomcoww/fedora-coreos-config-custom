@@ -81,7 +81,7 @@ repo_gpgcheck=0
 [custom]
 name=custom
 type=rpm-md
-baseurl=https://randomcoww.github.io/fedora-coreos-config-custom/repo/fedora/
+baseurl=https://randomcoww.github.io/repos/fedora/
 gpgcheck=0
 enabled=1
 
