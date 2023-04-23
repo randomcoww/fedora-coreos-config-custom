@@ -1,4 +1,4 @@
-releasever: "37"
+releasever: "38"
 
 # This file is most of a Fedora CoreOS like system; it inherits from "core".
 # Add things in this file which are somewhat "opinionated", not necessarily
@@ -73,7 +73,7 @@ packages:
   - xz
   - zstd
   - openssh-clients openssh-server
-  - crun
+  - crun criu criu-libs
   - nvme-cli
 
   # fedora-coreos-base
@@ -87,7 +87,7 @@ packages:
   - kbd
   - zram-generator
   - systemd-resolved
-  - amd-gpu-firmware intel-gpu-firmware
+  - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
 
   # networking-tools
   - iproute-tc
@@ -106,16 +106,9 @@ packages:
 
 packages-x86_64:
   - irqbalance
-  - grub2-efi-x64
-  - efibootmgr
-  - shim-x64
   - thermald
 packages-aarch64:
   - irqbalance
-  - grub2-efi
-  - efibootmgr
-  - shim
-
 exclude-packages:
   - python
   - python2

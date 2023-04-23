@@ -107,7 +107,7 @@ packages:
   # - firewalld
   # - fpaste
   # - fros-gnome
-  # - fwupd
+  - fwupd
   - gamemode
   - glibc
   # - glibc-all-langpacks
