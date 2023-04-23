@@ -106,10 +106,15 @@ packages:
 
 packages-x86_64:
   - irqbalance
-packages-ppc64le:
-  - irqbalance
+  - grub2-efi-x64
+  - efibootmgr
+  - shim-x64
+  - thermald
 packages-aarch64:
   - irqbalance
+  - grub2-efi
+  - efibootmgr
+  - shim
 
 exclude-packages:
   - python

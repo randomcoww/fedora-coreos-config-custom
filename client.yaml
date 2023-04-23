@@ -22,13 +22,19 @@ remove-from-packages:
 
 packages:
   ## from fedora-common-ostree.yaml
+  # Do not include "full" Git as it brings in Perl
   - git-core
+  # Explicitely add Git docs
+  - git-core-doc
   - lvm2
   # - rpm-ostree
+  # Required for compatibility with old bootloaders until we have bootupd
+  # See https://github.com/fedora-silverblue/issue-tracker/issues/120
+  # - ostree-grub2
   # Container management
   - buildah
   - podman
-  # - skopeo
+  - skopeo
   - toolbox
   # Provides terminal tools like clear, reset, tput, and tset
   - ncurses
@@ -57,7 +63,7 @@ packages:
   - alsa-ucm
   - alsa-utils
   - amd-gpu-firmware
-  - atmel-firmware
+  - atheros-firmware
   - attr
   # - audit
   - b43-fwcutter
@@ -68,6 +74,7 @@ packages:
   - bc
   # - bind-utils
   - bluez-cups
+  - brcmfmac-firmware
   - btrfs-progs
   - bzip2
   - chrony
@@ -78,6 +85,7 @@ packages:
   - cpio
   - cryptsetup
   - cups
+  - cups-browsed
   - cups-filters
   - curl
   # - cyrus-sasl-plain
@@ -86,11 +94,13 @@ packages:
   # - dnsmasq
   - e2fsprogs
   - ethtool
-  # - exfatprogs
+  - exfatprogs
   # - fedora-bookmarks
   # - fedora-chromium-config
+  - fedora-flathub-remote
   # - fedora-repos-modular
   # - fedora-workstation-backgrounds
+  # - fedora-workstation-repositories
   - file
   - filesystem
   # - firefox
@@ -104,21 +114,26 @@ packages:
   - glx-utils
   - gnupg2
   - google-noto-emoji-color-fonts
+  - google-noto-naskh-arabic-vf-fonts
+  - google-noto-sans-arabic-vf-fonts
   - google-noto-sans-armenian-vf-fonts
   - google-noto-sans-canadian-aboriginal-vf-fonts
   - google-noto-sans-cherokee-vf-fonts
-  - google-noto-sans-cjk-ttc-fonts
+  - google-noto-sans-cjk-vf-fonts
   - google-noto-sans-ethiopic-vf-fonts
   - google-noto-sans-georgian-vf-fonts
   - google-noto-sans-gurmukhi-vf-fonts
   - google-noto-sans-hebrew-vf-fonts
+  - google-noto-sans-khmer-vf-fonts
   - google-noto-sans-lao-vf-fonts
-  - google-noto-sans-math-vf-fonts
+  - google-noto-sans-math-fonts
   - google-noto-sans-mono-vf-fonts
   - google-noto-sans-sinhala-vf-fonts
   - google-noto-sans-thaana-vf-fonts
+  - google-noto-sans-thai-vf-fonts
   - google-noto-sans-vf-fonts
   - google-noto-serif-vf-fonts
+  - gstreamer1-plugin-libav
   - gstreamer1-plugins-bad-free
   - gstreamer1-plugins-good
   - gstreamer1-plugins-ugly-free
@@ -160,14 +175,11 @@ packages:
   - jomolhari-fonts
   - kbd
   - kernel
-  # - kernel-modules-extra
-  - khmer-os-system-fonts
+  - kernel-modules-extra
   - less
   - liberation-mono-fonts
   - liberation-sans-fonts
   - liberation-serif-fonts
-  - libertas-sd8686-firmware
-  - libertas-sd8787-firmware
   - libertas-usb8388-firmware
   - libglvnd-gles
   - linux-firmware
@@ -189,13 +201,14 @@ packages:
   - mesa-dri-drivers
   - mesa-vulkan-drivers
   - mpage
+  - mt7xxx-firmware
   - mtr
   # - nfs-utils
   - nss-altfiles
   - nss-mdns
   # - ntfs-3g
   # - ntfsprogs
-  # - nvidia-gpu-firmware
+  - nvidia-gpu-firmware
   - opensc
   - openssh-clients
   - openssh-server
@@ -217,7 +230,7 @@ packages:
   # - policycoreutils-python-utils
   - procps-ng
   - psmisc
-  # - qemu-guest-agent
+  - qemu-guest-agent
   # - qgnomeplatform-qt5
   # - qt5-qtbase
   # - qt5-qtbase-gui
@@ -225,6 +238,7 @@ packages:
   # - qt5-qtxmlpatterns
   - quota
   - realmd
+  - realtek-firmware
   - rit-meera-new-fonts
   - rootfiles
   - rpm
@@ -250,9 +264,8 @@ packages:
   - systemd-resolved
   - systemd-udev
   - tar
-  - thai-scalable-waree-fonts
   - time
-  # - toolbox
+  - toolbox
   - tree
   - unzip
   - uresourced
@@ -278,7 +291,6 @@ packages:
   # - xorg-x11-server-Xorg
   # - xorg-x11-xauth
   # - xorg-x11-xinit
-  - zd1211-firmware
   - zip
   - zram-generator-defaults
 
@@ -328,7 +340,6 @@ packages:
   - gvfs-gphoto2
   - gvfs-mtp
   # - gvfs-smb
-  - libcanberra-gtk3
   - libproxy-duktape
   - librsvg2
   - libsane-hpaio
@@ -362,6 +373,16 @@ packages:
 
 packages-x86_64:
   - alsa-sof-firmware
+  # - hyperv-daemons
+  # - mcelog
+  - microcode_ctl
+  # - open-vm-tools-desktop
+  - thermald
+  # - virtualbox-guest-additions
+  # - xorg-x11-drv-intel
+  # - xorg-x11-drv-openchrome
+  # - xorg-x11-drv-vesa
+  # - xorg-x11-drv-vmware
 
 exclude-packages:
   - perl-interpreter

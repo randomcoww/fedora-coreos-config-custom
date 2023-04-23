@@ -11,7 +11,6 @@ repos:
 packages:
   - akmod-nvidia xorg-x11-drv-nvidia-cuda
   - gnome-session-xsession
-  - nvidia-gpu-firmware
   - vdpauinfo libva-vdpau-driver
   - mesa-vdpau-drivers-freeworld
   - nvidia-container-runtime
