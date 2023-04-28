@@ -367,7 +367,6 @@ packages:
   - nmap
   - podman-compose
   - mesa-va-drivers-freeworld
-  - rocm-opencl
   - cri-o cri-tools conntrack-tools kubelet
   - iscsi-initiator-utils
 
