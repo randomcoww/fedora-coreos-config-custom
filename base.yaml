@@ -119,7 +119,7 @@ exclude-packages:
   # - perl-interpreter
   - nodejs
   - dnf
-  - grubby
+  # - grubby
   - cowsay
   - initscripts
   - plymouth

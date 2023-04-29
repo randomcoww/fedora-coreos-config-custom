@@ -27,5 +27,6 @@ packages:
   - haproxy
 
 exclude-packages:
+  - grubby
   - python3
   - python3-libs
