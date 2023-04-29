@@ -96,11 +96,13 @@ packages:
 
   # custom
   - hostname
+  - systemd-networkd
   - ssh-key-dir
   - ldns-utils
   - pciutils
   - containernetworking-plugins
-  - systemd-networkd
+  - cri-o cri-tools conntrack-tools kubelet-1.27.0
+  - iscsi-initiator-utils
   - rsync
   - wireless-regdb
 

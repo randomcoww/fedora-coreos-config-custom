@@ -21,8 +21,6 @@ remove-files:
 
 packages:
   - fedora-release-coreos
-  - cri-o cri-tools conntrack-tools kubelet
-  - iscsi-initiator-utils
   - keepalived
   - haproxy
 

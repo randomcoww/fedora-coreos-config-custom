@@ -367,8 +367,6 @@ packages:
   - nmap
   - podman-compose
   - mesa-va-drivers-freeworld
-  - cri-o cri-tools conntrack-tools kubelet
-  - iscsi-initiator-utils
 
 packages-x86_64:
   - alsa-sof-firmware
