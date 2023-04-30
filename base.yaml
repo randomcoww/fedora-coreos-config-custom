@@ -101,7 +101,7 @@ packages:
   - ldns-utils
   - pciutils
   - containernetworking-plugins
-  - cri-o cri-tools conntrack-tools kubelet-1.27.0
+  - cri-o cri-tools conntrack-tools kubelet-1.26.4
   - iscsi-initiator-utils
   - rsync
   - wireless-regdb
