@@ -14,6 +14,7 @@ repos:
   - rpmfusion-free
   - rpmfusion-free-updates
   # - rpmfusion-free-updates-testing
+  # - fedora-updates-testing-kernel
 
 remove-from-packages:
   - [podman, /etc/cni/net.d/.*]
