@@ -92,7 +92,7 @@ repo_gpgcheck=0
 [custom]
 name=custom
 type=rpm-md
-baseurl=https://randomcoww.github.io/repos/fedora/
+baseurl=https://randomcoww.github.io/repos/fedora/$releasever/$basearch/
 gpgcheck=0
 enabled=1
 
