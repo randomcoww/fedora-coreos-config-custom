@@ -70,17 +70,7 @@ repo_gpgcheck=0
 type=rpm
 gpgcheck=0
 
-[fedora-updates-testing-kernel]
-name=Fedora $releasever - $basearch - Test Updates
-baseurl=https://dl.fedoraproject.org/pub/fedora/linux/updates/testing/$releasever/Everything/$basearch/
-        https://dl.fedoraproject.org/pub/fedora-secondary/updates/testing/$releasever/Everything/$basearch/
-#metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-testing-f$releasever&arch=$basearch
-enabled=1
-gpgcheck=1
-metadata_expire=6h
-gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary
-skip_if_unavailable=False
-includepkgs=kernel kernel-*
+## container ##
 
 [kubernetes]
 name=Kubernetes
@@ -109,3 +99,17 @@ baseurl=https://nvidia.github.io/nvidia-container-runtime/stable/centos8/$basear
 repo_gpgcheck=0
 gpgcheck=0
 enabled=1
+
+## kernel ##
+
+[fedora-updates-testing-kernel]
+name=Fedora $releasever - $basearch - Test Updates
+baseurl=https://dl.fedoraproject.org/pub/fedora/linux/updates/testing/$releasever/Everything/$basearch/
+        https://dl.fedoraproject.org/pub/fedora-secondary/updates/testing/$releasever/Everything/$basearch/
+#metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-testing-f$releasever&arch=$basearch
+enabled=1
+gpgcheck=1
+metadata_expire=6h
+gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary
+skip_if_unavailable=False
+includepkgs=kernel kernel-*
