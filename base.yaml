@@ -100,7 +100,6 @@ packages:
   - ldns-utils
   - pciutils
   - rsync
-  - wireless-regdb
 
 packages-x86_64:
   - irqbalance
