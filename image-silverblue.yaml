@@ -9,4 +9,4 @@ extra-kargs:
 
 ignition-network-kcmdline: []
 ostree-remote: fedora
-sysroot-readonly: true
+compressor: xz
