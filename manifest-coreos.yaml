@@ -1,2 +1,23 @@
 include:
-  - server.yaml
+  - base.yaml
+  - kubernetes.yaml
+
+rojig:
+  license: MIT
+  name: fedora-coreos
+  summary: Fedora CoreOS
+
+default-target: multi-user.target
+
+remove-files:
+  - usr/share/info
+  - usr/share/man
+  - usr/share/doc
+
+packages:
+  - fedora-release-coreos
+
+exclude-packages:
+  - grubby
+  - python3
+  - python3-libs
