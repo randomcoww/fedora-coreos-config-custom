@@ -1,7 +1,6 @@
 include:
   - base.yaml
   - kubernetes.yaml
-  - sunshine-server.yaml
   # - nvidia-gpu.yaml
 
 rojig:
@@ -17,6 +16,7 @@ repos:
   - rpmfusion-free
   - rpmfusion-free-updates
   # - rpmfusion-free-updates-testing
+  - custom
 
 remove-from-packages:
   - [podman, /etc/cni/net.d/.*]
@@ -362,22 +362,18 @@ packages:
   # - yelp
 
   # custom
+  - mesa-va-drivers-freeworld
   - slirp4netns podman-plugins netavark aardvark-dns
   - libva-utils vulkan vulkan-tools
   - tmux xclip
-  - kubectl helm
+  - kubectl helm minikube
   - nmap
-  - podman-compose
-  - mesa-va-drivers-freeworld
-  - libvirt-daemon-kvm libvirt-client virt-viewer
+  - sunshine
+  # - libvirt-daemon-kvm libvirt-client virt-viewer
 
   # custom hardware
-  - iw
-  - wireless-regdb
+  - wireless-regdb iw
   - opentabletdriver
   - dymo-cups-drivers
   # https://www.reddit.com/r/Fedora/comments/ocn6ko/usb_tethering_with_ios_146_on_fedora/
   - libimobiledevice-utils usbmuxd
-
-exclude-packages:
-  - grubby
