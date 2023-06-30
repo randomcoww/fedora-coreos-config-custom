@@ -104,7 +104,6 @@ packages:
 packages-x86_64:
   - irqbalance
   - thermald
-  - microcode_ctl
 packages-aarch64:
   - irqbalance
 exclude-packages:
