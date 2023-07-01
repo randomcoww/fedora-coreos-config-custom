@@ -1,9 +1,16 @@
+repos:
+  - custom
+
 remove-from-packages:
   - [conntrack-tools, /etc/conntrackd/conntrackd.conf]
   - [keepalived, /etc/keepalived/keepalived.conf]
   - [haproxy, /etc/haproxy/haproxy.cfg]
 
+repo-packages:
+  - repo: custom
+    packages:
+      - keepalived
+
 packages:
-  - keepalived
   - haproxy
   - conntrack-tools

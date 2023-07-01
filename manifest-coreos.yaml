@@ -3,6 +3,8 @@ include:
   - vrrp.yaml
   - kubernetes.yaml
 
+documentation: false
+
 rojig:
   license: MIT
   name: fedora-coreos

@@ -18,10 +18,9 @@ repos:
   - fedora-updates
   - fedora-modular
   - fedora-updates-modular
-  - custom
 
-# Be minimal
 recommends: false
+readonly-executables: true
 
 ignore-removed-users:
   - root
@@ -39,8 +38,6 @@ check-passwd:
 check-groups:
   type: "file"
   filename: "manifests/group"
-
-rpmdb: sqlite
 
 packages:
   # system-configuration
