@@ -1,6 +1,6 @@
 include:
   - base.yaml
-  - ha.yaml
+  - vrrp.yaml
   - kubernetes.yaml
 
 rojig:
