@@ -19,6 +19,7 @@ packages:
   - fedora-release-coreos
 
 exclude-packages:
-  - grubby
+  - perl-interpreter
   - python3
   - python3-libs
+  - grubby

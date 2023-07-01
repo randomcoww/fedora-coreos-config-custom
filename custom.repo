@@ -85,6 +85,7 @@ type=rpm-md
 baseurl=https://randomcoww.github.io/repos/fedora/$releasever/$basearch/
 gpgcheck=0
 enabled=1
+priority=1
 
 [libnvidia-container]
 name=libnvidia-container
