@@ -18,6 +18,7 @@ repos:
   - fedora-updates
   - fedora-modular
   - fedora-updates-modular
+  - custom
 
 # Be minimal
 recommends: false
