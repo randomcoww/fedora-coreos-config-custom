@@ -18,6 +18,8 @@ repos:
   - rpmfusion-free-updates
   # - rpmfusion-free-updates-testing
   - custom
+  - fedora-updates-testing-mesa
+  - rpmfusion-free-updates-testing-mesa
 
 remove-from-packages:
   - [podman, /etc/cni/net.d/.*]

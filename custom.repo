@@ -1,76 +1,9 @@
-[rpmfusion-free]
-name=RPM Fusion for Fedora $releasever - Free
-metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-$releasever&arch=$basearch
-enabled=1
+[custom]
+name=custom
 type=rpm-md
+baseurl=https://randomcoww.github.io/repos/fedora/$releasever/$basearch/
 gpgcheck=0
-repo_gpgcheck=0
-
-[rpmfusion-free-updates]
-name=RPM Fusion for Fedora $releasever - Free - Updates
-metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-$releasever&arch=$basearch
 enabled=1
-type=rpm-md
-gpgcheck=0
-repo_gpgcheck=0
-
-[rpmfusion-free-updates-testing]
-name=RPM Fusion for Fedora $releasever - Free - Test Updates
-metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-testing-$releasever&arch=$basearch
-enabled=1
-type=rpm-md
-gpgcheck=0
-repo_gpgcheck=0
-
-[rpmfusion-nonfree]
-name=RPM Fusion for Fedora $releasever - Nonfree
-metalink=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-$releasever&arch=$basearch
-enabled=1
-type=rpm-md
-gpgcheck=0
-repo_gpgcheck=0
-
-[rpmfusion-nonfree-updates]
-name=RPM Fusion for Fedora $releasever - Nonfree - Updates
-metalink=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-updates-released-$releasever&arch=$basearch
-enabled=1
-type=rpm-md
-gpgcheck=0
-repo_gpgcheck=0
-
-[rpmfusion-nonfree-updates-testing]
-name=RPM Fusion for Fedora $releasever - Nonfree - Test Updates
-metalink=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-updates-testing-$releasever&arch=$basearch
-enabled=1
-type=rpm-md
-gpgcheck=0
-repo_gpgcheck=0
-
-[rpmfusion-free-rawhide]
-name=RPM Fusion for Fedora Rawhide - Free
-metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-rawhide&arch=$basearch
-enabled=1
-type=rpm-md
-gpgcheck=0
-repo_gpgcheck=0
-
-[rpmfusion-nonfree-rawhide]
-name=RPM Fusion for Fedora Rawhide - Nonfree
-metalink=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-rawhide&arch=$basearch
-enabled=1
-type=rpm-md
-gpgcheck=0
-repo_gpgcheck=0
-
-[fedora-updates-archive]
-name=Fedora $releasever - $basearch - Updates Archive
-baseurl=https://fedoraproject-updates-archive.fedoraproject.org/fedora/$releasever/$basearch/
-enabled=1
-repo_gpgcheck=0
-type=rpm
-gpgcheck=0
-
-## container ##
 
 [kubernetes]
 name=Kubernetes
@@ -78,14 +11,6 @@ baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-$basearch
 enabled=1
 gpgcheck=0
 repo_gpgcheck=0
-
-[custom]
-name=custom
-type=rpm-md
-baseurl=https://randomcoww.github.io/repos/fedora/$releasever/$basearch/
-gpgcheck=0
-enabled=1
-priority=1
 
 [libnvidia-container]
 name=libnvidia-container
@@ -101,9 +26,7 @@ repo_gpgcheck=0
 gpgcheck=0
 enabled=1
 
-## kernel ##
-
-[fedora-updates-testing-kernel]
+[fedora-updates-testing-mesa]
 name=Fedora $releasever - $basearch - Test Updates
 baseurl=https://dl.fedoraproject.org/pub/fedora/linux/updates/testing/$releasever/Everything/$basearch/
         https://dl.fedoraproject.org/pub/fedora-secondary/updates/testing/$releasever/Everything/$basearch/
@@ -113,4 +36,13 @@ gpgcheck=1
 metadata_expire=6h
 gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary
 skip_if_unavailable=False
-includepkgs=kernel kernel-*
+includepkgs=mesa-*
+
+[rpmfusion-free-updates-testing-mesa]
+name=RPM Fusion for Fedora $releasever - Free - Test Updates
+metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-testing-$releasever&arch=$basearch
+enabled=1
+type=rpm-md
+gpgcheck=0
+repo_gpgcheck=0
+includepkgs=mesa-*
