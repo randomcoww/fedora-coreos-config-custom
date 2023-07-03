@@ -102,7 +102,7 @@ sudo lsof $DISK
 ```
 
 ```bash
-curl http://192.168.192.34:9000/boot/$IMAGE.x86_64.iso --output coreos.iso
+curl http://m.fuzzybunny.win:9000/boot/$IMAGE.x86_64.iso --output coreos.iso
 curl $IGNITION_URL | coreos-installer iso ignition embed coreos.iso
 
 sudo dd if=coreos.iso of=$DISK bs=10M
