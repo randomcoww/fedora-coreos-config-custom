@@ -26,6 +26,14 @@ repo_gpgcheck=0
 gpgcheck=0
 enabled=1
 
+[tailscale-stable]
+name=Tailscale stable
+baseurl=https://pkgs.tailscale.com/stable/fedora/$basearch
+enabled=1
+type=rpm
+repo_gpgcheck=0
+gpgcheck=0
+
 [fedora-updates-testing-mesa]
 name=Fedora $releasever - $basearch - Test Updates
 baseurl=https://dl.fedoraproject.org/pub/fedora/linux/updates/testing/$releasever/Everything/$basearch/

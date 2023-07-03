@@ -18,6 +18,7 @@ repos:
   - rpmfusion-free-updates
   # - rpmfusion-free-updates-testing
   - custom
+  - tailscale-stable
   - fedora-updates-testing-mesa
   - rpmfusion-free-updates-testing-mesa
 
@@ -366,12 +367,13 @@ packages:
 
   # custom
   - mesa-va-drivers-freeworld
-  - slirp4netns podman-plugins netavark aardvark-dns
+  - slirp4netns podman-plugins netavark aardvark-dns podman-compose
   - libva-utils vulkan vulkan-tools
   - tmux xclip
-  - kubectl helm minikube
+  - kubectl helm
   - nmap
   - sunshine
+  - tailscale
   # - libvirt-daemon-kvm libvirt-client virt-viewer
 
   # custom hardware
