@@ -2,7 +2,7 @@ include:
   - base.yaml
   - vrrp.yaml
   - kubernetes.yaml
-  - amd-gpu.yaml
+  # - amd-gpu.yaml
   # - nvidia-gpu.yaml
 
 rojig:
@@ -367,6 +367,7 @@ packages:
   # - yelp
 
   # custom
+  - mesa-libOpenCL clinfo
   - mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
   - slirp4netns podman-plugins netavark aardvark-dns podman-compose
   - libva-utils vulkan vulkan-tools
