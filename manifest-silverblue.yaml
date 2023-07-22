@@ -20,6 +20,7 @@ repos:
   # - rpmfusion-free-updates-testing
   - custom
   - tailscale-stable
+  - fedora-updates-testing-kernel
   - fedora-updates-testing-mesa
   - rpmfusion-free-updates-testing-mesa
 
