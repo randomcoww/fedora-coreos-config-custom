@@ -370,7 +370,7 @@ packages:
   # custom
   - mesa-libOpenCL clinfo
   - mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
-  - slirp4netns podman-plugins netavark aardvark-dns podman-compose
+  - slirp4netns podman-plugins netavark aardvark-dns
   - libva-utils vulkan vulkan-tools
   - libva-vdpau-driver vdpauinfo
   - tmux xclip
