@@ -19,7 +19,7 @@ repos:
   - rpmfusion-free-updates
   # - rpmfusion-free-updates-testing
   - custom
-  - tailscale-stable
+  # - tailscale-stable
   - fedora-updates-testing-kernel
   - fedora-updates-testing-mesa
   - rpmfusion-free-updates-testing-mesa
@@ -377,7 +377,7 @@ packages:
   - kubectl helm
   - nmap
   - sunshine
-  - tailscale
+  # - tailscale
   # - libvirt-daemon-kvm libvirt-client virt-viewer
 
   # custom hardware
