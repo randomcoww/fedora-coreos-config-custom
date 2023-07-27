@@ -31,6 +31,8 @@ etc-group-members:
   - systemd-journal
   - adm
   - wheel
+  - input
+  - video
 
 check-passwd:
   type: "file"
