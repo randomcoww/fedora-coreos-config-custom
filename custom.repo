@@ -12,19 +12,14 @@ enabled=1
 gpgcheck=0
 repo_gpgcheck=0
 
-[libnvidia-container]
-name=libnvidia-container
-baseurl=https://nvidia.github.io/libnvidia-container/stable/centos8/$basearch
-repo_gpgcheck=0
-gpgcheck=0
+# fedora38 not available
+[nvidia]
+name=cuda-fedora37
+type=rpm-md
+baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora37/$basearch
 enabled=1
-
-[nvidia-container-runtime]
-name=nvidia-container-runtime
-baseurl=https://nvidia.github.io/nvidia-container-runtime/stable/centos8/$basearch
-repo_gpgcheck=0
 gpgcheck=0
-enabled=1
+module_hotfixes=1
 
 [tailscale-stable]
 name=Tailscale stable

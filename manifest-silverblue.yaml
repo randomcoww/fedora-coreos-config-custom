@@ -2,8 +2,8 @@ include:
   - base.yaml
   - vrrp.yaml
   - kubernetes.yaml
+  - nvidia-gpu.yaml
   # - amd-gpu.yaml
-  # - nvidia-gpu.yaml
 
 rojig:
   license: MIT

@@ -1,15 +1,6 @@
 repos:
-  - rpmfusion-free
-  - rpmfusion-free-updates
-  # - rpmfusion-free-updates-testing
-  - rpmfusion-nonfree
-  - rpmfusion-nonfree-updates
-  # - rpmfusion-nonfree-updates-testing
-  - libnvidia-container
-  - nvidia-container-runtime
+  - nvidia
 
 packages:
-  - akmod-nvidia
-  - xorg-x11-drv-nvidia-cuda
-  - gnome-session-xsession
+  - nvidia-driver
   - nvidia-container-runtime
