@@ -3,4 +3,5 @@ repos:
 
 packages:
   - nvidia-driver
+  - kmod-nvidia-latest-dkms
   - nvidia-container-runtime

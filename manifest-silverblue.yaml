@@ -3,7 +3,10 @@ include:
   - vrrp.yaml
   - kubernetes.yaml
   # - nvidia-gpu.yaml
-  - amd-gpu.yaml
+  # - amd-gpu.yaml
+
+ostree-layers:
+  - overlay/02kmod
 
 rojig:
   license: MIT
