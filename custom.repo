@@ -13,14 +13,20 @@ enabled=1
 gpgcheck=0
 repo_gpgcheck=0
 
-# fedora38 not available
 [nvidia]
-name=cuda-fedora37
+name=nvidia
 type=rpm-md
 baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora37/$basearch
 enabled=1
 gpgcheck=0
 module_hotfixes=1
+
+[ROCm]
+name=ROCm
+baseurl=https://repo.radeon.com/amdgpu/latest/sle/15.5/main/x86_64
+enabled=1
+priority=50
+gpgcheck=0
 
 [tailscale-stable]
 name=Tailscale stable

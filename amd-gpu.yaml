@@ -1,3 +1,7 @@
+repos:
+  - ROCm
+
 packages:
-  - rocm-opencl
-  - rocm-clinfo
+  - amdgpu-core
+  - rocm-hip-runtime
+  - rocm-hip-runtime-devel

@@ -2,8 +2,8 @@ include:
   - base.yaml
   - vrrp.yaml
   - kubernetes.yaml
-  - nvidia-gpu.yaml
-  # - amd-gpu.yaml
+  # - nvidia-gpu.yaml
+  - amd-gpu.yaml
 
 rojig:
   license: MIT
@@ -376,7 +376,7 @@ packages:
   - tmux xclip
   - kubectl helm
   - nmap
-  # - sunshine
+  - sunshine
   # - tailscale
   # - libvirt-daemon-kvm libvirt-client virt-viewer
 
