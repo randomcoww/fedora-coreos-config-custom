@@ -19,11 +19,10 @@ repos:
   - rpmfusion-free
   - rpmfusion-free-updates
   # - rpmfusion-free-updates-testing
-  - custom
-  # - tailscale-stable
-  # - fedora-updates-testing-kernel
   - fedora-updates-testing-mesa
   - rpmfusion-free-updates-testing-mesa
+  - custom
+  # - tailscale-stable
 
 remove-from-packages:
   - [podman, /etc/cni/net.d/.*]
