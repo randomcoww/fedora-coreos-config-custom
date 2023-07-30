@@ -1,7 +1,0 @@
-repos:
-  - ROCm
-
-packages:
-  - amdgpu-dkms
-  - rocm-hip
-  - rocm-hip-devel

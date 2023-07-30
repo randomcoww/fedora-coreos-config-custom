@@ -14,14 +14,10 @@ rojig:
 default_target: graphical.target
 
 repos:
-  # - fedora-updates-testing
-  # - fedora-updates-testing-modular
   - rpmfusion-free
   - rpmfusion-free-updates
-  # - rpmfusion-free-updates-testing
-  - fedora-updates-testing-mesa
-  - rpmfusion-free-updates-testing-mesa
   - custom
+  - nvidia
   # - tailscale-stable
 
 remove-from-packages:
@@ -377,6 +373,7 @@ packages:
   - kubectl helm
   - nmap
   - sunshine
+  - nvidia-container-runtime
   # - tailscale
   # - libvirt-daemon-kvm libvirt-client virt-viewer
 
