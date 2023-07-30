@@ -2,8 +2,6 @@ include:
   - base.yaml
   - vrrp.yaml
   - kubernetes.yaml
-  # - nvidia-gpu.yaml
-  # - amd-gpu.yaml
 
 ostree-layers:
   - overlay/02kmod
@@ -23,7 +21,7 @@ repos:
   # - rpmfusion-free-updates-testing
   - custom
   # - tailscale-stable
-  - fedora-updates-testing-kernel
+  # - fedora-updates-testing-kernel
   - fedora-updates-testing-mesa
   - rpmfusion-free-updates-testing-mesa
 
