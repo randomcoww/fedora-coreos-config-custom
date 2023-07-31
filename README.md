@@ -54,6 +54,8 @@ cosa init -V $VARIANT --force https://github.com/randomcoww/fedora-coreos-config
 
 ### Build Nvidia kernel modules
 
+> Use kernel version that will be installed into the new image
+
 ```bash
 KERNEL_VERSION=$(uname -r)
 NVIDIA_VERSION=535.54.03
