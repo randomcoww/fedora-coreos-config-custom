@@ -61,7 +61,7 @@ TAG=ghcr.io/randomcoww/nvidia-kmod:$KERNEL_VERSION-$NVIDIA_VERSION
 
 podman run --rm \
   -v $(pwd)/src/config/overlay.d/02kmod/usr/lib/modules:/mnt \
-  $TAG cp -r /opt/lib/modules/* /mnt/
+  $TAG cp -r /opt/lib/modules/. /mnt/
 ```
 
 ### Run build
