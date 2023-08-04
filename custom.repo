@@ -28,3 +28,26 @@ enabled=1
 type=rpm
 repo_gpgcheck=0
 gpgcheck=0
+
+## mesa
+
+[rpmfusion-free-updates-testing-mesa]
+name=RPM Fusion for Fedora $releasever - Free - Test Updates
+metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-testing-$releasever&arch=$basearch
+enabled=1
+type=rpm-md
+gpgcheck=0
+repo_gpgcheck=0
+includepkgs=mesa-*
+
+[fedora-updates-testing-mesa]
+name=Fedora $releasever - $basearch - Test Updates
+baseurl=https://dl.fedoraproject.org/pub/fedora/linux/updates/testing/$releasever/Everything/$basearch/
+        https://dl.fedoraproject.org/pub/fedora-secondary/updates/testing/$releasever/Everything/$basearch/
+#metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-testing-f$releasever&arch=$basearch
+enabled=1
+gpgcheck=1
+metadata_expire=6h
+gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary
+skip_if_unavailable=False
+includepkgs=mesa-*
