@@ -54,17 +54,7 @@ cosa init -V $VARIANT --force https://github.com/randomcoww/fedora-coreos-config
 
 ### Build Nvidia kernel modules
 
-> Use kernel version that will be installed into the new image
-
-```bash
-KERNEL_VERSION=$(uname -r)
-NVIDIA_VERSION=535.54.03
-TAG=ghcr.io/randomcoww/nvidia-kmod:$KERNEL_VERSION-$NVIDIA_VERSION
-
-podman run --rm \
-  -v $(pwd)/src/config/overlay.d/02kmod/usr/lib/modules:/mnt \
-  $TAG cp -r /opt/lib/modules/. /mnt/
-```
+See [container-builds](https://github.com/randomcoww/container-builds/tree/master/nvidia-kmod)
 
 ### Run build
 
