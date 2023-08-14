@@ -9,4 +9,3 @@ packages:
   - containernetworking-plugins
   - cri-o cri-tools kubelet-1.26.4
   - conntrack-tools
-  - iscsi-initiator-utils
