@@ -4,7 +4,7 @@ include:
   - kubernetes.yaml
 
 ostree-layers:
-  - overlay/02kmod
+  - overlay/02nvidia
 
 rojig:
   license: MIT
@@ -22,6 +22,9 @@ repos:
 
 remove-from-packages:
   - [podman, /etc/cni/net.d/.*]
+  # replace these with patched files
+  - [nvidia-driver-cuda-libs, /usr/lib64/libnvidia-encode.so.*]
+  - [nvidia-driver-NvFBCOpenGL, /usr/lib64/libnvidia-fbc.so.*]
 
 packages:
   - fedora-release-silverblue
@@ -378,6 +381,8 @@ packages:
 
   # nvidia
   - nvidia-driver-libs
+  - nvidia-driver-cuda-libs
+  - nvidia-driver-NvFBCOpenGL
   - nvidia-container-runtime
   - gnome-session-xsession
 
