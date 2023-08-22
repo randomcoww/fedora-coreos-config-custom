@@ -373,9 +373,13 @@ packages:
   - kubectl helm
   - nmap
   - sunshine
-  - nvidia-container-runtime
   - tailscale
   # - libvirt-daemon-kvm libvirt-client virt-viewer
+
+  # nvidia
+  - nvidia-driver-libs
+  - nvidia-container-runtime
+  - gnome-session-xsession
 
   # custom hardware
   - wireless-regdb iw

@@ -86,7 +86,7 @@ packages:
   - kbd
   - zram-generator
   - systemd-resolved
-  - amd-gpu-firmware intel-gpu-firmware
+  - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
 
   # networking-tools
   - iproute-tc

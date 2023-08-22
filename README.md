@@ -55,7 +55,7 @@ cosa init -V $VARIANT --force https://github.com/randomcoww/fedora-coreos-config
 ### Build Nvidia kernel modules
 
 ```bash
-sudo mkdir -p src/config/overlay.d/02kmod/usr/lib/modules
+sudo mkdir -p src/config/overlay.d/02nvidia/usr
 ```
 
 See [container-builds](https://github.com/randomcoww/container-builds/tree/master/nvidia-kmod)
