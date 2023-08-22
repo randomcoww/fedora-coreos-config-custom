@@ -23,8 +23,8 @@ repos:
 remove-from-packages:
   - [podman, /etc/cni/net.d/.*]
   # replace these with patched files
-  - [nvidia-driver-cuda-libs, /usr/lib64/libnvidia-encode.so.*]
-  - [nvidia-driver-NvFBCOpenGL, /usr/lib64/libnvidia-fbc.so.*]
+  - [nvidia-driver-cuda-libs, /usr/lib64/libnvidia-encode.*]
+  - [nvidia-driver-NvFBCOpenGL, /usr/lib64/libnvidia-fbc.*]
 
 packages:
   - fedora-release-silverblue
