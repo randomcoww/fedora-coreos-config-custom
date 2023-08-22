@@ -118,7 +118,7 @@ packages:
   - fwupd
   - gamemode
   - glibc
-  # - glibc-all-langpacks
+  - glibc-all-langpacks
   - glx-utils
   - gnupg2
   - google-noto-emoji-color-fonts
