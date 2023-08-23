@@ -16,6 +16,8 @@ default_target: graphical.target
 repos:
   - rpmfusion-free
   - rpmfusion-free-updates
+  - rpmfusion-nonfree
+  - rpmfusion-nonfree-updates
   - custom
   - nvidia
   - tailscale-stable
@@ -369,9 +371,9 @@ packages:
   # custom
   - mesa-libOpenCL clinfo
   - mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
+  - intel-media-driver
   - slirp4netns podman-plugins netavark aardvark-dns
   - libva-utils vulkan vulkan-tools
-  - libva-vdpau-driver vdpauinfo
   - tmux xclip
   - kubectl helm
   - nmap
@@ -383,6 +385,7 @@ packages:
   - nvidia-driver-libs
   - nvidia-driver-cuda-libs
   - nvidia-driver-NvFBCOpenGL
+  - nvidia-vaapi-driver
   - nvidia-container-runtime
   - gnome-session-xsession
 
