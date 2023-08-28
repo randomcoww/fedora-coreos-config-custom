@@ -100,6 +100,7 @@ packages:
   - ldns-utils
   - pciutils
   - rsync
+  - strace
 
 packages-x86_64:
   - irqbalance
