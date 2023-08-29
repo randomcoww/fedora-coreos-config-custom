@@ -8,6 +8,9 @@ rojig:
   name: fedora-silverblue
   summary: Fedora Silverblue
 
+ostree-layers:
+  - overlay/02nvidia
+
 default_target: graphical.target
 
 repos:
