@@ -3,9 +3,6 @@ include:
   - vrrp.yaml
   - kubernetes.yaml
 
-ostree-layers:
-  - overlay/02nvidia
-
 rojig:
   license: MIT
   name: fedora-silverblue
@@ -18,14 +15,12 @@ repos:
   - rpmfusion-free-updates
   - rpmfusion-nonfree
   - rpmfusion-nonfree-updates
-  - custom
-  - tailscale-stable
-  # - nvidia
+  - selfhosted
+  - nvidia
+  # - tailscale-stable
 
 remove-from-packages:
   - [podman, /etc/cni/net.d/.*]
-  # - [nvidia-driver-cuda-libs, /usr/lib64/libnvidia-encode.*]
-  # - [nvidia-driver-NvFBCOpenGL, /usr/lib64/libnvidia-fbc.*]
 
 packages:
   - fedora-release-silverblue
@@ -190,7 +185,7 @@ packages:
   - liberation-sans-fonts
   - liberation-serif-fonts
   - libertas-usb8388-firmware
-  - libglvnd-gles
+  # - libglvnd-gles
   - linux-firmware
   # - logrotate
   - lohit-assamese-fonts
@@ -368,27 +363,26 @@ packages:
   # - yelp
 
   # custom
-  - mesa-libOpenCL clinfo
   - mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
-  - intel-media-driver
   - slirp4netns podman-plugins netavark aardvark-dns
   - libva-utils vulkan vulkan-tools
   - tmux xclip
   - kubectl helm
   - nmap
   - sunshine
-  - tailscale
   # - libvirt-daemon-kvm libvirt-client virt-viewer
 
-  # nvidia and xorg
-  # - nvidia-driver-libs
-  # - nvidia-driver-cuda-libs
-  # - nvidia-driver-NvFBCOpenGL
-  - nvidia-vaapi-driver
-  - nvidia-container-runtime
+  # xorg
   - gnome-session-xsession
   - xorg-x11-drv-amdgpu
   - xorg-x11-drv-intel
+
+  # non-free
+  - cuda-drivers
+  - nvidia-drivers
+  - nvidia-container-runtime
+  - nvidia-vaapi-driver
+  - intel-media-driver
 
   # custom hardware
   - wireless-regdb iw

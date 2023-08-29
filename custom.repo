@@ -1,4 +1,4 @@
-[custom]
+[selfhosted]
 name=custom
 type=rpm-md
 baseurl=https://randomcoww.github.io/repos/fedora/$releasever/$basearch/
@@ -20,6 +20,7 @@ baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora37/$basea
 enabled=1
 gpgcheck=0
 module_hotfixes=1
+priority=10
 
 [tailscale-stable]
 name=Tailscale stable

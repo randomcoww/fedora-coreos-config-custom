@@ -1,5 +1,5 @@
 repos:
-  - custom
+  - selfhosted
 
 remove-from-packages:
   - [conntrack-tools, /etc/conntrackd/conntrackd.conf]
@@ -7,7 +7,7 @@ remove-from-packages:
   - [haproxy, /etc/haproxy/haproxy.cfg]
 
 repo-packages:
-  - repo: custom
+  - repo: selfhosted
     packages:
       - keepalived
 
