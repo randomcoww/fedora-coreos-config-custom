@@ -24,6 +24,9 @@ repos:
 
 remove-from-packages:
   - [podman, /etc/cni/net.d/.*]
+  # replace these with patched files
+  - [nvidia-driver-cuda-libs, /usr/lib64/libnvidia-encode.so.*]
+  - [nvidia-driver-NvFBCOpenGL, /usr/lib64/libnvidia-fbc.so.*]
 
 packages:
   - fedora-release-silverblue
@@ -373,7 +376,7 @@ packages:
   - kubectl helm
   - nmap
   - sunshine
-  # - libvirt-daemon-kvm libvirt-client virt-viewer
+  - libvirt-daemon-kvm libvirt-client virt-viewer
 
   # xorg
   - gnome-session-xsession
