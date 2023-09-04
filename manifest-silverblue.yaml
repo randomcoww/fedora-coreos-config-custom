@@ -289,7 +289,7 @@ packages:
   - whois
   - wireplumber
   - words
-  - wpa_supplicant
+  # - wpa_supplicant
   # - xorg-x11-drv-amdgpu
   # - xorg-x11-drv-ati
   # - xorg-x11-drv-evdev
@@ -371,17 +371,14 @@ packages:
   # custom
   - mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
   - slirp4netns podman-plugins netavark aardvark-dns
-  - libva-utils vulkan vulkan-tools
+  - libva-utils
+  - vulkan vulkan-tools
   - tmux xclip
   - kubectl helm
   - nmap
   - sunshine
-  - libvirt-daemon-kvm libvirt-client virt-viewer
-
-  # xorg
-  - gnome-session-xsession
-  - xorg-x11-drv-amdgpu
-  - xorg-x11-drv-intel
+  # - libvirt-daemon-kvm libvirt-client virt-viewer
+  # - iw
 
   # non-free
   - cuda-drivers
@@ -391,7 +388,7 @@ packages:
   - intel-media-driver
 
   # custom hardware
-  - wireless-regdb iw
+  - wireless-regdb
   - opentabletdriver
   - dymo-cups-drivers
   # https://www.reddit.com/r/Fedora/comments/ocn6ko/usb_tethering_with_ios_146_on_fedora/
