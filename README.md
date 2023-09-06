@@ -94,6 +94,13 @@ sudo coreos-installer iso ignition embed \
   $DISK --force
 ```
 
+Append kargs for ChromeOS
+
+```bash
+sudo coreos-installer iso kargs modify $HOST.iso -a pci=nommconf
+sudo coreos-installer iso kargs modify $HOST.iso -a snd-intel-dspcfg.dsp_driver=3
+```
+
 ### Update backup boot disk with current PXE boot image
 
 ```bash
