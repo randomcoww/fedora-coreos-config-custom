@@ -58,7 +58,7 @@ See [container-builds](https://github.com/randomcoww/container-builds/tree/maste
 
 ### Hacks for Chromebook
 
-Copy files from https://github.com/WeirdTreeThing/chromebook-linux-audio
+Copy files for https://github.com/WeirdTreeThing/chromebook-linux-audio
 
 ```bash
 git clone https://github.com/WeirdTreeThing/chromebook-ucm-conf.git
