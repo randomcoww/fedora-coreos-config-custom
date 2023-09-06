@@ -5,6 +5,9 @@ include:
   - desktop.yaml
   - nvidia.yaml
 
+ostree-layers:
+  # - overlay/03chromebook
+
 rojig:
   license: MIT
   name: fedora-silverblue

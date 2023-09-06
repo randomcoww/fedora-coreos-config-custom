@@ -56,6 +56,19 @@ cosa init -V $VARIANT --force https://github.com/randomcoww/fedora-coreos-config
 
 See [container-builds](https://github.com/randomcoww/container-builds/tree/master/nvidia-kmod)
 
+### Hacks for Chromebook
+
+Copy files from https://github.com/WeirdTreeThing/chromebook-linux-audio
+
+```bash
+git clone https://github.com/WeirdTreeThing/chromebook-ucm-conf.git
+cp -r \
+  chromebook-ucm-conf/adl/* \
+  chromebook-ucm-conf/dmic-common \
+  chromebook-ucm-conf/hdmi-common \
+  src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/conf.d/
+```
+
 ### Run build
 
 ```bash
@@ -94,7 +107,7 @@ sudo coreos-installer iso ignition embed \
   $DISK --force
 ```
 
-Append kargs for ChromeOS
+Append kargs for Chromebook
 
 ```bash
 sudo coreos-installer iso kargs modify $HOST.iso -a pci=nommconf

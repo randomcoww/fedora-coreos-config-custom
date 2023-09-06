@@ -360,6 +360,7 @@ packages:
   - sunshine
   - tailscale
   - iw
+  - gnome-power-manager
   # - libvirt-daemon-kvm libvirt-client virt-viewer
 
   # non-free
@@ -371,3 +372,4 @@ packages:
   - dymo-cups-drivers
   # https://www.reddit.com/r/Fedora/comments/ocn6ko/usb_tethering_with_ios_146_on_fedora/
   - libimobiledevice-utils usbmuxd
+  - alsa-sof-firmware
