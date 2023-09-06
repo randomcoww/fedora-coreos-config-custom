@@ -111,7 +111,7 @@ sudo lsof $DISK
 curl http://m.fuzzybunny.win/boot/$IMAGE.x86_64.iso --output coreos.iso
 curl $IGNITION_URL | coreos-installer iso ignition embed coreos.iso
 
-sudo dd if=coreos.iso of=$DISK bs=10M
+sudo dd if=coreos.iso of=$DISK bs=4M
 sync
 rm coreos.iso
 ```

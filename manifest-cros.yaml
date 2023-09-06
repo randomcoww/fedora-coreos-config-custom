@@ -3,12 +3,14 @@ include:
   - vrrp.yaml
   - kubernetes.yaml
   - desktop.yaml
-  - nvidia.yaml
 
 rojig:
   license: MIT
   name: fedora-silverblue
   summary: Fedora Silverblue
+
+ostree-layers:
+  - overlay/03cros
 
 default_target: graphical.target
 
