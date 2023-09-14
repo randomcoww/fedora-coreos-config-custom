@@ -54,7 +54,7 @@ cosa init -V $VARIANT --force https://github.com/randomcoww/fedora-coreos-config
 
 ### Build Nvidia kernel modules
 
-See [container-builds](https://github.com/randomcoww/container-builds/tree/master/nvidia-kmod)
+See [container-builds](https://github.com/randomcoww/container-builds/tree/master/nvidia-overlay)
 
 ### Hacks for Chromebook
 
