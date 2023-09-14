@@ -139,9 +139,3 @@ rm coreos.iso
 ```bash
 curl $IGNITION_URL | sudo coreos-installer iso ignition embed $DISK --force
 ```
-
-### Nvidia driver handling
-
-```bash
-https://gitlab.com/container-toolkit-fcos/driver/-/tree/fedora/fedora
-```
