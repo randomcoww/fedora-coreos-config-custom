@@ -360,7 +360,6 @@ packages:
   - sunshine
   - tailscale
   - iw
-  - gnome-power-manager
   # - libvirt-daemon-kvm libvirt-client virt-viewer
 
   # non-free
