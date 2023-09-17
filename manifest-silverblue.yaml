@@ -4,9 +4,7 @@ include:
   - kubernetes.yaml
   - desktop.yaml
   - nvidia.yaml
-
-ostree-layers:
-  # - overlay/03chromebook
+  # - chromebook.yaml
 
 rojig:
   license: MIT

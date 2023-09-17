@@ -25,3 +25,5 @@ exclude-packages:
   - python3
   - python3-libs
   - grubby
+  - NetworkManager-initscripts-ifcfg-rh
+  - NetworkManager

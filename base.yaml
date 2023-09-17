@@ -92,6 +92,7 @@ packages:
   - iproute-tc
   - nftables
   - socat
+  - wireless-regdb iw
 
   # custom
   - hostname
@@ -121,8 +122,8 @@ exclude-packages:
   - cowsay
   - initscripts
   - plymouth
-  - NetworkManager-initscripts-ifcfg-rh
-  - NetworkManager
+  # - NetworkManager-initscripts-ifcfg-rh
+  # - NetworkManager
   - PackageKit
 
 remove-from-packages:

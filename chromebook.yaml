@@ -1,0 +1,9 @@
+ostree-layers:
+  - overlay/03chromebook
+
+packages:
+  - alsa-sof-firmware
+  - NetworkManager
+  - NetworkManager-bluetooth
+  - NetworkManager-config-connectivity-fedora
+  - NetworkManager-wifi

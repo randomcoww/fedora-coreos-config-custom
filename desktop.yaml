@@ -5,6 +5,7 @@ repos:
   - rpmfusion-nonfree-updates
   - selfhosted
   - tailscale-stable
+  - kubernetes
 
 remove-from-packages:
   - [podman, /etc/cni/net.d/.*]
@@ -359,16 +360,13 @@ packages:
   - nmap
   - sunshine
   - tailscale
-  - iw
   # - libvirt-daemon-kvm libvirt-client virt-viewer
 
   # non-free
   - intel-media-driver
 
   # custom hardware
-  - wireless-regdb
   - opentabletdriver
   - dymo-cups-drivers
   # https://www.reddit.com/r/Fedora/comments/ocn6ko/usb_tethering_with_ios_146_on_fedora/
   - libimobiledevice-utils usbmuxd
-  - alsa-sof-firmware
