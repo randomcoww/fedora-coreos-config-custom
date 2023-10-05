@@ -16,8 +16,6 @@ mutate-os-release: "${releasever}"
 repos:
   - fedora
   - fedora-updates
-  - fedora-modular
-  - fedora-updates-modular
 
 recommends: false
 readonly-executables: true
