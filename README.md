@@ -62,11 +62,11 @@ Copy files for https://github.com/WeirdTreeThing/chromebook-linux-audio
 
 ```bash
 git clone https://github.com/WeirdTreeThing/chromebook-ucm-conf.git
-cp -r \
+sudo cp -r \
   chromebook-ucm-conf/adl/* \
   chromebook-ucm-conf/dmic-common \
   chromebook-ucm-conf/hdmi-common \
-  src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/conf.d/
+  $HOME/$VARIANT/src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/conf.d/
 ```
 
 ### Run build
