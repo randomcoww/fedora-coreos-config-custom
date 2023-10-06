@@ -40,6 +40,8 @@ check-groups:
   filename: "manifests/group"
 
 packages:
+  - fedora-repos-ostree
+  - fedora-repos-archive
   # system-configuration
   - chrony
   - coreos-installer coreos-installer-bootinfra
@@ -120,7 +122,7 @@ exclude-packages:
   - cowsay
   - initscripts
   - plymouth
-  # - NetworkManager-initscripts-ifcfg-rh
+  - NetworkManager-initscripts-ifcfg-rh
   # - NetworkManager
   - PackageKit
 
