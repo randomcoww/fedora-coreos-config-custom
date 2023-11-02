@@ -114,6 +114,12 @@ sudo coreos-installer iso kargs modify $HOST.iso -a pci=nommconf
 sudo coreos-installer iso kargs modify $HOST.iso -a snd-intel-dspcfg.dsp_driver=3
 ```
 
+Append kargs for server
+
+```bash
+sudo coreos-installer iso kargs modify $HOST.iso -a systemd.unit=multi-user.target
+```
+
 ### Update backup boot disk with current PXE boot image
 
 ```bash

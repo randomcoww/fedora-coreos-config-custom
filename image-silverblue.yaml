@@ -5,6 +5,7 @@ extra-kargs:
   - amd_iommu=on
   - iommu=pt
   - rd.driver.pre=vfio-pci
+  - numa=off
   - enforcing=0
   - rd.driver.blacklist=nouveau
   - modprobe.blacklist=nouveau
