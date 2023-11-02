@@ -110,14 +110,16 @@ sudo coreos-installer iso ignition embed \
 Append kargs for Chromebook
 
 ```bash
-sudo coreos-installer iso kargs modify $HOST.iso -a pci=nommconf
-sudo coreos-installer iso kargs modify $HOST.iso -a snd-intel-dspcfg.dsp_driver=3
+sudo coreos-installer iso kargs modify $HOST.iso \
+  -a pci=nommconf \
+  -a snd-intel-dspcfg.dsp_driver=3
 ```
 
 Append kargs for server
 
 ```bash
-sudo coreos-installer iso kargs modify $HOST.iso -a systemd.unit=multi-user.target
+sudo coreos-installer iso kargs modify $HOST.iso \
+  -a systemd.unit=multi-user.target
 ```
 
 ### Update backup boot disk with current PXE boot image
