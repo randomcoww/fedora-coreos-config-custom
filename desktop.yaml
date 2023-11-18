@@ -49,9 +49,7 @@ packages:
   # - NetworkManager-config-connectivity-fedora
   # - NetworkManager-wifi
   # - NetworkManager-wwan
-  - abattis-cantarell-vf-fonts
   - acl
-  # - adwaita-qt5
   - alsa-ucm
   - alsa-utils
   - amd-gpu-firmware
@@ -62,6 +60,7 @@ packages:
   - b43-openfwwf
   - basesystem
   - bash
+  - bash-color-prompt
   - bash-completion
   - bc
   # - bind-utils
@@ -82,6 +81,17 @@ packages:
   - curl
   # - cyrus-sasl-plain
   # - default-editor
+  - default-fonts-cjk-mono
+  - default-fonts-cjk-sans
+  - default-fonts-cjk-serif
+  - default-fonts-core-emoji
+  - default-fonts-core-math
+  - default-fonts-core-mono
+  - default-fonts-core-sans
+  - default-fonts-core-serif
+  - default-fonts-other-mono
+  - default-fonts-other-sans
+  - default-fonts-other-serif
   # - dhcp-client
   # - dnsmasq
   - e2fsprogs
@@ -90,7 +100,6 @@ packages:
   # - fedora-bookmarks
   # - fedora-chromium-config
   - fedora-flathub-remote
-  # - fedora-repos-modular
   # - fedora-workstation-backgrounds
   # - fedora-workstation-repositories
   - file
@@ -103,28 +112,7 @@ packages:
   - gamemode
   - glibc
   - glibc-all-langpacks
-  - glx-utils
   - gnupg2
-  - google-noto-emoji-color-fonts
-  - google-noto-naskh-arabic-vf-fonts
-  - google-noto-sans-arabic-vf-fonts
-  - google-noto-sans-armenian-vf-fonts
-  - google-noto-sans-canadian-aboriginal-vf-fonts
-  - google-noto-sans-cherokee-vf-fonts
-  - google-noto-sans-cjk-vf-fonts
-  - google-noto-sans-ethiopic-vf-fonts
-  - google-noto-sans-georgian-vf-fonts
-  - google-noto-sans-gurmukhi-vf-fonts
-  - google-noto-sans-hebrew-vf-fonts
-  - google-noto-sans-khmer-vf-fonts
-  - google-noto-sans-lao-vf-fonts
-  - google-noto-sans-math-fonts
-  - google-noto-sans-mono-vf-fonts
-  - google-noto-sans-sinhala-vf-fonts
-  - google-noto-sans-thaana-vf-fonts
-  - google-noto-sans-thai-vf-fonts
-  - google-noto-sans-vf-fonts
-  - google-noto-serif-vf-fonts
   - gstreamer1-plugin-libav
   - gstreamer1-plugins-bad-free
   - gstreamer1-plugins-good
@@ -147,51 +135,22 @@ packages:
   - iptables-nft
   - iptstate
   - iputils
-  - iwl100-firmware
-  - iwl1000-firmware
-  - iwl105-firmware
-  - iwl135-firmware
-  - iwl2000-firmware
-  - iwl2030-firmware
-  - iwl3160-firmware
-  - iwl3945-firmware
-  - iwl4965-firmware
-  - iwl5000-firmware
-  - iwl5150-firmware
-  - iwl6000-firmware
-  - iwl6000g2a-firmware
-  - iwl6000g2b-firmware
-  - iwl6050-firmware
-  - iwl7260-firmware
-  - iwlax2xx-firmware
-  - jomolhari-fonts
+  - iwlegacy-firmware
+  - iwlwifi-dvm-firmware
+  - iwlwifi-mvm-firmware
   - kbd
   - kernel
   - kernel-modules-extra
   - less
-  - liberation-mono-fonts
-  - liberation-sans-fonts
-  - liberation-serif-fonts
-  - libertas-usb8388-firmware
+  - libertas-firmware
   # - libglvnd-gles
   - linux-firmware
   # - logrotate
-  - lohit-assamese-fonts
-  - lohit-bengali-fonts
-  - lohit-devanagari-fonts
-  - lohit-gujarati-fonts
-  - lohit-kannada-fonts
-  - lohit-marathi-fonts
-  - lohit-odia-fonts
-  - lohit-tamil-fonts
-  - lohit-telugu-fonts
   - lrzsz
   - lsof
   - man-db
   - man-pages
   - mdadm
-  - mesa-dri-drivers
-  - mesa-vulkan-drivers
   - mpage
   - mt7xxx-firmware
   - mtr
@@ -204,7 +163,6 @@ packages:
   - opensc
   - openssh-clients
   - openssh-server
-  - paktype-naskh-basic-fonts
   - pam_afs_session
   - paps
   - passwd
@@ -223,7 +181,6 @@ packages:
   - procps-ng
   - psmisc
   - qemu-guest-agent
-  # - qgnomeplatform-qt5
   # - qt5-qtbase
   # - qt5-qtbase-gui
   # - qt5-qtdeclarative
@@ -231,7 +188,6 @@ packages:
   - quota
   - realmd
   - realtek-firmware
-  - rit-meera-new-fonts
   - rootfiles
   - rpm
   - rsync
@@ -239,16 +195,12 @@ packages:
   - selinux-policy-targeted
   - setup
   - shadow-utils
-  - sil-mingzat-fonts
-  - sil-nuosu-fonts
-  - sil-padauk-fonts
   # - sos
   # - spice-vdagent
   # - spice-webdavd
   # - sssd
   # - sssd-common
   # - sssd-kcm
-  - stix-fonts
   - sudo
   - system-config-printer-udev
   - systemd
@@ -264,7 +216,6 @@ packages:
   - usb_modeswitch
   - usbutils
   - util-linux
-  - vazirmatn-vf-fonts
   - vim-minimal
   - wget
   - which
@@ -272,17 +223,6 @@ packages:
   - wireplumber
   - words
   - wpa_supplicant
-  # - xorg-x11-drv-amdgpu
-  # - xorg-x11-drv-ati
-  # - xorg-x11-drv-evdev
-  # - xorg-x11-drv-fbdev
-  # - xorg-x11-drv-libinput
-  # - xorg-x11-drv-nouveau
-  # - xorg-x11-drv-qxl
-  # - xorg-x11-drv-wacom
-  # - xorg-x11-server-Xorg
-  # - xorg-x11-xauth
-  # - xorg-x11-xinit
   - zip
   - zram-generator-defaults
 
@@ -304,6 +244,7 @@ packages:
   - fprintd-pam
   - gdm
   - glib-networking
+  - glx-utils
   # - gnome-backgrounds
   - gnome-bluetooth
   # - gnome-browser-connector
@@ -321,7 +262,6 @@ packages:
   # - gnome-system-monitor
   - gnome-terminal
   - gnome-terminal-nautilus
-  # - gnome-themes-extra
   # - gnome-user-docs
   # - gnome-user-share
   - gvfs-afc
@@ -332,11 +272,11 @@ packages:
   - gvfs-gphoto2
   - gvfs-mtp
   # - gvfs-smb
-  - libproxy-duktape
   - librsvg2
   - libsane-hpaio
   - mesa-dri-drivers
   - mesa-libEGL
+  - mesa-vulkan-drivers
   - nautilus
   # - orca
   - polkit
