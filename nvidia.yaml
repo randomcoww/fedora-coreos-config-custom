@@ -5,8 +5,9 @@ repos:
   - nvidia
 
 remove-from-packages:
-  - [nvidia-driver-cuda-libs, /usr/lib64/libnvidia-encode.so.*]
-  - [nvidia-driver-NvFBCOpenGL, /usr/lib64/libnvidia-fbc.so.*]
+  # Add patched files
+  # - [nvidia-driver-cuda-libs, /usr/lib64/libnvidia-encode.so.*]
+  # - [nvidia-driver-NvFBCOpenGL, /usr/lib64/libnvidia-fbc.so.*]
 
 packages:
   - cuda-drivers
