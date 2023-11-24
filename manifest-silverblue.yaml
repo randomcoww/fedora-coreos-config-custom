@@ -15,3 +15,10 @@ default_target: graphical.target
 
 packages:
   - fedora-release-silverblue
+
+exclude-packages:
+  # - python3
+  # - python3-libs
+  # - perl-interpreter
+  # - grubby
+  - NetworkManager

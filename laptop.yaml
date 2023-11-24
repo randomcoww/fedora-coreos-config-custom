@@ -3,6 +3,7 @@ ostree-layers:
 
 packages:
   - alsa-sof-firmware
+  - tailscale
   - NetworkManager
   - NetworkManager-bluetooth
   - NetworkManager-config-connectivity-fedora

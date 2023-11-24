@@ -104,6 +104,15 @@ packages:
   - strace
   - kernel
 
+  # wifi firmware
+  - mt7xxx-firmware
+  - iwlegacy-firmware
+  - iwlwifi-dvm-firmware
+  - iwlwifi-mvm-firmware
+  - realtek-firmware
+  - atheros-firmware
+  - brcmfmac-firmware
+
 packages-x86_64:
   - irqbalance
   - thermald
