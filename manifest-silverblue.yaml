@@ -22,4 +22,4 @@ exclude-packages:
   # - perl-interpreter
   # - grubby
   - NetworkManager
-  - NetworkManager-libnm
+  # - NetworkManager-libnm
