@@ -10,6 +10,7 @@ remove-from-packages:
   # - [nvidia-driver-NvFBCOpenGL, /usr/lib64/libnvidia-fbc.so.*]
 
 packages:
+  - kmod-nvidia-open-dkms
   - cuda-drivers
   - nvidia-drivers
   - nvidia-container-runtime
