@@ -298,6 +298,7 @@ packages:
   - tmux xclip
   - kubectl helm
   - nmap
+  - sunshine
   # - libvirt-daemon-kvm libvirt-client virt-viewer
 
   # non-free
