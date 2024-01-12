@@ -13,8 +13,8 @@ COSA upstream with full instructions: https://github.com/coreos/coreos-assembler
 ### Update COSA image
 
 ```bash
-mkdir -p build
-TMPDIR=$(pwd)/build podman pull quay.io/coreos-assembler/coreos-assembler:latest
+mkdir -p tmp
+TMPDIR=$(pwd)/tmp podman pull quay.io/coreos-assembler/coreos-assembler:latest
 ```
 
 ```bash
