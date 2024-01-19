@@ -4,7 +4,7 @@ include:
   - kubernetes.yaml
   - desktop.yaml
   - nvidia.yaml
-  # - laptop.yaml
+  # - chromebook.yaml
 
 rojig:
   license: MIT

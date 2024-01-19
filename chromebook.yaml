@@ -1,6 +1,9 @@
 ostree-layers:
   - overlay/03chromebook
 
+remove-from-packages:
+  - [alsa-ucm, /usr/share/alsa/ucm2/common/pcm/split.conf]
+
 packages:
   - alsa-sof-firmware
   - tailscale

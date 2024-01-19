@@ -108,6 +108,29 @@ sudo cp -r \
   $HOME/$VARIANT/src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/
 ```
 
+Enable chromebook packages in `manifest-silverblue.yaml`
+
+```diff
+@@ -3,8 +3,8 @@ include:
+   - vrrp.yaml
+   - kubernetes.yaml
+   - desktop.yaml
+-  - nvidia.yaml
+-  # - laptop.yaml
++  # - nvidia.yaml
++  - chromebook.yaml
+
+ rojig:
+   license: MIT
+@@ -21,5 +21,5 @@ exclude-packages:
+   # - python3-libs
+   # - perl-interpreter
+   # - grubby
+-  - NetworkManager
++  # - NetworkManager
+   # - NetworkManager-libnm
+```
+
 ### Run build
 
 ```bash
