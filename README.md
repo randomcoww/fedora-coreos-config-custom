@@ -102,6 +102,16 @@ sudo cp -a usr/. $BUILD_PATH/src/config/overlay.d/02nvidia/usr/
 Copy files for https://github.com/WeirdTreeThing/chromebook-linux-audio
 
 ```bash
+git clone https://github.com/WeirdTreeThing/chromebook-linux-audio.git
+
+sudo cp -a \
+  chromebook-linux-audio/conf/sof/tplg/. \
+  $HOME/$VARIANT/src/config/overlay.d/03chromebook/usr/lib/firmware/intel/sof-tplg/
+
+sudo cp -a \
+  chromebook-linux-audio/conf/common/. \
+  $HOME/$VARIANT/src/config/overlay.d/03chromebook/etc/wireplumber/main.lua.d/
+
 git clone https://github.com/WeirdTreeThing/chromebook-ucm-conf.git
 
 sudo cp -a \
@@ -115,12 +125,6 @@ sudo cp -r \
   chromebook-ucm-conf/sof-rt5682 \
   chromebook-ucm-conf/sof-cs42l42 \
   $HOME/$VARIANT/src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/
-
-git clone https://github.com/WeirdTreeThing/chromebook-linux-audio.git
-
-sudo cp -r \
-  chromebook-linux-audio/conf/sof/tplg/* \
-  $HOME/$VARIANT/src/config/overlay.d/03chromebook/usr/lib/firmware/intel/sof-tplg/
 ```
 
 Enable chromebook packages in `manifest-silverblue.yaml`
