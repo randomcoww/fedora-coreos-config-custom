@@ -115,16 +115,13 @@ sudo cp -a \
 git clone https://github.com/WeirdTreeThing/chromebook-ucm-conf.git
 
 sudo cp -a \
-  chromebook-ucm-conf/adl/. \
-  $HOME/$VARIANT/src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/conf.d/
-
-sudo cp -r \
   chromebook-ucm-conf/common \
   chromebook-ucm-conf/codecs \
   chromebook-ucm-conf/platforms \
   $HOME/$VARIANT/src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/
 
-sudo cp -r \
+sudo cp -a \
+  chromebook-ucm-conf/adl/. \
   chromebook-ucm-conf/sof-rt5682 \
   chromebook-ucm-conf/sof-cs42l42 \
   $HOME/$VARIANT/src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/conf.d/
