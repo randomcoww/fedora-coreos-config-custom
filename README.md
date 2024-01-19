@@ -116,7 +116,7 @@ Enable chromebook packages in `manifest-silverblue.yaml`
    - kubernetes.yaml
    - desktop.yaml
 -  - nvidia.yaml
--  # - laptop.yaml
+-  # - chromebook.yaml
 +  # - nvidia.yaml
 +  - chromebook.yaml
 
