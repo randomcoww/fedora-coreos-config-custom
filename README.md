@@ -100,12 +100,19 @@ Copy files for https://github.com/WeirdTreeThing/chromebook-linux-audio
 
 ```bash
 git clone https://github.com/WeirdTreeThing/chromebook-ucm-conf.git
+
 sudo cp -r \
   chromebook-ucm-conf/adl/* \
-  $HOME/$VARIANT/src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/conf.d/ \
+
 sudo cp -r \
   chromebook-ucm-conf/common \
   $HOME/$VARIANT/src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/
+
+git clone https://github.com/WeirdTreeThing/chromebook-linux-audio.git
+
+sudo cp -r \
+  chromebook-linux-audio/conf/sof/tplg/* \
+  $HOME/$VARIANT/src/config/overlay.d/03chromebook/usr/lib/firmware/intel/sof-tplg/
 ```
 
 Enable chromebook packages in `manifest-silverblue.yaml`
