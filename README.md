@@ -49,6 +49,9 @@ export VARIANT=silverblue
 ### Fetch sources
 
 ```bash
+mkdir -p $HOME/$VARIANT
+cd $HOME/$VARIANT
+
 cosa init -V $VARIANT --force https://github.com/randomcoww/fedora-coreos-config-custom.git 
 ```
 
@@ -101,11 +104,16 @@ Copy files for https://github.com/WeirdTreeThing/chromebook-linux-audio
 ```bash
 git clone https://github.com/WeirdTreeThing/chromebook-ucm-conf.git
 
-sudo cp -r \
-  chromebook-ucm-conf/adl/* \
+sudo cp -a \
+  chromebook-ucm-conf/adl/. \
+  $HOME/$VARIANT/src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/conf.d/
 
 sudo cp -r \
   chromebook-ucm-conf/common \
+  chromebook-ucm-conf/codecs \
+  chromebook-ucm-conf/platforms \
+  chromebook-ucm-conf/sof-rt5682 \
+  chromebook-ucm-conf/sof-cs42l42 \
   $HOME/$VARIANT/src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/
 
 git clone https://github.com/WeirdTreeThing/chromebook-linux-audio.git
@@ -163,17 +171,6 @@ sudo coreos-installer iso ignition embed \
   -i $HOME/project/homelab/output/ignition/$HOST.ign \
   -o $HOST.iso \
   builds/latest/x86_64/fedora-$VARIANT-*-live.x86_64.iso
-```
-
-### Write to disk
-
-```bash
-export HOST=de-0
-export DISK=/dev/sda
-
-sudo coreos-installer iso ignition embed \
-  -i $HOME/project/homelab/output/ignition/$HOST.ign \
-  $DISK --force
 ```
 
 Append kargs for Chromebook
