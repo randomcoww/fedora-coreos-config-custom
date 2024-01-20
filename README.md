@@ -59,32 +59,6 @@ mkdir -p $BUILD_PATH && cd $BUILD_PATH
 cosa init -V $VARIANT --force https://github.com/randomcoww/fedora-coreos-config-custom.git
 ```
 
-### Build Nvidia kernel modules
-
-Kernel releases https://bodhi.fedoraproject.org/updates/?search=&packages=kernel&status=stable&releases=F39
-
-CUDA driver releases https://developer.download.nvidia.com/compute/cuda/repos/fedora37/x86_64/
-
-```bash
-KERNEL_VERSION=6.6.9-200.fc39.x86_64
-DRIVER_VERSION=545.23.08
-TAG=ghcr.io/randomcoww/nvidia-kmod:$KERNEL_VERSION
-
-mkdir -p tmp
-TMPDIR=$(pwd)/tmp podman build \
-  --build-arg KERNEL_VERSION=$KERNEL_VERSION \
-  --build-arg DRIVER_VERSION=$DRIVER_VERSION \
-  -f nvidia-overlay/kmod.Containerfile \
-  -t $TAG
-
-mkdir -p usr
-podman run --rm \
-  -v $(pwd)/usr:/mnt \
-  $TAG cp -r /opt/. /mnt
-
-sudo cp -a usr/. $BUILD_PATH/src/config/overlay.d/02nvidia/usr/
-```
-
 ### Run build
 
 ```bash
@@ -136,12 +110,31 @@ sync
 rm coreos.iso
 ```
 
+### Build Nvidia kernel modules into overlay
+
+Kernel releases https://bodhi.fedoraproject.org/updates/?search=&packages=kernel&status=stable&releases=F39
+
+CUDA driver releases https://developer.download.nvidia.com/compute/cuda/repos/fedora37/x86_64/
+
+```bash
+KERNEL_VERSION=6.6.11-200.fc39.x86_64
+DRIVER_VERSION=545.23.08
+OVERLAY_PATH=$(pwd)/overlay.d/02nvidia
+
+mkdir -p tmp
+TMPDIR=$(pwd)/tmp podman build \
+  --build-arg KERNEL_VERSION=$KERNEL_VERSION \
+  --build-arg DRIVER_VERSION=$DRIVER_VERSION \
+  -f nvidia-overlay/kmod.Containerfile \
+  -v $OVERLAY_PATH/usr:/opt
+```
+
 ### Populate hacks for Chromebook into overlay
 
 Copy files for https://github.com/WeirdTreeThing/chromebook-linux-audio
 
 ```bash
-OVERLAY_PATH=overlay.d/03chromebook
+OVERLAY_PATH=$(pwd)/overlay.d/03chromebook
 
 git clone https://github.com/WeirdTreeThing/chromebook-linux-audio.git
 git clone https://github.com/WeirdTreeThing/chromebook-ucm-conf.git
