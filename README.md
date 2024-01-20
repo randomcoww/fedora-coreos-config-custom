@@ -95,36 +95,6 @@ podman run --rm \
 sudo cp -a usr/. $BUILD_PATH/src/config/overlay.d/02nvidia/usr/
 ```
 
-### Hacks for Chromebook
-
-Copy files for https://github.com/WeirdTreeThing/chromebook-linux-audio
-
-```bash
-git clone https://github.com/WeirdTreeThing/chromebook-linux-audio.git
-
-sudo cp -a \
-  chromebook-linux-audio/conf/sof/tplg/. \
-  $BUILD_PATH/src/config/overlay.d/03chromebook/usr/lib/firmware/intel/sof-tplg/
-
-sudo cp -a \
-  chromebook-linux-audio/conf/common/. \
-  $BUILD_PATH/src/config/overlay.d/03chromebook/etc/wireplumber/main.lua.d/
-
-git clone https://github.com/WeirdTreeThing/chromebook-ucm-conf.git
-
-sudo cp -a \
-  chromebook-ucm-conf/common \
-  chromebook-ucm-conf/codecs \
-  chromebook-ucm-conf/platforms \
-  $BUILD_PATH/src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/
-
-sudo cp -a \
-  chromebook-ucm-conf/adl/. \
-  chromebook-ucm-conf/sof-rt5682 \
-  chromebook-ucm-conf/sof-cs42l42 \
-  $BUILD_PATH/src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/conf.d/
-```
-
 ### Run build
 
 ```bash
@@ -176,4 +146,37 @@ rm coreos.iso
 
 ```bash
 curl $IGNITION_URL | sudo coreos-installer iso ignition embed $DISK --force
+```
+
+### Populate hacks for Chromebook into overlay
+
+Copy files for https://github.com/WeirdTreeThing/chromebook-linux-audio
+
+```bash
+git clone https://github.com/WeirdTreeThing/chromebook-linux-audio.git
+git clone https://github.com/WeirdTreeThing/chromebook-ucm-conf.git
+
+mkdir -p overlay.d/03chromebook/usr/lib/firmware/intel/sof-tplg/
+cp -a \
+  chromebook-linux-audio/conf/sof/tplg/. \
+  overlay.d/03chromebook/usr/lib/firmware/intel/sof-tplg/
+
+mkdir -p overlay.d/03chromebook/etc/wireplumber/main.lua.d/
+cp -a \
+  chromebook-linux-audio/conf/common/. \
+  overlay.d/03chromebook/etc/wireplumber/main.lua.d/
+
+mkdir -p overlay.d/03chromebook/usr/share/alsa/ucm2/
+cp -a \
+  chromebook-ucm-conf/common \
+  chromebook-ucm-conf/codecs \
+  chromebook-ucm-conf/platforms \
+  overlay.d/03chromebook/usr/share/alsa/ucm2/
+
+mkdir -p overlay.d/03chromebook/usr/share/alsa/ucm2/conf.d/
+cp -a \
+  chromebook-ucm-conf/adl/. \
+  chromebook-ucm-conf/sof-rt5682 \
+  chromebook-ucm-conf/sof-cs42l42 \
+  overlay.d/03chromebook/usr/share/alsa/ucm2/conf.d/
 ```
