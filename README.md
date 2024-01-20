@@ -10,6 +10,14 @@ COSA upstream with full instructions: https://github.com/coreos/coreos-assembler
 * CoreOS packages: https://github.com/coreos/fedora-coreos-config.git
 * Silverblue packages: https://pagure.io/workstation-ostree-config.git
 
+### Checkout
+
+```bash
+git clone --recurse-submodules git@github.com:randomcoww/fedora-coreos-config-custom.git
+cd fedora-coreos-config-custom
+git submodule update --remote
+```
+
 ### Update COSA image
 
 ```bash
