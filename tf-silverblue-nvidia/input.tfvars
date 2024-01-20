@@ -23,4 +23,11 @@ exclude_packages = [
   "PackageKit",
 ]
 image_base = "image-base"
-image = "image-nvidia"
+image_params = {
+  size = 4
+  extra-kargs = [
+    "rd.driver.blacklist=nouveau",
+    "modprobe.blacklist=nouveau",
+    "nvidia_drm.modeset=1",
+  ]
+}

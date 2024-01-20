@@ -24,4 +24,6 @@ exclude_packages = [
   "PackageKit",
 ]
 image_base = "image-base"
-image = "image-coreos"
+image_params = {
+  size = 1
+}

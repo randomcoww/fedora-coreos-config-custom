@@ -577,27 +577,6 @@ locals {
       ostree-remote             = "fedora"
       compressor                = "xz"
     }
-
-    image-coreos = {
-      size = 1
-    }
-
-    image-nvidia = {
-      size = 4
-      extra-kargs = [
-        "rd.driver.blacklist=nouveau",
-        "modprobe.blacklist=nouveau",
-        "nvidia_drm.modeset=1",
-      ]
-    }
-
-    image-chromebook = {
-      size = 4
-      extra-kargs = [
-        "pci=nommconf",
-        "snd-intel-dspcfg.dsp_driver=3",
-      ]
-    }
   }
 }
 
@@ -613,14 +592,14 @@ variable "exclude_packages" {
   default = []
 }
 
-variable "image" {
-  type    = string
-  default = "image-coreos"
-}
-
 variable "image_base" {
   type    = string
   default = "image-base"
+}
+
+variable "image_params" {
+  type    = any
+  default = {}
 }
 
 resource "local_file" "manifests" {
@@ -642,7 +621,7 @@ resource "local_file" "manifests" {
 
 resource "local_file" "image" {
   filename = "${path.module}/../image.yaml"
-  content = yamlencode(merge(local.snippets[var.image], {
+  content = yamlencode(merge(var.image_params, {
     include = "${var.image_base}.yaml"
   }))
 }

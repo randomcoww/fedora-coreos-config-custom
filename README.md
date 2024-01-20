@@ -47,9 +47,7 @@ cosa init --force https://github.com/randomcoww/fedora-coreos-config-custom.git
 
 ```bash
 cd $BUILD_PATH/src/config
-```
 
-```bash
 tw() {
   set -x
   podman run -it --rm --security-opt label=disable \
@@ -62,7 +60,7 @@ tw() {
 }
 ```
 
-Run one of
+Run one of:
 
 ```bash
 tw terraform -chdir=tf-coreos init && \

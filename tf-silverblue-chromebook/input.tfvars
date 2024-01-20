@@ -20,4 +20,10 @@ exclude_packages = [
   "PackageKit",
 ]
 image_base = "image-base"
-image = "image-chromebook"
+image_params = {
+  size = 4
+  extra-kargs = [
+    "pci=nommconf",
+    "snd-intel-dspcfg.dsp_driver=3",
+  ]
+}
