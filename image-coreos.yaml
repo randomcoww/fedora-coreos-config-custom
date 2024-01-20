@@ -1,9 +1,8 @@
 size: 1
 
 extra-kargs:
-  - intel_iommu=on
-  - amd_iommu=on
   - iommu=pt
+  - amd_iommu=pt
   - rd.driver.pre=vfio-pci
   - numa=off
   - enforcing=0
