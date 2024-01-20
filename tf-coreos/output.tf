@@ -14,14 +14,14 @@ resource "local_file" "manifests" {
     manifest = merge(local.coreos_release, {
       include = [
         for f in keys(local.manifest) :
-        "${f}-${var.variant}.yaml"
+        "${f}.yaml"
       ]
     })
   }, {
     image = merge(local.coreos_image, {
-      include = "${keys(local.image)[0]}-${var.variant}.yaml"
+      include = "${keys(local.image)[0]}.yaml"
     })
   })
   content  = yamlencode(each.value)
-  filename = "${path.module}/../${each.key}-${var.variant}.yaml"
+  filename = "${path.module}/../${each.key}.yaml"
 }

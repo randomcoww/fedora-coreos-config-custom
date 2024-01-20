@@ -1,6 +1,0 @@
-"extra-kargs":
-- "rd.driver.blacklist=nouveau"
-- "modprobe.blacklist=nouveau"
-- "nvidia_drm.modeset=1"
-"include": "image-base-silverblue-nvidia.yaml"
-"size": 4

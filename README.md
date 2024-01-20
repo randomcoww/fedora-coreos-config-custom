@@ -34,23 +34,45 @@ cosa() {
 }
 ```
 
-### Set build variant to one of
-
-```bash
-export VARIANT=coreos
-export VARIANT=silverblue-nvidia
-export VARIANT=silverblue-chromebook
-```
-
-### Render 
-
 ### Fetch sources
 
 ```bash
-mkdir -p $HOME/$VARIANT
-cd $HOME/$VARIANT
+BUILD_PATH=$HOME/cosa
+mkdir -p $BUILD_PATH && cd $BUILD_PATH
 
-cosa init -V $VARIANT --force https://github.com/randomcoww/fedora-coreos-config-custom.git
+cosa init --force https://github.com/randomcoww/fedora-coreos-config-custom.git
+```
+
+### Render manifests
+
+```bash
+cd $BUILD_PATH/src/config
+```
+
+```bash
+tw() {
+  set -x
+  podman run -it --rm --security-opt label=disable \
+    --entrypoint='' \
+    -v $(pwd):$(pwd) \
+    -w $(pwd) \
+    --net=host \
+    docker.io/hashicorp/terraform:1.4.7 "$@"
+  rc=$?; set +x; return $rc
+}
+```
+
+Run one of
+
+```bash
+tw terraform -chdir=tf-coreos init && \
+tw terraform -chdir=tf-coreos apply -var="variant=coreos"
+
+tw terraform -chdir=tf-silverblue-nvidia init && \
+tw terraform -chdir=tf-silverblue-nvidia apply -var="variant=silverblue-nvidia"
+
+tw terraform -chdir=tf-silverblue-chromebook init && \
+tw terraform -chdir=tf-silverblue-chromebook apply -var="variant=silverblue-chromebook"
 ```
 
 ### Build Nvidia kernel modules
@@ -59,7 +81,6 @@ cosa init -V $VARIANT --force https://github.com/randomcoww/fedora-coreos-config
 KERNEL_VERSION=6.6.9-200.fc39.x86_64
 DRIVER_VERSION=545.23.08
 TAG=ghcr.io/randomcoww/nvidia-kmod:$KERNEL_VERSION
-BUILD_PATH=$HOME/$VARIANT
 
 mkdir -p tmp
 TMPDIR=$(pwd)/tmp podman build \
@@ -85,11 +106,11 @@ git clone https://github.com/WeirdTreeThing/chromebook-linux-audio.git
 
 sudo cp -a \
   chromebook-linux-audio/conf/sof/tplg/. \
-  $HOME/$VARIANT/src/config/overlay.d/03chromebook/usr/lib/firmware/intel/sof-tplg/
+  $BUILD_PATH/src/config/overlay.d/03chromebook/usr/lib/firmware/intel/sof-tplg/
 
 sudo cp -a \
   chromebook-linux-audio/conf/common/. \
-  $HOME/$VARIANT/src/config/overlay.d/03chromebook/etc/wireplumber/main.lua.d/
+  $BUILD_PATH/src/config/overlay.d/03chromebook/etc/wireplumber/main.lua.d/
 
 git clone https://github.com/WeirdTreeThing/chromebook-ucm-conf.git
 
@@ -97,13 +118,13 @@ sudo cp -a \
   chromebook-ucm-conf/common \
   chromebook-ucm-conf/codecs \
   chromebook-ucm-conf/platforms \
-  $HOME/$VARIANT/src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/
+  $BUILD_PATH/src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/
 
 sudo cp -a \
   chromebook-ucm-conf/adl/. \
   chromebook-ucm-conf/sof-rt5682 \
   chromebook-ucm-conf/sof-cs42l42 \
-  $HOME/$VARIANT/src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/conf.d/
+  $BUILD_PATH/src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/conf.d/
 ```
 
 ### Run build
@@ -157,28 +178,4 @@ rm coreos.iso
 
 ```bash
 curl $IGNITION_URL | sudo coreos-installer iso ignition embed $DISK --force
-```
-
-### Render manifests
-
-```bash
-tw() {
-  set -x
-  podman run -it --rm --security-opt label=disable \
-    --entrypoint='' \
-    -v $(pwd):$(pwd) \
-    -w $(pwd) \
-    --net=host \
-    docker.io/hashicorp/terraform:1.4.7 "$@"
-  rc=$?; set +x; return $rc
-}
-```
-
-```bash
-tw terraform -chdir=tf-coreos apply \
-  -var="variant=coreos"
-tw terraform -chdir=tf-silverblue-nvidia apply \
-  -var="variant=silverblue-nvidia"
-tw terraform -chdir=tf-silverblue-chromebook apply \
-  -var="variant=silverblue-chromebook"
 ```
