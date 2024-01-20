@@ -5,6 +5,7 @@ manifests = [
   "nvidia",
   "kvm",
   "desktop-environment",
+  "sunshine",
   "release-silverblue",
 ]
 exclude_packages = [

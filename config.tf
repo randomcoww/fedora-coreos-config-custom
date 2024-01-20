@@ -206,12 +206,24 @@ locals {
     }
 
     laptop = {
+      repos = [
+        "tailscale-stable",
+      ]
       packages = [
         "NetworkManager",
         "NetworkManager-bluetooth",
         "NetworkManager-config-connectivity-fedora",
         "NetworkManager-wifi",
         "tailscale",
+      ]
+    }
+
+    sunshine = {
+      repos = [
+        "selfhosted",
+      ]
+      packages = [
+        "sunshine",
       ]
     }
 
@@ -236,7 +248,6 @@ locals {
         "rpmfusion-nonfree",
         "rpmfusion-nonfree-updates",
         "selfhosted",
-        "tailscale-stable",
         "kubernetes",
       ]
       packages = yamldecode(
@@ -514,7 +525,6 @@ locals {
   - tmux xclip
   - kubectl helm
   - nmap
-  - sunshine
 
 ## peripheral support
   - opentabletdriver
