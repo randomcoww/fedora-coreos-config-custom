@@ -155,6 +155,7 @@ locals {
         ["haproxy", "/etc/haproxy/haproxy.cfg"],
       ]
       packages = [
+        "keepalived",
         "haproxy",
         "conntrack-tools",
       ]
