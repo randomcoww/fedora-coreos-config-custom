@@ -136,10 +136,6 @@ sync
 rm coreos.iso
 ```
 
-```bash
-curl $IGNITION_URL | sudo coreos-installer iso ignition embed $DISK --force
-```
-
 ### Populate hacks for Chromebook into overlay
 
 Copy files for https://github.com/WeirdTreeThing/chromebook-linux-audio
