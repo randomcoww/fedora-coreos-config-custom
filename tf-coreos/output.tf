@@ -19,10 +19,7 @@ resource "local_file" "manifests" {
     })
   }, {
     image = merge(local.coreos_image, {
-      include = [
-        for f in keys(local.image) :
-        "${f}-${var.variant}.yaml"
-      ]
+      include = "${keys(local.image)[0]}-${var.variant}.yaml"
     })
   })
   content  = yamlencode(each.value)

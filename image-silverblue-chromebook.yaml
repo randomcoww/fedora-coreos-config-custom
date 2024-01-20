@@ -1,6 +1,5 @@
 "extra-kargs":
 - "pci=nommconf"
 - "snd-intel-dspcfg.dsp_driver=3"
-"include":
-- "image-base-silverblue-chromebook.yaml"
+"include": "image-base-silverblue-chromebook.yaml"
 "size": 4

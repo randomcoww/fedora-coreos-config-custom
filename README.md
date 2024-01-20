@@ -50,7 +50,7 @@ export VARIANT=silverblue-chromebook
 mkdir -p $HOME/$VARIANT
 cd $HOME/$VARIANT
 
-cosa init --force https://github.com/randomcoww/fedora-coreos-config-custom.git 
+cosa init -V $VARIANT --force https://github.com/randomcoww/fedora-coreos-config-custom.git
 ```
 
 ### Build Nvidia kernel modules

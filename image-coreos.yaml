@@ -1,3 +1,2 @@
-"include":
-- "image-base-coreos.yaml"
+"include": "image-base-coreos.yaml"
 "size": 1
