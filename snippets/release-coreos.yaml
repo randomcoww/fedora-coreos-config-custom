@@ -1,6 +1,9 @@
 releasever: "39"
 ref: fedora/${releasever}/${basearch}/coreos
 
+automatic-version-prefix: "${releasever}.<date:%Y%m%d>"
+mutate-os-release: "${releasever}"
+
 documentation: false
 
 rojig:

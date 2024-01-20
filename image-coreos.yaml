@@ -1,3 +1,2 @@
-include:
-  - snippets/image-base.yaml
+include: snippets/image-base.yaml
 size: 1

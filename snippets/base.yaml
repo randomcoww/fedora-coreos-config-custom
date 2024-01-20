@@ -1,12 +1,5 @@
-ref: fedora/${releasever}/${basearch}/coreos
-include:
-  - manifests/ignition-and-ostree.yaml
-
 ostree-layers:
   - overlay/01custom
-
-automatic-version-prefix: "${releasever}.<date:%Y%m%d>"
-mutate-os-release: "${releasever}"
 
 repos:
   - fedora
@@ -26,13 +19,6 @@ etc-group-members:
   - wheel
   - input
   - video
-
-check-passwd:
-  type: "file"
-  filename: "manifests/passwd"
-check-groups:
-  type: "file"
-  filename: "manifests/group"
 
 packages:
   - fedora-repos-ostree
@@ -98,6 +84,7 @@ packages:
   - rsync
   - strace
   - kernel
+  - irqbalance
 
   # wifi firmware
   - mt7xxx-firmware
@@ -109,18 +96,7 @@ packages:
   - brcmfmac-firmware
 
 packages-x86_64:
-  - irqbalance
   - thermald
-packages-aarch64:
-  - irqbalance
 
 remove-from-packages:
   - [dbus-common, /usr/lib/sysusers.d/dbus.conf]
-
-arch-include:
-  x86_64:
-    - manifests/grub2-removals.yaml
-    - manifests/bootupd.yaml
-  aarch64:
-    - manifests/grub2-removals.yaml
-    - manifests/bootupd.yaml
