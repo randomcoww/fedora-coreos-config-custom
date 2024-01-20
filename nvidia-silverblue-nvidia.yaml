@@ -1,0 +1,11 @@
+"ostree-layers":
+- "overlay/02nvidia"
+"packages":
+- "kmod-nvidia-open-dkms"
+- "cuda-drivers"
+- "nvidia-drivers"
+- "nvidia-container-runtime"
+- "nvidia-vaapi-driver"
+"remove-from-packages": []
+"repos":
+- "nvidia"

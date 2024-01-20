@@ -2,3 +2,7 @@ tmp
 nvidia-overlay/usr
 chromebook-ucm-conf
 chromebook-linux-audio
+.terraform
+.terraform.*
+*.tfstate
+*.tfstate.*

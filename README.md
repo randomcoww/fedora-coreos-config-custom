@@ -34,17 +34,15 @@ cosa() {
 }
 ```
 
-### Set build variant
+### Set build variant to one of
 
 ```bash
 export VARIANT=coreos
+export VARIANT=silverblue-nvidia
+export VARIANT=silverblue-chromebook
 ```
 
-or
-
-```bash
-export VARIANT=silverblue
-```
+### Render 
 
 ### Fetch sources
 
@@ -52,7 +50,7 @@ export VARIANT=silverblue
 mkdir -p $HOME/$VARIANT
 cd $HOME/$VARIANT
 
-cosa init -V $VARIANT --force https://github.com/randomcoww/fedora-coreos-config-custom.git 
+cosa init --force https://github.com/randomcoww/fedora-coreos-config-custom.git 
 ```
 
 ### Build Nvidia kernel modules
@@ -68,25 +66,6 @@ TMPDIR=$(pwd)/tmp podman build \
   --build-arg KERNEL_VERSION=$KERNEL_VERSION \
   --build-arg DRIVER_VERSION=$DRIVER_VERSION \
   -f nvidia-overlay/kmod.Containerfile \
-  -t $TAG
-
-mkdir -p usr
-podman run --rm \
-  -v $(pwd)/usr:/mnt \
-  $TAG cp -r /opt/. /mnt
-
-sudo cp -a usr/. $BUILD_PATH/src/config/overlay.d/02nvidia/usr/
-```
-
-### Patched Nvidia libs
-
-```bash
-TAG=ghcr.io/randomcoww/nvidia-patch:latest
-BUILD_PATH=$HOME/$VARIANT
-
-mkdir -p tmp
-TMPDIR=$(pwd)/tmp podman build \
-  -f nvidia-overlay/patch.Containerfile \
   -t $TAG
 
 mkdir -p usr
@@ -127,29 +106,6 @@ sudo cp -a \
   $HOME/$VARIANT/src/config/overlay.d/03chromebook/usr/share/alsa/ucm2/conf.d/
 ```
 
-Enable chromebook packages in `manifest-silverblue.yaml`
-
-```diff
-@@ -3,8 +3,8 @@ include:
-   - vrrp.yaml
-   - kubernetes.yaml
-   - desktop.yaml
--  - nvidia.yaml
--  # - chromebook.yaml
-+  # - nvidia.yaml
-+  - chromebook.yaml
-
- rojig:
-   license: MIT
-@@ -21,5 +21,5 @@ exclude-packages:
-   # - python3-libs
-   # - perl-interpreter
-   # - grubby
--  - NetworkManager
-+  # - NetworkManager
-   # - NetworkManager-libnm
-```
-
 ### Run build
 
 ```bash
@@ -177,21 +133,6 @@ sudo coreos-installer iso ignition embed \
   builds/latest/x86_64/fedora-$VARIANT-*-live.x86_64.iso
 ```
 
-Append kargs for Chromebook
-
-```bash
-sudo coreos-installer iso kargs modify $HOST.iso \
-  -a pci=nommconf \
-  -a snd-intel-dspcfg.dsp_driver=3
-```
-
-Append kargs for server
-
-```bash
-sudo coreos-installer iso kargs modify $HOST.iso \
-  -a systemd.unit=multi-user.target
-```
-
 ### Update backup boot disk with current PXE boot image
 
 ```bash
@@ -216,4 +157,28 @@ rm coreos.iso
 
 ```bash
 curl $IGNITION_URL | sudo coreos-installer iso ignition embed $DISK --force
+```
+
+### Render manifests
+
+```bash
+tw() {
+  set -x
+  podman run -it --rm --security-opt label=disable \
+    --entrypoint='' \
+    -v $(pwd):$(pwd) \
+    -w $(pwd) \
+    --net=host \
+    docker.io/hashicorp/terraform:1.4.7 "$@"
+  rc=$?; set +x; return $rc
+}
+```
+
+```bash
+tw terraform -chdir=tf-coreos apply \
+  -var="variant=coreos"
+tw terraform -chdir=tf-silverblue-nvidia apply \
+  -var="variant=silverblue-nvidia"
+tw terraform -chdir=tf-silverblue-chromebook apply \
+  -var="variant=silverblue-chromebook"
 ```

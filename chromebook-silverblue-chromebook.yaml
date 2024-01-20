@@ -1,0 +1,16 @@
+"ostree-layers":
+- "overlay/03chromebook"
+"packages":
+- "alsa-sof-firmware"
+- "tailscale"
+- "NetworkManager"
+- "NetworkManager-bluetooth"
+- "NetworkManager-config-connectivity-fedora"
+- "NetworkManager-wifi"
+"remove-from-packages":
+- - "alsa-ucm"
+  - "/usr/share/alsa/ucm2/common/pcm/split.conf"
+- - "alsa-ucm"
+  - "/usr/share/alsa/ucm2/codecs/hda/hdmi.conf"
+- - "alsa-sof-firmware"
+  - "/usr/lib/firmware/intel/sof-tplg/sof-rpl-rt711.tplg.xz"

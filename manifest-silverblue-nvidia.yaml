@@ -1,0 +1,13 @@
+"default-target": "graphical.target"
+"include":
+- "base-silverblue-nvidia.yaml"
+- "desktop-environment-silverblue-nvidia.yaml"
+- "kubernetes-silverblue-nvidia.yaml"
+- "nvidia-silverblue-nvidia.yaml"
+- "vrrp-silverblue-nvidia.yaml"
+"packages":
+- "fedora-release-silverblue"
+"rojig":
+  "license": "MIT"
+  "name": "fedora-silverblue"
+  "summary": "Fedora Silverblue"

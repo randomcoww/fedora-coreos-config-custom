@@ -1,0 +1,9 @@
+"compressor": "xz"
+"extra-kargs":
+- "iommu=pt"
+- "amd_iommu=pt"
+- "rd.driver.pre=vfio-pci"
+- "numa=off"
+- "enforcing=0"
+"ignition-network-kcmdline": []
+"ostree-remote": "fedora"

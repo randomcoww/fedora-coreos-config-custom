@@ -1,29 +1,16 @@
-include:
-  - base.yaml
-  - vrrp.yaml
-  - kubernetes.yaml
-
-documentation: false
-
-rojig:
-  license: MIT
-  name: fedora-coreos
-  summary: Fedora CoreOS
-
-default-target: multi-user.target
-
-remove-files:
-  - usr/share/info
-  - usr/share/man
-  - usr/share/doc
-
-packages:
-  - fedora-release-coreos
-
-exclude-packages:
-  - perl-interpreter
-  - python3
-  - python3-libs
-  - grubby
-  - NetworkManager
-  - NetworkManager-libnm
+"default-target": "multi-user.target"
+"documentation": false
+"include":
+- "base-coreos.yaml"
+- "kubernetes-coreos.yaml"
+- "vrrp-coreos.yaml"
+"packages":
+- "fedora-release-coreos"
+"remove-files":
+- "usr/share/info"
+- "usr/share/man"
+- "usr/share/doc"
+"rojig":
+  "license": "MIT"
+  "name": "fedora-coreos"
+  "summary": "Fedora CoreOS"

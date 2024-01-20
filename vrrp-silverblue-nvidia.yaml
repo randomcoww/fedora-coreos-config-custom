@@ -1,0 +1,12 @@
+"packages":
+- "haproxy"
+- "conntrack-tools"
+"remove-from-packages":
+- - "conntrack-tools"
+  - "/etc/conntrackd/conntrackd.conf"
+- - "keepalived"
+  - "/etc/keepalived/keepalived.conf"
+- - "haproxy"
+  - "/etc/haproxy/haproxy.cfg"
+"repos":
+- "selfhosted"
