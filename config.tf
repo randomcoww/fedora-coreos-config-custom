@@ -189,7 +189,9 @@ locals {
     ]
     packages = [
       "containernetworking-plugins",
-      "cri-o cri-tools kubelet",
+      "cri-o",
+      "cri-tools",
+      "kubelet",
       "conntrack-tools",
     ]
   }

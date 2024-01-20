@@ -10,7 +10,6 @@ locals {
         "NetworkManager-libnm",
       ])
     })
-    vrrp = local.vrrp
     kubernetes = local.kubernetes
     chromebook = local.chromebook
     desktop-environment = local.desktop_environment

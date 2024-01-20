@@ -4,7 +4,6 @@
 - "chromebook-silverblue-chromebook.yaml"
 - "desktop-environment-silverblue-chromebook.yaml"
 - "kubernetes-silverblue-chromebook.yaml"
-- "vrrp-silverblue-chromebook.yaml"
 "packages":
 - "fedora-release-silverblue"
 "rojig":
