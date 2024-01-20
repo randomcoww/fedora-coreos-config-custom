@@ -102,6 +102,8 @@ sudo cp -a usr/. $BUILD_PATH/src/config/overlay.d/02nvidia/usr/
 ### Run build
 
 ```bash
+cd $BUILD_PATH
+
 cosa clean && \
 cosa fetch && \
 cosa build metal4k && \
