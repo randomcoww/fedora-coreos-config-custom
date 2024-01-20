@@ -145,34 +145,36 @@ curl $IGNITION_URL | sudo coreos-installer iso ignition embed $DISK --force
 Copy files for https://github.com/WeirdTreeThing/chromebook-linux-audio
 
 ```bash
+OVERLAY_PATH=overlay.d/03chromebook
+
 git clone https://github.com/WeirdTreeThing/chromebook-linux-audio.git
 git clone https://github.com/WeirdTreeThing/chromebook-ucm-conf.git
 
-mkdir -p overlay.d/03chromebook/usr/lib/firmware/intel/sof-tplg/
+mkdir -p $OVERLAY_PATH/usr/lib/firmware/intel/sof-tplg/
 cp -a \
   chromebook-linux-audio/conf/sof/tplg/. \
-  overlay.d/03chromebook/usr/lib/firmware/intel/sof-tplg/
+  $OVERLAY_PATH/usr/lib/firmware/intel/sof-tplg/
 
-mkdir -p overlay.d/03chromebook/etc/wireplumber/main.lua.d/
+mkdir -p $OVERLAY_PATH/etc/wireplumber/main.lua.d/
 cp -a \
   chromebook-linux-audio/conf/common/. \
-  overlay.d/03chromebook/etc/wireplumber/main.lua.d/
+  $OVERLAY_PATH/etc/wireplumber/main.lua.d/
 
-mkdir -p overlay.d/03chromebook/usr/share/alsa/ucm2/
+mkdir -p $OVERLAY_PATH/usr/share/alsa/ucm2/
 cp -a \
   chromebook-ucm-conf/common \
   chromebook-ucm-conf/codecs \
   chromebook-ucm-conf/platforms \
-  overlay.d/03chromebook/usr/share/alsa/ucm2/
+  $OVERLAY_PATH/usr/share/alsa/ucm2/
 
-mkdir -p overlay.d/03chromebook/usr/share/alsa/ucm2/conf.d/
+mkdir -p $OVERLAY_PATH/usr/share/alsa/ucm2/conf.d/
 cp -a \
   chromebook-ucm-conf/adl/. \
   chromebook-ucm-conf/sof-rt5682 \
   chromebook-ucm-conf/sof-cs42l42 \
-  overlay.d/03chromebook/usr/share/alsa/ucm2/conf.d/
+  $OVERLAY_PATH/usr/share/alsa/ucm2/conf.d/
 
-mkdir -p overlay.d/03chromebook/usr/lib/firmware/intel/sof-tplg
+mkdir -p $OVERLAY_PATH/usr/lib/firmware/intel/sof-tplg
 for t in \
 cs35l41 max98357a-rt5682-4ch max98357a-rt5682 max98360a-cs42l42 max98360a-nau8825 \
 max98360a-rt5682-2way max98360a-rt5682-4ch max98360a-rt5682 max98373-nau8825 \
@@ -180,6 +182,6 @@ max98390-rt5682 max98390-ssp2-rt5682-ssp0 nau8825 rt1019-nau8825 rt1019-rt5682 r
 rt711 sdw-max98373-rt5682;
 do
   ln -sf sof-adl-${t}.tplg.xz \
-    overlay.d/03chromebook/usr/lib/firmware/intel/sof-tplg/sof-rpl-${t}.tplg.xz;
+    $OVERLAY_PATH/usr/lib/firmware/intel/sof-tplg/sof-rpl-${t}.tplg.xz;
 done
 ```
