@@ -1,9 +1,8 @@
 manifests = [
   "base",
-  "vrrp",
   "kubernetes",
-  "nvidia",
-  "kvm",
+  "laptop",
+  "chromebook",
   "desktop-environment",
   "release-silverblue",
 ]
@@ -21,4 +20,4 @@ exclude_packages = [
   "PackageKit",
 ]
 image_base = "image-base"
-image = "image-nvidia"
+image = "image-chromebook"

@@ -2,7 +2,10 @@ manifests = [
   "base",
   "vrrp",
   "kubernetes",
-  "release-coreos",
+  "nvidia",
+  "kvm",
+  "desktop-environment",
+  "release-silverblue",
 ]
 exclude_packages = [
   "python",
@@ -19,4 +22,4 @@ exclude_packages = [
   "PackageKit",
 ]
 image_base = "image-base"
-image = "image-coreos"
+image = "image-nvidia"
