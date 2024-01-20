@@ -66,13 +66,13 @@ Run one of
 
 ```bash
 tw terraform -chdir=tf-coreos init && \
-tw terraform -chdir=tf-coreos apply
+tw terraform -chdir=tf-coreos apply -var-file="input.tfvars"
 
 tw terraform -chdir=tf-silverblue-nvidia init && \
-tw terraform -chdir=tf-silverblue-nvidia apply
+tw terraform -chdir=tf-silverblue-nvidia apply -var-file="input.tfvars"
 
 tw terraform -chdir=tf-silverblue-chromebook init && \
-tw terraform -chdir=tf-silverblue-chromebook apply
+tw terraform -chdir=tf-silverblue-chromebook apply -var-file="input.tfvars"
 ```
 
 ### Build Nvidia kernel modules

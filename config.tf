@@ -1,265 +1,246 @@
 locals {
-  base = {
-    releasever = "39"
-    ref        = "fedora/$${releasever}/$${basearch}/coreos"
-    include = [
-      "manifests/ignition-and-ostree.yaml"
-    ]
-    ostree-layers = [
-      "overlay/01custom"
-    ]
-    automatic-version-prefix = "$${releasever}.<date:%Y%m%d>"
-    mutate-os-release        = "$${releasever}"
-    repos = [
-      "fedora",
-      "fedora-updates",
-    ]
-    recommends           = false
-    readonly-executables = true
-    ignore-removed-users = [
-      "root",
-    ]
-    ignore-removed-groups = [
-      "root",
-    ]
-    etc-group-members = [
-      "sudo",
-      "systemd-journal",
-      "adm",
-      "wheel",
-      "input",
-      "video",
-    ]
-    check-passwd = {
-      type     = "file"
-      filename = "manifests/passwd"
-    }
-    check-groups = {
-      type     = "file"
-      filename = "manifests/group"
-    }
-    packages = [
-      "fedora-repos-ostree",
-      "fedora-repos-archive",
-
-      # system-configuration
-      "chrony",
-      "coreos-installer",
-      "coreos-installer-bootinfra",
-      "cloud-utils-growpart",
-      "cryptsetup",
-      "device-mapper-multipath",
-      "e2fsprogs",
-      "lvm2",
-      "mdadm",
-      "sg3_utils",
-      "xfsprogs",
-      "passwd",
-      "shadow-utils",
-      "acl",
-      "selinux-policy-targeted",
-
-      # user-experience
-      "bash-completion",
-      "coreutils",
-      "jq",
-      "less",
-      "sudo",
-      "vim-minimal",
-      "bsdtar",
-      "bzip2",
-      "gzip",
-      "tar",
-      "xz",
-      "zstd",
-      "openssh-clients",
-      "openssh-server",
-      "crun",
-      "criu",
-      "criu-libs",
-      "nvme-cli",
-
-      # fedora-coreos-base
-      "iptables-nft",
-      "btrfs-progs",
-      "sssd-client",
-      "attr",
-      "openssl",
-      "lsof",
-      "ncurses",
-      "kbd",
-      "zram-generator",
-      "systemd-resolved",
-      "amd-gpu-firmware",
-      "intel-gpu-firmware",
-      "nvidia-gpu-firmware",
-
-      # networking-tools
-      "iproute-tc",
-      "nftables",
-      "socat",
-      "wireless-regdb",
-      "iw",
-
-      # custom
-      "hostname",
-      "systemd-networkd",
-      "ssh-key-dir",
-      "ldns-utils",
-      "pciutils",
-      "rsync",
-      "strace",
-      "kernel",
-
-      # wifi firmware
-      "mt7xxx-firmware",
-      "iwlegacy-firmware",
-      "iwlwifi-dvm-firmware",
-      "iwlwifi-mvm-firmware",
-      "realtek-firmware",
-      "atheros-firmware",
-      "brcmfmac-firmware",
-    ]
-
-    packages-x86_64 = [
-      "irqbalance",
-      "thermald",
-    ]
-    packages-aarch64 = [
-      "irqbalance",
-    ]
-    exclude-packages = [
-      "python",
-      "python2",
-      "python2-libs",
-      "python3",
-      "python3-libs",
-      "perl",
-      "perl-interpreter",
-      "nodejs",
-      "dnf",
-      "grubby",
-      "cowsay",
-      "initscripts",
-      "plymouth",
-      "NetworkManager",
-      "NetworkManager-libnm",
-      "NetworkManager-initscripts-ifcfg-rh",
-      "PackageKit",
-    ]
-
-    remove-from-packages = [
-      ["dbus-common", "/usr/lib/sysusers.d/dbus.conf"],
-      ["podman", "/etc/cni/net.d/.*"],
-    ]
-    arch-include = {
-      x86_64 = [
-        "manifests/grub2-removals.yaml",
-        "manifests/bootupd.yaml",
+  snippets = {
+    base = {
+      releasever = "39"
+      ref        = "fedora/$${releasever}/$${basearch}/coreos"
+      include = [
+        "manifests/ignition-and-ostree.yaml"
       ]
-      aarch64 = [
-        "manifests/grub2-removals.yaml",
-        "manifests/bootupd.yaml",
+      ostree-layers = [
+        "overlay/01custom"
+      ]
+      automatic-version-prefix = "$${releasever}.<date:%Y%m%d>"
+      mutate-os-release        = "$${releasever}"
+      repos = [
+        "fedora",
+        "fedora-updates",
+      ]
+      recommends           = false
+      readonly-executables = true
+      ignore-removed-users = [
+        "root",
+      ]
+      ignore-removed-groups = [
+        "root",
+      ]
+      etc-group-members = [
+        "sudo",
+        "systemd-journal",
+        "adm",
+        "wheel",
+        "input",
+        "video",
+      ]
+      check-passwd = {
+        type     = "file"
+        filename = "manifests/passwd"
+      }
+      check-groups = {
+        type     = "file"
+        filename = "manifests/group"
+      }
+      packages = [
+        "fedora-repos-ostree",
+        "fedora-repos-archive",
+
+        # system-configuration
+        "chrony",
+        "coreos-installer",
+        "coreos-installer-bootinfra",
+        "cloud-utils-growpart",
+        "cryptsetup",
+        "device-mapper-multipath",
+        "e2fsprogs",
+        "lvm2",
+        "mdadm",
+        "sg3_utils",
+        "xfsprogs",
+        "passwd",
+        "shadow-utils",
+        "acl",
+        "selinux-policy-targeted",
+
+        # user-experience
+        "bash-completion",
+        "coreutils",
+        "jq",
+        "less",
+        "sudo",
+        "vim-minimal",
+        "bsdtar",
+        "bzip2",
+        "gzip",
+        "tar",
+        "xz",
+        "zstd",
+        "openssh-clients",
+        "openssh-server",
+        "crun",
+        "criu",
+        "criu-libs",
+        "nvme-cli",
+
+        # fedora-coreos-base
+        "iptables-nft",
+        "btrfs-progs",
+        "sssd-client",
+        "attr",
+        "openssl",
+        "lsof",
+        "ncurses",
+        "kbd",
+        "zram-generator",
+        "systemd-resolved",
+        "amd-gpu-firmware",
+        "intel-gpu-firmware",
+        "nvidia-gpu-firmware",
+
+        # networking-tools
+        "iproute-tc",
+        "nftables",
+        "socat",
+        "wireless-regdb",
+        "iw",
+
+        # custom
+        "hostname",
+        "systemd-networkd",
+        "ssh-key-dir",
+        "ldns-utils",
+        "pciutils",
+        "rsync",
+        "strace",
+        "kernel",
+
+        # wifi firmware
+        "mt7xxx-firmware",
+        "iwlegacy-firmware",
+        "iwlwifi-dvm-firmware",
+        "iwlwifi-mvm-firmware",
+        "realtek-firmware",
+        "atheros-firmware",
+        "brcmfmac-firmware",
+      ]
+
+      packages-x86_64 = [
+        "irqbalance",
+        "thermald",
+      ]
+      packages-aarch64 = [
+        "irqbalance",
+      ]
+      remove-from-packages = [
+        ["dbus-common", "/usr/lib/sysusers.d/dbus.conf"],
+        ["podman", "/etc/cni/net.d/.*"],
+      ]
+      arch-include = {
+        x86_64 = [
+          "manifests/grub2-removals.yaml",
+          "manifests/bootupd.yaml",
+        ]
+        aarch64 = [
+          "manifests/grub2-removals.yaml",
+          "manifests/bootupd.yaml",
+        ]
+      }
+    }
+
+    vrrp = {
+      repos = [
+        "selfhosted",
+      ]
+      remove-from-packages = [
+        ["conntrack-tools", "/etc/conntrackd/conntrackd.conf"],
+        ["keepalived", "/etc/keepalived/keepalived.conf"],
+        ["haproxy", "/etc/haproxy/haproxy.cfg"],
+      ]
+      packages = [
+        "haproxy",
+        "conntrack-tools",
       ]
     }
-  }
 
-  vrrp = {
-    repos = [
-      "selfhosted",
-    ]
-    remove-from-packages = [
-      ["conntrack-tools", "/etc/conntrackd/conntrackd.conf"],
-      ["keepalived", "/etc/keepalived/keepalived.conf"],
-      ["haproxy", "/etc/haproxy/haproxy.cfg"],
-    ]
-    packages = [
-      "haproxy",
-      "conntrack-tools",
-    ]
-  }
+    kubernetes = {
+      repos = [
+        "kubernetes",
+      ]
+      remove-from-packages = [
+        ["cri-o", "/etc/cni/net.d/.*"],
+        ["conntrack-tools", "/etc/conntrackd/conntrackd.conf"],
+      ]
+      packages = [
+        "containernetworking-plugins",
+        "cri-o",
+        "cri-tools",
+        "kubelet",
+        "conntrack-tools",
+      ]
+    }
 
-  kubernetes = {
-    repos = [
-      "kubernetes",
-    ]
-    remove-from-packages = [
-      ["cri-o", "/etc/cni/net.d/.*"],
-      ["conntrack-tools", "/etc/conntrackd/conntrackd.conf"],
-    ]
-    packages = [
-      "containernetworking-plugins",
-      "cri-o",
-      "cri-tools",
-      "kubelet",
-      "conntrack-tools",
-    ]
-  }
+    nvidia = {
+      ostree-layers = [
+        "overlay/02nvidia",
+      ]
+      repos = [
+        "nvidia",
+      ]
+      remove-from-packages = [
+        # ["nvidia-driver-cuda-libs", "/usr/lib64/libnvidia-encode.so.*"],
+        # ["nvidia-driver-NvFBCOpenGL", "/usr/lib64/libnvidia-fbc.so.*"],
+      ]
+      packages = [
+        "kmod-nvidia-open-dkms",
+        "cuda-drivers",
+        "nvidia-drivers",
+        "nvidia-container-runtime",
+        "nvidia-vaapi-driver",
+      ]
+    }
 
-  nvidia = {
-    ostree-layers = [
-      "overlay/02nvidia",
-    ]
-    repos = [
-      "nvidia",
-    ]
-    remove-from-packages = [
-      # ["nvidia-driver-cuda-libs", "/usr/lib64/libnvidia-encode.so.*"],
-      # ["nvidia-driver-NvFBCOpenGL", "/usr/lib64/libnvidia-fbc.so.*"],
-    ]
-    packages = [
-      "kmod-nvidia-open-dkms",
-      "cuda-drivers",
-      "nvidia-drivers",
-      "nvidia-container-runtime",
-      "nvidia-vaapi-driver",
-    ]
-  }
+    kvm = {
+      packages = [
+        "libvirt-daemon-kvm",
+        "libvirt-client",
+        "virt-viewer",
+      ]
+    }
 
-  kvm = {
-    packages = [
-      "libvirt-daemon-kvm",
-      "libvirt-client",
-      "virt-viewer",
-    ]
-  }
+    laptop = {
+      packages = [
+        "NetworkManager",
+        "NetworkManager-bluetooth",
+        "NetworkManager-config-connectivity-fedora",
+        "NetworkManager-wifi",
+        "tailscale",
+      ]
+    }
 
-  laptop = {
-    packages = [
-      "NetworkManager",
-      "NetworkManager-bluetooth",
-      "NetworkManager-config-connectivity-fedora",
-      "NetworkManager-wifi",
-      "tailscale",
-    ]
-  }
+    chromebook = {
+      ostree-layers = [
+        "overlay/03chromebook"
+      ]
+      remove-from-packages = [
+        ["alsa-ucm", "/usr/share/alsa/ucm2/common/pcm/split.conf"],
+        ["alsa-ucm", "/usr/share/alsa/ucm2/codecs/hda/hdmi.conf"],
+        ["alsa-sof-firmware", "/usr/lib/firmware/intel/sof-tplg/sof-rpl-rt711.tplg.xz"],
+      ]
+      packages = [
+        "alsa-sof-firmware",
+      ]
+    }
 
-  chromebook = {
-    ostree-layers = [
-      "overlay/03chromebook"
-    ]
-    remove-from-packages = [
-      ["alsa-ucm", "/usr/share/alsa/ucm2/common/pcm/split.conf"],
-      ["alsa-ucm", "/usr/share/alsa/ucm2/codecs/hda/hdmi.conf"],
-      ["alsa-sof-firmware", "/usr/lib/firmware/intel/sof-tplg/sof-rpl-rt711.tplg.xz"],
-    ]
-    packages = [
-      "alsa-sof-firmware",
-    ]
-  }
-
-  desktop_environment = {
-    repos = [
-      "rpmfusion-free",
-      "rpmfusion-free-updates",
-      "rpmfusion-nonfree",
-      "rpmfusion-nonfree-updates",
-      "selfhosted",
-      "tailscale-stable",
-      "kubernetes",
-    ]
-    packages = yamldecode(
-      <<EOF
+    desktop-environment = {
+      repos = [
+        "rpmfusion-free",
+        "rpmfusion-free-updates",
+        "rpmfusion-nonfree",
+        "rpmfusion-nonfree-updates",
+        "selfhosted",
+        "tailscale-stable",
+        "kubernetes",
+      ]
+      packages = yamldecode(
+        <<EOF
 ## from fedora-common-ostree.yaml
   - git-core
   - git-core-doc
@@ -540,71 +521,118 @@ locals {
   - dymo-cups-drivers
   # https://www.reddit.com/r/Fedora/comments/ocn6ko/usb_tethering_with_ios_146_on_fedora/
   - libimobiledevice-utils usbmuxd
-EOF
-    )
-  }
-
-  coreos_release = {
-    documentation = false
-    rojig = {
-      license = "MIT"
-      name    = "fedora-coreos"
-      summary = "Fedora CoreOS"
+  EOF
+      )
     }
-    default-target = "multi-user.target"
-    remove-files = [
-      "usr/share/info",
-      "usr/share/man",
-      "usr/share/doc",
-    ]
-    packages = [
-      "fedora-release-coreos",
-    ]
-  }
 
-  silverblue_release = {
-    rojig = {
-      license = "MIT"
-      name    = "fedora-silverblue"
-      summary = "Fedora Silverblue"
+    release-coreos = {
+      documentation = false
+      rojig = {
+        license = "MIT"
+        name    = "fedora-coreos"
+        summary = "Fedora CoreOS"
+      }
+      default-target = "multi-user.target"
+      remove-files = [
+        "usr/share/info",
+        "usr/share/man",
+        "usr/share/doc",
+      ]
+      packages = [
+        "fedora-release-coreos",
+      ]
     }
-    default-target = "graphical.target"
-    packages = [
-      "fedora-release-silverblue",
-    ]
-  }
 
-  image_base = {
-    extra-kargs = [
-      "iommu=pt",
-      "amd_iommu=pt",
-      "rd.driver.pre=vfio-pci",
-      "numa=off",
-      "enforcing=0",
-    ]
-    ignition-network-kcmdline = []
-    ostree-remote             = "fedora"
-    compressor                = "xz"
-  }
+    release-silverblue = {
+      rojig = {
+        license = "MIT"
+        name    = "fedora-silverblue"
+        summary = "Fedora Silverblue"
+      }
+      default-target = "graphical.target"
+      packages = [
+        "fedora-release-silverblue",
+      ]
+    }
 
-  coreos_image = {
-    size = 1
-  }
+    image-base = {
+      extra-kargs = [
+        "iommu=pt",
+        "amd_iommu=pt",
+        "rd.driver.pre=vfio-pci",
+        "numa=off",
+        "enforcing=0",
+      ]
+      ignition-network-kcmdline = []
+      ostree-remote             = "fedora"
+      compressor                = "xz"
+    }
 
-  nvidia_image = {
-    size = 4
-    extra-kargs = [
-      "rd.driver.blacklist=nouveau",
-      "modprobe.blacklist=nouveau",
-      "nvidia_drm.modeset=1",
-    ]
-  }
+    image-coreos = {
+      size = 1
+    }
 
-  chromebook_image = {
-    size = 4
-    extra-kargs = [
-      "pci=nommconf",
-      "snd-intel-dspcfg.dsp_driver=3",
-    ]
+    image-nvidia = {
+      size = 4
+      extra-kargs = [
+        "rd.driver.blacklist=nouveau",
+        "modprobe.blacklist=nouveau",
+        "nvidia_drm.modeset=1",
+      ]
+    }
+
+    image-chromebook = {
+      size = 4
+      extra-kargs = [
+        "pci=nommconf",
+        "snd-intel-dspcfg.dsp_driver=3",
+      ]
+    }
   }
+}
+
+## variables, output
+
+variable "manifests" {
+  type    = list(string)
+  default = []
+}
+
+variable "exclude_packages" {
+  type    = list(string)
+  default = []
+}
+
+variable "image" {
+  type    = string
+  default = "image-coreos"
+}
+
+variable "image_base" {
+  type    = string
+  default = "image-base"
+}
+
+resource "local_file" "manifests" {
+  for_each = merge({
+    for k in concat(var.manifests, [var.image_base]) :
+    k => local.snippets[k]
+    }, {
+    "manifest" = {
+      include = [
+        for k in var.manifests :
+        "${k}.yaml"
+      ]
+      exclude-packages = var.exclude_packages
+    }
+  })
+  filename = "${path.module}/../${each.key}.yaml"
+  content  = yamlencode(each.value)
+}
+
+resource "local_file" "image" {
+  filename = "${path.module}/../image.yaml"
+  content = yamlencode(merge(local.snippets[var.image], {
+    include = "${var.image_base}.yaml"
+  }))
 }
