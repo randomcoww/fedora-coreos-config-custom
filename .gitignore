@@ -1,5 +1,5 @@
 tmp
-nvidia-overlay/usr
+nvidia-overlay
 chromebook-ucm-conf
 chromebook-linux-audio
 .terraform
