@@ -75,6 +75,10 @@ tw terraform -chdir=tf-silverblue-chromebook apply -var-file="input.tfvars"
 
 ### Build Nvidia kernel modules
 
+Kernel releases https://bodhi.fedoraproject.org/updates/?search=&packages=kernel&status=stable&releases=F39
+
+CUDA driver releases https://developer.download.nvidia.com/compute/cuda/repos/fedora37/x86_64/
+
 ```bash
 KERNEL_VERSION=6.6.9-200.fc39.x86_64
 DRIVER_VERSION=545.23.08
