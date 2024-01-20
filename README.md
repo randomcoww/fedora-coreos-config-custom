@@ -183,4 +183,15 @@ cp -a \
   chromebook-ucm-conf/sof-rt5682 \
   chromebook-ucm-conf/sof-cs42l42 \
   overlay.d/03chromebook/usr/share/alsa/ucm2/conf.d/
+
+mkdir -p overlay.d/03chromebook/usr/lib/firmware/intel/sof-tplg
+for t in \
+cs35l41 max98357a-rt5682-4ch max98357a-rt5682 max98360a-cs42l42 max98360a-nau8825 \
+max98360a-rt5682-2way max98360a-rt5682-4ch max98360a-rt5682 max98373-nau8825 \
+max98390-rt5682 max98390-ssp2-rt5682-ssp0 nau8825 rt1019-nau8825 rt1019-rt5682 rt5682 \
+rt711 sdw-max98373-rt5682;
+do
+  ln -sf sof-adl-${t}.tplg.xz \
+    overlay.d/03chromebook/usr/lib/firmware/intel/sof-tplg/sof-rpl-${t}.tplg.xz;
+done
 ```
