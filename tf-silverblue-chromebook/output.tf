@@ -10,8 +10,9 @@ locals {
         "NetworkManager-libnm",
       ])
     })
-    kubernetes = local.kubernetes
-    chromebook = local.chromebook
+    kubernetes          = local.kubernetes
+    laptop              = local.laptop
+    chromebook          = local.chromebook
     desktop-environment = local.desktop_environment
   }
   image = {
@@ -27,7 +28,7 @@ resource "local_file" "manifests" {
         "${f}.yaml"
       ]
     })
-  }, {
+    }, {
     image = merge(local.chromebook_image, {
       include = "${keys(local.image)[0]}.yaml"
     })

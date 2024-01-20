@@ -66,13 +66,13 @@ Run one of
 
 ```bash
 tw terraform -chdir=tf-coreos init && \
-tw terraform -chdir=tf-coreos apply -var="variant=coreos"
+tw terraform -chdir=tf-coreos apply
 
 tw terraform -chdir=tf-silverblue-nvidia init && \
-tw terraform -chdir=tf-silverblue-nvidia apply -var="variant=silverblue-nvidia"
+tw terraform -chdir=tf-silverblue-nvidia apply
 
 tw terraform -chdir=tf-silverblue-chromebook init && \
-tw terraform -chdir=tf-silverblue-chromebook apply -var="variant=silverblue-chromebook"
+tw terraform -chdir=tf-silverblue-chromebook apply
 ```
 
 ### Build Nvidia kernel modules
@@ -140,7 +140,7 @@ cosa buildextend-live
 ### Upload images for PXE boot
 
 ```bash
-mc cp -r --disable-multipart builds/latest/x86_64/fedora-$VARIANT-*-live* m/boot/
+mc cp -r --disable-multipart builds/latest/x86_64/fedora-*-live* m/boot/
 ```
 
 ### Write ISO image
@@ -151,7 +151,7 @@ export HOST=de-0
 sudo coreos-installer iso ignition embed \
   -i $HOME/project/homelab/output/ignition/$HOST.ign \
   -o $HOST.iso \
-  builds/latest/x86_64/fedora-$VARIANT-*-live.x86_64.iso
+  builds/latest/x86_64/fedora-*-live.x86_64.iso
 ```
 
 ### Update backup boot disk with current PXE boot image

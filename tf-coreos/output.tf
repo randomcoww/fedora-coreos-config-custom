@@ -1,7 +1,7 @@
 locals {
   manifest = {
-    base = local.base
-    vrrp = local.vrrp
+    base       = local.base
+    vrrp       = local.vrrp
     kubernetes = local.kubernetes
   }
   image = {
@@ -17,7 +17,7 @@ resource "local_file" "manifests" {
         "${f}.yaml"
       ]
     })
-  }, {
+    }, {
     image = merge(local.coreos_image, {
       include = "${keys(local.image)[0]}.yaml"
     })

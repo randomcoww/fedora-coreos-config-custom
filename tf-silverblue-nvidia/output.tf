@@ -9,9 +9,10 @@ locals {
         "NetworkManager-libnm",
       ])
     })
-    vrrp = local.vrrp
-    kubernetes = local.kubernetes
-    nvidia = local.nvidia
+    vrrp                = local.vrrp
+    kubernetes          = local.kubernetes
+    nvidia              = local.nvidia
+    kvm                 = local.kvm
     desktop-environment = local.desktop_environment
   }
   image = {
@@ -27,7 +28,7 @@ resource "local_file" "manifests" {
         "${f}.yaml"
       ]
     })
-  }, {
+    }, {
     image = merge(local.nvidia_image, {
       include = "${keys(local.image)[0]}.yaml"
     })

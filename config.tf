@@ -1,7 +1,7 @@
 locals {
   base = {
     releasever = "39"
-    ref = "fedora/$${releasever}/$${basearch}/coreos"
+    ref        = "fedora/$${releasever}/$${basearch}/coreos"
     include = [
       "manifests/ignition-and-ostree.yaml"
     ]
@@ -9,12 +9,12 @@ locals {
       "overlay/01custom"
     ]
     automatic-version-prefix = "$${releasever}.<date:%Y%m%d>"
-    mutate-os-release = "$${releasever}"
+    mutate-os-release        = "$${releasever}"
     repos = [
       "fedora",
       "fedora-updates",
     ]
-    recommends = false
+    recommends           = false
     readonly-executables = true
     ignore-removed-users = [
       "root",
@@ -31,18 +31,18 @@ locals {
       "video",
     ]
     check-passwd = {
-      type = "file"
+      type     = "file"
       filename = "manifests/passwd"
     }
     check-groups = {
-      type = "file"
+      type     = "file"
       filename = "manifests/group"
     }
     packages = [
       "fedora-repos-ostree",
       "fedora-repos-archive",
 
-    # system-configuration
+      # system-configuration
       "chrony",
       "coreos-installer",
       "coreos-installer-bootinfra",
@@ -59,7 +59,7 @@ locals {
       "acl",
       "selinux-policy-targeted",
 
-    # user-experience
+      # user-experience
       "bash-completion",
       "coreutils",
       "jq",
@@ -79,7 +79,7 @@ locals {
       "criu-libs",
       "nvme-cli",
 
-    # fedora-coreos-base
+      # fedora-coreos-base
       "iptables-nft",
       "btrfs-progs",
       "sssd-client",
@@ -94,14 +94,14 @@ locals {
       "intel-gpu-firmware",
       "nvidia-gpu-firmware",
 
-    # networking-tools
+      # networking-tools
       "iproute-tc",
       "nftables",
       "socat",
       "wireless-regdb",
       "iw",
 
-    # custom
+      # custom
       "hostname",
       "systemd-networkd",
       "ssh-key-dir",
@@ -111,7 +111,7 @@ locals {
       "strace",
       "kernel",
 
-    # wifi firmware
+      # wifi firmware
       "mt7xxx-firmware",
       "iwlegacy-firmware",
       "iwlwifi-dvm-firmware",
@@ -216,6 +216,24 @@ locals {
     ]
   }
 
+  kvm = {
+    packages = [
+      "libvirt-daemon-kvm",
+      "libvirt-client",
+      "virt-viewer",
+    ]
+  }
+
+  laptop = {
+    packages = [
+      "NetworkManager",
+      "NetworkManager-bluetooth",
+      "NetworkManager-config-connectivity-fedora",
+      "NetworkManager-wifi",
+      "tailscale",
+    ]
+  }
+
   chromebook = {
     ostree-layers = [
       "overlay/03chromebook"
@@ -227,11 +245,6 @@ locals {
     ]
     packages = [
       "alsa-sof-firmware",
-      "tailscale",
-      "NetworkManager",
-      "NetworkManager-bluetooth",
-      "NetworkManager-config-connectivity-fedora",
-      "NetworkManager-wifi",
     ]
   }
 
@@ -246,303 +259,287 @@ locals {
       "kubernetes",
     ]
     packages = yamldecode(
-<<EOF
+      <<EOF
 ## from fedora-common-ostree.yaml
-# Do not include "full" Git as it brings in Perl
-- git-core
-# Explicitely add Git docs
-- git-core-doc
-- lvm2
-# - rpm-ostree
-# Required for compatibility with old bootloaders until we have bootupd
-# See https://github.com/fedora-silverblue/issue-tracker/issues/120
-# - ostree-grub2
-# Container management
-- buildah
-- podman
-- skopeo
-- toolbox
-# Provides terminal tools like clear, reset, tput, and tset
-- ncurses
-# Flatpak support
-- flatpak
-- xdg-desktop-portal
-# HFS filesystem tools for Apple hardware
-# See https://github.com/projectatomic/rpm-ostree/issues/1380
-# - hfsplus-tools
-# Contains default ostree remote config to be used on client's
-# system for fetching ostree update
-# - fedora-repos-ostree
-# the archive repo for more reliable package layering
-# https://github.com/coreos/fedora-coreos-tracker/issues/400
-# - fedora-repos-archive
+  - git-core
+  - git-core-doc
+  - lvm2
+  # - rpm-ostree
+  # - ostree-grub2
+  - buildah
+  - podman
+  - skopeo
+  - toolbox
+  - ncurses
+  - flatpak
+  - xdg-desktop-portal
+  # - hfsplus-tools
+  # - fedora-repos-ostree
+  # - fedora-repos-archive
 
 ## from fedora-common-ostree-pkgs.yaml
-# - NetworkManager
-# - NetworkManager-bluetooth
-# - NetworkManager-config-connectivity-fedora
-# - NetworkManager-wifi
-# - NetworkManager-wwan
-- acl
-- alsa-ucm
-- alsa-utils
-- amd-gpu-firmware
-- atheros-firmware
-- attr
-# - audit
-- b43-fwcutter
-- b43-openfwwf
-- basesystem
-- bash
-- bash-color-prompt
-- bash-completion
-- bc
-# - bind-utils
-- bluez-cups
-- brcmfmac-firmware
-- btrfs-progs
-- bzip2
-- chrony
-# - cifs-utils
-- colord
-- compsize
-- coreutils
-- cpio
-- cryptsetup
-- cups
-- cups-browsed
-- cups-filters
-- curl
-# - cyrus-sasl-plain
-# - default-editor
-- default-fonts-cjk-mono
-- default-fonts-cjk-sans
-- default-fonts-cjk-serif
-- default-fonts-core-emoji
-- default-fonts-core-math
-- default-fonts-core-mono
-- default-fonts-core-sans
-- default-fonts-core-serif
-- default-fonts-other-mono
-- default-fonts-other-sans
-- default-fonts-other-serif
-# - dhcp-client
-# - dnsmasq
-- e2fsprogs
-- ethtool
-- exfatprogs
-# - fedora-bookmarks
-# - fedora-chromium-config
-- fedora-flathub-remote
-# - fedora-workstation-backgrounds
-# - fedora-workstation-repositories
-- file
-- filesystem
-# - firefox
-# - firewalld
-# - fpaste
-# - fros-gnome
-- fwupd
-- gamemode
-- glibc
-- glibc-all-langpacks
-- gnupg2
-- gstreamer1-plugin-libav
-- gstreamer1-plugins-bad-free
-- gstreamer1-plugins-good
-- gstreamer1-plugins-ugly-free
-- gutenprint
-- gutenprint-cups
-- hostname
-- hplip
-- hunspell
-- ibus-anthy
-- ibus-gtk3
-- ibus-gtk4
-- ibus-hangul
-- ibus-libpinyin
-- ibus-libzhuyin
-- ibus-m17n
-- ibus-typing-booster
-- intel-gpu-firmware
-# - iproute
-- iptables-nft
-- iptstate
-- iputils
-- iwlegacy-firmware
-- iwlwifi-dvm-firmware
-- iwlwifi-mvm-firmware
-- kbd
-- kernel
-- kernel-modules-extra
-- less
-- libertas-firmware
-# - libglvnd-gles
-- linux-firmware
-# - logrotate
-- lrzsz
-- lsof
-- man-db
-- man-pages
-- mdadm
-- mpage
-- mt7xxx-firmware
-- mtr
-# - nfs-utils
-- nss-altfiles
-- nss-mdns
-# - ntfs-3g
-# - ntfsprogs
-- nvidia-gpu-firmware
-- opensc
-- openssh-clients
-- openssh-server
-- pam_afs_session
-- paps
-- passwd
-- passwdqc
-- pciutils
-- pinfo
-- pipewire-alsa
-- pipewire-gstreamer
-- pipewire-pulseaudio
-- pipewire-utils
-- plocate
-# - plymouth
-# - plymouth-system-theme
-- policycoreutils
-# - policycoreutils-python-utils
-- procps-ng
-- psmisc
-- qemu-guest-agent
-# - qt5-qtbase
-# - qt5-qtbase-gui
-# - qt5-qtdeclarative
-# - qt5-qtxmlpatterns
-- quota
-- realmd
-- realtek-firmware
-- rootfiles
-- rpm
-- rsync
-# - samba-client
-- selinux-policy-targeted
-- setup
-- shadow-utils
-# - sos
-# - spice-vdagent
-# - spice-webdavd
-# - sssd
-# - sssd-common
-# - sssd-kcm
-- sudo
-- system-config-printer-udev
-- systemd
-- systemd-oomd-defaults
-- systemd-resolved
-- systemd-udev
-- tar
-- time
-- toolbox
-- tree
-- unzip
-- uresourced
-- usb_modeswitch
-- usbutils
-- util-linux
-- vim-minimal
-- wget
-- which
-- whois
-- wireplumber
-- words
-- wpa_supplicant
-- zip
-- zram-generator-defaults
+  # - NetworkManager
+  # - NetworkManager-bluetooth
+  # - NetworkManager-config-connectivity-fedora
+  # - NetworkManager-wifi
+  # - NetworkManager-wwan
+  - acl
+  - alsa-ucm
+  - alsa-utils
+  - amd-gpu-firmware
+  - atheros-firmware
+  - attr
+  # - audit
+  - b43-fwcutter
+  - b43-openfwwf
+  - basesystem
+  - bash
+  - bash-color-prompt
+  - bash-completion
+  - bc
+  # - bind-utils
+  - bluez-cups
+  - brcmfmac-firmware
+  - btrfs-progs
+  - bzip2
+  # - chrony
+  # - cifs-utils
+  - colord
+  - compsize
+  - coreutils
+  - cpio
+  - cryptsetup
+  - cups
+  - cups-browsed
+  - cups-filters
+  - curl
+  # - cyrus-sasl-plain
+  # - default-editor
+  - default-fonts-cjk-mono
+  - default-fonts-cjk-sans
+  - default-fonts-cjk-serif
+  - default-fonts-core-emoji
+  - default-fonts-core-math
+  - default-fonts-core-mono
+  - default-fonts-core-sans
+  - default-fonts-core-serif
+  - default-fonts-other-mono
+  - default-fonts-other-sans
+  - default-fonts-other-serif
+  # - dhcp-client
+  # - dnsmasq
+  - e2fsprogs
+  - ethtool
+  - exfatprogs
+  # - fedora-bookmarks
+  # - fedora-chromium-config
+  - fedora-flathub-remote
+  # - fedora-workstation-backgrounds
+  # - fedora-workstation-repositories
+  - file
+  - filesystem
+  # - firefox
+  # - firewalld
+  # - fpaste
+  # - fros-gnome
+  - fwupd
+  - gamemode
+  - glibc
+  - glibc-all-langpacks
+  - gnupg2
+  - gstreamer1-plugin-libav
+  - gstreamer1-plugins-bad-free
+  - gstreamer1-plugins-good
+  - gstreamer1-plugins-ugly-free
+  - gutenprint
+  - gutenprint-cups
+  - hostname
+  - hplip
+  - hunspell
+  - ibus-anthy
+  - ibus-gtk3
+  - ibus-gtk4
+  - ibus-hangul
+  - ibus-libpinyin
+  - ibus-libzhuyin
+  - ibus-m17n
+  - ibus-typing-booster
+  - intel-gpu-firmware
+  # - iproute
+  - iptables-nft
+  - iptstate
+  - iputils
+  - iwlegacy-firmware
+  - iwlwifi-dvm-firmware
+  - iwlwifi-mvm-firmware
+  - kbd
+  - kernel
+  - kernel-modules-extra
+  - less
+  - libertas-firmware
+  # - libglvnd-gles
+  - linux-firmware
+  # - logrotate
+  - lrzsz
+  - lsof
+  - man-db
+  - man-pages
+  - mdadm
+  - mpage
+  - mt7xxx-firmware
+  - mtr
+  # - nfs-utils
+  - nss-altfiles
+  - nss-mdns
+  # - ntfs-3g
+  # - ntfsprogs
+  - nvidia-gpu-firmware
+  - opensc
+  - openssh-clients
+  - openssh-server
+  - pam_afs_session
+  - paps
+  - passwd
+  - passwdqc
+  - pciutils
+  - pinfo
+  - pipewire-alsa
+  - pipewire-gstreamer
+  - pipewire-pulseaudio
+  - pipewire-utils
+  - plocate
+  # - plymouth
+  # - plymouth-system-theme
+  - policycoreutils
+  # - policycoreutils-python-utils
+  - procps-ng
+  - psmisc
+  - qemu-guest-agent
+  # - qt5-qtbase
+  # - qt5-qtbase-gui
+  # - qt5-qtdeclarative
+  # - qt5-qtxmlpatterns
+  - quota
+  - realmd
+  - realtek-firmware
+  - rootfiles
+  - rpm
+  - rsync
+  # - samba-client
+  - selinux-policy-targeted
+  - setup
+  - shadow-utils
+  # - sos
+  # - spice-vdagent
+  # - spice-webdavd
+  # - sssd
+  # - sssd-common
+  # - sssd-kcm
+  - sudo
+  - system-config-printer-udev
+  - systemd
+  - systemd-oomd-defaults
+  - systemd-resolved
+  - systemd-udev
+  - tar
+  - time
+  - toolbox
+  - tree
+  - unzip
+  - uresourced
+  - usb_modeswitch
+  - usbutils
+  - util-linux
+  - vim-minimal
+  - wget
+  - which
+  - whois
+  - wireplumber
+  - words
+  - wpa_supplicant
+  - zip
+  - zram-generator-defaults
 
 ## from gnome-desktop-pkgs.yaml
-# - ModemManager
-# - NetworkManager-adsl
-# - NetworkManager-openconnect-gnome
-# - NetworkManager-openvpn-gnome
-# - NetworkManager-ppp
-# - NetworkManager-pptp-gnome
-# - NetworkManager-ssh-gnome
-# - NetworkManager-vpnc-gnome
-# - NetworkManager-wwan
-- adobe-source-code-pro-fonts
-- at-spi2-atk
-- at-spi2-core
-- avahi
-- dconf
-- fprintd-pam
-- gdm
-- glib-networking
-- glx-utils
-# - gnome-backgrounds
-- gnome-bluetooth
-# - gnome-browser-connector
-# - gnome-classic-session
-- gnome-color-manager
-- gnome-control-center
-# - gnome-disk-utility
-# - gnome-initial-setup
-# - gnome-remote-desktop
-- gnome-session-wayland-session
-# - gnome-session-xsession
-- gnome-settings-daemon
-- gnome-shell
-# - gnome-software
-# - gnome-system-monitor
-- gnome-terminal
-- gnome-terminal-nautilus
-# - gnome-user-docs
-# - gnome-user-share
-- gvfs-afc
-# - gvfs-afp
-- gvfs-archive
-- gvfs-fuse
-- gvfs-goa
-- gvfs-gphoto2
-- gvfs-mtp
-# - gvfs-smb
-- librsvg2
-- libsane-hpaio
-- mesa-dri-drivers
-- mesa-libEGL
-- mesa-vulkan-drivers
-- nautilus
-# - orca
-- polkit
-# - rygel
-- systemd-oomd-defaults
-- tracker
-- tracker-miners
-- xdg-desktop-portal
-- xdg-desktop-portal-gnome
-- xdg-desktop-portal-wlr
-- xdg-user-dirs-gtk
-# - yelp
+  # - ModemManager
+  # - NetworkManager-adsl
+  # - NetworkManager-openconnect-gnome
+  # - NetworkManager-openvpn-gnome
+  # - NetworkManager-ppp
+  # - NetworkManager-pptp-gnome
+  # - NetworkManager-ssh-gnome
+  # - NetworkManager-vpnc-gnome
+  # - NetworkManager-wwan
+  - adobe-source-code-pro-fonts
+  - at-spi2-atk
+  - at-spi2-core
+  - avahi
+  - dconf
+  - fprintd-pam
+  - gdm
+  - glib-networking
+  - glx-utils
+  # - gnome-backgrounds
+  - gnome-bluetooth
+  # - gnome-browser-connector
+  # - gnome-classic-session
+  - gnome-color-manager
+  - gnome-control-center
+  # - gnome-disk-utility
+  # - gnome-initial-setup
+  # - gnome-remote-desktop
+  - gnome-session-wayland-session
+  # - gnome-session-xsession
+  - gnome-settings-daemon
+  - gnome-shell
+  # - gnome-software
+  # - gnome-system-monitor
+  - gnome-terminal
+  - gnome-terminal-nautilus
+  # - gnome-user-docs
+  # - gnome-user-share
+  - gvfs-afc
+  # - gvfs-afp
+  - gvfs-archive
+  - gvfs-fuse
+  - gvfs-goa
+  - gvfs-gphoto2
+  - gvfs-mtp
+  # - gvfs-smb
+  - librsvg2
+  - libsane-hpaio
+  - mesa-dri-drivers
+  - mesa-libEGL
+  - mesa-vulkan-drivers
+  - nautilus
+  # - orca
+  - polkit
+  # - rygel
+  - systemd-oomd-defaults
+  - tracker
+  - tracker-miners
+  - xdg-desktop-portal
+  - xdg-desktop-portal-gnome
+  - xdg-desktop-portal-wlr
+  - xdg-user-dirs-gtk
+  # - yelp
 
-# custom
-- mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
-- slirp4netns podman-plugins netavark aardvark-dns
-- libva-utils
-- vulkan vulkan-tools
-- tmux xclip
-- kubectl helm
-- nmap
-- sunshine
-# - libvirt-daemon-kvm libvirt-client virt-viewer
+## custom
+  - intel-media-driver
+  - mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
+  - slirp4netns podman-plugins netavark aardvark-dns
+  - libva-utils
+  - vulkan vulkan-tools
+  - tmux xclip
+  - kubectl helm
+  - nmap
+  - sunshine
 
-# non-free
-- intel-media-driver
-
-# custom hardware
-- opentabletdriver
-- dymo-cups-drivers
-# https://www.reddit.com/r/Fedora/comments/ocn6ko/usb_tethering_with_ios_146_on_fedora/
-- libimobiledevice-utils usbmuxd
+## peripheral support
+  - opentabletdriver
+  - dymo-cups-drivers
+  # https://www.reddit.com/r/Fedora/comments/ocn6ko/usb_tethering_with_ios_146_on_fedora/
+  - libimobiledevice-utils usbmuxd
 EOF
     )
   }
@@ -551,7 +548,7 @@ EOF
     documentation = false
     rojig = {
       license = "MIT"
-      name = "fedora-coreos"
+      name    = "fedora-coreos"
       summary = "Fedora CoreOS"
     }
     default-target = "multi-user.target"
@@ -568,7 +565,7 @@ EOF
   silverblue_release = {
     rojig = {
       license = "MIT"
-      name = "fedora-silverblue"
+      name    = "fedora-silverblue"
       summary = "Fedora Silverblue"
     }
     default-target = "graphical.target"
@@ -586,8 +583,8 @@ EOF
       "enforcing=0",
     ]
     ignition-network-kcmdline = []
-    ostree-remote = "fedora"
-    compressor = "xz"
+    ostree-remote             = "fedora"
+    compressor                = "xz"
   }
 
   coreos_image = {
@@ -610,8 +607,4 @@ EOF
       "snd-intel-dspcfg.dsp_driver=3",
     ]
   }
-}
-
-variable "variant" {
-  type = string
 }
