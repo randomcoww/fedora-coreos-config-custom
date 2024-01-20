@@ -1,0 +1,13 @@
+repos:
+  - kubernetes
+
+remove-from-packages:
+  - [cri-o, /etc/cni/net.d/.*]
+  - [conntrack-tools, /etc/conntrackd/conntrackd.conf]
+
+packages:
+  - containernetworking-plugins
+  - cri-o
+  - cri-tools
+  - kubelet
+  - conntrack-tools

@@ -1,0 +1,6 @@
+include:
+  - snippets/image-base.yaml
+size: 4
+extra-kargs:
+  - pci=nommconf
+  - snd-intel-dspcfg.dsp_driver=3

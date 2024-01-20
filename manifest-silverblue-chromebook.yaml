@@ -1,0 +1,20 @@
+include:
+  - snippets/base.yaml
+  - snippets/kubernetes.yaml
+  - snippets/laptop.yaml
+  - snippets/chromebook.yaml
+  - snippets/desktop-environment.yaml
+  - snippets/release-silverblue.yaml
+
+exclude-packages:
+  - python
+  - python2
+  - python2-libs
+  - perl
+  - nodejs
+  - dnf
+  - cowsay
+  - initscripts
+  - plymouth
+  - NetworkManager-initscripts-ifcfg-rh
+  - PackageKit

@@ -1,0 +1,12 @@
+releasever: "39"
+ref: fedora/${releasever}/${basearch}/coreos
+
+rojig:
+  license: MIT
+  name: fedora-silverblue
+  summary: Fedora Silverblue
+
+default_target: graphical.target
+
+packages:
+  - fedora-release-silverblue

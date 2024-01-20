@@ -1,0 +1,19 @@
+releasever: "39"
+ref: fedora/${releasever}/${basearch}/coreos
+
+documentation: false
+
+rojig:
+  license: MIT
+  name: fedora-coreos
+  summary: Fedora CoreOS
+
+default-target: multi-user.target
+
+remove-files:
+  - usr/share/info
+  - usr/share/man
+  - usr/share/doc
+
+packages:
+  - fedora-release-coreos

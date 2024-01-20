@@ -1,0 +1,5 @@
+repos:
+  - selfhosted
+
+packages:
+  - sunshine

@@ -1,0 +1,19 @@
+ostree-layers:
+  - overlay/02nvidia
+
+repos:
+  - rpmfusion-nonfree
+  - rpmfusion-nonfree-updates
+  - nvidia
+
+remove-from-packages:
+  # Add patched files
+  # - [nvidia-driver-cuda-libs, /usr/lib64/libnvidia-encode.so.*]
+  # - [nvidia-driver-NvFBCOpenGL, /usr/lib64/libnvidia-fbc.so.*]
+
+packages:
+  - kmod-nvidia-open-dkms
+  - cuda-drivers
+  - nvidia-drivers
+  - nvidia-container-runtime
+  - nvidia-vaapi-driver

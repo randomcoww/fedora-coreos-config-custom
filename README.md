@@ -36,41 +36,19 @@ cosa() {
 
 ### Fetch sources
 
-```bash
-BUILD_PATH=$HOME/cosa
-mkdir -p $BUILD_PATH && cd $BUILD_PATH
-
-cosa init --force https://github.com/randomcoww/fedora-coreos-config-custom.git
-```
-
-### Render manifests
-
-```bash
-cd $BUILD_PATH/src/config
-
-tw() {
-  set -x
-  podman run -it --rm --security-opt label=disable \
-    --entrypoint='' \
-    -v $(pwd):$(pwd) \
-    -w $(pwd) \
-    --net=host \
-    docker.io/hashicorp/terraform:1.4.7 "$@"
-  rc=$?; set +x; return $rc
-}
-```
-
 Run one of:
 
 ```bash
-tw terraform -chdir=tf-coreos init && \
-tw terraform -chdir=tf-coreos apply -var-file="input.tfvars"
+VARIANT=coreos
+VARIANT=silverblue-nvidia
+VARIANT=silverblue-chromebook
+```
 
-tw terraform -chdir=tf-silverblue-nvidia init && \
-tw terraform -chdir=tf-silverblue-nvidia apply -var-file="input.tfvars"
+```bash
+BUILD_PATH=$HOME/$VARIANT
+mkdir -p $BUILD_PATH && cd $BUILD_PATH
 
-tw terraform -chdir=tf-silverblue-chromebook init && \
-tw terraform -chdir=tf-silverblue-chromebook apply -var-file="input.tfvars"
+cosa init -V $VARIANT --force https://github.com/randomcoww/fedora-coreos-config-custom.git
 ```
 
 ### Build Nvidia kernel modules
