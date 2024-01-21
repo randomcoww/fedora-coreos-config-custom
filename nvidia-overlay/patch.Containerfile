@@ -2,7 +2,6 @@ FROM fedora:latest AS BUILD
 ARG KERNEL_VERSION
 
 COPY custom.repo /etc/yum.repos.d/
-VOLUME /opt
 
 RUN set -x \
   \
@@ -21,13 +20,17 @@ RUN set -x \
   && rm -r \
     nvidia-patch \
     /opt/nvidia \
-  && mkdir -p /opt/lib64 \
-  && mv /usr/lib64/libnvidia-fbc.* /opt/lib64 \
-  && mv /usr/lib64/libnvidia-encode.* /opt/lib64 \
+  && mkdir -p /build \
+  && mv /usr/lib64/libnvidia-fbc.* /build \
+  && mv /usr/lib64/libnvidia-encode.* /build \
   \
   # missing symlinks #
   && cd /usr/lib64 \
   && ln -s \
     libnvidia-vulkan-producer.so.$(rpm -q --queryformat "%{VERSION}" nvidia-driver-cuda-libs) \
     libnvidia-vulkan-producer.so \
-  && mv libnvidia-vulkan-producer.so /opt/lib64
+  && mv libnvidia-vulkan-producer.so /build
+
+FROM alpine:latest
+
+COPY --from=BUILD /build /opt/lib64

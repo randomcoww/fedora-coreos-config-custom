@@ -3,7 +3,6 @@ ARG KERNEL_VERSION
 ARG DRIVER_VERSION
 
 COPY custom.repo /etc/yum.repos.d/
-VOLUME /opt
 
 RUN set -x \
   \
@@ -18,11 +17,17 @@ RUN set -x \
     -k $KERNEL_VERSION \
     -a ${KERNEL_VERSION##*.} \
     --no-depmod \
-    --kernelsourcedir /usr/src/kernels/$KERNEL_VERSION
+    --kernelsourcedir /usr/src/kernels/$KERNEL_VERSION \
+  && mkdir -p /build \
+  && cp /var/lib/dkms/nvidia-open/$(rpm -q --queryformat "%{VERSION}" kmod-nvidia-open-dkms)/$KERNEL_VERSION/${KERNEL_VERSION##*.}/module/* /build
+
+FROM alpine:latest
+ARG KERNEL_VERSION
+
+COPY --from=BUILD /build /opt/lib/modules/$KERNEL_VERSION/kernel/drivers/video
 
 RUN set -x \
   \
-  && mkdir -p /opt/lib/modules/$KERNEL_VERSION/kernel/drivers/video \
-  && cp /var/lib/dkms/nvidia-open/$(rpm -q --queryformat "%{VERSION}" kmod-nvidia-open-dkms)/$KERNEL_VERSION/${KERNEL_VERSION##*.}/module/* \
-    /opt/lib/modules/$KERNEL_VERSION/kernel/drivers/video \
+  && apk add --no-cache \
+    kmod \
   && depmod -b /opt $KERNEL_VERSION

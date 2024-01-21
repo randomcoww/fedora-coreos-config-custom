@@ -119,14 +119,18 @@ CUDA driver releases https://developer.download.nvidia.com/compute/cuda/repos/fe
 ```bash
 KERNEL_VERSION=6.6.11-200.fc39.x86_64
 DRIVER_VERSION=545.23.08
-OVERLAY_PATH=$(pwd)/overlay.d/02nvidia
+TAG=ghcr.io/randomcoww/nvidia-kmod:$KERNEL_VERSION-$DRIVER_VERSION
 
 mkdir -p tmp
 TMPDIR=$(pwd)/tmp podman build \
   --build-arg KERNEL_VERSION=$KERNEL_VERSION \
   --build-arg DRIVER_VERSION=$DRIVER_VERSION \
-  -f nvidia-overlay/kmod.Containerfile \
-  -v $OVERLAY_PATH/usr:/opt
+  -f src/config/nvidia-overlay/kmod.Containerfile \
+  -t $TAG
+
+podman run --rm \
+  -v $(pwd)/src/config/overlay.d/02nvidia/usr:/mnt \
+  $TAG cp -r /opt/. /mnt
 ```
 
 ### Populate hacks for Chromebook into overlay
