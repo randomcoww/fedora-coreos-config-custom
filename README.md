@@ -59,11 +59,32 @@ mkdir -p $BUILD_PATH && cd $BUILD_PATH
 cosa init -V $VARIANT --force https://github.com/randomcoww/fedora-coreos-config-custom.git
 ```
 
+### Build Nvidia kernel modules into overlay
+
+Kernel releases https://bodhi.fedoraproject.org/updates/?search=&packages=kernel&status=stable&releases=F39
+
+CUDA driver releases https://developer.download.nvidia.com/compute/cuda/repos/fedora37/x86_64/
+
+```bash
+KERNEL_VERSION=6.6.11-200.fc39.x86_64
+DRIVER_VERSION=545.23.08
+TAG=ghcr.io/randomcoww/nvidia-kmod:$KERNEL_VERSION-$DRIVER_VERSION
+
+mkdir -p tmp
+TMPDIR=$(pwd)/tmp podman build \
+  --build-arg KERNEL_VERSION=$KERNEL_VERSION \
+  --build-arg DRIVER_VERSION=$DRIVER_VERSION \
+  -f src/config/nvidia-overlay/kmod.Containerfile \
+  -t $TAG
+
+podman run --rm \
+  -v $(pwd)/src/config/overlay.d/02nvidia/usr:/mnt \
+  $TAG cp -r /opt/. /mnt
+```
+
 ### Run build
 
 ```bash
-cd $BUILD_PATH
-
 cosa clean && \
 cosa fetch && \
 cosa build metal4k && \
@@ -108,29 +129,6 @@ curl $IGNITION_URL | coreos-installer iso ignition embed coreos.iso
 sudo dd if=coreos.iso of=$DISK bs=4M
 sync
 rm coreos.iso
-```
-
-### Build Nvidia kernel modules into overlay
-
-Kernel releases https://bodhi.fedoraproject.org/updates/?search=&packages=kernel&status=stable&releases=F39
-
-CUDA driver releases https://developer.download.nvidia.com/compute/cuda/repos/fedora37/x86_64/
-
-```bash
-KERNEL_VERSION=6.6.11-200.fc39.x86_64
-DRIVER_VERSION=545.23.08
-TAG=ghcr.io/randomcoww/nvidia-kmod:$KERNEL_VERSION-$DRIVER_VERSION
-
-mkdir -p tmp
-TMPDIR=$(pwd)/tmp podman build \
-  --build-arg KERNEL_VERSION=$KERNEL_VERSION \
-  --build-arg DRIVER_VERSION=$DRIVER_VERSION \
-  -f src/config/nvidia-overlay/kmod.Containerfile \
-  -t $TAG
-
-podman run --rm \
-  -v $(pwd)/src/config/overlay.d/02nvidia/usr:/mnt \
-  $TAG cp -r /opt/. /mnt
 ```
 
 ### Populate hacks for Chromebook into overlay
