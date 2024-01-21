@@ -4,7 +4,6 @@ include:
   - snippets/vrrp.yaml
   - snippets/kubernetes.yaml
   - snippets/nvidia.yaml
-  - snippets/kvm.yaml
   - snippets/desktop-environment.yaml
   - snippets/sunshine.yaml
   - snippets/release-silverblue.yaml
