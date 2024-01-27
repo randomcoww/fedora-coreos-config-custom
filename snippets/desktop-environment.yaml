@@ -298,6 +298,7 @@ packages:
   - tmux xclip
   - kubectl helm
   - nmap
+  - unar
 
   # peripherals
   - opentabletdriver
