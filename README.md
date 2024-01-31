@@ -141,15 +141,12 @@ OVERLAY_PATH=$(pwd)/overlay.d/03chromebook
 git clone https://github.com/WeirdTreeThing/chromebook-linux-audio.git
 git clone https://github.com/WeirdTreeThing/chromebook-ucm-conf.git
 
-mkdir -p $OVERLAY_PATH/usr/lib/firmware/intel/sof-tplg/
-cp -a \
-  chromebook-linux-audio/conf/sof/tplg/. \
-  $OVERLAY_PATH/usr/lib/firmware/intel/sof-tplg/
-
 mkdir -p $OVERLAY_PATH/etc/wireplumber/main.lua.d/
 cp -a \
   chromebook-linux-audio/conf/common/. \
   $OVERLAY_PATH/etc/wireplumber/main.lua.d/
+
+## ucm2
 
 mkdir -p $OVERLAY_PATH/usr/share/alsa/ucm2/
 cp -a \
@@ -160,10 +157,19 @@ cp -a \
 
 mkdir -p $OVERLAY_PATH/usr/share/alsa/ucm2/conf.d/
 cp -a \
-  chromebook-ucm-conf/adl/. \
   chromebook-ucm-conf/sof-rt5682 \
   chromebook-ucm-conf/sof-cs42l42 \
   $OVERLAY_PATH/usr/share/alsa/ucm2/conf.d/
+
+for p in \
+adl apl avs cezanne cml glk jsl mendocino mt8183 picasso stoney;
+do
+  cp -a \
+    chromebook-ucm-conf/${p} \
+    $OVERLAY_PATH/usr/share/alsa/ucm2/conf.d/;
+done
+
+## firmware
 
 mkdir -p $OVERLAY_PATH/usr/lib/firmware/intel/sof-tplg
 for t in \
@@ -175,4 +181,8 @@ do
   ln -sf sof-adl-${t}.tplg.xz \
     $OVERLAY_PATH/usr/lib/firmware/intel/sof-tplg/sof-rpl-${t}.tplg.xz;
 done
+
+cp -a \
+  chromebook-linux-audio/conf/sof/tplg/. \
+  $OVERLAY_PATH/usr/lib/firmware/intel/sof-tplg/
 ```
