@@ -103,9 +103,9 @@ mc cp -r --disable-multipart builds/latest/x86_64/fedora-*-live* m/boot/
 ```bash
 export HOST=de-0
 
-sudo coreos-installer iso ignition embed \
+coreos-installer iso ignition embed \
   -i $HOME/project/homelab/output/ignition/$HOST.ign \
-  -o $HOST.iso \
+  -o $HOME/$HOST.iso \
   builds/latest/x86_64/fedora-*-live.x86_64.iso
 ```
 
