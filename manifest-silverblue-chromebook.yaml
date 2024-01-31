@@ -3,7 +3,7 @@ include:
   - snippets/base.yaml
   - snippets/kubernetes.yaml
   - snippets/laptop.yaml
-  - snippets/chromebook.yaml
+  - snippets/chromebook-audio.yaml
   - snippets/desktop-environment.yaml
   - snippets/release-silverblue.yaml
 
