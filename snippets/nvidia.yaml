@@ -4,7 +4,8 @@ ostree-layers:
 repos:
   - rpmfusion-nonfree
   - rpmfusion-nonfree-updates
-  - nvidia
+  - cuda-fedora
+  - cuda-fedora37
 
 remove-from-packages:
   # Add patched files

@@ -66,8 +66,8 @@ Kernel releases https://bodhi.fedoraproject.org/updates/?search=&packages=kernel
 CUDA driver releases https://developer.download.nvidia.com/compute/cuda/repos/fedora37/x86_64/
 
 ```bash
-KERNEL_VERSION=6.6.11-200.fc39.x86_64
-DRIVER_VERSION=545.23.08
+KERNEL_VERSION=6.7.5-200.fc39.x86_64
+DRIVER_VERSION=550.54.14
 TAG=ghcr.io/randomcoww/nvidia-kmod:$KERNEL_VERSION-$DRIVER_VERSION
 
 mkdir -p tmp

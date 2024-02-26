@@ -8,7 +8,7 @@ RUN set -x \
   \
   && dnf install -y --setopt=install_weak_deps=False \
     kernel-devel-$KERNEL_VERSION \
-    https://developer.download.nvidia.com/compute/cuda/repos/fedora37/$(arch)/kmod-nvidia-open-dkms-$DRIVER_VERSION-1.fc37.$(arch).rpm
+    https://developer.download.nvidia.com/compute/cuda/repos/fedora$(rpm -E %fedora)/$(arch)/kmod-nvidia-open-dkms-$DRIVER_VERSION-1.fc$(rpm -E %fedora).$(arch).rpm
     # kmod-nvidia-open-dkms-$DRIVER_VERSION
 
 RUN set -x \
