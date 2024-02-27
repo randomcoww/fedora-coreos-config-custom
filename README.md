@@ -57,6 +57,7 @@ BUILD_PATH=$HOME/$VARIANT
 mkdir -p $BUILD_PATH && cd $BUILD_PATH
 
 cosa init -V $VARIANT --force https://github.com/randomcoww/fedora-coreos-config-custom.git
+sudo chown $(stat -c %u .):$(stat -c %g .) $(pwd)/tmp
 ```
 
 ### Build Nvidia kernel modules into overlay
@@ -80,6 +81,25 @@ TMPDIR=$(pwd)/tmp podman build \
 podman run --rm \
   -v $(pwd)/src/config/overlay.d/02nvidia/usr:/mnt \
   $TAG cp -r /opt/. /mnt
+```
+
+### Populate hacks for Chromebook into overlay
+
+- https://github.com/WeirdTreeThing/chromebook-linux-audio
+- https://github.com/WeirdTreeThing/chromebook-ucm-conf
+
+```bash
+mkdir -p tmp
+TMPDIR=$(pwd)/tmp podman build \
+  -f src/config/chromebook-overlay/Containerfile \
+  -t chromebook-overlay
+
+sudo mkdir -p src/config/overlay.d/03chromebook
+sudo chown $(stat -c %u .):$(stat -c %g .) src/config/overlay.d/03chromebook
+
+podman run --rm \
+  -v $(pwd)/src/config/overlay.d/03chromebook:/mnt \
+  chromebook-overlay cp -r /opt/. /mnt
 ```
 
 ### Run build
@@ -129,60 +149,4 @@ curl $IGNITION_URL | coreos-installer iso ignition embed coreos.iso
 sudo dd if=coreos.iso of=$DISK bs=4M
 sync
 rm coreos.iso
-```
-
-### Populate hacks for Chromebook into overlay
-
-Copy files for https://github.com/WeirdTreeThing/chromebook-linux-audio
-
-```bash
-OVERLAY_PATH=$(pwd)/overlay.d/03chromebook
-
-git clone https://github.com/WeirdTreeThing/chromebook-linux-audio.git
-git clone https://github.com/WeirdTreeThing/chromebook-ucm-conf.git
-
-mkdir -p $OVERLAY_PATH/etc/wireplumber/main.lua.d/
-cp -a \
-  chromebook-linux-audio/conf/common/. \
-  $OVERLAY_PATH/etc/wireplumber/main.lua.d/
-
-## ucm2
-
-mkdir -p $OVERLAY_PATH/usr/share/alsa/ucm2/
-cp -a \
-  chromebook-ucm-conf/common \
-  chromebook-ucm-conf/codecs \
-  chromebook-ucm-conf/platforms \
-  $OVERLAY_PATH/usr/share/alsa/ucm2/
-
-mkdir -p $OVERLAY_PATH/usr/share/alsa/ucm2/conf.d/
-cp -a \
-  chromebook-ucm-conf/sof-rt5682 \
-  chromebook-ucm-conf/sof-cs42l42 \
-  $OVERLAY_PATH/usr/share/alsa/ucm2/conf.d/
-
-for p in \
-adl apl avs cezanne cml glk jsl mendocino mt8183 picasso stoney;
-do
-  cp -a \
-    chromebook-ucm-conf/${p} \
-    $OVERLAY_PATH/usr/share/alsa/ucm2/conf.d/;
-done
-
-## firmware
-
-mkdir -p $OVERLAY_PATH/usr/lib/firmware/intel/sof-tplg
-for t in \
-cs35l41 max98357a-rt5682-4ch max98357a-rt5682 max98360a-cs42l42 max98360a-nau8825 \
-max98360a-rt5682-2way max98360a-rt5682-4ch max98360a-rt5682 max98373-nau8825 \
-max98390-rt5682 max98390-ssp2-rt5682-ssp0 nau8825 rt1019-nau8825 rt1019-rt5682 rt5682 \
-rt711 sdw-max98373-rt5682;
-do
-  ln -sf sof-adl-${t}.tplg.xz \
-    $OVERLAY_PATH/usr/lib/firmware/intel/sof-tplg/sof-rpl-${t}.tplg.xz;
-done
-
-cp -a \
-  chromebook-linux-audio/conf/sof/tplg/. \
-  $OVERLAY_PATH/usr/lib/firmware/intel/sof-tplg/
 ```

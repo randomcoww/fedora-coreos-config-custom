@@ -1,0 +1,69 @@
+# https://github.com/WeirdTreeThing/chromebook-linux-audio
+# https://github.com/WeirdTreeThing/chromebook-ucm-conf
+
+FROM alpine:latest AS BUILD
+
+WORKDIR /opt
+
+RUN <<_EOF
+set -xe
+
+apk add --no-cache \
+  git
+
+git clone https://github.com/WeirdTreeThing/chromebook-linux-audio.git
+git clone https://github.com/WeirdTreeThing/chromebook-ucm-conf.git
+
+mkdir -p etc/wireplumber/main.lua.d/
+cp -a \
+  chromebook-linux-audio/conf/common/. \
+  etc/wireplumber/main.lua.d/
+
+## ucm2
+
+mkdir -p usr/share/alsa/ucm2/
+cp -a \
+  chromebook-ucm-conf/common \
+  chromebook-ucm-conf/codecs \
+  chromebook-ucm-conf/platforms \
+  usr/share/alsa/ucm2/
+
+mkdir -p usr/share/alsa/ucm2/conf.d/
+cp -a \
+  chromebook-ucm-conf/sof-rt5682 \
+  chromebook-ucm-conf/sof-cs42l42 \
+  usr/share/alsa/ucm2/conf.d/
+
+for p in \
+adl apl avs cezanne cml glk jsl mendocino mt8183 picasso stoney;
+do
+  cp -a \
+    chromebook-ucm-conf/${p} \
+    usr/share/alsa/ucm2/conf.d/;
+done
+
+## firmware
+
+mkdir -p usr/lib/firmware/intel/sof-tplg
+for t in \
+cs35l41 max98357a-rt5682-4ch max98357a-rt5682 max98360a-cs42l42 max98360a-nau8825 \
+max98360a-rt5682-2way max98360a-rt5682-4ch max98360a-rt5682 max98373-nau8825 \
+max98390-rt5682 max98390-ssp2-rt5682-ssp0 nau8825 rt1019-nau8825 rt1019-rt5682 rt5682 \
+rt711 sdw-max98373-rt5682;
+do
+  ln -sf sof-adl-${t}.tplg.xz \
+    usr/lib/firmware/intel/sof-tplg/sof-rpl-${t}.tplg.xz;
+done
+
+cp -a \
+  chromebook-linux-audio/conf/sof/tplg/. \
+  usr/lib/firmware/intel/sof-tplg/
+
+_EOF
+
+FROM alpine:latest
+
+WORKDIR /opt
+
+COPY --from=BUILD /opt/usr usr
+COPY --from=BUILD /opt/etc etc
