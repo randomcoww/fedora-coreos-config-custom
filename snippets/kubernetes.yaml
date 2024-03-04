@@ -11,4 +11,5 @@ packages:
   - cri-o
   - cri-tools
   - kubelet
+  - conmon
   - conntrack-tools
