@@ -64,10 +64,10 @@ sudo chown $(stat -c %u .):$(stat -c %g .) $(pwd)/tmp
 
 Kernel releases https://bodhi.fedoraproject.org/updates/?search=&packages=kernel&status=stable&releases=F39
 
-CUDA driver releases https://developer.download.nvidia.com/compute/cuda/repos/fedora37/x86_64/
+CUDA driver releases https://developer.download.nvidia.com/compute/cuda/repos/fedora39/x86_64/
 
 ```bash
-KERNEL_VERSION=6.7.5-200.fc39.x86_64
+KERNEL_VERSION=6.7.7-200.fc39.x86_64
 DRIVER_VERSION=550.54.14
 TAG=ghcr.io/randomcoww/nvidia-kmod:$KERNEL_VERSION-$DRIVER_VERSION
 
