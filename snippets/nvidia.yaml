@@ -5,7 +5,7 @@ repos:
   - rpmfusion-nonfree
   - rpmfusion-nonfree-updates
   - cuda-fedora
-  - cuda-fedora37
+  - nvidia-container-toolkit
 
 remove-from-packages:
   # Add patched files

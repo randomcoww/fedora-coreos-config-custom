@@ -30,13 +30,12 @@ gpgcheck=0
 module_hotfixes=1
 priority=10
 
-[cuda-fedora37]
-name=nvidia
-type=rpm-md
-baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora37/$basearch
-enabled=1
+[nvidia-container-toolkit]
+name=nvidia-container-toolkit
+baseurl=https://nvidia.github.io/libnvidia-container/stable/rpm/$basearch
+repo_gpgcheck=0
 gpgcheck=0
-module_hotfixes=1
+enabled=1
 priority=20
 
 [tailscale-stable]
