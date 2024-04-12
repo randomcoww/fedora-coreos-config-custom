@@ -49,7 +49,7 @@ Run one of:
 ```bash
 VARIANT=coreos
 VARIANT=silverblue-nvidia
-VARIANT=silverblue-chromebook
+VARIANT=silverblue-laptop
 ```
 
 ```bash
@@ -126,6 +126,25 @@ coreos-installer iso ignition embed \
   -i $HOME/project/homelab/output/ignition/$HOST.ign \
   -o $HOME/$HOST.iso \
   builds/latest/x86_64/fedora-*-live.x86_64.iso
+```
+
+### Modify kargs for chromebook
+
+```bash
+coreos-installer iso kargs modify \
+  -a pci=nommconf \
+  -a snd-intel-dspcfg.dsp_driver=3 \
+  -o $HOME/$HOST-chromebook.iso \
+  $HOME/$HOST.iso
+```
+
+### Modify kargs for laptop server \
+
+```bash
+coreos-installer iso kargs modify \
+  -a systemd.unit=multi-user.target \
+  -o $HOME/$HOST-server.iso \
+  $HOME/$HOST.iso
 ```
 
 ### Update backup boot disk with current PXE boot image
