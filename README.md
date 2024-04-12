@@ -128,17 +128,7 @@ coreos-installer iso ignition embed \
   builds/latest/x86_64/fedora-*-live.x86_64.iso
 ```
 
-### Modify kargs for chromebook
-
-```bash
-coreos-installer iso kargs modify \
-  -a pci=nommconf \
-  -a snd-intel-dspcfg.dsp_driver=3 \
-  -o $HOME/$HOST-chromebook.iso \
-  $HOME/$HOST.iso
-```
-
-### Modify kargs for laptop server \
+### Modify kargs for server
 
 ```bash
 coreos-installer iso kargs modify \
