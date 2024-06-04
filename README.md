@@ -114,7 +114,7 @@ cosa buildextend-live
 ### Upload images for PXE boot
 
 ```bash
-mc cp -r --disable-multipart builds/latest/x86_64/fedora-*-live* m/boot/
+mc cp -r builds/latest/x86_64/fedora-*-live* m/boot/
 ```
 
 ### Write ISO image
