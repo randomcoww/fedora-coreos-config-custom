@@ -38,14 +38,6 @@ gpgcheck=0
 enabled=1
 priority=20
 
-[tailscale-stable]
-name=Tailscale stable
-baseurl=https://pkgs.tailscale.com/stable/fedora/$basearch
-enabled=1
-type=rpm
-repo_gpgcheck=0
-gpgcheck=0
-
 ## mesa
 
 [rpmfusion-free-updates-testing-mesa]

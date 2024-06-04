@@ -1,8 +1,4 @@
-repos:
-  - tailscale-stable
-
 packages:
-  - tailscale
   - NetworkManager
   - NetworkManager-bluetooth
   - NetworkManager-config-connectivity-fedora
