@@ -73,6 +73,7 @@ TAG=ghcr.io/randomcoww/nvidia-kmod:$KERNEL_VERSION-$DRIVER_VERSION
 
 mkdir -p tmp
 TMPDIR=$(pwd)/tmp podman build \
+  --build-arg FEDORA_VERSION=$FEDORA_VERSION \
   --build-arg KERNEL_VERSION=$KERNEL_VERSION \
   --build-arg DRIVER_VERSION=$DRIVER_VERSION \
   -f src/config/nvidia-overlay/kmod.Containerfile \
