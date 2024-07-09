@@ -142,18 +142,18 @@ coreos-installer iso kargs modify \
 ### Update backup boot disk with current PXE boot image
 
 ```bash
-export IMAGE=$(xargs -n1 -a /proc/cmdline | grep ^fedora | sed 's/-kernel-x86_64$//')
+export IMAGE_URL=$(xargs -n1 -a /proc/cmdline | grep ^coreos.live.rootfs_url= | sed -r 's/coreos.live.rootfs_url=(.*)-rootfs(.*)\.img$/\1\2.iso/')
 export IGNITION_URL=$(xargs -n1 -a /proc/cmdline | grep ^ignition.config.url= | sed 's/ignition.config.url=//')
 export DISK=/dev/$(lsblk -ndo pkname /dev/disk/by-label/fedora-*)
 
-echo image=$IMAGE
+echo image-url=$IMAGE_URL
 echo ignition-url=$IGNITION_URL
 echo disk=$DISK
 sudo lsof $DISK
 ```
 
 ```bash
-curl https://minio.fuzzybunny.win/boot/$IMAGE.x86_64.iso --output coreos.iso
+curl $IMAGE_URL --output coreos.iso
 curl $IGNITION_URL | coreos-installer iso ignition embed coreos.iso
 
 sudo dd if=coreos.iso of=$DISK bs=4M
