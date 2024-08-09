@@ -10,9 +10,16 @@ gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releas
 skip_if_unavailable=False
 includepkgs=kernel kernel-core kernel-modules kernel-devel
 
-[cuda-fedora]
-name=cuda-fedora$releasever-$basearch
-baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora$releasever/$basearch
+# [cuda-fedora]
+# name=cuda-fedora$releasever-$basearch
+# baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora$releasever/$basearch
+# enabled=1
+# gpgcheck=1
+# gpgkey=https://developer.download.nvidia.com/compute/cuda/repos/fedora$releasever/$basearch/D42D0685.pub
+
+[cuda-fedora39]
+name=cuda-fedora39-$basearch
+baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora39/$basearch
 enabled=1
 gpgcheck=1
-gpgkey=https://developer.download.nvidia.com/compute/cuda/repos/fedora$releasever/$basearch/D42D0685.pub
+gpgkey=https://developer.download.nvidia.com/compute/cuda/repos/fedora39/$basearch/D42D0685.pub

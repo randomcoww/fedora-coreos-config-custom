@@ -68,6 +68,8 @@ packages:
   - zram-generator
   - systemd-resolved
   - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
+  - qed-firmware
+  - amd-ucode-firmware
 
   # networking-tools
   - iproute-tc

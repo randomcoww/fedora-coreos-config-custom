@@ -12,7 +12,10 @@ remove-from-packages:
 packages:
   - fedora-release-silverblue
 
-  ## from fedora-common-ostree.yaml
+  ## from common.yaml
+  - kernel
+  - kernel-modules
+  - kernel-modules-extra
   # Do not include "full" Git as it brings in Perl
   - git-core
   # Explicitely add Git docs
@@ -41,8 +44,9 @@ packages:
   # the archive repo for more reliable package layering
   # https://github.com/coreos/fedora-coreos-tracker/issues/400
   # - fedora-repos-archive
+  - langpacks-en
 
-  ## from fedora-common-ostree-pkgs.yaml
+  ## from common-packages.yaml
   # - NetworkManager
   # - NetworkManager-bluetooth
   # - NetworkManager-config-connectivity-fedora
@@ -52,6 +56,8 @@ packages:
   - alsa-ucm
   - alsa-utils
   - amd-gpu-firmware
+  - at-spi2-atk
+  - at-spi2-core
   - atheros-firmware
   - attr
   # - audit
@@ -65,6 +71,7 @@ packages:
   # - bind-utils
   - bluez-cups
   - brcmfmac-firmware
+  # - brltty
   - btrfs-progs
   - bzip2
   - chrony
@@ -122,6 +129,7 @@ packages:
   - hplip
   - hunspell
   - ibus-anthy
+  - ibus-chewing
   - ibus-gtk3
   - ibus-gtk4
   - ibus-hangul
@@ -138,8 +146,6 @@ packages:
   - iwlwifi-dvm-firmware
   - iwlwifi-mvm-firmware
   - kbd
-  - kernel
-  - kernel-modules-extra
   - less
   - libertas-firmware
   # - libglvnd-gles
@@ -159,12 +165,13 @@ packages:
   # - ntfs-3g
   # - ntfsprogs
   - nvidia-gpu-firmware
+  - nxpwireless-firmware
   - opensc
   - openssh-clients
   - openssh-server
+  # - orca
   - pam_afs_session
   - paps
-  - passwd
   - passwdqc
   - pciutils
   - pinfo
@@ -189,15 +196,16 @@ packages:
   - realtek-firmware
   - rootfiles
   - rpm
+  - rpm-ostree
   - rsync
   # - samba-client
   - selinux-policy-targeted
   - setup
   - shadow-utils
   # - sos
+  # - speech-dispatcher
   # - spice-vdagent
   # - spice-webdavd
-  # - sssd
   # - sssd-common
   # - sssd-kcm
   - sudo
@@ -208,6 +216,7 @@ packages:
   - systemd-udev
   - tar
   - time
+  - tiwilink-firmware
   - toolbox
   - tree
   - unzip
@@ -216,7 +225,7 @@ packages:
   - usbutils
   - util-linux
   - vim-minimal
-  - wget
+  - wget2-wget
   - which
   - whois
   - wireplumber
@@ -225,7 +234,7 @@ packages:
   - zip
   - zram-generator-defaults
 
-  ## from gnome-desktop-pkgs.yaml
+  ## from silverblue-packages.yaml
   # - ModemManager
   # - NetworkManager-adsl
   # - NetworkManager-openconnect-gnome
@@ -243,7 +252,6 @@ packages:
   - fprintd-pam
   - gdm
   - glib-networking
-  - glx-utils
   # - gnome-backgrounds
   - gnome-bluetooth
   # - gnome-browser-connector
@@ -254,7 +262,6 @@ packages:
   # - gnome-initial-setup
   # - gnome-remote-desktop
   - gnome-session-wayland-session
-  # - gnome-session-xsession
   - gnome-settings-daemon
   - gnome-shell
   # - gnome-software
@@ -277,7 +284,7 @@ packages:
   - mesa-libEGL
   - mesa-vulkan-drivers
   - nautilus
-  # - orca
+  # - plymouth-system-theme
   - polkit
   # - rygel
   - systemd-oomd-defaults
@@ -285,7 +292,7 @@ packages:
   - tracker-miners
   - xdg-desktop-portal
   - xdg-desktop-portal-gnome
-  - xdg-desktop-portal-wlr
+  - xdg-desktop-portal-gtk
   - xdg-user-dirs-gtk
   # - yelp
 
