@@ -33,6 +33,7 @@ cosa() {
       --uidmap=$(id -u):0:1 --uidmap=0:1:$(id -u) --uidmap $(( $(id -u) + 1 )):$(( $(id -u) + 1 )):55536 \
       -v ${PWD}:/srv/ --device /dev/kvm --device /dev/fuse \
       --tmpfs /tmp --name cosa-coreos \
+      --env COSA_SUPERMIN_MEMORY=4096 \
       ${COREOS_ASSEMBLER_CONFIG_GIT:+-v $COREOS_ASSEMBLER_CONFIG_GIT:/srv/src/config/:ro} \
       ${COREOS_ASSEMBLER_GIT:+-v $COREOS_ASSEMBLER_GIT/src/:/usr/lib/coreos-assembler/:ro} \
       ${COREOS_ASSEMBLER_ADD_CERTS:+-v=/etc/pki/ca-trust:/etc/pki/ca-trust:ro} \
@@ -66,9 +67,9 @@ sudo chown $(stat -c %u .):$(stat -c %g .) $(pwd)/tmp
 - CUDA driver releases https://developer.download.nvidia.com/compute/cuda/repos/fedora39/x86_64/
 
 ```bash
-FEDORA_VERSION=39
-KERNEL_VERSION=6.7.7-200.fc39.x86_64
-DRIVER_VERSION=550.54.14
+FEDORA_VERSION=40
+KERNEL_VERSION=6.10.3-200.fc$FEDORA_VERSION.x86_64
+DRIVER_VERSION=560.28.03
 TAG=ghcr.io/randomcoww/nvidia-kmod:$KERNEL_VERSION-$DRIVER_VERSION
 
 mkdir -p tmp

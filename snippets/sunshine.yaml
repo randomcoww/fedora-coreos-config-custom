@@ -1,5 +1,6 @@
 repos:
   - selfhosted
+  - selfhosted-noarch
 
 packages:
   - sunshine

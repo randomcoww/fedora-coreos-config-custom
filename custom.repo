@@ -6,6 +6,14 @@ gpgcheck=0
 enabled=1
 priority=1
 
+[selfhosted-noarch]
+name=custom
+type=rpm-md
+baseurl=https://randomcoww.github.io/repos/fedora/$releasever/noarch/
+gpgcheck=0
+enabled=1
+priority=1
+
 [kubernetes]
 name=Kubernetes
 baseurl=https://pkgs.k8s.io/core:/stable:/v1.29/rpm/
@@ -22,9 +30,18 @@ gpgcheck=0
 priority=10
 
 [cuda-fedora]
-name=nvidia
+name=cuda-fedora$releasever-$basearch
 type=rpm-md
 baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora$releasever/$basearch
+enabled=1
+gpgcheck=0
+module_hotfixes=1
+priority=10
+
+[cuda-fedora39]
+name=cuda-fedora39-$basearch
+type=rpm-md
+baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora39/$basearch
 enabled=1
 gpgcheck=0
 module_hotfixes=1

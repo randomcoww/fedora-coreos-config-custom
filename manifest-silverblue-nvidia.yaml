@@ -18,6 +18,6 @@ exclude-packages:
   - cowsay
   - initscripts
   - plymouth
-  - NetworkManager
+  #- NetworkManager
   - NetworkManager-initscripts-ifcfg-rh
   - PackageKit

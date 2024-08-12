@@ -19,7 +19,7 @@ exclude-packages:
   - cowsay
   - initscripts
   - plymouth
-  - NetworkManager
-  - NetworkManager-libnm
+  # - NetworkManager
+  # - NetworkManager-libnm
   - NetworkManager-initscripts-ifcfg-rh
   - PackageKit

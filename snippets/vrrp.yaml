@@ -1,5 +1,6 @@
 repos:
   - selfhosted
+  - selfhosted-noarch
 
 remove-from-packages:
   - [conntrack-tools, /etc/conntrackd/conntrackd.conf]

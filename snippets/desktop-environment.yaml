@@ -4,6 +4,7 @@ repos:
   - rpmfusion-nonfree
   - rpmfusion-nonfree-updates
   - selfhosted
+  - selfhosted-noarch
   - kubernetes
 
 remove-from-packages:
@@ -299,7 +300,7 @@ packages:
   # custom
   - intel-media-driver
   - mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
-  - slirp4netns podman-plugins netavark aardvark-dns
+  - slirp4netns netavark aardvark-dns
   - libva-utils
   - vulkan vulkan-tools
   - tmux xclip

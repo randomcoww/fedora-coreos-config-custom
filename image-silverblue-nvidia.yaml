@@ -1,5 +1,5 @@
 include: snippets/image-base.yaml
-size: 3
+size: 4
 extra-kargs:
   - rd.driver.blacklist=nouveau
   - modprobe.blacklist=nouveau
