@@ -4,7 +4,7 @@ ostree-layers:
 repos:
   - rpmfusion-nonfree
   - rpmfusion-nonfree-updates
-  - cuda-fedora
+  - cuda-fedora39
   - nvidia-container-toolkit
 
 remove-from-packages:
