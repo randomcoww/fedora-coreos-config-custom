@@ -16,7 +16,7 @@ packages:
   ## from common.yaml
   - kernel
   - kernel-modules
-  - kernel-modules-extra
+  # - kernel-modules-extra
   # Do not include "full" Git as it brings in Perl
   - git-core
   # Explicitely add Git docs
@@ -139,11 +139,11 @@ packages:
   - ibus-m17n
   - ibus-typing-booster
   - intel-gpu-firmware
-  # - iproute
+  - iproute-tc
   - iptables-nft
   - iptstate
   - iputils
-  - iwlegacy-firmware
+  # - iwlegacy-firmware
   - iwlwifi-dvm-firmware
   - iwlwifi-mvm-firmware
   - kbd
@@ -300,7 +300,7 @@ packages:
   # custom
   - intel-media-driver
   - mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld
-  - slirp4netns netavark aardvark-dns
+  - passt netavark aardvark-dns containernetworking-plugins
   - libva-utils
   - vulkan vulkan-tools
   - tmux xclip
@@ -309,7 +309,6 @@ packages:
   - unar
 
   # peripherals
-  - opentabletdriver
   - dymo-cups-drivers
   # https://www.reddit.com/r/Fedora/comments/ocn6ko/usb_tethering_with_ios_146_on_fedora/
   - libimobiledevice-utils usbmuxd

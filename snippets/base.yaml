@@ -58,7 +58,7 @@ packages:
 
   # fedora-coreos-base
   - iptables-nft
-  - btrfs-progs
+  # - btrfs-progs
   - sssd-client
   - attr
   - openssl
@@ -68,8 +68,8 @@ packages:
   - zram-generator
   - systemd-resolved
   - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
-  - qed-firmware
   - amd-ucode-firmware
+  - qed-firmware
 
   # networking-tools
   - iproute-tc
@@ -89,12 +89,14 @@ packages:
   - irqbalance
 
   # wifi firmware
-  - mt7xxx-firmware
-  - iwlegacy-firmware
+  - atheros-firmware
   - iwlwifi-dvm-firmware
   - iwlwifi-mvm-firmware
+  - libertas-firmware
+  - mt7xxx-firmware
+  - nxpwireless-firmware
   - realtek-firmware
-  - atheros-firmware
+  - tiwilink-firmware
   - brcmfmac-firmware
 
 packages-x86_64:
