@@ -1,7 +1,4 @@
-ARG FEDORA_VERSION
-
-FROM fedora:$FEDORA_VERSION AS BUILD
-ARG KERNEL_VERSION
+FROM fedora:latest AS BUILD
 
 COPY custom.repo /etc/yum.repos.d/
 

@@ -22,8 +22,8 @@ gpgcheck=0
 repo_gpgcheck=0
 priority=10
 
-[cuda-fedora39]
-name=cuda-fedora39-$basearch
+[cuda-fedora]
+name=cuda-fedora-$basearch
 type=rpm-md
 baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora39/$basearch
 enabled=1
