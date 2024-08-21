@@ -35,4 +35,4 @@ type=rpm
 gpgcheck=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 skip_if_unavailable=False
-includepkgs=kernel kernel-core kernel-modules
+includepkgs=kernel kernel-core kernel-modules kernel-modules-core kernel-devel kernel-devel-matched kernel-headers

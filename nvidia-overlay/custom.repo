@@ -10,11 +10,9 @@ gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releas
 skip_if_unavailable=False
 includepkgs=kernel kernel-core kernel-modules kernel-devel
 
-[fedora-rawhide]
-name=Fedora - Rawhide - Developmental packages for the next Fedora release
-baseurl=http://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/$basearch/os/
-        https://dl.fedoraproject.org/pub/fedora-secondary/development/rawhide/Everything/$basearch/os/
-#metalink=https://mirrors.fedoraproject.org/metalink?repo=rawhide&arch=$basearch
+[fedora-rawhide-nodebug-kernel]
+name=nodebug kernels for Rawhide
+baseurl=https://dl.fedoraproject.org/pub/alt/rawhide-kernel-nodebug/$basearch/
 enabled=1
 countme=1
 metadata_expire=6h
@@ -22,7 +20,7 @@ repo_gpgcheck=0
 type=rpm
 gpgcheck=0
 skip_if_unavailable=False
-excludepkgs=kernel kernel-core kernel-modules
+includepkgs=kernel kernel-core kernel-modules kernel-modules-core kernel-devel kernel-devel-matched kernel-headers
 
 [cuda-fedora]
 name=cuda-fedora-$basearch

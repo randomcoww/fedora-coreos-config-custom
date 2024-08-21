@@ -67,7 +67,7 @@ sudo chown $(stat -c %u .):$(stat -c %g .) $(pwd)/tmp
 - CUDA driver releases https://developer.download.nvidia.com/compute/cuda/repos/fedora39/x86_64/
 
 ```bash
-KERNEL_RELEASE=6.11.0-0.rc3.20240814git6b0f8db921ab.32.fc42.x86_64
+KERNEL_RELEASE=6.11.0-0.rc4.37.fc42.x86_64
 DRIVER_VERSION=560.28.03
 TAG=ghcr.io/randomcoww/nvidia-kmod:$KERNEL_RELEASE-$DRIVER_VERSION
 
