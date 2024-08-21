@@ -1,6 +1,7 @@
 include: snippets/image-base.yaml
 size: 3
 extra-kargs:
+  - coreos.liveiso.fromram
   - rd.driver.blacklist=nouveau
   - modprobe.blacklist=nouveau
   - nvidia_drm.modeset=1

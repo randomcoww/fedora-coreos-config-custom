@@ -1,2 +1,3 @@
 include: snippets/image-base.yaml
 size: 1
+  - coreos.liveiso.fromram

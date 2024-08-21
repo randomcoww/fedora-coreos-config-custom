@@ -68,7 +68,7 @@ sudo chown $(stat -c %u .):$(stat -c %g .) $(pwd)/tmp
 
 ```bash
 FEDORA_VERSION=40
-KERNEL_VERSION=6.10.3-200.fc$FEDORA_VERSION.x86_64
+KERNEL_VERSION=6.10.5-200.fc$FEDORA_VERSION.x86_64
 DRIVER_VERSION=560.28.03
 TAG=ghcr.io/randomcoww/nvidia-kmod:$KERNEL_VERSION-$DRIVER_VERSION
 
