@@ -63,7 +63,7 @@ sudo chown $(stat -c %u .):$(stat -c %g .) $(pwd)/tmp
 
 ### Build Nvidia kernel modules into overlay
 
-- Kernel releases https://bodhi.fedoraproject.org/updates/?search=&packages=kernel&status=stable&releases=__current__
+- Kernel releases https://bodhi.fedoraproject.org/updates/?search=&packages=kernel&status=stable
 - CUDA driver releases https://developer.download.nvidia.com/compute/cuda/repos/fedora39/x86_64/
 
 ```bash
