@@ -5,7 +5,6 @@ include:
   - snippets/kubernetes.yaml
   - snippets/nvidia.yaml
   - snippets/desktop-environment.yaml
-  - snippets/sunshine.yaml
   - snippets/release-silverblue.yaml
 
 exclude-packages:
