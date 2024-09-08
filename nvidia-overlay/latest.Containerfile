@@ -8,17 +8,17 @@ RUN set -x \
   \
   && dnf install -y --setopt=install_weak_deps=False \
     kernel-devel-$KERNEL_RELEASE \
-    kmod-nvidia-open-dkms-$DRIVER_VERSION
+    kmod-nvidia-latest-dkms-$DRIVER_VERSION
 
 RUN set -x \
   \
-  && dkms build -m nvidia-open/$(rpm -q --queryformat "%{VERSION}" kmod-nvidia-open-dkms) \
+  && dkms build -m nvidia/$(rpm -q --queryformat "%{VERSION}" kmod-nvidia-latest-dkms) \
     -k $KERNEL_RELEASE \
     -a ${KERNEL_RELEASE##*.} \
     --no-depmod \
     --kernelsourcedir /usr/src/kernels/$KERNEL_RELEASE \
   && mkdir -p /build \
-  && cp /var/lib/dkms/nvidia-open/$(rpm -q --queryformat "%{VERSION}" kmod-nvidia-open-dkms)/$KERNEL_RELEASE/${KERNEL_RELEASE##*.}/module/* /build
+  && cp /var/lib/dkms/nvidia/$(rpm -q --queryformat "%{VERSION}" kmod-nvidia-latest-dkms)/$KERNEL_RELEASE/${KERNEL_RELEASE##*.}/module/* /build
 
 FROM alpine:latest
 ARG KERNEL_RELEASE

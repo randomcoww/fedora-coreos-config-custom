@@ -28,3 +28,4 @@ baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora39/$basea
 enabled=1
 gpgcheck=1
 gpgkey=https://developer.download.nvidia.com/compute/cuda/repos/fedora39/$basearch/D42D0685.pub
+module_hotfixes=true

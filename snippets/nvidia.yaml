@@ -7,7 +7,8 @@ repos:
   - cuda-fedora
 
 packages:
-  - kmod-nvidia-open-dkms
+  - kmod-nvidia-latest-dkms
+  # - kmod-nvidia-open-dkms
   - cuda-drivers
   - nvidia-drivers
   - nvidia-container-toolkit
