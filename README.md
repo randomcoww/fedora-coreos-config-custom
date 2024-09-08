@@ -75,7 +75,7 @@ mkdir -p tmp
 TMPDIR=$(pwd)/tmp podman build \
   --build-arg KERNEL_RELEASE=$KERNEL_RELEASE \
   --build-arg DRIVER_VERSION=$DRIVER_VERSION \
-  -f src/config/nvidia-overlay/latest.Containerfile \
+  -f src/config/nvidia-overlay/open.Containerfile \
   -t $TAG
 
 podman run --rm \
