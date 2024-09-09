@@ -21,8 +21,7 @@ git submodule update --remote
 ### Update COSA image
 
 ```bash
-mkdir -p tmp
-TMPDIR=$(pwd)/tmp podman pull quay.io/coreos-assembler/coreos-assembler:latest
+podman pull quay.io/coreos-assembler/coreos-assembler:latest
 ```
 
 ```bash
@@ -71,8 +70,7 @@ KERNEL_RELEASE=6.11.0-0.rc6.49.fc42.x86_64
 DRIVER_VERSION=560.35.03
 TAG=ghcr.io/randomcoww/nvidia-kmod:$KERNEL_RELEASE-$DRIVER_VERSION
 
-mkdir -p tmp
-TMPDIR=$(pwd)/tmp podman build \
+podman build \
   --build-arg KERNEL_RELEASE=$KERNEL_RELEASE \
   --build-arg DRIVER_VERSION=$DRIVER_VERSION \
   -f src/config/nvidia-overlay/open.Containerfile \
@@ -89,8 +87,7 @@ podman run --rm \
 - https://github.com/WeirdTreeThing/chromebook-ucm-conf
 
 ```bash
-mkdir -p tmp
-TMPDIR=$(pwd)/tmp podman build \
+podman build \
   -f src/config/chromebook-overlay/Containerfile \
   -t chromebook-overlay
 
