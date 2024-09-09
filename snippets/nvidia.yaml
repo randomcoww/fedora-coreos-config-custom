@@ -12,4 +12,4 @@ packages:
   - cuda-drivers
   - nvidia-drivers
   - nvidia-container-toolkit
-  - nvidia-vaapi-driver
+  - libva-nvidia-driver
