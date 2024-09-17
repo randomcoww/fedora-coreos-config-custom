@@ -49,7 +49,6 @@ Run one of:
 ```bash
 VARIANT=coreos
 VARIANT=silverblue-nvidia
-VARIANT=silverblue-laptop
 ```
 
 ```bash
@@ -66,7 +65,7 @@ sudo chown $(stat -c %u .):$(stat -c %g .) $(pwd)/tmp
 - CUDA driver releases https://developer.download.nvidia.com/compute/cuda/repos/fedora39/x86_64/
 
 ```bash
-KERNEL_RELEASE=6.11.0-0.rc6.49.fc42.x86_64
+KERNEL_RELEASE=6.11.0-63.fc42.x86_64
 DRIVER_VERSION=560.35.03
 TAG=ghcr.io/randomcoww/nvidia-kmod:$KERNEL_RELEASE-$DRIVER_VERSION
 
@@ -79,24 +78,6 @@ podman build \
 podman run --rm \
   -v $(pwd)/src/config/overlay.d/02nvidia/usr:/mnt \
   $TAG cp -r /opt/. /mnt
-```
-
-### Populate hacks for Chromebook into overlay
-
-- https://github.com/WeirdTreeThing/chromebook-linux-audio
-- https://github.com/WeirdTreeThing/chromebook-ucm-conf
-
-```bash
-podman build \
-  -f src/config/chromebook-overlay/Containerfile \
-  -t chromebook-overlay
-
-sudo mkdir -p src/config/overlay.d/03chromebook
-sudo chown $(stat -c %u .):$(stat -c %g .) src/config/overlay.d/03chromebook
-
-podman run --rm \
-  -v $(pwd)/src/config/overlay.d/03chromebook:/mnt \
-  chromebook-overlay cp -r /opt/. /mnt
 ```
 
 ### Run build

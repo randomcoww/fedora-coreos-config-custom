@@ -1,4 +1,0 @@
-include: snippets/image-base.yaml
-size: 2
-extra-kargs:
-  - coreos.liveiso.fromram
