@@ -1,15 +1,3 @@
-[fedora-updates-testing]
-name=Fedora $releasever - $basearch - Test Updates
-baseurl=https://dl.fedoraproject.org/pub/fedora/linux/updates/testing/$releasever/Everything/$basearch/
-        https://dl.fedoraproject.org/pub/fedora-secondary/updates/testing/$releasever/Everything/$basearch/
-#metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-testing-f$releasever&arch=$basearch
-enabled=1
-gpgcheck=1
-metadata_expire=6h
-gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary
-skip_if_unavailable=False
-includepkgs=kernel kernel-core kernel-modules kernel-devel
-
 [fedora-rawhide-nodebug-kernel]
 name=nodebug kernels for Rawhide
 baseurl=https://dl.fedoraproject.org/pub/alt/rawhide-kernel-nodebug/$basearch/
@@ -19,13 +7,14 @@ metadata_expire=6h
 repo_gpgcheck=0
 type=rpm
 gpgcheck=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 skip_if_unavailable=False
 includepkgs=kernel kernel-core kernel-modules kernel-modules-core kernel-devel kernel-devel-matched kernel-headers
 
 [cuda-fedora]
 name=cuda-fedora-$basearch
-baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora39/$basearch
+baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora$releasever/$basearch
 enabled=1
 gpgcheck=1
-gpgkey=https://developer.download.nvidia.com/compute/cuda/repos/fedora39/$basearch/D42D0685.pub
+gpgkey=https://developer.download.nvidia.com/compute/cuda/repos/fedora$releasever/$basearch/D42D0685.pub
 module_hotfixes=true

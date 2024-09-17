@@ -1,4 +1,6 @@
-FROM fedora:latest AS BUILD
+ARG FEDORA_VERSION=39
+
+FROM registry.fedoraproject.org/fedora-minimal:$FEDORA_VERSION AS BUILD
 ARG KERNEL_RELEASE
 ARG DRIVER_VERSION
 
@@ -6,9 +8,14 @@ COPY custom.repo /etc/yum.repos.d/
 
 RUN set -x \
   \
-  && dnf install -y --setopt=install_weak_deps=False \
+  && echo 'exclude=*.i386 *.i686' >> /etc/dnf.conf \
+  && microdnf install -y --setopt=install_weak_deps=False \
     kernel-devel-$KERNEL_RELEASE \
-    kmod-nvidia-latest-dkms-$DRIVER_VERSION
+    kmod-nvidia-latest-dkms-$DRIVER_VERSION \
+  && microdnf clean all \
+  && rm -rf \
+    /var/cache \
+    /var/log/*
 
 RUN set -x \
   \

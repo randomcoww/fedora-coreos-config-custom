@@ -65,13 +65,12 @@ sudo chown $(stat -c %u .):$(stat -c %g .) $(pwd)/tmp
 - CUDA driver releases https://developer.download.nvidia.com/compute/cuda/repos/fedora39/x86_64/
 
 ```bash
-KERNEL_RELEASE=6.11.0-63.fc42.x86_64
-DRIVER_VERSION=560.35.03
-TAG=ghcr.io/randomcoww/nvidia-kmod:$KERNEL_RELEASE-$DRIVER_VERSION
+TAG=nvidia-kmod:latest
 
 podman build \
-  --build-arg KERNEL_RELEASE=$KERNEL_RELEASE \
-  --build-arg DRIVER_VERSION=$DRIVER_VERSION \
+  --build-arg FEDORA_VERSION=39 \
+  --build-arg KERNEL_RELEASE=6.11.0-63.fc42.x86_64 \
+  --build-arg DRIVER_VERSION=560.35.03 \
   -f src/config/nvidia-overlay/open.Containerfile \
   -t $TAG
 
