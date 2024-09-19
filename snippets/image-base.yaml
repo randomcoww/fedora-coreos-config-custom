@@ -7,3 +7,4 @@ extra-kargs:
   - rd.driver.pre=vfio-pci
   - numa=off
   - selinux=0
+  - coreos.liveiso.fromram
