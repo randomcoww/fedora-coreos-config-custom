@@ -21,10 +21,6 @@ git submodule update --remote
 ### Update COSA image
 
 ```bash
-podman pull quay.io/coreos-assembler/coreos-assembler:latest
-```
-
-```bash
 cosa() {
    env | grep COREOS_ASSEMBLER
    set -x
@@ -65,15 +61,15 @@ sudo chown $(stat -c %u .):$(stat -c %g .) $(pwd)/tmp
 - CUDA driver releases https://developer.download.nvidia.com/compute/cuda/repos/fedora39/x86_64/
 
 ```bash
-FEDORA_VERSION=39
-KERNEL_RELEASE=6.11.0-63.fc42.x86_64
+TARGETARCH=amd64
 DRIVER_VERSION=560.35.03
-TAG=ghcr.io/randomcoww/nvidia-kmod:$KERNEL_RELEASE-$DRIVER_VERSION
+KERNEL_RELEASE=6.11.0-63.fc42
+TAG=ghcr.io/randomcoww/nvidia-kmod:$DRIVER_VERSION-$KERNEL_RELEASE
 
 podman build \
-  --build-arg FEDORA_VERSION=$FEDORA_VERSION \
-  --build-arg KERNEL_RELEASE=$KERNEL_RELEASE \
+  --arch $TARGETARCH \
   --build-arg DRIVER_VERSION=$DRIVER_VERSION \
+  --build-arg KERNEL_RELEASE=$KERNEL_RELEASE \
   -f src/config/nvidia-overlay/open.Containerfile \
   -t $TAG
 

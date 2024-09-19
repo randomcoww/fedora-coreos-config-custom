@@ -1,6 +1,4 @@
-ARG FEDORA_VERSION=39
-
-FROM registry.fedoraproject.org/fedora-minimal:$FEDORA_VERSION AS BUILD
+FROM registry.fedoraproject.org/fedora-minimal:latest AS BUILD
 ARG KERNEL_RELEASE
 ARG DRIVER_VERSION
 
@@ -19,21 +17,19 @@ RUN set -x \
 
 RUN set -x \
   \
-  && dkms build -m nvidia-open/$(rpm -q --queryformat "%{VERSION}" kmod-nvidia-open-dkms) \
-    -k $KERNEL_RELEASE \
-    -a ${KERNEL_RELEASE##*.} \
+  && KERNEL_PATH=$(rpm -q --queryformat "%{VERSION}-%{RELEASE}.%{ARCH}" kernel-devel) \
+  && DRIVER_VERSION=$(rpm -q --queryformat "%{VERSION}" kmod-nvidia-open-dkms) \
+  && dkms build \
+    -m nvidia-open/$DRIVER_VERSION \
+    -k $KERNEL_PATH \
+    -a $(arch) \
     --no-depmod \
-    --kernelsourcedir /usr/src/kernels/$KERNEL_RELEASE \
-  && mkdir -p /build \
-  && cp /var/lib/dkms/nvidia-open/$(rpm -q --queryformat "%{VERSION}" kmod-nvidia-open-dkms)/$KERNEL_RELEASE/${KERNEL_RELEASE##*.}/module/* /build
+    --kernelsourcedir /usr/src/kernels/$KERNEL_PATH \
+  && mkdir -p /opt/lib/modules/$KERNEL_PATH/kernel/drivers/video \
+  && cp /var/lib/dkms/nvidia-open/$DRIVER_VERSION/$KERNEL_PATH/$(arch)/module/* \
+    /opt/lib/modules/$KERNEL_PATH/kernel/drivers/video \
+  && depmod -b /opt $KERNEL_PATH
 
 FROM alpine:latest
-ARG KERNEL_RELEASE
 
-COPY --from=BUILD /build /opt/lib/modules/$KERNEL_RELEASE/kernel/drivers/video
-
-RUN set -x \
-  \
-  && apk add --no-cache \
-    kmod \
-  && depmod -b /opt $KERNEL_RELEASE
+COPY --from=BUILD /opt/lib/modules /opt/lib/modules
