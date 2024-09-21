@@ -1,0 +1,5 @@
+packages:
+  - NetworkManager
+  - NetworkManager-bluetooth
+  - NetworkManager-config-connectivity-fedora
+  - NetworkManager-wifi

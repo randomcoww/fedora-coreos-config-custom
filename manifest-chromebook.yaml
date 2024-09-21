@@ -1,9 +1,8 @@
 include:
   - upstream-include.yaml
   - snippets/base.yaml
-  - snippets/vrrp.yaml
-  - snippets/kubernetes.yaml
-  - snippets/nvidia.yaml
+  - snippets/laptop.yaml
+  - snippets/chromebook-audio.yaml
   - snippets/desktop-environment.yaml
   - snippets/release-silverblue.yaml
 
