@@ -1,7 +1,7 @@
 include:
   - upstream-include.yaml
   - snippets/base.yaml
-  - snippets/vrrp.yaml
+  - snippets/ha.yaml
   - snippets/kubernetes.yaml
   - snippets/nvidia.yaml
   - snippets/desktop-environment.yaml
