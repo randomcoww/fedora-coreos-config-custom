@@ -5,9 +5,10 @@ repos:
 remove-from-packages:
   - [conntrack-tools, /etc/conntrackd/conntrackd.conf]
   - [keepalived, /etc/keepalived/keepalived.conf]
-  - [bird, /etc/bird.conf]
+  - [haproxy, /etc/haproxy/haproxy.cfg]
 
 packages:
   - keepalived
+  - haproxy
   - conntrack-tools
   - bird

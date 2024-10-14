@@ -87,6 +87,7 @@ packages:
   - strace
   - kernel
   - irqbalance
+  - avahi
 
   # wifi firmware
   - atheros-firmware
