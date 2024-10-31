@@ -62,8 +62,8 @@ sudo chown $(stat -c %u .):$(stat -c %g .) $(pwd)/tmp
 
 ```bash
 TARGETARCH=amd64
-DRIVER_VERSION=560.35.03
-KERNEL_RELEASE=6.11.3-200.fc40
+DRIVER_VERSION=565.57.01
+KERNEL_RELEASE=6.11.5-300.fc41
 TAG=ghcr.io/randomcoww/nvidia-kmod:$DRIVER_VERSION-$KERNEL_RELEASE
 
 podman build \
