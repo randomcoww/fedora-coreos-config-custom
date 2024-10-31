@@ -14,6 +14,7 @@ packages:
   - fedora-release-silverblue
 
   ## from common.yaml
+  # Ensure that we have a kernel. Kernel packages are not in any comps group
   - kernel
   - kernel-modules
   # - kernel-modules-extra
@@ -22,15 +23,21 @@ packages:
   # Explicitely add Git docs
   - git-core-doc
   - lvm2
-  # - rpm-ostree
   # Required for compatibility with old bootloaders until we have bootupd
   # See https://github.com/fedora-silverblue/issue-tracker/issues/120
   # - ostree-grub2
+  # Required until we've completed the move to systemd-sysusers
+  # See: https://github.com/fedora-silverblue/issue-tracker/issues/362
+  - nss-altfiles
   # Container management
   - buildah
   - podman
   - skopeo
-  - toolbox
+  # Keep slirp4netns for rootless containers until it's fully deprecated in podman
+  # See: https://github.com/fedora-silverblue/issue-tracker/issues/547
+  # - slirp4netns
+  # See: https://github.com/fedora-silverblue/issue-tracker/issues/503
+  - systemd-container
   # Provides terminal tools like clear, reset, tput, and tset
   - ncurses
   # Flatpak support
@@ -45,7 +52,12 @@ packages:
   # the archive repo for more reliable package layering
   # https://github.com/coreos/fedora-coreos-tracker/issues/400
   # - fedora-repos-archive
+  # Always include at least full English language support by default
+  # https://gitlab.com/fedora/ostree/sig/-/issues/14
   - langpacks-en
+  # Kept for backward compatibility for AppImages
+  # See: https://gitlab.com/fedora/ostree/sig/-/issues/50
+  - fuse
 
   ## from common-packages.yaml
   # - NetworkManager
@@ -135,11 +147,10 @@ packages:
   - ibus-gtk4
   - ibus-hangul
   - ibus-libpinyin
-  - ibus-libzhuyin
   - ibus-m17n
   - ibus-typing-booster
   - intel-gpu-firmware
-  - iproute-tc
+  # - iproute
   - iptables-nft
   - iptstate
   - iputils
@@ -157,6 +168,8 @@ packages:
   - man-db
   - man-pages
   - mdadm
+  - mesa-dri-drivers
+  - mesa-vulkan-drivers
   - mpage
   - mt7xxx-firmware
   - mtr
@@ -171,6 +184,7 @@ packages:
   - openssh-clients
   - openssh-server
   # - orca
+  - ostree-grub2
   - pam_afs_session
   - paps
   - passwdqc
@@ -246,8 +260,6 @@ packages:
   # - NetworkManager-vpnc-gnome
   # - NetworkManager-wwan
   - adobe-source-code-pro-fonts
-  - at-spi2-atk
-  - at-spi2-core
   - avahi
   - dconf
   - fprintd-pam
@@ -260,6 +272,7 @@ packages:
   - gnome-color-manager
   - gnome-control-center
   # - gnome-disk-utility
+  - gnome-epub-thumbnailer
   # - gnome-initial-setup
   # - gnome-remote-desktop
   - gnome-session-wayland-session
@@ -267,8 +280,6 @@ packages:
   - gnome-shell
   # - gnome-software
   # - gnome-system-monitor
-  - gnome-terminal
-  - gnome-terminal-nautilus
   # - gnome-user-docs
   # - gnome-user-share
   - gvfs-afc
@@ -287,6 +298,7 @@ packages:
   - nautilus
   # - plymouth-system-theme
   - polkit
+  - ptyxis
   # - rygel
   - systemd-oomd-defaults
   - tracker
@@ -307,6 +319,7 @@ packages:
   - kubernetes-client helm
   - nmap
   - unar
+  - iproute-tc
 
   # peripherals
   - dymo-cups-drivers
