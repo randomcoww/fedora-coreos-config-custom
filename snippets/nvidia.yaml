@@ -10,6 +10,6 @@ packages:
   # - kmod-nvidia-latest-dkms
   - kmod-nvidia-open-dkms
   - cuda-drivers
-  - nvidia-drivers
+  - nvidia-driver
   - nvidia-container-toolkit
   - libva-nvidia-driver
