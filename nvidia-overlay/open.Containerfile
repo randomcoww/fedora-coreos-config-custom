@@ -1,4 +1,5 @@
-FROM registry.fedoraproject.org/fedora-minimal:latest AS BUILD
+ARG FEDORA_VERSION=latest
+FROM registry.fedoraproject.org/fedora-minimal:$FEDORA_VERSION AS BUILD
 ARG KERNEL_RELEASE
 ARG DRIVER_VERSION
 

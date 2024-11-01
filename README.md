@@ -62,12 +62,14 @@ sudo chown $(stat -c %u .):$(stat -c %g .) $(pwd)/tmp
 
 ```bash
 TARGETARCH=amd64
+FEDORA_VERSION=40
 DRIVER_VERSION=565.57.01
-KERNEL_RELEASE=6.11.5-300.fc41
+KERNEL_RELEASE=6.11.5-200.fc$FEDORA_VERSION
 TAG=ghcr.io/randomcoww/nvidia-kmod:$DRIVER_VERSION-$KERNEL_RELEASE
 
 podman build \
   --arch $TARGETARCH \
+  --build-arg FEDORA_VERSION=$FEDORA_VERSION \
   --build-arg DRIVER_VERSION=$DRIVER_VERSION \
   --build-arg KERNEL_RELEASE=$KERNEL_RELEASE \
   -f src/config/nvidia-overlay/open.Containerfile \
