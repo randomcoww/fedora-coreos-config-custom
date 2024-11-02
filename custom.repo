@@ -6,14 +6,6 @@ gpgcheck=0
 enabled=1
 priority=1
 
-[selfhosted-noarch]
-name=custom
-type=rpm-md
-baseurl=https://randomcoww.github.io/repos/fedora/$releasever/noarch/
-gpgcheck=0
-enabled=1
-priority=1
-
 [kubernetes]
 name=Kubernetes
 baseurl=https://pkgs.k8s.io/core:/stable:/v1.31/rpm/
@@ -29,6 +21,17 @@ enabled=1
 gpgcheck=0
 priority=10
 
+## Nvidia drivers and dependencies ##
+
+[cuda-fedora]
+name=cuda-fedora-$basearch
+type=rpm-md
+baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora$releasever/$basearch
+enabled=1
+gpgcheck=0
+module_hotfixes=1
+priority=10
+
 [cuda-fedora-40]
 name=cuda-fedora-$basearch
 type=rpm-md
@@ -38,7 +41,7 @@ gpgcheck=0
 module_hotfixes=1
 priority=10
 
-# container toolkit is not available for f40 yet
+# container toolkit is not available in f40 repo yet
 [cuda-fedora-39]
 name=cuda-fedora-$basearch
 type=rpm-md
@@ -47,3 +50,29 @@ enabled=1
 gpgcheck=0
 module_hotfixes=1
 priority=14
+
+# python 3.12 needed for dnf-plugin-nvidia
+[fedora-40]
+name=Fedora 40 - $basearch
+baseurl=https://dl.fedoraproject.org/pub/fedora/linux/releases/40/Everything/$basearch/os/
+        https://dl.fedoraproject.org/pub/fedora-secondary/releases/40/Everything/$basearch/os/
+enabled=1
+repo_gpgcheck=0
+type=rpm
+gpgcheck=1
+gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-40-primary
+skip_if_unavailable=False
+priority=1200
+
+[fedora-updates-40]
+name=Fedora 40 - $basearch - Updates
+baseurl=https://dl.fedoraproject.org/pub/fedora/linux/updates/40/Everything/$basearch/
+        https://dl.fedoraproject.org/pub/fedora-secondary/updates/40/Everything/$basearch/
+enabled=1
+repo_gpgcheck=0
+type=rpm
+gpgcheck=1
+metadata_expire=6h
+gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-40-primary
+skip_if_unavailable=False
+priority=1000
