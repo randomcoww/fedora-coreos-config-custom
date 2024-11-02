@@ -34,7 +34,6 @@ packages:
   - mdadm
   - sg3_utils
   - xfsprogs
-  - passwd
   - shadow-utils
   - acl
   - selinux-policy-targeted
@@ -42,6 +41,7 @@ packages:
   # user-experience
   - bash-completion
   - coreutils
+  - file
   - jq
   - less
   - sudo
@@ -55,6 +55,9 @@ packages:
   - openssh-clients openssh-server
   - crun criu criu-libs
   - nvme-cli
+  - lsof
+  - which
+  - pciutils
 
   # fedora-coreos-base
   - iptables-nft
@@ -62,7 +65,6 @@ packages:
   - sssd-client
   - attr
   - openssl
-  - lsof
   - ncurses
   - kbd
   - zram-generator
@@ -82,7 +84,6 @@ packages:
   - systemd-networkd
   - ssh-key-dir
   - ldns-utils
-  - pciutils
   - rsync
   - strace
   - kernel
