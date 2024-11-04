@@ -42,7 +42,6 @@ packages:
   - zram-generator
 
   # fedora-coreos-base
-  - polkit
   - iptables-nft
   - btrfs-progs
   - sssd-client
