@@ -1,5 +1,7 @@
 include:
   - manifests/ignition-and-ostree.yaml
+  - manifests/file-transfer.yaml
+  - manifests/kernel.yaml
 
 check-passwd:
   type: "file"

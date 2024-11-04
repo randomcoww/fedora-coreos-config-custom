@@ -23,6 +23,7 @@ etc-group-members:
 packages:
   - fedora-repos-ostree
   - fedora-repos-archive
+
   # system-configuration
   - chrony
   - coreos-installer coreos-installer-bootinfra
@@ -37,6 +38,26 @@ packages:
   - shadow-utils
   - acl
   - selinux-policy-targeted
+  - ssh-key-dir
+  - zram-generator
+
+  # fedora-coreos-base
+  - polkit
+  - iptables-nft
+  - btrfs-progs
+  - sssd-client
+  - attr
+  - openssl
+  - ncurses
+  - kbd
+  - systemd-resolved
+  - qed-firmware
+
+  # networking-tools
+  - hostname
+  - iproute-tc
+  - nftables
+  - socat
 
   # user-experience
   - bash-completion
@@ -59,50 +80,27 @@ packages:
   - which
   - pciutils
 
-  # fedora-coreos-base
-  - iptables-nft
-  - btrfs-progs
-  - sssd-client
-  - attr
-  - openssl
-  - ncurses
-  - kbd
-  - zram-generator
-  - systemd-resolved
-  - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
-  - amd-ucode-firmware
-  - qed-firmware
-
-  # networking-tools
-  - iproute-tc
-  - nftables
-  - socat
-  - wireless-regdb iw
-
   # custom
-  - hostname
   - systemd-networkd
-  - ssh-key-dir
   - ldns-utils
-  - rsync
   - strace
-  - kernel
-  - irqbalance
   - avahi
+  - wireless-regdb iw
+  - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
 
   # wifi firmware
   - atheros-firmware
-  - iwlwifi-dvm-firmware
-  - iwlwifi-mvm-firmware
-  - libertas-firmware
+  - brcmfmac-firmware
   - mt7xxx-firmware
   - nxpwireless-firmware
   - realtek-firmware
   - tiwilink-firmware
-  - brcmfmac-firmware
+  - iwlwifi-dvm-firmware
+  - iwlwifi-mvm-firmware
 
 packages-x86_64:
   - thermald
+  - amd-ucode-firmware
 
 remove-from-packages:
   - [dbus-common, /usr/lib/sysusers.d/dbus.conf]

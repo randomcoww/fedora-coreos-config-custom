@@ -4,7 +4,6 @@ repos:
   - rpmfusion-nonfree
   - rpmfusion-nonfree-updates
   - selfhosted
-  - selfhosted-noarch
   # - fedora-rawhide-nodebug-kernel
 
 remove-from-packages:
