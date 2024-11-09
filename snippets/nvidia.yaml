@@ -10,7 +10,6 @@ repos:
   - fedora-updates-40
 
 packages:
-  # - kmod-nvidia-latest-dkms
   - kmod-nvidia-open-dkms
   - cuda-drivers
   - nvidia-driver
