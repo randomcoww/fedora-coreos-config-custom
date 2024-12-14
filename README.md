@@ -44,6 +44,7 @@ Run one of:
 
 ```bash
 VARIANT=coreos
+VARIANT=coreos-nvidia
 VARIANT=silverblue-nvidia
 ```
 
