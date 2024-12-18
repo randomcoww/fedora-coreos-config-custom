@@ -39,16 +39,6 @@ baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora40/$basea
 enabled=1
 gpgcheck=0
 module_hotfixes=1
-priority=10
-
-# container toolkit is not available in f40 repo yet
-[cuda-fedora-39]
-name=cuda-fedora-$basearch
-type=rpm-md
-baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora39/$basearch
-enabled=1
-gpgcheck=0
-module_hotfixes=1
 priority=14
 
 # python 3.12 needed for dnf-plugin-nvidia
