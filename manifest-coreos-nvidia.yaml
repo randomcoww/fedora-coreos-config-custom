@@ -5,7 +5,7 @@ include:
   - snippets/kubernetes.yaml
   - snippets/podman.yaml
   - snippets/nvidia.yaml
-  - snippets/release-coreos.yaml
+  - snippets/release-coreos-nvidia.yaml
 
 exclude-packages:
   - python
