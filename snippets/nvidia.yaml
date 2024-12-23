@@ -4,7 +4,7 @@ ostree-layers:
 repos:
   - rpmfusion-nonfree
   - rpmfusion-nonfree-updates
-  - cuda-fedora
+  - cuda-fedora-41
   - cuda-fedora-40
   - fedora-40
   - fedora-updates-40

@@ -3,6 +3,7 @@ include:
   - snippets/base.yaml
   - snippets/ha.yaml
   - snippets/kubernetes.yaml
+  - snippets/podman.yaml
   - snippets/nvidia.yaml
   - snippets/release-coreos.yaml
 

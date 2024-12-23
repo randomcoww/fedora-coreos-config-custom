@@ -8,7 +8,7 @@ priority=1
 
 [kubernetes]
 name=Kubernetes
-baseurl=https://pkgs.k8s.io/core:/stable:/v1.31/rpm/
+baseurl=https://pkgs.k8s.io/core:/stable:/v1.32/rpm/
 enabled=1
 gpgcheck=0
 repo_gpgcheck=0
@@ -16,17 +16,17 @@ priority=10
 
 [cri-o]
 name=CRI-O
-baseurl=https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.31/rpm/
+baseurl=https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.32/rpm/
 enabled=1
 gpgcheck=0
 priority=10
 
 ## Nvidia drivers and dependencies ##
 
-[cuda-fedora]
+[cuda-fedora-41]
 name=cuda-fedora-$basearch
 type=rpm-md
-baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora$releasever/$basearch
+baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora41/$basearch
 enabled=1
 gpgcheck=0
 module_hotfixes=1
