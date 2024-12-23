@@ -73,7 +73,6 @@ packages:
   - xz
   - zstd
   - openssh-clients openssh-server
-  - crun criu criu-libs
   - nvme-cli
   - lsof
   - which
