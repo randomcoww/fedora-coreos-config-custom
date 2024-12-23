@@ -5,8 +5,6 @@ repos:
 remove-from-packages:
   - [cri-o, /etc/cni/net.d/.*]
   - [conntrack-tools, /etc/conntrackd/conntrackd.conf]
-  - [conmon, /usr/bin/conmon]
-  - [crun, /usr/bin/crun]
 
 packages:
   - containernetworking-plugins
@@ -14,3 +12,4 @@ packages:
   - cri-tools
   - kubelet
   - conntrack-tools
+  - criu criu-libs
