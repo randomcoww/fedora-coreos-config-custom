@@ -21,10 +21,10 @@ enabled=1
 gpgcheck=0
 priority=10
 
-[cuda-fedora]
+[cuda-fedora-40]
 name=cuda-fedora-$basearch
 type=rpm-md
-baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora$releasever/$basearch
+baseurl=https://developer.download.nvidia.com/compute/cuda/repos/fedora40/$basearch
 enabled=1
 gpgcheck=0
 module_hotfixes=1

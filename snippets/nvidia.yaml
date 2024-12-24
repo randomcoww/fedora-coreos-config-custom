@@ -5,7 +5,7 @@ repos:
   - rpmfusion-nonfree
   - rpmfusion-nonfree-updates
   - nvidia-container-toolkit
-  - cuda-fedora
+  - cuda-fedora-40
 
 packages:
   - kmod-nvidia-open-dkms
