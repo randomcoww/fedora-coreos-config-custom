@@ -9,7 +9,5 @@ repos:
 
 packages:
   - kmod-nvidia-open-dkms
-  - cuda-drivers
-  - nvidia-driver
+  - nvidia-driver-cuda
   - nvidia-container-toolkit
-  - libva-nvidia-driver
