@@ -44,7 +44,6 @@ Run one of:
 
 ```bash
 VARIANT=coreos
-VARIANT=coreos-nvidia
 ```
 
 ```bash
@@ -53,31 +52,6 @@ mkdir -p $BUILD_PATH && cd $BUILD_PATH
 
 cosa init -V $VARIANT --force https://github.com/randomcoww/fedora-coreos-config-custom.git
 sudo chown $(stat -c %u .):$(stat -c %g .) $(pwd)/tmp
-```
-
-### Build Nvidia kernel modules into overlay
-
-- Kernel releases https://bodhi.fedoraproject.org/updates/?search=&packages=kernel&status=stable
-- CUDA driver releases https://developer.download.nvidia.com/compute/cuda/repos/fedora39/x86_64/
-
-```bash
-TARGETARCH=amd64
-FEDORA_VERSION=41
-DRIVER_VERSION=565.57.01
-KERNEL_RELEASE=6.12.5-200.fc$FEDORA_VERSION
-TAG=ghcr.io/randomcoww/nvidia-kmod:$DRIVER_VERSION-$KERNEL_RELEASE
-
-podman build \
-  --arch $TARGETARCH \
-  --build-arg FEDORA_VERSION=$FEDORA_VERSION \
-  --build-arg DRIVER_VERSION=$DRIVER_VERSION \
-  --build-arg KERNEL_RELEASE=$KERNEL_RELEASE \
-  -f src/config/nvidia-overlay/open.Containerfile \
-  -t $TAG
-
-podman run --rm \
-  -v $(pwd)/src/config/overlay.d/02nvidia/usr:/mnt \
-  $TAG cp -r /opt/. /mnt
 ```
 
 ### Run build
@@ -96,7 +70,7 @@ cosa buildextend-live
 mc cp -r builds/latest/x86_64/fedora-*-live* m/data-boot/
 ```
 
-### Write ISO image
+### Write ISO image with ignition
 
 ```bash
 export HOST=de-0

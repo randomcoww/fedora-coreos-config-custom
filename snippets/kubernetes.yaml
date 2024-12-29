@@ -1,6 +1,7 @@
 repos:
   - kubernetes
   - cri-o
+  - nvidia-container-toolkit
 
 remove-from-packages:
   - [cri-o, /etc/cni/net.d/.*]
@@ -13,3 +14,4 @@ packages:
   - kubelet
   - conntrack-tools
   - criu criu-libs
+  - nvidia-container-toolkit
