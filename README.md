@@ -54,8 +54,8 @@ cosa buildextend-live
 ```bash
 coreos-installer iso kargs modify \
   -a systemd.unit=multi-user.target \
-  -o $HOME/$HOST-server.iso \
-  $HOME/$HOST.iso
+  -o output.iso \
+  builds/latest/x86_64/fedora-*-live.x86_64.iso
 ```
 
 ### Embed ignition to ISO example
@@ -63,6 +63,6 @@ coreos-installer iso kargs modify \
 ```bash
 coreos-installer iso ignition embed \
   -i ignition.ign \
-  -o $HOME/$HOST.iso \
+  -o output.iso \
   builds/latest/x86_64/fedora-*-live.x86_64.iso
 ```
