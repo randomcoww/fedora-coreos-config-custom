@@ -18,7 +18,7 @@ cd fedora-coreos-config-custom
 git submodule update --remote
 ```
 
-### Update COSA image
+### Fetch sources
 
 ```bash
 cosa() {
@@ -37,8 +37,6 @@ cosa() {
    rc=$?; set +x; return $rc
 }
 ```
-
-### Fetch sources
 
 ```bash
 VARIANT=coreos
