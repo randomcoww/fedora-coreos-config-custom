@@ -40,13 +40,8 @@ cosa() {
 
 ### Fetch sources
 
-Run one of:
-
 ```bash
 VARIANT=coreos
-```
-
-```bash
 BUILD_PATH=$HOME/$VARIANT
 mkdir -p $BUILD_PATH && cd $BUILD_PATH
 
@@ -70,7 +65,9 @@ cosa buildextend-live
 mc cp -r builds/latest/x86_64/fedora-*-live* m/data-boot/
 ```
 
-### Write ISO image with ignition
+### Write ISO image with ignition example
+
+Points to ignition generated with https://github.com/randomcoww/homelab
 
 ```bash
 export HOST=de-0
@@ -81,7 +78,7 @@ coreos-installer iso ignition embed \
   builds/latest/x86_64/fedora-*-live.x86_64.iso
 ```
 
-### Modify kargs for server
+### Modify kargs example
 
 ```bash
 coreos-installer iso kargs modify \
