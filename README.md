@@ -10,15 +10,7 @@ COSA upstream with full instructions: https://github.com/coreos/coreos-assembler
 * CoreOS packages: https://github.com/coreos/fedora-coreos-config.git
 * Silverblue packages: https://pagure.io/workstation-ostree-config.git
 
-### Checkout
-
-```bash
-git clone --recurse-submodules git@github.com:randomcoww/fedora-coreos-config-custom.git
-cd fedora-coreos-config-custom
-git submodule update --remote
-```
-
-### Fetch sources
+### Create build environment
 
 ```bash
 cosa() {
@@ -57,25 +49,6 @@ cosa buildextend-metal && \
 cosa buildextend-live
 ```
 
-### Upload images for PXE boot
-
-```bash
-mc cp -r builds/latest/x86_64/fedora-*-live* m/data-boot/
-```
-
-### Write ISO image with ignition example
-
-Points to ignition generated with https://github.com/randomcoww/homelab
-
-```bash
-export HOST=de-0
-
-coreos-installer iso ignition embed \
-  -i $HOME/projects/homelab/output/ignition/$HOST.ign \
-  -o $HOME/$HOST.iso \
-  builds/latest/x86_64/fedora-*-live.x86_64.iso
-```
-
 ### Modify kargs example
 
 ```bash
@@ -85,24 +58,11 @@ coreos-installer iso kargs modify \
   $HOME/$HOST.iso
 ```
 
-### Update backup boot disk with current PXE boot image
+### Embed ignition to ISO example
 
 ```bash
-export IMAGE_URL=$(xargs -n1 -a /proc/cmdline | grep ^coreos.live.rootfs_url= | sed -r 's/coreos.live.rootfs_url=(.*)-rootfs(.*)\.img$/\1\2.iso/')
-export IGNITION_URL=$(xargs -n1 -a /proc/cmdline | grep ^ignition.config.url= | sed 's/ignition.config.url=//')
-export DISK=/dev/$(lsblk -ndo pkname /dev/disk/by-label/fedora-*)
-
-echo image-url=$IMAGE_URL
-echo ignition-url=$IGNITION_URL
-echo disk=$DISK
-sudo lsof $DISK
-```
-
-```bash
-curl $IMAGE_URL --output coreos.iso
-curl $IGNITION_URL | coreos-installer iso ignition embed coreos.iso
-
-sudo dd if=coreos.iso of=$DISK bs=4M
-sync
-rm coreos.iso
+coreos-installer iso ignition embed \
+  -i ignition.ign \
+  -o $HOME/$HOST.iso \
+  builds/latest/x86_64/fedora-*-live.x86_64.iso
 ```
