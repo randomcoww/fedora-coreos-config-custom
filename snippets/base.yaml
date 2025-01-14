@@ -82,19 +82,7 @@ packages:
   - systemd-networkd
   - ldns-utils
   - strace
-  - avahi
-  - wireless-regdb iw
   - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
-
-  # wifi firmware
-  - atheros-firmware
-  - brcmfmac-firmware
-  - mt7xxx-firmware
-  - nxpwireless-firmware
-  - realtek-firmware
-  - tiwilink-firmware
-  - iwlwifi-dvm-firmware
-  - iwlwifi-mvm-firmware
 
 packages-x86_64:
   - thermald

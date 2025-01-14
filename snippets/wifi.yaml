@@ -1,0 +1,11 @@
+packages:
+  - wireless-regdb iw
+  # wifi firmware
+  - atheros-firmware
+  - brcmfmac-firmware
+  - mt7xxx-firmware
+  - nxpwireless-firmware
+  - realtek-firmware
+  - tiwilink-firmware
+  - iwlwifi-dvm-firmware
+  - iwlwifi-mvm-firmware
