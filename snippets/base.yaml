@@ -82,6 +82,7 @@ packages:
   - systemd-networkd
   - ldns-utils
   - strace
+  - avahi
   - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
 
 packages-x86_64:
