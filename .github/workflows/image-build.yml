@@ -23,6 +23,7 @@ jobs:
         COSA_SUPERMIN_MEMORY=4096
         VARIANT=coreos
 
+        cd $HOME
         curl https://dl.min.io/client/mc/release/linux-amd64/mc \
           --create-dirs -o mc
         chmod +x mc
