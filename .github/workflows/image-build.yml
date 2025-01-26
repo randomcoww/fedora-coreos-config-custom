@@ -28,8 +28,7 @@ jobs:
           --create-dirs -o mc
         chmod +x mc
 
-        cosa init -V $VARIANT \
-          --force ${{ github.server_url }}/${{ github.repository }}.git
+        cosa init -V $VARIANT --force ${{ github.repositoryUrl }}
         cosa clean
         cosa fetch
         cosa build metal4k
