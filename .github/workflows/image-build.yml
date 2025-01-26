@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: arc-runner-fedora-coreos-config-custom
+    runs-on: arc-runner-${{ github.event.repository.name }}
     container:
       image: quay.io/coreos-assembler/coreos-assembler:latest
     permissions:
@@ -26,8 +26,7 @@ jobs:
         VARIANT=coreos
 
         curl https://dl.min.io/client/mc/release/linux-amd64/mc \
-          --create-dirs \
-          -o $HOME/mc
+          --create-dirs -o $HOME/mc
         chmod +x $HOME/mc
 
         BUILD_PATH=$HOME/$VARIANT
@@ -35,7 +34,7 @@ jobs:
         cd $BUILD_PATH
 
         cosa init -V $VARIANT \
-          --force https://github.com/randomcoww/fedora-coreos-config-custom.git
+          --force ${{ github.server_url }}/${{ github.repository }}.git
         cosa clean
         cosa fetch
         cosa build metal4k
