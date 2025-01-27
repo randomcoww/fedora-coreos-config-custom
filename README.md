@@ -10,42 +10,52 @@ COSA upstream with full instructions: https://github.com/coreos/coreos-assembler
 * CoreOS packages: https://github.com/coreos/fedora-coreos-config.git
 * Silverblue packages: https://pagure.io/workstation-ostree-config.git
 
-### Create build environment
+### Manual build
+
+Enter build image
 
 ```bash
-cosa() {
-   env | grep COREOS_ASSEMBLER
-   set -x
-   podman run --rm -ti --security-opt label=disable --privileged -w /srv \
-      --uidmap=$(id -u):0:1 --uidmap=0:1:$(id -u) --uidmap $(( $(id -u) + 1 )):$(( $(id -u) + 1 )):55536 \
-      -v ${PWD}:/srv/ --device /dev/kvm --device /dev/fuse \
-      --tmpfs /tmp --name cosa-coreos \
-      --env COSA_SUPERMIN_MEMORY=4096 \
-      ${COREOS_ASSEMBLER_CONFIG_GIT:+-v $COREOS_ASSEMBLER_CONFIG_GIT:/srv/src/config/:ro} \
-      ${COREOS_ASSEMBLER_GIT:+-v $COREOS_ASSEMBLER_GIT/src/:/usr/lib/coreos-assembler/:ro} \
-      ${COREOS_ASSEMBLER_ADD_CERTS:+-v=/etc/pki/ca-trust:/etc/pki/ca-trust:ro} \
-      ${COREOS_ASSEMBLER_CONTAINER_RUNTIME_ARGS} \
-      ${COREOS_ASSEMBLER_CONTAINER:-quay.io/coreos-assembler/coreos-assembler:latest} "$@"
-   rc=$?; set +x; return $rc
-}
+mkdir -p builds
+
+podman run -it --rm \
+  --entrypoint=bash \
+  -e COSA_SUPERMIN_MEMORY=4096 \
+  -e VARIANT=coreos \
+  -v $(pwd)/builds:/home/builder/builds \
+  quay.io/coreos-assembler/coreos-assembler
 ```
 
-```bash
-VARIANT=coreos
-BUILD_PATH=$HOME/$VARIANT
-mkdir -p $BUILD_PATH && cd $BUILD_PATH
-
-cosa init -V $VARIANT --force https://github.com/randomcoww/fedora-coreos-config-custom.git
-sudo chown $(stat -c %u .):$(stat -c %g .) $(pwd)/tmp
-```
-
-### Run build
+Run build in image
 
 ```bash
-cosa clean && \
-cosa fetch && \
-cosa build metal4k && \
-cosa buildextend-metal && \
+cd $HOME
+sudo dnf install -y --setopt=install_weak_deps=False \
+  rpmdevtools \
+  dnf-plugins-core \
+  git-core \
+  libnftnl-devel \
+  createrepo
+
+mkdir -p rpmbuild/
+cd rpmbuild
+git clone -b f$(rpm -E %fedora) https://src.fedoraproject.org/rpms/keepalived.git SOURCES/
+cd SOURCES
+spectool -gR keepalived.spec
+sudo dnf builddep -y keepalived.spec
+rpmbuild -bb keepalived.spec \
+  --without snmp \
+  --with nftables \
+  --without debug
+
+find $HOME/rpmbuild/RPMS/ -type d -mindepth 1 -maxdepth 1 -exec createrepo '{}' \;
+
+cd $HOME
+cosa init -V $VARIANT \
+  --force ${{ github.server_url }}/${{ github.repository }}.git
+cosa clean
+cosa fetch
+cosa build metal4k
+cosa buildextend-metal
 cosa buildextend-live
 ```
 
