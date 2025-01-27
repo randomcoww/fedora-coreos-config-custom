@@ -18,6 +18,7 @@ Enter build image
 mkdir -p builds
 
 podman run -it --rm \
+  --device /dev/kvm \
   --entrypoint=bash \
   -e COSA_SUPERMIN_MEMORY=4096 \
   -e VARIANT=coreos \
