@@ -1,9 +1,9 @@
-[selfhosted]
-name=custom
-type=rpm-md
-baseurl=https://randomcoww.github.io/repos/fedora/$releasever/$basearch/
-gpgcheck=0
+[local-override]
+name=local-override-$basearch
+baseurl=/home/builder/rpmbuild/RPMS/$basearch
 enabled=1
+gpgcheck=0
+repo_gpgcheck=0
 priority=1
 
 [kubernetes]

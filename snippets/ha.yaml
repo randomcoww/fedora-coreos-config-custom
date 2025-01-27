@@ -1,5 +1,5 @@
 repos:
-  - selfhosted
+  - local-override
 
 remove-from-packages:
   - [conntrack-tools, /etc/conntrackd/conntrackd.conf]
