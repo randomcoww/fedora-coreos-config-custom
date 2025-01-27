@@ -50,6 +50,7 @@ jobs:
           --without debug
 
     - name: Create local RPM repo
+      run: |
         find $HOME/rpmbuild/RPMS/ -type d -mindepth 1 -maxdepth 1 -exec createrepo '{}' \;
 
     - name: Build image
