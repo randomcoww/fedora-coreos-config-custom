@@ -9,6 +9,12 @@ on:
     tags:
       - v*
 
+env:
+  COSA_SUPERMIN_MEMORY: 4096
+  VARIANT: coreos
+  # This needs to match releasever
+  FEDORA_VERSION: 41
+
 jobs:
   build:
     runs-on: arc-runner-${{ github.event.repository.name }}
@@ -39,7 +45,7 @@ jobs:
         cd $HOME
         mkdir -p rpmbuild/
         cd rpmbuild
-        git clone -b f$(rpm -E %fedora) https://src.fedoraproject.org/rpms/keepalived.git SOURCES/
+        git clone -b f$FEDORA_VERSION https://src.fedoraproject.org/rpms/keepalived.git SOURCES/
         cd SOURCES
         spectool -gR keepalived.spec
         sudo dnf builddep -y keepalived.spec
@@ -54,16 +60,15 @@ jobs:
         find rpmbuild/RPMS/ -type d -mindepth 1 -maxdepth 1 -exec createrepo '{}' \;
 
     - name: Build image
-      env:
-        COSA_SUPERMIN_MEMORY: 4096
-        VARIANT: coreos
       run: |
         cd $HOME
         cosa init -V $VARIANT \
           --force ${{ github.server_url }}/${{ github.repository }}.git
         cosa clean
         cosa fetch
-        cosa build metal4k
+        cosa build \
+          --version=$FEDORA_VERSION.${{ github.head_ref || github.ref_name }} \
+          metal4k
         cosa buildextend-metal
         cosa buildextend-live
 
