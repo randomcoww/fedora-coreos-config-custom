@@ -70,6 +70,7 @@ jobs:
       env:
         COSA_SUPERMIN_MEMORY: 4096
       run: |
+        cd $HOME
         cosa fetch \
           --with-cosa-overrides
         cosa build \
