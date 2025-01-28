@@ -51,6 +51,11 @@ jobs:
           --with nftables \
           --without debug
 
+    - name: Create local-override repo
+      run: |
+        cd $HOME
+        find rpmbuild/RPMS/ -type d -mindepth 1 -maxdepth 1 -exec createrepo '{}' \;
+
     - name: Prepare build
       env:
         VARIANT: coreos
@@ -63,16 +68,12 @@ jobs:
         releasever: $FEDORA_VERSION
         EOF
 
-        mkdir -p src/config/overrides/rpm
-        mv rpmbuild/RPMS/$(arch)/* src/config/overrides/rpm/
-
     - name: Build image
       env:
         COSA_SUPERMIN_MEMORY: 4096
       run: |
         cd $HOME
-        cosa fetch \
-          --with-cosa-overrides
+        cosa fetch
         cosa build \
           --version=$FEDORA_VERSION.${{ github.head_ref || github.ref_name }} \
           metal4k
