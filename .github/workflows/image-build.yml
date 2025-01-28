@@ -54,7 +54,6 @@ jobs:
         cd $HOME
         mkdir -p overrides/rpm
         cp -r rpmbuild/RPMS/$(arch)/. overrides/rpm/
-        cp -r rpmbuild/RPMS/noarch/. overrides/rpm/
 
     - name: Build image
       env:

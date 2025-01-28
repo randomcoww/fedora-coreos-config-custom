@@ -61,7 +61,6 @@ rpmbuild -bb keepalived.spec \
 cd $HOME
 mkdir -p overrides/rpm/
 cp -r rpmbuild/RPMS/$(arch)/. overrides/rpm/
-cp -r rpmbuild/RPMS/noarch/. overrides/rpm/
 
 cd $HOME
 cosa init -V $VARIANT \
