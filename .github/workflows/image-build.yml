@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   push:
     tags:
-      - v*
+      - "*"
 
 env:
   # This needs to match releasever
@@ -51,33 +51,22 @@ jobs:
           --with nftables \
           --without debug
 
-    - name: Create local-override repo
-      run: |
         cd $HOME
-        mkdir -p rpmbuild/RPMS/$(arch)
-        createrepo rpmbuild/RPMS/$(arch)
+        mkdir -p overrides/rpm
+        cp -r rpmbuild/RPMS/$(arch)/. overrides/rpm/
+        cp -r rpmbuild/RPMS/noarch/. overrides/rpm/
 
-    - name: Prepare build
+    - name: Build image
       env:
         VARIANT: coreos
+        COSA_SUPERMIN_MEMORY: 4096
       run: |
         cd $HOME
         cosa init -V $VARIANT \
           --force ${{ github.server_url }}/${{ github.repository }}.git
-
-        cat > src/config/override.yaml <<EOF
-        releasever: $FEDORA_VERSION
-        EOF
-
-    - name: Build image
-      env:
-        COSA_SUPERMIN_MEMORY: 4096
-      run: |
-        cd $HOME
-        cosa fetch
+        cosa fetch --with-cosa-overrides
         cosa build \
-          --version=$FEDORA_VERSION.${{ github.head_ref || github.ref_name }} \
-          metal4k
+          --version=$FEDORA_VERSION.${{ github.head_ref || github.ref_name }} metal4k
         cosa buildextend-metal
         cosa buildextend-live
 

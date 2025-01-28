@@ -10,6 +10,14 @@ COSA upstream with full instructions: https://github.com/coreos/coreos-assembler
 * CoreOS packages: https://github.com/coreos/fedora-coreos-config.git
 * Silverblue packages: https://pagure.io/workstation-ostree-config.git
 
+Tag latest by date
+
+```bash
+TAG=$(date -u +'%Y%m%d').1
+git tag -a $TAG
+git push origin $TAG
+```
+
 ### Manual build
 
 Enter build image
@@ -29,17 +37,19 @@ podman run -it --rm \
 Run build in image
 
 ```bash
+FEDORA_VERSION=41
+
 cd $HOME
 sudo dnf install -y --setopt=install_weak_deps=False \
   rpmdevtools \
   dnf-plugins-core \
   git-core \
-  libnftnl-devel \
-  createrepo
+  libnftnl-devel
 
+cd $HOME
 mkdir -p rpmbuild/
 cd rpmbuild
-git clone -b f41 https://src.fedoraproject.org/rpms/keepalived.git SOURCES/
+git clone -b f$FEDORA_VERSION https://src.fedoraproject.org/rpms/keepalived.git SOURCES/
 cd SOURCES
 spectool -gR keepalived.spec
 sudo dnf builddep -y keepalived.spec
@@ -48,14 +58,17 @@ rpmbuild -bb keepalived.spec \
   --with nftables \
   --without debug
 
-find $HOME/rpmbuild/RPMS/ -type d -mindepth 1 -maxdepth 1 -exec createrepo '{}' \;
+cd $HOME
+mkdir -p overrides/rpm/
+cp -r rpmbuild/RPMS/$(arch)/. overrides/rpm/
+cp -r rpmbuild/RPMS/noarch/. overrides/rpm/
 
 cd $HOME
 cosa init -V $VARIANT \
   --force https://github.com/randomcoww/fedora-coreos-config-custom.git
-cosa clean
-cosa fetch
-cosa build metal4k
+cosa fetch --with-cosa-overrides
+cosa build \
+  --version=$FEDORA_VERSION.$TAG metal4k
 cosa buildextend-metal
 cosa buildextend-live
 ```

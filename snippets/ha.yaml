@@ -1,6 +1,3 @@
-repos:
-  - local-override
-
 remove-from-packages:
   - [conntrack-tools, /etc/conntrackd/conntrackd.conf]
   - [keepalived, /etc/keepalived/keepalived.conf]

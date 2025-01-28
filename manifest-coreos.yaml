@@ -1,5 +1,4 @@
 include:
-  - override.yaml
   - upstream-include.yaml
   - snippets/base.yaml
   - snippets/ha.yaml
