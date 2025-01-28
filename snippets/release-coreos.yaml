@@ -1,4 +1,4 @@
-releasever: "41"
+releasever: 40
 ref: fedora/${releasever}/${basearch}/coreos
 
 automatic-version-prefix: "${releasever}.<date:%Y%m%d>"

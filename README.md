@@ -39,7 +39,7 @@ sudo dnf install -y --setopt=install_weak_deps=False \
 
 mkdir -p rpmbuild/
 cd rpmbuild
-git clone -b f$(rpm -E %fedora) https://src.fedoraproject.org/rpms/keepalived.git SOURCES/
+git clone -b f41 https://src.fedoraproject.org/rpms/keepalived.git SOURCES/
 cd SOURCES
 spectool -gR keepalived.spec
 sudo dnf builddep -y keepalived.spec
@@ -52,7 +52,7 @@ find $HOME/rpmbuild/RPMS/ -type d -mindepth 1 -maxdepth 1 -exec createrepo '{}' 
 
 cd $HOME
 cosa init -V $VARIANT \
-  --force ${{ github.server_url }}/${{ github.repository }}.git
+  --force https://github.com/randomcoww/fedora-coreos-config-custom.git
 cosa clean
 cosa fetch
 cosa build metal4k
