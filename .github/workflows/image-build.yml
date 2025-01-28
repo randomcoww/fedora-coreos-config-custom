@@ -70,7 +70,7 @@ jobs:
 
         cosa fetch --with-cosa-overrides
         cosa build \
-          --version=$FEDORA_VERSION.${{ github.head_ref || github.ref_name }} metal4k
+          --version=${{ github.head_ref || github.ref_name }} metal4k
         cosa buildextend-metal
         cosa buildextend-live
 

@@ -72,7 +72,7 @@ EOF
 
 cosa fetch --with-cosa-overrides
 cosa build \
-  --version=$FEDORA_VERSION.$TAG metal4k
+  --version=$TAG metal4k
 cosa buildextend-metal
 cosa buildextend-live
 ```
