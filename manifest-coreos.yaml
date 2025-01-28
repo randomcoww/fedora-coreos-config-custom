@@ -1,11 +1,11 @@
 include:
+  - override.yaml
   - upstream-include.yaml
   - snippets/base.yaml
   - snippets/ha.yaml
   - snippets/kubernetes.yaml
   - snippets/release-coreos.yaml
   - snippets/wifi.yaml
-  - override.yaml
 
 exclude-packages:
   - python

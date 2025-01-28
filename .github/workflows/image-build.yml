@@ -54,7 +54,8 @@ jobs:
     - name: Create local-override repo
       run: |
         cd $HOME
-        find rpmbuild/RPMS/ -type d -mindepth 1 -maxdepth 1 -exec createrepo '{}' \;
+        mkdir -p rpmbuild/RPMS/$(arch)
+        createrepo rpmbuild/RPMS/$(arch)
 
     - name: Prepare build
       env:
