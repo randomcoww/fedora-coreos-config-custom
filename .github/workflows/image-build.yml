@@ -64,6 +64,11 @@ jobs:
         cd $HOME
         cosa init -V $VARIANT \
           --force ${{ github.server_url }}/${{ github.repository }}.git
+
+        cat > src/config/override.yaml <<EOF
+        releasever: $FEDORA_VERSION
+        EOF
+
         cosa fetch --with-cosa-overrides
         cosa build \
           --version=$FEDORA_VERSION.${{ github.head_ref || github.ref_name }} metal4k

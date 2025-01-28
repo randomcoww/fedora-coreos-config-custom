@@ -66,6 +66,11 @@ cp -r rpmbuild/RPMS/noarch/. overrides/rpm/
 cd $HOME
 cosa init -V $VARIANT \
   --force https://github.com/randomcoww/fedora-coreos-config-custom.git
+
+cat > src/config/override.yaml <<EOF
+releasever: $FEDORA_VERSION
+EOF
+
 cosa fetch --with-cosa-overrides
 cosa build \
   --version=$FEDORA_VERSION.$TAG metal4k
