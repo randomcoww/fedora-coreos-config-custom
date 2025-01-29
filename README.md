@@ -77,7 +77,7 @@ cosa buildextend-metal
 cosa buildextend-live
 ```
 
-### Modify kargs example
+Modify kargs example
 
 ```bash
 coreos-installer iso kargs modify \
@@ -86,7 +86,7 @@ coreos-installer iso kargs modify \
   builds/latest/x86_64/fedora-*-live.x86_64.iso
 ```
 
-### Embed ignition to ISO example
+Embed ignition to ISO example
 
 ```bash
 coreos-installer iso ignition embed \
