@@ -13,7 +13,7 @@ COSA upstream with full instructions: https://github.com/coreos/coreos-assembler
 Tag latest by date
 
 ```bash
-TAG=$(date -u +'%Y%m%d').1
+TAG=$(date -u +'%Y%m%d.%H%M')
 git tag -a $TAG
 git push origin $TAG
 ```
