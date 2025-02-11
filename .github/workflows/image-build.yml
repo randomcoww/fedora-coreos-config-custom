@@ -38,7 +38,7 @@ jobs:
         cd $HOME
         mkdir -p rpmbuild/
         cd rpmbuild
-        git clone -b f$FEDORA_VERSION https://src.fedoraproject.org/rpms/keepalived.git SOURCES/
+        git clone --depth 1 -b f$FEDORA_VERSION https://src.fedoraproject.org/rpms/keepalived.git SOURCES/
         cd SOURCES
         spectool -gR keepalived.spec
         sudo dnf builddep -y keepalived.spec
