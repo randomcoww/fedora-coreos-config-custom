@@ -31,8 +31,6 @@ jobs:
         releasever: $FEDORA_VERSION
         EOF
 
-        cosa fetch --with-cosa-overrides
-
     - name: Create tag
       run: |
         cd $HOME/src/config
