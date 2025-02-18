@@ -1,0 +1,41 @@
+name: Image Build
+on:
+  workflow_dispatch:
+
+env:
+  # This needs to match releasever
+  FEDORA_VERSION: 41
+
+jobs:
+  build:
+    runs-on: arc-runner-${{ github.event.repository.name }}
+    container:
+      image: quay.io/coreos-assembler/coreos-assembler:latest
+    permissions:
+      contents: read
+    steps:
+    - name: Set tag
+      run: |
+        echo "BUILD_TAG=$(date -u +'%Y%m%d.%H%M')" >> "$GITHUB_ENV"
+
+    - name: Build image
+      env:
+        VARIANT: coreos
+        COSA_SUPERMIN_MEMORY: 4096
+      run: |
+        cd $HOME
+        cosa init -V $VARIANT \
+          --force ${{ github.server_url }}/${{ github.repository }}.git
+
+        cat > src/config/override.yaml <<EOF
+        releasever: $FEDORA_VERSION
+        EOF
+
+        cosa fetch --with-cosa-overrides
+
+    - name: Create tag
+      run: |
+        cd $HOME/src/config
+
+        git tag -a $BUILD_TAG
+        git push origin $BUILD_TAG
