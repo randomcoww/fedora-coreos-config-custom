@@ -12,7 +12,7 @@ jobs:
     container:
       image: quay.io/coreos-assembler/coreos-assembler:latest
     permissions:
-      contents: read
+      contents: write
     steps:
     - name: Set tag
       run: |
