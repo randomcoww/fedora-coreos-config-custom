@@ -1,9 +1,6 @@
 name: Image Build
 on:
   workflow_dispatch:
-  push:
-    tags:
-    - "*"
 
 env:
   # This needs to match releasever
@@ -15,15 +12,18 @@ jobs:
     container:
       image: quay.io/coreos-assembler/coreos-assembler:latest
     permissions:
-      contents: read
+      contents: write
     steps:
+    - name: Set tag
+      run: |
+        echo "BUILD_TAG=$(date -u +'%Y%m%d.%H%M')" | sudo tee -a "$GITHUB_ENV"
+
     - name: Install dependencies
       run: |
         cd $HOME
         sudo dnf install -y --setopt=install_weak_deps=False \
           rpmdevtools \
           dnf-plugins-core \
-          git-core \
           libnftnl-devel
 
         TARGETARCH=$(arch)
@@ -66,7 +66,7 @@ jobs:
 
         cosa fetch --with-cosa-overrides
         cosa build \
-          --version=${{ github.head_ref || github.ref_name }} metal4k
+          --version=$BUILD_TAG metal4k
         cosa buildextend-metal
         cosa buildextend-live
 
@@ -76,3 +76,14 @@ jobs:
         ./mc cp -r -q --no-color \
           builds/latest/x86_64/fedora-*-live* \
           arc/data-boot/
+
+    - name: Create tag
+      run: |
+        cd $HOME/src/config
+        echo "${{ github.actor }}"
+
+        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+        git config --global user.name "${{ github.actor }}"
+        git tag -a $BUILD_TAG -m "Build f$FEDORA_VERSION.$BUILD_TAG"
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+        git push origin $BUILD_TAG
