@@ -16,7 +16,7 @@ jobs:
     steps:
     - name: Set tag
       run: |
-        echo "BUILD_TAG=$(date -u +'%Y%m%d%H')" | sudo tee -a "$GITHUB_ENV"
+        echo "BUILD_TAG=${FEDORA_VERSION}.$(date -u +'%Y%m%d.%H')" | sudo tee -a "$GITHUB_ENV"
 
     - name: Install dependencies
       run: |
@@ -84,6 +84,6 @@ jobs:
 
         git config --global user.email "${{ github.actor }}@users.noreply.github.com"
         git config --global user.name "${{ github.actor }}"
-        git tag -a $BUILD_TAG -m "Build f$FEDORA_VERSION.$BUILD_TAG"
+        git tag -a $BUILD_TAG -m "Build $BUILD_TAG"
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
         git push origin $BUILD_TAG
