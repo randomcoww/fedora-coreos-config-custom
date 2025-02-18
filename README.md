@@ -10,14 +10,6 @@ COSA upstream with full instructions: https://github.com/coreos/coreos-assembler
 * CoreOS packages: https://github.com/coreos/fedora-coreos-config.git
 * Silverblue packages: https://pagure.io/workstation-ostree-config.git
 
-Tag latest by date
-
-```bash
-TAG=$(date -u +'%Y%m%d.%H%M')
-git tag -a $TAG
-git push origin $TAG
-```
-
 ### Manual build
 
 Enter build image
@@ -38,6 +30,7 @@ Run build in image
 
 ```bash
 FEDORA_VERSION=41
+TAG=$(date -u +'%Y%m%d.%H%M')
 
 cd $HOME
 sudo dnf install -y --setopt=install_weak_deps=False \
