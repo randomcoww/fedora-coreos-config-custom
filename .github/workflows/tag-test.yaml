@@ -16,7 +16,7 @@ jobs:
     steps:
     - name: Set tag
       run: |
-        echo "BUILD_TAG=$(date -u +'%Y%m%d.%H%M')" >> "$GITHUB_ENV"
+        echo "BUILD_TAG=$(date -u +'%Y%m%d.%H%M')" | sudo tee -a "$GITHUB_ENV"
 
     - name: Build image
       env:
