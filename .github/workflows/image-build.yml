@@ -5,6 +5,8 @@ on:
 env:
   # This needs to match releasever
   FEDORA_VERSION: 41
+  VARIANT: coreos
+  COSA_SUPERMIN_MEMORY: 4096
 
 jobs:
   build:
@@ -40,12 +42,6 @@ jobs:
         unzip -j terraform.zip terraform
         rm terraform.zip
 
-    - name: Generate CA
-      run: |
-        cd $HOME
-        ./terraform init
-        ./terraform apply -auto-approve
-
     - name: Build keepalived package
       run: |
         cd $HOME
@@ -64,21 +60,29 @@ jobs:
         mkdir -p overrides/rpm
         cp -r rpmbuild/RPMS/$(arch)/. overrides/rpm/
 
-    - name: Build image
-      env:
-        VARIANT: coreos
-        COSA_SUPERMIN_MEMORY: 4096
+    - name: Pull build
       run: |
         cd $HOME
         cosa init -V $VARIANT \
           --force ${{ github.server_url }}/${{ github.repository }}.git
 
+    - name: Generate CA
+      run: |
+        cd $HOME/src/config
+
+        ./terraform init
+        ./terraform apply -auto-approve
+
+        mkdir -p overlay.d/01custom/etc/pki/ca-trust/source/anchors
+        cp matchbox-ca.crt overlay.d/01custom/etc/pki/ca-trust/source/anchors/
+
+    - name: Run build
+      run: |
+        cd $HOME
+
         cat > src/config/override.yaml <<EOF
         releasever: $FEDORA_VERSION
         EOF
-
-        mkdir -p src/config/overlay.d/01custom/etc/pki/ca-trust/source/anchors
-        cp matchbox-ca.crt src/config/overlay.d/01custom/etc/pki/ca-trust/source/anchors/
 
         cosa fetch --with-cosa-overrides
         cosa build \
