@@ -15,5 +15,5 @@ data "terraform_remote_state" "sr" {
 
 resource "local_file" "matchbox-ca-cert" {
   content  = data.terraform_remote_state.sr.outputs.matchbox.ca.cert_pem
-  filename = "matchbox-ca.crt"
+  filename = "matchbox-ca.pem"
 }
