@@ -70,8 +70,8 @@ jobs:
       run: |
         cd $HOME/src/config
 
-        ./terraform init
-        ./terraform apply -auto-approve
+        $HOME/terraform init
+        $HOME/terraform apply -auto-approve
 
         mkdir -p overlay.d/01custom/etc/pki/ca-trust/source/anchors
         cp matchbox-ca.crt overlay.d/01custom/etc/pki/ca-trust/source/anchors/
