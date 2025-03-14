@@ -1,8 +1,8 @@
-data "terraform_remote_state" "rs" {
+data "terraform_remote_state" "sr" {
   backend = "s3"
   config = {
     bucket                      = "terraform"
-    key                         = "state/kubernetes_service-0.tfstate"
+    key                         = "state/cluster_resources-0.tfstate"
     region                      = "auto"
     skip_credentials_validation = true
     skip_metadata_api_check     = true
@@ -14,6 +14,6 @@ data "terraform_remote_state" "rs" {
 }
 
 resource "local_file" "matchbox-ca-cert" {
-  content  = data.terraform_remote_state.rs.outputs.matchbox.ca.cert_pem
+  content  = data.terraform_remote_state.sr.outputs.matchbox.ca.cert_pem
   filename = "matchbox-ca.crt"
 }
