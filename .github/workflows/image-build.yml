@@ -24,7 +24,8 @@ jobs:
         sudo dnf install -y --setopt=install_weak_deps=False \
           rpmdevtools \
           dnf-plugins-core \
-          libnftnl-devel
+          libnftnl-devel \
+          unzip
 
         TARGETARCH=$(arch)
         TARGETARCH=${TARGETARCH/x86_64/amd64} && TARGETARCH=${TARGETARCH/aarch64/arm64}
@@ -32,6 +33,18 @@ jobs:
         curl https://dl.min.io/client/mc/release/linux-$TARGETARCH/mc \
           --create-dirs -o mc
         chmod +x mc
+
+        TF_VERSION=$(curl -s https://api.github.com/repos/hashicorp/terraform/releases/latest |grep tag_name | cut -d '"' -f 4 | tr -d 'v')
+        curl https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_$TARGETARCH.zip \
+          --create-dirs -o terraform.zip
+        unzip -j terraform.zip terraform
+        rm terraform.zip
+
+    - name: Generate CA
+      run: |
+        cd $HOME
+        ./terraform init
+        ./terraform apply -auto-approve
 
     - name: Build keepalived package
       run: |
@@ -63,6 +76,9 @@ jobs:
         cat > src/config/override.yaml <<EOF
         releasever: $FEDORA_VERSION
         EOF
+
+        mkdir -p src/config/overlay.d/01custom/etc/pki/ca-trust/source/anchors
+        cp matchbox-ca.crt src/config/overlay.d/01custom/etc/pki/ca-trust/source/anchors/
 
         cosa fetch --with-cosa-overrides
         cosa build \
