@@ -17,3 +17,8 @@ resource "local_file" "matchbox-ca-cert" {
   content  = data.terraform_remote_state.sr.outputs.matchbox.ca.cert_pem
   filename = "matchbox-ca.pem"
 }
+
+resource "local_file" "minio-ca-cert" {
+  content  = data.terraform_remote_state.sr.outputs.minio.ca.cert_pem
+  filename = "minio-ca.pem"
+}

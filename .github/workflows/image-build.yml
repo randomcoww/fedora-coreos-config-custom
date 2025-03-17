@@ -75,6 +75,7 @@ jobs:
 
         mkdir -p overlay.d/01custom/etc/pki/ca-trust/source/anchors
         cp matchbox-ca.pem overlay.d/01custom/etc/pki/ca-trust/source/anchors/
+        cp minio-ca.pem overlay.d/01custom/etc/pki/ca-trust/source/anchors/
 
     - name: Run build
       run: |
