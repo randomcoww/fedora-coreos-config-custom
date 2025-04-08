@@ -1,3 +1,6 @@
+variables:
+  stream: testing-devel
+
 ostree-layers:
   - overlay/01custom
 
