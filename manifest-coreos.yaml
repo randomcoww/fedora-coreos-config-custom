@@ -1,3 +1,6 @@
+variables:
+  stream: testing-devel
+
 include:
   - override.yaml
   - upstream-include.yaml
