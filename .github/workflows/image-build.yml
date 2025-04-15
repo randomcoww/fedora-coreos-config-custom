@@ -4,7 +4,7 @@ on:
 
 env:
   # This needs to match releasever
-  FEDORA_VERSION: 41
+  FEDORA_VERSION: 42
   VARIANT: coreos
   COSA_SUPERMIN_MEMORY: 4096
 
