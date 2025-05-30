@@ -1,3 +1,7 @@
+metadata:
+  name: fedora-coreos
+  summary: Fedora CoreOS ${releasever}
+
 ostree-layers:
   - overlay/01custom
 
