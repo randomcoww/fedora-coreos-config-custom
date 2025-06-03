@@ -70,7 +70,6 @@ Before=initrd-root-fs.target
 [Mount]
 What=/sysroot.img
 Where=/sysroot
-Type=squashfs
 Options=loop
 EOF
 else
@@ -148,7 +147,6 @@ ${sysrootrequiresmountsfor}
 [Mount]
 What=${sysrootfsimg}
 Where=/sysroot
-Type=squashfs
 # Offset of the root.erofs within the rootfs cpio.  Assumes newc format
 # and that a file named "root.[squash|ero]fs" is the first member.  This offset
 # is checked by coreos-assembler cmd-buildextend-live at build time.
@@ -221,6 +219,7 @@ RemainAfterExit=yes
 ExecStart=/bin/cp -a /sysroot/etc /run/ephemeral/etc
 ExecStart=/bin/mkdir /run/ephemeral/var
 EOF
+add_requires sysroot-xfs-ephemeral-setup.service initrd-root-fs.target
 
 common_etcvar_unit() {
     cat << EOF
