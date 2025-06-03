@@ -2,7 +2,6 @@ ignition-network-kcmdline: []
 ostree-remote: fedora
 compressor: xz
 extra-kargs:
-  - numa=off
   - selinux=0
   - coreos.liveiso.fromram
   - rd.driver.blacklist=nouveau
