@@ -86,6 +86,11 @@ jobs:
         EOF
 
         cosa fetch --with-cosa-overrides
+        # This multiline causes jq to break at a later step. Hack to remove them.
+        # https://gitlab.com/fedora/bootc/base-images/-/blob/main/minimal-plus/manifest.yaml?ref_type=heads#L2-4
+        tail -n +5 src/config/fedora-coreos-config/fedora-bootc/minimal-plus/manifest.yaml > temp.yaml
+        mv temp.yaml src/config/fedora-coreos-config/fedora-bootc/minimal-plus/manifest.yaml
+
         cosa build \
           --version=$BUILD_TAG metal4k
         cosa buildextend-metal
