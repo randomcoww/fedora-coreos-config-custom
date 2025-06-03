@@ -2,6 +2,7 @@ include:
   - manifests/ignition-and-ostree.yaml
   - manifests/file-transfer.yaml
   - manifests/kernel.yaml
+  - manifests/coreos-bootc-minimal-plus.yaml
 
 check-passwd:
   type: "file"

@@ -1,5 +1,7 @@
 variables:
+  id: fedora
   stream: testing-devel
+  osversion: unused
 
 include:
   - override.yaml
