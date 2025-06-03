@@ -9,11 +9,3 @@ check-passwd:
 check-groups:
   type: "file"
   filename: "manifests/group"
-
-arch-include:
-  x86_64:
-    - manifests/grub2-removals.yaml
-    - manifests/bootupd.yaml
-  aarch64:
-    - manifests/grub2-removals.yaml
-    - manifests/bootupd.yaml
