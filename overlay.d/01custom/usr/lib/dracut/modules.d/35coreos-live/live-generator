@@ -219,7 +219,6 @@ RemainAfterExit=yes
 ExecStart=/bin/cp -a /sysroot/etc /run/ephemeral/etc
 ExecStart=/bin/mkdir /run/ephemeral/var
 EOF
-add_requires sysroot-xfs-ephemeral-setup.service initrd-root-fs.target
 
 common_etcvar_unit() {
     cat << EOF
@@ -227,7 +226,7 @@ common_etcvar_unit() {
 [Unit]
 DefaultDependencies=false
 # Make sure our tmpfs is available
-Requires=sysroot-xfs-ephemeral-setup.service
+BindsTo=sysroot-xfs-ephemeral-setup.service
 After=sysroot-xfs-ephemeral-setup.service
 # We're part of assembling the root fs
 Before=initrd-root-fs.target
