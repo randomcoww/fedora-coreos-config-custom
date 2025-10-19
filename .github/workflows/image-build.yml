@@ -80,22 +80,27 @@ jobs:
 
     - name: Run fetch
       run: |
+        cd $HOME/build
         cosa fetch --with-cosa-overrides
 
     - name: Run build
       run: |
+        cd $HOME/build
         cosa build --version=$BUILD_TAG
 
     - name: Run buildextend-metal4k
       run: |
+        cd $HOME/build
         cosa buildextend-metal4k
 
     - name: Run buildextend-metal
       run: |
+        cd $HOME/build
         cosa buildextend-metal
 
     - name: Run buildextend-live
       run: |
+        cd $HOME/build
         cosa buildextend-live
 
     - name: Push image
