@@ -1,15 +1,7 @@
-variables:
-  stream: testing-devel
-  prod: false
-
-releasever: 42
-
 include:
-  - fedora-coreos-config/manifests/fedora-coreos.yaml
+  - fedora-coreos-config/manifest.yaml
 
 repos:
-  - fedora
-  - fedora-updates
   - kubernetes
 
 packages:
