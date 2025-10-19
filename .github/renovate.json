@@ -6,6 +6,9 @@
   "dockerfile": {
     "enabled": false
   },
+  "git-submodules": {
+    "enabled": true
+  },
   "customManagers": [
     {
       "customType": "regex",
