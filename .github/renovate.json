@@ -17,10 +17,17 @@
       ],
       "datasourceTemplate": "github-releases",
       "versioningTemplate": "docker",
-      "depName": "kubernetes/kubernetes"
+      "depNameTemplate": "kubernetes/kubernetes"
     }
   ],
   "packageRules": [
+    {
+      "matchDatasources": [
+        "github-releases",
+        "github-tags"
+      ],
+      "versioning": "docker"
+    },
     {
       "matchUpdateTypes": [
         "minor",
