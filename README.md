@@ -1,5 +1,9 @@
 ## Custom Fedora CoreOS build
 
-Builds Kubernetes and some networking HA tools like Keepalived and HAProxy into upstream COSA base image:
+Upstream config
 
-https://github.com/coreos/fedora-coreos-config.git
+https://github.com/coreos/fedora-coreos-config
+
+Build tool
+
+https://github.com/coreos/coreos-assembler
