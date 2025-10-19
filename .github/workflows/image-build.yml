@@ -31,6 +31,7 @@ jobs:
         mkdir -p .mc/certs/CAs
         echo -e "$INTERNAL_CA_CERT" > .mc/certs/CAs/ca.crt
 
+    # Upstream submodule becomes the root of the build. Contents of base repo are copied into the submodule path after checkout.
     - name: Prepare repo
       run: |
         cd $HOME
@@ -42,11 +43,13 @@ jobs:
         echo "BUILD_TAG=${FEDORA_VERSION}.$(date -u +'%Y%m%d.%H')" | sudo tee -a "$GITHUB_ENV"
 
         cp ../*.repo .
-        cp ../manifest-$VARIANT.yaml .
-        cp ../image-$VARIANT.yaml .
+        cp ../*.yaml .
+        git apply ../*.patch
+
         mkdir -p overlay.d/40custom/etc/pki/ca-trust/source/anchors
         echo -e "$INTERNAL_CA_CERT" > overlay.d/40custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
 
+    # Perl is blocked by upstream. Build keepalived without perl dependency.
     - name: Build keepalived package
       run: |
         cd $HOME
@@ -67,10 +70,11 @@ jobs:
           --with nftables \
           --without debug
 
+    # COSA will remove anything existing in the build path. Run in dedicated $HOME/workspace path.
     - name: Run init
       run: |
-        mkdir -p $HOME/build
-        cd $HOME/build
+        mkdir -p $HOME/workspace
+        cd $HOME/workspace
 
         mkdir -p overrides/rpm
         cp -r $HOME/rpmbuild/RPMS/$(arch)/. overrides/rpm/
@@ -80,35 +84,36 @@ jobs:
 
     - name: Run fetch
       run: |
-        cd $HOME/build
+        cd $HOME/workspace
         cosa fetch --with-cosa-overrides
 
     - name: Run build
       run: |
-        cd $HOME/build
+        cd $HOME/workspace
         cosa build --version=$BUILD_TAG
 
     - name: Run buildextend-metal4k
       run: |
-        cd $HOME/build
+        cd $HOME/workspace
         cosa buildextend-metal4k
 
     - name: Run buildextend-metal
       run: |
-        cd $HOME/build
+        cd $HOME/workspace
         cosa buildextend-metal
 
     - name: Run buildextend-live
       run: |
-        cd $HOME/build
+        cd $HOME/workspace
         cosa buildextend-live
 
     - name: Push image
       run: |
         cd $HOME
         ./mc cp -r -q --no-color \
-          build/builds/latest/$(arch)/fedora-*-live* arc/boot/
+          workspace/builds/latest/$(arch)/fedora-*-live* arc/boot/
 
+    # TODO: support multiple archs
     - name: Create tag
       run: |
         cd $HOME/repo
@@ -118,6 +123,7 @@ jobs:
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
         git push origin $BUILD_TAG
 
+    # TODO: support multiple archs
     - name: Remove old images
       run: |
         cd $HOME
