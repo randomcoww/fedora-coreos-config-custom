@@ -67,12 +67,6 @@ jobs:
         cosa init -V $VARIANT \
           --force ${{ github.server_url }}/${{ github.repository }}.git
 
-    - name: Add internal CA
-      run: |
-        cd $HOME/src/config
-        mkdir -p overlay.d/40custom/etc/pki/ca-trust/source/anchors
-        echo -e "$INTERNAL_CA_CERT" > overlay.d/40custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
-
     - name: Run fetch
       run: |
         cd $HOME
@@ -83,6 +77,10 @@ jobs:
           - overlay/40custom
         EOF
 
+        mkdir -p src/config/overlay.d/40custom/etc/pki/ca-trust/source/anchors
+        echo -e "$INTERNAL_CA_CERT" > src/config/overlay.d/40custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
+
+        cp -r fedora-coreos-config/*.repo .
         cosa fetch --with-cosa-overrides
 
     - name: Run build
