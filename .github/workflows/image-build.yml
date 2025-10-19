@@ -6,7 +6,6 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  FEDORA_VERSION: 42
   VARIANT: custom
   COSA_SUPERMIN_MEMORY: 4096
 
@@ -20,24 +19,36 @@ jobs:
     permissions:
       contents: write
     steps:
-    - name: Set tag
+    - name: Setup MinIO
       run: |
         set -e
+        cd $HOME
+
         TARGETARCH=$(arch)
         TARGETARCH=${TARGETARCH/x86_64/amd64} && TARGETARCH=${TARGETARCH/aarch64/arm64}
 
-        echo "BUILD_TAG=${FEDORA_VERSION}.$(date -u +'%Y%m%d.%H')" | sudo tee -a "$GITHUB_ENV"
-        echo TARGETARCH=$TARGETARCH | sudo tee -a "$GITHUB_ENV"
-
-    - name: Setup MinIO
-      run: |
-        cd $HOME
         curl -fsSL -O https://dl.min.io/client/mc/release/linux-$TARGETARCH/mc
         chmod +x mc
         mkdir -p .mc/certs/CAs
         echo -e "$INTERNAL_CA_CERT" > .mc/certs/CAs/ca.crt
 
-    - name: Build keepalived package
+    - name: Prepare repo
+      run: |
+        cd $HOME
+        git clone --depth=1 --shallow-submodules --recurse-submodules ${{ github.server_url }}/${{ github.repository }}.git repo
+        cd repo/fedora-coreos-config
+        FEDORA_VERSION=$(cat manifest.yaml | grep releasever: | sed 's/^releasever: //')
+
+        echo "FEDORA_VERSION=$FEDORA_VERSION" | sudo tee -a "$GITHUB_ENV"
+        echo "BUILD_TAG=${FEDORA_VERSION}.$(date -u +'%Y%m%d.%H')" | sudo tee -a "$GITHUB_ENV"
+
+        cp ../*.repo .
+        cp ../manifest-$VARIANT.yaml .
+        cp ../image-$VARIANT.yaml .
+        mkdir -p overlay.d/40custom/etc/pki/ca-trust/source/anchors
+        echo -e "$INTERNAL_CA_CERT" > overlay.d/40custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
+
+    - name: Build keepalived override package
       run: |
         cd $HOME
         sudo dnf install -y --setopt=install_weak_deps=False \
@@ -61,26 +72,15 @@ jobs:
         mkdir -p overrides/rpm
         cp -r rpmbuild/RPMS/$(arch)/. overrides/rpm/
 
-    - name: Pull build
+    - name: Run init
       run: |
         cd $HOME
         cosa init -V $VARIANT \
-          --force ${{ github.server_url }}/${{ github.repository }}.git
+          --force $HOME/repo/fedora-coreos-config
 
     - name: Run fetch
       run: |
         cd $HOME
-        cat > src/config/build-override.yaml <<EOF
-        releasever: $FEDORA_VERSION
-
-        ostree-layers:
-        - overlay/40custom
-        EOF
-
-        mkdir -p src/config/overlay.d/40custom/etc/pki/ca-trust/source/anchors
-        echo -e "$INTERNAL_CA_CERT" > src/config/overlay.d/40custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
-
-        cp -r src/config/fedora-coreos-config/*.repo src/config/
         cosa fetch --with-cosa-overrides
 
     - name: Run build

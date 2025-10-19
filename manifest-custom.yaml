@@ -2,10 +2,11 @@ variables:
   stream: testing-devel
   prod: false
 
-releasever: 42
-
 include:
-  - fedora-coreos-config/manifest.yaml
+  - manifest.yaml
+
+ostree-layers:
+  - overlay/40custom
 
 repos:
   - kubernetes
