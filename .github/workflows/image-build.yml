@@ -74,13 +74,13 @@ jobs:
         releasever: $FEDORA_VERSION
 
         ostree-layers:
-          - overlay/40custom
+        - overlay/40custom
         EOF
 
         mkdir -p src/config/overlay.d/40custom/etc/pki/ca-trust/source/anchors
         echo -e "$INTERNAL_CA_CERT" > src/config/overlay.d/40custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
 
-        cp -r fedora-coreos-config/*.repo .
+        cp -r src/config/fedora-coreos-config/*.repo src/config/
         cosa fetch --with-cosa-overrides
 
     - name: Run build
