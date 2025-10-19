@@ -1,26 +1,43 @@
-name: Image Build
+name: Image build
 on:
   workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
 
 env:
-  # This needs to match releasever
   FEDORA_VERSION: 42
-  VARIANT: coreos
+  VARIANT: custom
   COSA_SUPERMIN_MEMORY: 4096
 
 jobs:
   build:
-    runs-on: arc-runner-${{ github.event.repository.name }}
+    env:
+      TAGS_KEEP: 4
+    runs-on: builder-${{ github.event.repository.name }}
     container:
-      image: quay.io/coreos-assembler/coreos-assembler:latest
+      image: reg.cluster.internal/randomcoww/coreos-assembler:latest
     permissions:
       contents: write
     steps:
     - name: Set tag
       run: |
-        echo "BUILD_TAG=${FEDORA_VERSION}.$(date -u +'%Y%m%d.%H')" | sudo tee -a "$GITHUB_ENV"
+        set -e
+        TARGETARCH=$(arch)
+        TARGETARCH=${TARGETARCH/x86_64/amd64} && TARGETARCH=${TARGETARCH/aarch64/arm64}
 
-    - name: Install dependencies
+        echo "BUILD_TAG=${FEDORA_VERSION}.$(date -u +'%Y%m%d.%H')" | sudo tee -a "$GITHUB_ENV"
+        echo TARGETARCH=$TARGETARCH | sudo tee -a "$GITHUB_ENV"
+
+    - name: Setup MinIO
+      run: |
+        cd $HOME
+        curl -fsSL -O https://dl.min.io/client/mc/release/linux-$TARGETARCH/mc
+        chmod +x mc
+        mkdir -p .mc/certs/CAs
+        echo -e "$INTERNAL_CA_CERT" > .mc/certs/CAs/ca.crt
+
+    - name: Build keepalived package
       run: |
         cd $HOME
         sudo dnf install -y --setopt=install_weak_deps=False \
@@ -29,22 +46,6 @@ jobs:
           libnftnl-devel \
           unzip
 
-        TARGETARCH=$(arch)
-        TARGETARCH=${TARGETARCH/x86_64/amd64} && TARGETARCH=${TARGETARCH/aarch64/arm64}
-
-        curl https://dl.min.io/client/mc/release/linux-$TARGETARCH/mc \
-          --create-dirs -o mc
-        chmod +x mc
-
-        TF_VERSION=$(curl -s https://api.github.com/repos/hashicorp/terraform/releases/latest |grep tag_name | cut -d '"' -f 4 | tr -d 'v')
-        curl https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_$TARGETARCH.zip \
-          --create-dirs -o terraform.zip
-        unzip -j terraform.zip terraform
-        rm terraform.zip
-
-    - name: Build keepalived package
-      run: |
-        cd $HOME
         mkdir -p rpmbuild/
         cd rpmbuild
         git clone --depth 1 -b f$FEDORA_VERSION https://src.fedoraproject.org/rpms/keepalived.git SOURCES/
@@ -66,34 +67,42 @@ jobs:
         cosa init -V $VARIANT \
           --force ${{ github.server_url }}/${{ github.repository }}.git
 
-    - name: Generate CA
+    - name: Add internal CA
       run: |
         cd $HOME/src/config
+        mkdir -p overlay.d/40custom/etc/pki/ca-trust/source/anchors
+        echo -e "$INTERNAL_CA_CERT" > overlay.d/40custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
 
-        $HOME/terraform init
-        $HOME/terraform apply -auto-approve
-        cat outputs/* > ca-cert.pem
+    - name: Run fetch
+      run: |
+        cd $HOME
+        cat > src/config/build-override.yaml <<EOF
+        releasever: $FEDORA_VERSION
 
-        mkdir -p overlay.d/01custom/etc/pki/ca-trust/source/anchors
-        cp ca-cert.pem overlay.d/01custom/etc/pki/ca-trust/source/anchors/
+        ostree-layers:
+          - overlay/40custom
+        EOF
+
+        cosa fetch --with-cosa-overrides
 
     - name: Run build
       run: |
         cd $HOME
+        cosa build --version=$BUILD_TAG
 
-        cat > src/config/override.yaml <<EOF
-        releasever: $FEDORA_VERSION
-        EOF
+    - name: Run buildextend-metal4k
+      run: |
+        cd $HOME
+        cosa buildextend-metal4k
 
-        cosa fetch --with-cosa-overrides
-        # This multiline causes jq to break at a later step. Hack to remove them.
-        # https://gitlab.com/fedora/bootc/base-images/-/blob/main/minimal-plus/manifest.yaml?ref_type=heads#L2-4
-        tail -n +5 src/config/fedora-coreos-config/fedora-bootc/minimal-plus/manifest.yaml > temp.yaml
-        mv temp.yaml src/config/fedora-coreos-config/fedora-bootc/minimal-plus/manifest.yaml
-
-        cosa build \
-          --version=$BUILD_TAG metal4k
+    - name: Run buildextend-metal
+      run: |
+        cd $HOME
         cosa buildextend-metal
+
+    - name: Run buildextend-live
+      run: |
+        cd $HOME
         cosa buildextend-live
 
     - name: Push image
@@ -101,15 +110,21 @@ jobs:
         cd $HOME
         ./mc cp -r -q --no-color \
           builds/latest/x86_64/fedora-*-live* \
-          arc/data-boot/
+          arc/boot/
 
     - name: Create tag
       run: |
         cd $HOME/src/config
-        echo "${{ github.actor }}"
-
         git config --global user.email "${{ github.actor }}@users.noreply.github.com"
         git config --global user.name "${{ github.actor }}"
         git tag -a $BUILD_TAG -m "Build $BUILD_TAG"
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
         git push origin $BUILD_TAG
+
+    - name: Remove old images
+      run: |
+        cd $HOME
+        tags=$(./mc ls --json --no-color arc/boot/fedora-coreos- | jq -r '.key' | sed -r 's/fedora-coreos-(.*)-live-.*$/\1/' | sort -u | head -n -$TAGS_KEEP)
+        for tag in $tags; do
+          ./mc rm -r -q --no-color --force arc/boot/fedora-coreos-$tag
+        done

@@ -1,0 +1,6 @@
+include: image-base.yaml
+extra-kargs:
+  - selinux=0
+  - coreos.liveiso.fromram
+  - rd.driver.blacklist=nouveau
+  - modprobe.blacklist=nouveau

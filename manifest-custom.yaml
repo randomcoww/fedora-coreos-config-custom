@@ -1,0 +1,42 @@
+variables:
+  stream: testing-devel
+  prod: false
+
+releasever: 42
+
+include:
+  - fedora-coreos-config/manifests/fedora-coreos.yaml
+
+repos:
+  - fedora
+  - fedora-updates
+  - kubernetes
+
+packages:
+  - vim-minimal
+  - ldns-utils
+  - systemd-networkd
+  - keepalived
+  - haproxy
+  - conntrack-tools
+  - bird
+  - cri-o cri-tools
+  - kubelet
+  - criu criu-libs
+  - bindfs # for coreos-installer to read and write ignition on disk
+  - wireless-regdb
+  - atheros-firmware
+  - brcmfmac-firmware
+  - mt7xxx-firmware
+  - nxpwireless-firmware
+  - realtek-firmware
+  - tiwilink-firmware
+  - iwlwifi-dvm-firmware
+  - iwlwifi-mvm-firmware
+  - libimobiledevice-utils usbmuxd # mobile tether over USB
+
+remove-from-packages:
+  - [conntrack-tools, /etc/conntrackd/conntrackd.conf]
+  - [keepalived, /etc/keepalived/keepalived.conf]
+  - [haproxy, /etc/haproxy/haproxy.cfg]
+  - [cri-o, /etc/cni/net.d/.*]
