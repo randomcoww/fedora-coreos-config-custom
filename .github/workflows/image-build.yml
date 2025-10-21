@@ -105,7 +105,7 @@ jobs:
     - name: Push image
       run: |
         cd $HOME
-        /minio/bin/mc cp -r -q --no-color \
+        /tools/mc cp -r -q --no-color \
           workspace/builds/latest/$(arch)/fedora-*-live* arc/boot/
 
     # TODO: support multiple archs
@@ -122,7 +122,7 @@ jobs:
     - name: Remove old images
       run: |
         cd $HOME
-        tags=$(/minio/bin/mc ls --json --no-color arc/boot/fedora-coreos- | jq -r '.key' | sed -r 's/fedora-coreos-(.*)-live-.*$/\1/' | sort -u | head -n -$TAGS_KEEP)
+        tags=$(/tools/mc ls --json --no-color arc/boot/fedora-coreos- | jq -r '.key' | sed -r 's/fedora-coreos-(.*)-live-.*$/\1/' | sort -u | head -n -$TAGS_KEEP)
         for tag in $tags; do
-          /minio/bin/mc rm -r -q --no-color --force arc/boot/fedora-coreos-$tag
+          /tools/mc rm -r -q --no-color --force arc/boot/fedora-coreos-$tag
         done
