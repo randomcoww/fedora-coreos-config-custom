@@ -23,6 +23,11 @@ jobs:
       run: |
         set -e
         cd $HOME
+        TARGETARCH=$(arch)
+        TARGETARCH=${TARGETARCH/x86_64/amd64} && TARGETARCH=${TARGETARCH/aarch64/arm64}
+
+        curl -fsSL -O https://dl.min.io/client/mc/release/linux-$TARGETARCH/mc
+        chmod +x mc
         mkdir -p .mc/certs/CAs
         echo -e "$INTERNAL_CA_CERT" > .mc/certs/CAs/ca.crt
 
@@ -105,7 +110,7 @@ jobs:
     - name: Push image
       run: |
         cd $HOME
-        /tools/mc cp -r -q --no-color \
+        ./mc cp -r -q --no-color \
           workspace/builds/latest/$(arch)/fedora-*-live* arc/boot/
 
     # TODO: support multiple archs
@@ -122,7 +127,7 @@ jobs:
     - name: Remove old images
       run: |
         cd $HOME
-        tags=$(/tools/mc ls --json --no-color arc/boot/fedora-coreos- | jq -r '.key' | sed -r 's/fedora-coreos-(.*)-live-.*$/\1/' | sort -u | head -n -$TAGS_KEEP)
+        tags=$(./mc ls --json --no-color arc/boot/fedora-coreos- | jq -r '.key' | sed -r 's/fedora-coreos-(.*)-live-.*$/\1/' | sort -u | head -n -$TAGS_KEEP)
         for tag in $tags; do
-          /tools/mc rm -r -q --no-color --force arc/boot/fedora-coreos-$tag
+          ./mc rm -r -q --no-color --force arc/boot/fedora-coreos-$tag
         done
