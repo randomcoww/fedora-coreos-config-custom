@@ -1,0 +1,35 @@
+name: Renovate bot
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: "0 16 * * *"
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  renovate:
+    runs-on: renovate-${{ github.event.repository.name }}
+    container:
+      image: reg.cluster.internal/randomcoww/renovate:latest@sha256:d8ceb742b694a2cf49a36fc33568252b2b0057fc280c0c3cb429b8c46a2ca223
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+    - name: Check for updates
+      env:
+        RENOVATE_PLATFORM: github
+        RENOVATE_AUTODISCOVER: false
+        # RENOVATE_TOKEN: ${{ secrets.GITHUB_TOKEN }} # pass RENOVATE_TOKEN from runner
+        RENOVATE_CONFIG_FILE: /tmp/renovate.json
+      run: |
+        cat > $RENOVATE_CONFIG_FILE <<EOF
+        {
+          "repositories": [
+            "${{ github.repository }}"
+          ]
+        }
+        EOF
+
+        exec renovate-entrypoint.sh renovate

@@ -1,6 +1,0 @@
-packages:
-  - podman
-  - passt
-  - netavark
-  - aardvark-dns
-  - containernetworking-plugins

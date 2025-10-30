@@ -1,0 +1,19 @@
+diff --git a/manifests/fedora-coreos.yaml b/manifests/fedora-coreos.yaml
+index feffc358..dbf561b8 100644
+--- a/manifests/fedora-coreos.yaml
++++ b/manifests/fedora-coreos.yaml
+@@ -72,14 +72,8 @@ mutate-os-release: "${releasever}"
+ packages:
+   - fedora-release-coreos
+   - fedora-repos-ostree
+-  # CL ships this.
+-  - moby-engine
+-  # Already pulled in by moby-engine, but let's be explicit. Typhoon uses it.
+-  - containerd
+   # Updates
+   - zincati
+-  # Include and set the default editor
+-  - nano nano-default-editor
+   # Introduce a default colored prompt for Fedora's default shell bash.
+   # https://github.com/coreos/fedora-coreos-tracker/issues/1567
+   - bash-color-prompt

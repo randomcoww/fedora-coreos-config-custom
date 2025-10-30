@@ -1,50 +1,66 @@
-name: Image Build
+name: Image build
 on:
   workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
 
 env:
-  # This needs to match releasever
-  FEDORA_VERSION: 42
-  VARIANT: coreos
+  VARIANT: custom
   COSA_SUPERMIN_MEMORY: 4096
 
 jobs:
   build:
-    runs-on: arc-runner-${{ github.event.repository.name }}
+    env:
+      TAGS_KEEP: 4
+    runs-on: builder-${{ github.event.repository.name }}
     container:
-      image: quay.io/coreos-assembler/coreos-assembler:latest
+      image: quay.io/coreos-assembler/coreos-assembler:v43.20251024.2.0@sha256:4e8d700b1392a0aea68713f82c0fe32b6ac408abca61e73b70507e9bd758ad9d
     permissions:
       contents: write
     steps:
-    - name: Set tag
+    - name: Prep
       run: |
-        echo "BUILD_TAG=${FEDORA_VERSION}.$(date -u +'%Y%m%d.%H')" | sudo tee -a "$GITHUB_ENV"
+        set -e
+        TARGETARCH=$(arch)
+        TARGETARCH=${TARGETARCH/x86_64/amd64} && TARGETARCH=${TARGETARCH/aarch64/arm64}
 
-    - name: Install dependencies
+        cd $HOME
+        curl -fsSL -O https://dl.min.io/client/mc/release/linux-$TARGETARCH/mc
+        chmod +x mc
+        mkdir -p .mc/certs/CAs
+        echo -e "$INTERNAL_CA_CERT" > .mc/certs/CAs/ca.crt
+
+    # Checkout repo to $HOME and build in workflow workspace path
+    # Upstream submodule becomes the root of the build. Contents of base repo are copied into the submodule path after checkout.
+    - name: Fetch repo
       run: |
         cd $HOME
+        git clone --depth=1 --shallow-submodules --recurse-submodules ${{ github.server_url }}/${{ github.repository }}.git repo
+
+        cd repo/fedora-coreos-config
+        FEDORA_VERSION=$(cat manifest.yaml | grep releasever: | sed 's/^releasever: //')
+        echo "FEDORA_VERSION=$FEDORA_VERSION" | sudo tee -a "$GITHUB_ENV"
+        echo "BUILD_TAG=${FEDORA_VERSION}.$(date -u +'%Y%m%d.%H')" | sudo tee -a "$GITHUB_ENV"
+
+        cp ../*.repo .
+        cp ../*.yaml .
+        git apply ../*.patch
+
+        mkdir -p overlay.d/40custom/etc/pki/ca-trust/source/anchors
+        echo -e "$INTERNAL_CA_CERT" > overlay.d/40custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
+
+    # Perl is blocked by upstream. Build keepalived without perl dependency.
+    - name: Build keepalived package
+      run: |
         sudo dnf install -y --setopt=install_weak_deps=False \
           rpmdevtools \
           dnf-plugins-core \
           libnftnl-devel \
           unzip
 
-        TARGETARCH=$(arch)
-        TARGETARCH=${TARGETARCH/x86_64/amd64} && TARGETARCH=${TARGETARCH/aarch64/arm64}
+        sudo chown $(id -u):$(id -g) .
 
-        curl https://dl.min.io/client/mc/release/linux-$TARGETARCH/mc \
-          --create-dirs -o mc
-        chmod +x mc
-
-        TF_VERSION=$(curl -s https://api.github.com/repos/hashicorp/terraform/releases/latest |grep tag_name | cut -d '"' -f 4 | tr -d 'v')
-        curl https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_$TARGETARCH.zip \
-          --create-dirs -o terraform.zip
-        unzip -j terraform.zip terraform
-        rm terraform.zip
-
-    - name: Build keepalived package
-      run: |
-        cd $HOME
         mkdir -p rpmbuild/
         cd rpmbuild
         git clone --depth 1 -b f$FEDORA_VERSION https://src.fedoraproject.org/rpms/keepalived.git SOURCES/
@@ -56,60 +72,54 @@ jobs:
           --with nftables \
           --without debug
 
-        cd $HOME
+    # repo from $HOME is symlinked to workflow path
+    - name: Run init
+      run: |
         mkdir -p overrides/rpm
         cp -r rpmbuild/RPMS/$(arch)/. overrides/rpm/
 
-    - name: Pull build
-      run: |
-        cd $HOME
         cosa init -V $VARIANT \
-          --force ${{ github.server_url }}/${{ github.repository }}.git
+          --force $HOME/repo/fedora-coreos-config
 
-    - name: Generate CA
+    - name: Run fetch
       run: |
-        cd $HOME/src/config
-
-        $HOME/terraform init
-        $HOME/terraform apply -auto-approve
-        cat outputs/* > ca-cert.pem
-
-        mkdir -p overlay.d/01custom/etc/pki/ca-trust/source/anchors
-        cp ca-cert.pem overlay.d/01custom/etc/pki/ca-trust/source/anchors/
+        cosa fetch --with-cosa-overrides
 
     - name: Run build
       run: |
-        cd $HOME
+        cosa build --version=$BUILD_TAG
 
-        cat > src/config/override.yaml <<EOF
-        releasever: $FEDORA_VERSION
-        EOF
+    - name: Run buildextend-metal4k
+      run: |
+        cosa buildextend-metal4k
 
-        cosa fetch --with-cosa-overrides
-        # This multiline causes jq to break at a later step. Hack to remove them.
-        # https://gitlab.com/fedora/bootc/base-images/-/blob/main/minimal-plus/manifest.yaml?ref_type=heads#L2-4
-        tail -n +5 src/config/fedora-coreos-config/fedora-bootc/minimal-plus/manifest.yaml > temp.yaml
-        mv temp.yaml src/config/fedora-coreos-config/fedora-bootc/minimal-plus/manifest.yaml
-
-        cosa build \
-          --version=$BUILD_TAG metal4k
+    - name: Run buildextend-metal
+      run: |
         cosa buildextend-metal
+
+    - name: Run buildextend-live
+      run: |
         cosa buildextend-live
 
     - name: Push image
       run: |
-        cd $HOME
-        ./mc cp -r -q --no-color \
-          builds/latest/x86_64/fedora-*-live* \
-          arc/data-boot/
+        $HOME/mc cp -r -q --no-color \
+          workspace/builds/latest/$(arch)/fedora-*-live* arc/boot/
 
+    # TODO: support multiple archs
     - name: Create tag
       run: |
-        cd $HOME/src/config
-        echo "${{ github.actor }}"
-
+        cd $HOME/repo
         git config --global user.email "${{ github.actor }}@users.noreply.github.com"
         git config --global user.name "${{ github.actor }}"
         git tag -a $BUILD_TAG -m "Build $BUILD_TAG"
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
         git push origin $BUILD_TAG
+
+    # TODO: support multiple archs
+    - name: Remove old images
+      run: |
+        tags=$($HOME/mc ls --json --no-color arc/boot/fedora-coreos- | jq -r '.key' | sed -r 's/fedora-coreos-(.*)-live-.*$/\1/' | sort -u | head -n -$TAGS_KEEP)
+        for tag in $tags; do
+          $HOME/mc rm -r -q --no-color --force arc/boot/fedora-coreos-$tag
+        done

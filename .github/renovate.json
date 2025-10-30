@@ -1,0 +1,46 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:best-practices"
+  ],
+  "dockerfile": {
+    "enabled": false
+  },
+  "git-submodules": {
+    "enabled": true
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^.+.repo$/"
+      ],
+      "matchStrings": [
+        "pkgs.k8s.io/core:/stable:/(?<currentValue>[\\w.]+)/rpm"
+      ],
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "docker",
+      "depNameTemplate": "kubernetes/kubernetes"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": [
+        "github-releases",
+        "github-tags"
+      ],
+      "versioning": "docker"
+    },
+    {
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ],
+      "automerge": true,
+      "ignoreTests": true,
+      "groupName": "minor-update"
+    }
+  ]
+}
