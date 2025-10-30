@@ -19,7 +19,7 @@ jobs:
     permissions:
       contents: write
     steps:
-    - name: Setup MinIO
+    - name: Prepare tools
       run: |
         set -e
         cd $HOME
