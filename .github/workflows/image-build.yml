@@ -15,7 +15,7 @@ jobs:
       TAGS_KEEP: 4
     runs-on: builder-${{ github.event.repository.name }}
     container:
-      image: reg.cluster.internal/randomcoww/coreos-assembler:latest@sha256:ddc3243456aa1fc7bd98294c262d05ecfabaea01cd1a2bf6a398d35ccf14755a
+      image: reg.cluster.internal/randomcoww/coreos-assembler:v43.20251024.2.0@sha256:a9a35540795278de6efbd0b6863d53cd49bdf5357343625668999576777d6479
     permissions:
       contents: write
     steps:
