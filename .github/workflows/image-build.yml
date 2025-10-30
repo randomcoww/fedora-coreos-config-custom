@@ -19,21 +19,20 @@ jobs:
     permissions:
       contents: write
     steps:
-    - name: Prep
+    - name: Setup MinIO
       run: |
         set -e
+        cd $HOME
         TARGETARCH=$(arch)
         TARGETARCH=${TARGETARCH/x86_64/amd64} && TARGETARCH=${TARGETARCH/aarch64/arm64}
 
-        cd $HOME
         curl -fsSL -O https://dl.min.io/client/mc/release/linux-$TARGETARCH/mc
         chmod +x mc
         mkdir -p .mc/certs/CAs
         echo -e "$INTERNAL_CA_CERT" > .mc/certs/CAs/ca.crt
 
-    # Checkout repo to $HOME and build in workflow workspace path
     # Upstream submodule becomes the root of the build. Contents of base repo are copied into the submodule path after checkout.
-    - name: Fetch repo
+    - name: Prepare repo
       run: |
         cd $HOME
         git clone --depth=1 --shallow-submodules --recurse-submodules ${{ github.server_url }}/${{ github.repository }}.git repo
@@ -53,13 +52,12 @@ jobs:
     # Perl is blocked by upstream. Build keepalived without perl dependency.
     - name: Build keepalived package
       run: |
+        cd $HOME
         sudo dnf install -y --setopt=install_weak_deps=False \
           rpmdevtools \
           dnf-plugins-core \
           libnftnl-devel \
           unzip
-
-        sudo chown $(id -u):$(id -g) .
 
         mkdir -p rpmbuild/
         cd rpmbuild
@@ -72,38 +70,47 @@ jobs:
           --with nftables \
           --without debug
 
-    # repo from $HOME is symlinked to workflow path
+    # COSA will remove anything existing in the build path. Run in dedicated $HOME/workspace path.
     - name: Run init
       run: |
+        mkdir -p $HOME/workspace
+        cd $HOME/workspace
+
         mkdir -p overrides/rpm
-        cp -r rpmbuild/RPMS/$(arch)/. overrides/rpm/
+        cp -r $HOME/rpmbuild/RPMS/$(arch)/. overrides/rpm/
 
         cosa init -V $VARIANT \
           --force $HOME/repo/fedora-coreos-config
 
     - name: Run fetch
       run: |
+        cd $HOME/workspace
         cosa fetch --with-cosa-overrides
 
     - name: Run build
       run: |
+        cd $HOME/workspace
         cosa build --version=$BUILD_TAG
 
     - name: Run buildextend-metal4k
       run: |
+        cd $HOME/workspace
         cosa buildextend-metal4k
 
     - name: Run buildextend-metal
       run: |
+        cd $HOME/workspace
         cosa buildextend-metal
 
     - name: Run buildextend-live
       run: |
+        cd $HOME/workspace
         cosa buildextend-live
 
     - name: Push image
       run: |
-        $HOME/mc cp -r -q --no-color \
+        cd $HOME
+        ./mc cp -r -q --no-color \
           workspace/builds/latest/$(arch)/fedora-*-live* arc/boot/
 
     # TODO: support multiple archs
@@ -119,7 +126,8 @@ jobs:
     # TODO: support multiple archs
     - name: Remove old images
       run: |
-        tags=$($HOME/mc ls --json --no-color arc/boot/fedora-coreos- | jq -r '.key' | sed -r 's/fedora-coreos-(.*)-live-.*$/\1/' | sort -u | head -n -$TAGS_KEEP)
+        cd $HOME
+        tags=$(./mc ls --json --no-color arc/boot/fedora-coreos- | jq -r '.key' | sed -r 's/fedora-coreos-(.*)-live-.*$/\1/' | sort -u | head -n -$TAGS_KEEP)
         for tag in $tags; do
-          $HOME/mc rm -r -q --no-color --force arc/boot/fedora-coreos-$tag
+          ./mc rm -r -q --no-color --force arc/boot/fedora-coreos-$tag
         done
