@@ -11,7 +11,7 @@ index 69594e6c..975a59dc 100644
  conditional-include:
    # TODO: There is no coreos-pool for RISCV yet
 diff --git a/manifests/fedora-coreos.yaml b/manifests/fedora-coreos.yaml
-index f2730d1c..eb10a100 100644
+index f2730d1c..52846fdb 100644
 --- a/manifests/fedora-coreos.yaml
 +++ b/manifests/fedora-coreos.yaml
 @@ -48,14 +48,8 @@ ostree-layers:
@@ -29,3 +29,20 @@ index f2730d1c..eb10a100 100644
    # Introduce a default colored prompt for Fedora's default shell bash.
    # https://github.com/coreos/fedora-coreos-tracker/issues/1567
    - bash-color-prompt
+@@ -63,16 +57,6 @@ packages:
+ # ⚠⚠⚠ ONLY TEMPORARY HACKS ALLOWED HERE; ALL ENTRIES NEED TRACKER LINKS ⚠⚠⚠
+ # See also the version of this in fedora-coreos-base.yaml
+ postprocess:
+-  # Disable Zincati on non-release builds
+-  # https://github.com/coreos/fedora-coreos-tracker/issues/212
+-  - |
+-    #!/usr/bin/env bash
+-    set -euxo pipefail
+-    source /etc/os-release
+-    if [[ $OSTREE_VERSION = *.dev* ]]; then
+-      mkdir -p /etc/zincati/config.d
+-      echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/212\nupdates.enabled = false' > /etc/zincati/config.d/95-disable-on-dev.toml
+-    fi
+   # Users shouldn't be configuring `rpm-ostreed.conf`
+   # https://github.com/coreos/fedora-coreos-tracker/issues/271
+   - |

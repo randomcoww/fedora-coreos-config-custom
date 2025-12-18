@@ -12,8 +12,7 @@ repos:
   - kubernetes
 
 packages:
-  - rpm # works around bwrap: execvp rpm: No such file or directory
-  - rpm-ostree # address missing OSTREE_VERSION env and /usr/etc/rpm-ostreed.conf
+  - rpm
   - vim-minimal
   - ldns-utils
   - systemd-networkd
