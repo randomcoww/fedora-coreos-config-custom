@@ -1,8 +1,20 @@
+diff --git a/manifest.yaml b/manifest.yaml
+index 69594e6c..975a59dc 100644
+--- a/manifest.yaml
++++ b/manifest.yaml
+@@ -7,6 +7,7 @@ metadata:
+   build_with_buildah: true
+ 
+ releasever: 43
++automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
+ 
+ conditional-include:
+   # TODO: There is no coreos-pool for RISCV yet
 diff --git a/manifests/fedora-coreos.yaml b/manifests/fedora-coreos.yaml
-index feffc358..dbf561b8 100644
+index f2730d1c..eb10a100 100644
 --- a/manifests/fedora-coreos.yaml
 +++ b/manifests/fedora-coreos.yaml
-@@ -72,14 +72,8 @@ mutate-os-release: "${releasever}"
+@@ -48,14 +48,8 @@ ostree-layers:
  packages:
    - fedora-release-coreos
    - fedora-repos-ostree
