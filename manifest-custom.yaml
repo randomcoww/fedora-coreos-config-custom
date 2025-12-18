@@ -12,6 +12,7 @@ repos:
   - kubernetes
 
 packages:
+  - rpm
   - vim-minimal
   - ldns-utils
   - systemd-networkd
