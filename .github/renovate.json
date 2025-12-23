@@ -35,7 +35,7 @@
         "kubernetes/kubernetes"
       ],
       "versioning": "regex:v(?<major>\\d+)\\.(?<minor>\\d+)",
-      "replacementVersionTemplate": "v{{major}}.{{minor}}"
+      "replacementVersionTemplate": "v{{newMajor}}.{{newMinor}}"
     },
     {
       "matchUpdateTypes": [
