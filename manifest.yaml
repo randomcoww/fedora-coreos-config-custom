@@ -26,9 +26,3 @@ packages:
   - iwlwifi-dvm-firmware
   - iwlwifi-mvm-firmware
   - libimobiledevice-utils usbmuxd # mobile tether over USB
-
-remove-from-packages:
-  - [conntrack-tools, /etc/conntrackd/conntrackd.conf]
-  - [keepalived, /etc/keepalived/keepalived.conf]
-  - [haproxy, /etc/haproxy/haproxy.cfg]
-  - [cri-o, /etc/cni/net.d/.*]

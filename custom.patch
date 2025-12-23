@@ -1,30 +1,57 @@
 diff --git a/image.yaml b/image.yaml
-index 1bf800cc..4b32effb 100644
+index 1bf800cc..f047785d 100644
 --- a/image.yaml
 +++ b/image.yaml
-@@ -2,3 +2,9 @@
+@@ -2,3 +2,10 @@
  # similarly to manifest.yaml. Unlike image-base.yaml, which is shared by all
  # streams.
  include: image-base.yaml
 +
 +extra-kargs:
-+  - selinux=0
 +  - coreos.liveiso.fromram
 +  - rd.driver.blacklist=nouveau
 +  - modprobe.blacklist=nouveau
++  - selinux=0
++  - pcie_aspm=off
 \ No newline at end of file
 diff --git a/manifest.yaml b/manifest.yaml
-index 69594e6c..63c9adca 100644
+index 69594e6c..a5dc0d8b 100644
 --- a/manifest.yaml
 +++ b/manifest.yaml
-@@ -32,4 +32,6 @@ conditional-include:
-         # The other repos aren't updated frequently.
+@@ -33,3 +33,32 @@ conditional-include:
          - fedora-riscv-koji
  
--include: manifests/fedora-coreos.yaml
-+include:
-+  - manifests/custom.yaml
-+  - manifests/fedora-coreos.yaml
+ include: manifests/fedora-coreos.yaml
++
++ostree-layers:
++  - overlay/40custom
++
++repos:
++  - kubernetes
++
++packages:
++  - vim-minimal
++  - ldns-utils
++  - systemd-networkd
++  - keepalived
++  - haproxy
++  - conntrack-tools
++  - bird
++  - cri-o cri-tools
++  - kubelet
++  - criu criu-libs
++  - bindfs # for coreos-installer to read and write ignition on disk
++  - wireless-regdb
++  - atheros-firmware
++  - brcmfmac-firmware
++  - mt7xxx-firmware
++  - nxpwireless-firmware
++  - realtek-firmware
++  - tiwilink-firmware
++  - iwlwifi-dvm-firmware
++  - iwlwifi-mvm-firmware
++  - libimobiledevice-utils usbmuxd # mobile tether over USB
+\ No newline at end of file
 diff --git a/manifests/fedora-coreos.yaml b/manifests/fedora-coreos.yaml
 index f2730d1c..ddc7471c 100644
 --- a/manifests/fedora-coreos.yaml
