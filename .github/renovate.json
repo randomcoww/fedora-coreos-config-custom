@@ -18,7 +18,7 @@
       "matchStrings": [
         "pkgs.k8s.io/core:/stable:/(?<currentValue>[\\w.]+)/rpm"
       ],
-      "datasourceTemplate": "github-releases",
+      "datasourceTemplate": "github-tags",
       "versioningTemplate": "docker",
       "depNameTemplate": "kubernetes/kubernetes"
     }
