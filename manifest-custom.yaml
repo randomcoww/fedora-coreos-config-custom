@@ -2,8 +2,8 @@ variables:
   stream: testing-devel
   prod: false
 
-include:
-  - manifest.yaml
+metadata:
+  build_with_buildah: true
 
 ostree-layers:
   - overlay/40custom
@@ -39,3 +39,6 @@ remove-from-packages:
   - [keepalived, /etc/keepalived/keepalived.conf]
   - [haproxy, /etc/haproxy/haproxy.cfg]
   - [cri-o, /etc/cni/net.d/.*]
+
+include:
+  - manifest.yaml

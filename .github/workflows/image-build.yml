@@ -43,13 +43,14 @@ jobs:
         git clone --depth=1 --shallow-submodules --recurse-submodules ${{ github.server_url }}/${{ github.repository }}.git repo
 
         cd repo/fedora-coreos-config
-        FEDORA_VERSION=$(cat manifest.yaml | grep releasever: | sed 's/^releasever: //')
-        echo "FEDORA_VERSION=$FEDORA_VERSION" | sudo tee -a "$GITHUB_ENV"
-        echo "BUILD_TAG=${FEDORA_VERSION}.$(date -u +'%Y%m%d.%H')" | sudo tee -a "$GITHUB_ENV"
-
         cp ../*.repo .
         cp ../*.yaml .
+        cp ../*.conf .
         git apply ../*.patch
+
+        FEDORA_VERSION=$(cat build-args-$VARIANT.conf | grep BASE_VERSION= | sed 's/^BASE_VERSION=//')
+        echo "FEDORA_VERSION=$FEDORA_VERSION" | sudo tee -a "$GITHUB_ENV"
+        echo "BUILD_TAG=${FEDORA_VERSION}.$(date -u +'%Y%m%d.%H')" | sudo tee -a "$GITHUB_ENV"
 
         mkdir -p overlay.d/40custom/etc/pki/ca-trust/source/anchors
         echo -e "$INTERNAL_CA_CERT" > overlay.d/40custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
@@ -81,31 +82,14 @@ jobs:
         mkdir -p $HOME/workspace
         cd $HOME/workspace
 
+        cosa init -V $VARIANT --force $HOME/repo/fedora-coreos-config
         mkdir -p overrides/rpm
         cp -r $HOME/rpmbuild/RPMS/$(arch)/. overrides/rpm/
-
-        cosa init -V $VARIANT \
-          --force $HOME/repo/fedora-coreos-config
-
-    - name: Run fetch
-      run: |
-        cd $HOME/workspace
-        cosa fetch --with-cosa-overrides
 
     - name: Run build
       run: |
         cd $HOME/workspace
         cosa build --version=$BUILD_TAG
-
-    - name: Run buildextend-metal4k
-      run: |
-        cd $HOME/workspace
-        cosa buildextend-metal4k
-
-    - name: Run buildextend-metal
-      run: |
-        cd $HOME/workspace
-        cosa buildextend-metal
 
     - name: Run buildextend-live
       run: |
