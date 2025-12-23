@@ -30,6 +30,19 @@ jobs:
         mkdir -p .mc/certs/CAs
         echo -e "$INTERNAL_CA_CERT" > .mc/certs/CAs/ca.crt
 
+    - name: Checkout
+      run: |
+        cd $HOME
+        git clone --depth=1 --shallow-submodules --recurse-submodules ${{ github.server_url }}/${{ github.repository }}.git repo
+
+        cd repo/fedora-coreos-config
+        cp -r ../overlay/. .
+        git apply ../*.patch
+
+        FEDORA_VERSION=$(cat build-args.conf | grep BASE_VERSION= | sed 's/^BASE_VERSION=//')
+        echo "FEDORA_VERSION=$FEDORA_VERSION" | sudo tee -a "$GITHUB_ENV"
+        echo "BUILD_TAG=${FEDORA_VERSION}.$(date -u +'%Y%m%d.%H')" | sudo tee -a "$GITHUB_ENV"
+
     # Perl is blocked by upstream. Build keepalived without perl dependency.
     - name: Build keepalived package
       run: |
@@ -41,9 +54,8 @@ jobs:
 
         mkdir -p $HOME/rpmbuild
         cd $HOME/rpmbuild
-        . /etc/os-release
 
-        git clone --depth 1 -b f$VERSION_ID \
+        git clone --depth 1 -b f$FEDORA_VERSION \
           https://src.fedoraproject.org/rpms/keepalived.git SOURCES/
         cd SOURCES
         spectool -gR keepalived.spec
@@ -53,29 +65,17 @@ jobs:
           --with nftables \
           --without debug
 
-    # Add patch
-    - name: Add patch
-      run: |
-        cd $HOME
-        git clone --depth=1 ${{ github.server_url }}/${{ github.repository }}.git custom
-
     # COSA will remove anything existing in the build path. Run in dedicated $HOME/workspace path.
     - name: Run init
       run: |
         mkdir -p $HOME/workspace
         cd $HOME/workspace
 
-        cosa init https://github.com/coreos/fedora-coreos-config.git --branch testing-devel
-
-        mkdir -p src/config/overlay.d/40custom/etc/pki/ca-trust/source/anchors
-        echo -e "$INTERNAL_CA_CERT" > src/config/overlay.d/40custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
-
-        FEDORA_VERSION=$(cat build-args.conf | grep BASE_VERSION= | sed 's/^BASE_VERSION=//')
-        echo "BUILD_TAG=${FEDORA_VERSION}.$(date -u +'%Y%m%d.%H')" | sudo tee -a "$GITHUB_ENV"
+        cosa init --force $HOME/repo/fedora-coreos-config
 
         cp -r $HOME/rpmbuild/RPMS/$(arch)/. overrides/rpm/
-        cp -r $HOME/custom/overlay/. .
-        git apply $HOME/custom/*.patch
+        mkdir -p src/config/overlay.d/40custom/etc/pki/ca-trust/source/anchors
+        echo -e "$INTERNAL_CA_CERT" > src/config/overlay.d/40custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
 
     - name: Run build
       run: |
