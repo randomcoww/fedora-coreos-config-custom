@@ -18,6 +18,7 @@
       "matchStrings": [
         "pkgs.k8s.io/core:/stable:/(?<currentValue>[\\w.]+)/rpm"
       ],
+      "autoReplaceStringTemplate": "pkgs.k8s.io/core:/stable:/v{{{newMajor}}}.{{{newMinor}}}/rpm",
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "kubernetes/kubernetes"
     }
@@ -34,8 +35,7 @@
       "matchPackageNames": [
         "kubernetes/kubernetes"
       ],
-      "versioning": "regex:v(?<major>\\d+)\\.(?<minor>\\d+)",
-      "replacementVersionTemplate": "v{{newMajor}}.{{newMinor}}"
+      "versioning": "regex:v(?<major>\\d+)\\.(?<minor>\\d+)"
     },
     {
       "matchUpdateTypes": [
