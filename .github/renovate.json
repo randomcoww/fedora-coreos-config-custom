@@ -18,8 +18,7 @@
       "matchStrings": [
         "pkgs.k8s.io/core:/stable:/(?<currentValue>[\\w.]+)/rpm"
       ],
-      "datasourceTemplate": "github-tags",
-      "versioningTemplate": "docker",
+      "datasourceTemplate": "github-releases",
       "depNameTemplate": "kubernetes/kubernetes"
     }
   ],
@@ -30,6 +29,12 @@
         "github-tags"
       ],
       "versioning": "docker"
+    },
+    {
+      "matchPackageNames": [
+        "kubernetes/kubernetes"
+      ],
+      "versioning": "regex:v(?<major>\\d+)\\.(?<minor>\\d+)"
     },
     {
       "matchUpdateTypes": [
