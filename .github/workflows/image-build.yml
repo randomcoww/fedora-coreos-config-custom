@@ -19,11 +19,6 @@ jobs:
     permissions:
       contents: write
     steps:
-    - name: Test
-      run: |
-        set -e
-        sleep inf
-
     - name: Prepare tools
       run: |
         set -e
