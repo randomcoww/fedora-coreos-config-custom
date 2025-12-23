@@ -1,6 +1,6 @@
 [kubernetes]
 name=Kubernetes
-baseurl=https://pkgs.k8s.io/core:/stable:/v1.34/rpm/
+baseurl=https://pkgs.k8s.io/core:/stable:/v./rpm/
 enabled=1
 gpgcheck=0
 repo_gpgcheck=0
