@@ -38,7 +38,7 @@ jobs:
 
         cd repo/fedora-coreos-config
         cp ../*.repo .
-        cp ../*.yaml .
+        cp ../*.yaml manifests/
         git apply ../*.patch
 
         FEDORA_VERSION=$(cat build-args.conf | grep BASE_VERSION= | sed 's/^BASE_VERSION=//')

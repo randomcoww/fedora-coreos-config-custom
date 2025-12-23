@@ -1,18 +1,20 @@
 diff --git a/image.yaml b/image.yaml
-index 1bf800cc..417d84dc 100644
+index 1bf800cc..4b32effb 100644
 --- a/image.yaml
 +++ b/image.yaml
-@@ -1,4 +1,6 @@
- # This file can optionally contain configuration specific to the stream,
+@@ -2,3 +2,9 @@
  # similarly to manifest.yaml. Unlike image-base.yaml, which is shared by all
  # streams.
--include: image-base.yaml
-+include:
-+  - image-base.yaml
-+  - image-custom.yaml
+ include: image-base.yaml
++
++extra-kargs:
++  - selinux=0
++  - coreos.liveiso.fromram
++  - rd.driver.blacklist=nouveau
++  - modprobe.blacklist=nouveau
 \ No newline at end of file
 diff --git a/manifest.yaml b/manifest.yaml
-index 69594e6c..ec9a063a 100644
+index 69594e6c..63c9adca 100644
 --- a/manifest.yaml
 +++ b/manifest.yaml
 @@ -32,4 +32,6 @@ conditional-include:
@@ -21,7 +23,7 @@ index 69594e6c..ec9a063a 100644
  
 -include: manifests/fedora-coreos.yaml
 +include:
-+  - manifest-custom.yaml
++  - manifests/custom.yaml
 +  - manifests/fedora-coreos.yaml
 diff --git a/manifests/fedora-coreos.yaml b/manifests/fedora-coreos.yaml
 index f2730d1c..ddc7471c 100644

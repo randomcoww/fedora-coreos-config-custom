@@ -1,5 +1,0 @@
-extra-kargs:
-  - selinux=0
-  - coreos.liveiso.fromram
-  - rd.driver.blacklist=nouveau
-  - modprobe.blacklist=nouveau
