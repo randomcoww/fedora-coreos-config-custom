@@ -13,7 +13,7 @@
     {
       "customType": "regex",
       "managerFilePatterns": [
-        "/^.+.repo$/"
+        "/^overlay/[\\w.]+\\.repo$/"
       ],
       "matchStrings": [
         "pkgs.k8s.io/core:/stable:/(?<currentValue>[\\w.]+)/rpm"
@@ -35,7 +35,7 @@
       "matchPackageNames": [
         "kubernetes/kubernetes"
       ],
-      "versioning": "regex:v(?<major>\\d+)\\.(?<minor>\\d+)"
+      "versioning": "regex:^v(?<major>\\d+)\\.(?<minor>\\d+)"
     },
     {
       "matchUpdateTypes": [
