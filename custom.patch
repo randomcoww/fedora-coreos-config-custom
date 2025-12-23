@@ -1,3 +1,22 @@
+diff --git a/image.yaml b/image.yaml
+index 1bf800cc..1b295cdd 100644
+--- a/image.yaml
++++ b/image.yaml
+@@ -2,3 +2,4 @@
+ # similarly to manifest.yaml. Unlike image-base.yaml, which is shared by all
+ # streams.
+ include: image-base.yaml
++include: image-custom.yaml
+\ No newline at end of file
+diff --git a/manifest.yaml b/manifest.yaml
+index 69594e6c..53d65ff1 100644
+--- a/manifest.yaml
++++ b/manifest.yaml
+@@ -33,3 +33,4 @@ conditional-include:
+         - fedora-riscv-koji
+ 
+ include: manifests/fedora-coreos.yaml
++include: manifest-custom.yaml
 diff --git a/manifests/fedora-coreos.yaml b/manifests/fedora-coreos.yaml
 index f2730d1c..ddc7471c 100644
 --- a/manifests/fedora-coreos.yaml

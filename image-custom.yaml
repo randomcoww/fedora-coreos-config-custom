@@ -1,4 +1,3 @@
-include: image.yaml
 extra-kargs:
   - selinux=0
   - coreos.liveiso.fromram
