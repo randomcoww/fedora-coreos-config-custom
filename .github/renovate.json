@@ -20,7 +20,7 @@
       ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "kubernetes/kubernetes",
-      "autoReplaceStringTemplate": "pkgs.k8s.io/core:/stable:/v{{newMajor}}.{{newMinor}}/rpm"
+      "extractVersionTemplate": "^(?<version>v\\d+\\.\\d+)"
     }
   ],
   "packageRules": [
