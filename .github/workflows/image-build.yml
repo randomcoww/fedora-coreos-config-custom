@@ -39,6 +39,9 @@ jobs:
         cp -r ../overlay/. .
         git apply ../*.patch
 
+        mkdir -p overlay.d/40custom/etc/pki/ca-trust/source/anchors
+        echo -e "$INTERNAL_CA_CERT" > overlay.d/40custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
+
         FEDORA_VERSION=$(cat build-args.conf | grep BASE_VERSION= | sed 's/^BASE_VERSION=//')
         echo "FEDORA_VERSION=$FEDORA_VERSION" | sudo tee -a "$GITHUB_ENV"
         echo "BUILD_TAG=${FEDORA_VERSION}.$(date -u +'%Y%m%d.%H')" | sudo tee -a "$GITHUB_ENV"
@@ -72,10 +75,7 @@ jobs:
         cd $HOME/workspace
 
         cosa init --force $HOME/repo/fedora-coreos-config
-
         cp -r $HOME/rpmbuild/RPMS/$(arch)/. overrides/rpm/
-        mkdir -p src/config/overlay.d/40custom/etc/pki/ca-trust/source/anchors
-        echo -e "$INTERNAL_CA_CERT" > src/config/overlay.d/40custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
 
     - name: Run build
       run: |
