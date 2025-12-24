@@ -32,12 +32,6 @@
       "versioning": "docker"
     },
     {
-      "matchPackageNames": [
-        "kubernetes/kubernetes"
-      ],
-      "versioning": "regex:^v(?<major>\\d+)\\.(?<minor>\\d+)"
-    },
-    {
       "matchUpdateTypes": [
         "minor",
         "patch",
