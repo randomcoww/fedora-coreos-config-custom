@@ -8,7 +8,7 @@ priority=10
 
 [cri-o]
 name=CRI-O
-baseurl=https://download.opensuse.org/repositories/isv:/cri-o:/stable:/v1.32/rpm/
+baseurl=https://download.opensuse.org/repositories/isv:/cri-o:/stable:/v1.35/rpm/
 enabled=1
 gpgcheck=0
 repo_gpgcheck=0
