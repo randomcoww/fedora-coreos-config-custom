@@ -1,6 +1,0 @@
-extra-kargs:
-  - coreos.liveiso.fromram
-  - rd.driver.blacklist=nouveau
-  - modprobe.blacklist=nouveau
-  - selinux=0
-  - pcie_aspm=off

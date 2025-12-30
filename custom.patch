@@ -1,8 +1,8 @@
 diff --git a/image.yaml b/image.yaml
-index 1bf800cc..f047785d 100644
+index 1bf800cc..32536a7d 100644
 --- a/image.yaml
 +++ b/image.yaml
-@@ -2,3 +2,10 @@
+@@ -2,3 +2,9 @@
  # similarly to manifest.yaml. Unlike image-base.yaml, which is shared by all
  # streams.
  include: image-base.yaml
@@ -12,13 +12,12 @@ index 1bf800cc..f047785d 100644
 +  - rd.driver.blacklist=nouveau
 +  - modprobe.blacklist=nouveau
 +  - selinux=0
-+  - pcie_aspm=off
 \ No newline at end of file
 diff --git a/manifest.yaml b/manifest.yaml
-index 69594e6c..a5dc0d8b 100644
+index 69594e6c..9084c17a 100644
 --- a/manifest.yaml
 +++ b/manifest.yaml
-@@ -33,3 +33,32 @@ conditional-include:
+@@ -33,3 +33,33 @@ conditional-include:
          - fedora-riscv-koji
  
  include: manifests/fedora-coreos.yaml
@@ -28,6 +27,7 @@ index 69594e6c..a5dc0d8b 100644
 +
 +repos:
 +  - kubernetes
++  - cri-o
 +
 +packages:
 +  - vim-minimal

@@ -5,3 +5,11 @@ enabled=1
 gpgcheck=0
 repo_gpgcheck=0
 priority=10
+
+[cri-o]
+name=CRI-O
+baseurl=https://download.opensuse.org/repositories/isv:/cri-o:/stable:/v1.32/rpm/
+enabled=1
+gpgcheck=0
+repo_gpgcheck=0
+priority=10

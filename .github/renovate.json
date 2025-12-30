@@ -21,6 +21,18 @@
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "kubernetes/kubernetes",
       "extractVersionTemplate": "^(?<version>v\\d+\\.\\d+)"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^overlay/[\\w.]+\\.repo$/"
+      ],
+      "matchStrings": [
+        "cri-o:/stable:/(?<currentValue>[\\w.]+)/rpm"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "cri-o/cri-o",
+      "extractVersionTemplate": "^(?<version>v\\d+\\.\\d+)"
     }
   ],
   "packageRules": [
