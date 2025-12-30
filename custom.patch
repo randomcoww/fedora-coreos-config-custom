@@ -14,16 +14,17 @@ index 1bf800cc..32536a7d 100644
 +  - selinux=0
 \ No newline at end of file
 diff --git a/manifest.yaml b/manifest.yaml
-index 69594e6c..9084c17a 100644
+index 69594e6c..bb513625 100644
 --- a/manifest.yaml
 +++ b/manifest.yaml
-@@ -33,3 +33,33 @@ conditional-include:
+@@ -33,3 +33,34 @@ conditional-include:
          - fedora-riscv-koji
  
  include: manifests/fedora-coreos.yaml
 +
 +ostree-layers:
 +  - overlay/40custom
++  - overlay/50nvidia-oci-hooks
 +
 +repos:
 +  - kubernetes
