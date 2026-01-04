@@ -13,3 +13,12 @@ enabled=1
 gpgcheck=0
 repo_gpgcheck=0
 priority=10
+
+[fedora-updates-archive]
+name=Fedora $releasever - $basearch - Updates Archive
+baseurl=https://fedoraproject-updates-archive.fedoraproject.org/fedora/$releasever/$basearch/
+enabled=1
+type=rpm
+gpgcheck=0
+repo_gpgcheck=0
+cost=10000
