@@ -14,7 +14,7 @@ jobs:
       TAGS_KEEP: 6
     runs-on: builder-${{ github.event.repository.name }}
     container:
-      image: quay.io/coreos-assembler/coreos-assembler:latest@sha256:81d5424e847536f8c4f868a7ba9e9f1150dab04767d29a55e023f82b4cbabe38
+      image: quay.io/coreos-assembler/coreos-assembler:latest@sha256:f74633a106fdd787a8ccdd8431a1765da261af46e6a216332421d767fb25a5d3
     permissions:
       contents: write
     steps:
