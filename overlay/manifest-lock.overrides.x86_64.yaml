@@ -2,10 +2,10 @@ packages:
   bird:
     evra: 3.1.5-1.fc43.x86_64
   kernel:
-    evra: 6.18.3-200.fc43.x86_64
+    evra: 6.18.4-200.fc43.x86_64
   kernel-core:
-    evra: 6.18.3-200.fc43.x86_64
+    evra: 6.18.4-200.fc43.x86_64
   kernel-modules:
-    evra: 6.18.3-200.fc43.x86_64
+    evra: 6.18.4-200.fc43.x86_64
   kernel-modules-core:
-    evra: 6.18.3-200.fc43.x86_64
+    evra: 6.18.4-200.fc43.x86_64
