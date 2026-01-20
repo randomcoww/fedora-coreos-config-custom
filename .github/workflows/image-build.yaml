@@ -18,18 +18,6 @@ jobs:
     permissions:
       contents: write
     steps:
-    - name: Prepare tools
-      run: |
-        set -e
-        cd $HOME
-        TARGETARCH=$(arch)
-        TARGETARCH=${TARGETARCH/x86_64/amd64} && TARGETARCH=${TARGETARCH/aarch64/arm64}
-
-        VERSION=$(curl -s https://api.github.com/repos/rclone/rclone/releases/latest | grep tag_name  | cut -d '"' -f 4)
-        curl -fsSL -o rclone.zip https://github.com/rclone/rclone/releases/download/${VERSION}/rclone-${VERSION}-linux-${TARGETARCH}.zip
-        tar --strip-components=1 -xf rclone.zip */rclone
-        rm rclone.zip
-
     - name: Checkout
       run: |
         cd $HOME
@@ -90,7 +78,7 @@ jobs:
     - name: Push image
       run: |
         cd $HOME
-        ./rclone copy workspace/builds/latest/$(arch) :s3:boot/ \
+        /rclone/usr/local/bin/rclone copy workspace/builds/latest/$(arch) :s3:boot/ \
           --s3-env-auth --include "fedora-*-live-*"
 
     # TODO: support multiple archs
@@ -107,8 +95,8 @@ jobs:
     - name: Remove old images
       run: |
         cd $HOME
-        tags=$(./rclone lsjson :s3:boot/ --s3-env-auth --include "fedora-*-live-rootfs*" \
+        tags=$(/rclone/usr/local/bin/rclone lsjson :s3:boot/ --s3-env-auth --include "fedora-*-live-rootfs*" \
           | jq -r '[.[] | select(.Name)] | sort_by(.ModTime) | .[].Name' | sed -r 's/(fedora-.*-live)-.*$/\1/' | head -n -$TAGS_KEEP)
         for tag in $tags; do
-          ./rclone delete :s3:boot/ --s3-env-auth --include "$tag-*"
+          /rclone/usr/local/bin/rclone delete :s3:boot/ --s3-env-auth --include "$tag-*"
         done
