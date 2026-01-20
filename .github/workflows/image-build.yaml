@@ -25,10 +25,10 @@ jobs:
         TARGETARCH=$(arch)
         TARGETARCH=${TARGETARCH/x86_64/amd64} && TARGETARCH=${TARGETARCH/aarch64/arm64}
 
-        curl -fsSL -O https://dl.min.io/client/mc/release/linux-$TARGETARCH/mc
-        chmod +x mc
-        mkdir -p .mc/certs/CAs
-        echo -e "$INTERNAL_CA_CERT" > .mc/certs/CAs/ca.crt
+        VERSION=$(curl -s https://api.github.com/repos/rclone/rclone/releases/latest | grep tag_name  | cut -d '"' -f 4)
+        curl -fsSL -o rclone.zip https://github.com/rclone/rclone/releases/download/${VERSION}/rclone-${VERSION}-linux-${TARGETARCH}.zip
+        tar --strip-components=1 -xf rclone.zip */rclone
+        rm rclone.zip
 
     - name: Checkout
       run: |
@@ -90,8 +90,8 @@ jobs:
     - name: Push image
       run: |
         cd $HOME
-        ./mc cp -r -q --no-color \
-          workspace/builds/latest/$(arch)/fedora-*-live* arc/boot/
+        ./rclone copy workspace/builds/latest/$(arch) :s3:boot/ \
+          --s3-env-auth --include "fedora-*-live-*"
 
     # TODO: support multiple archs
     - name: Create tag
@@ -107,7 +107,8 @@ jobs:
     - name: Remove old images
       run: |
         cd $HOME
-        tags=$(./mc ls --json --no-color arc/boot/fedora-coreos- | jq -r '.key' | sed -r 's/fedora-coreos-(.*)-live-.*$/\1/' | sort -u | head -n -$TAGS_KEEP)
+        tags=$(./rclone lsjson :s3:boot/ --s3-env-auth --include "fedora-*-live-rootfs*" \
+          | jq -r '[.[] | select(.Name)] | sort_by(.ModTime) | .[].Name' | sed -r 's/(fedora-.*-live)-.*$/\1/' | head -n -$TAGS_KEEP)
         for tag in $tags; do
-          ./mc rm -r -q --no-color --force arc/boot/fedora-coreos-$tag
+          ./rclone delete :s3:boot/ --s3-env-auth --include "$tag-*"
         done
