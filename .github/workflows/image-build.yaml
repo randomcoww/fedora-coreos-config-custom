@@ -90,7 +90,7 @@ jobs:
     - name: Push image
       run: |
         cd $HOME
-        ./rclone copy workspace/builds/latest/$(arch) :s3:boot/ \
+        ./rclone copy -v workspace/builds/latest/$(arch) :s3:boot/ \
           --s3-env-auth --include "fedora-*-live-*"
 
     # TODO: support multiple archs
@@ -107,8 +107,8 @@ jobs:
     - name: Remove old images
       run: |
         cd $HOME
-        tags=$(./rclone lsjson :s3:boot/ --s3-env-auth --include "fedora-*-live-rootfs*" \
+        tags=$(./rclone lsjson -v :s3:boot/ --s3-env-auth --include "fedora-*-live-rootfs*" \
           | jq -r '[.[] | select(.Name)] | sort_by(.ModTime) | .[].Name' | sed -r 's/(fedora-.*-live)-.*$/\1/' | head -n -$TAGS_KEEP)
         for tag in $tags; do
-          ./rclone delete :s3:boot/ --s3-env-auth --include "$tag-*"
+          ./rclone delete -v :s3:boot/ --s3-env-auth --include "$tag-*"
         done
