@@ -22,6 +22,8 @@ jobs:
       run: |
         set -e
         cd $HOME
+        echo -e "$INTERNAL_CA_CERT" > ca.crt
+
         TARGETARCH=$(arch)
         TARGETARCH=${TARGETARCH/x86_64/amd64} && TARGETARCH=${TARGETARCH/aarch64/arm64}
 
@@ -90,7 +92,7 @@ jobs:
     - name: Push image
       run: |
         cd $HOME
-        ./rclone copy -v workspace/builds/latest/$(arch) :s3:boot/ \
+        ./rclone --ca-cert=$HOME/ca.crt copy -v workspace/builds/latest/$(arch) :s3:boot/ \
           --s3-env-auth --include "fedora-*-live-*"
 
     # TODO: support multiple archs
@@ -107,8 +109,8 @@ jobs:
     - name: Remove old images
       run: |
         cd $HOME
-        tags=$(./rclone lsjson -v :s3:boot/ --s3-env-auth --include "fedora-*-live-rootfs*" \
+        tags=$(./rclone --ca-cert=$HOME/ca.crt lsjson -v :s3:boot/ --s3-env-auth --include "fedora-*-live-rootfs*" \
           | jq -r '[.[] | select(.Name)] | sort_by(.ModTime) | .[].Name' | sed -r 's/(fedora-.*-live)-.*$/\1/' | head -n -$TAGS_KEEP)
         for tag in $tags; do
-          ./rclone delete -v :s3:boot/ --s3-env-auth --include "$tag-*"
+          ./rclone --ca-cert=$HOME/ca.crt delete -v :s3:boot/ --s3-env-auth --include "$tag-*"
         done
