@@ -41,8 +41,8 @@ jobs:
         cp -r ../overlay/. .
         git apply ../*.patch
 
-        mkdir -p overlay.d/40custom/etc/pki/ca-trust/source/anchors
-        echo -e "$INTERNAL_CA_CERT" > overlay.d/40custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
+        mkdir -p overlay.d/51custom/etc/pki/ca-trust/source/anchors
+        echo -e "$INTERNAL_CA_CERT" > overlay.d/51custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
 
         FEDORA_VERSION=$(cat build-args.conf | grep BASE_VERSION= | sed 's/^BASE_VERSION=//')
         echo "FEDORA_VERSION=$FEDORA_VERSION" | sudo tee -a "$GITHUB_ENV"

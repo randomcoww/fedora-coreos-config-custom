@@ -1,20 +1,21 @@
 diff --git a/image.yaml b/image.yaml
-index 1bf800cc..32536a7d 100644
+index 1bf800cc..478d95cb 100644
 --- a/image.yaml
 +++ b/image.yaml
-@@ -2,3 +2,9 @@
+@@ -2,3 +2,10 @@
  # similarly to manifest.yaml. Unlike image-base.yaml, which is shared by all
  # streams.
  include: image-base.yaml
 +
 +extra-kargs:
 +  - coreos.liveiso.fromram
-+  - rd.driver.blacklist=nouveau
-+  - modprobe.blacklist=nouveau
++  - rd.driver.blacklist=nouveau,nova_core
++  - modprobe.blacklist=nouveau,nova_core
 +  - selinux=0
++  - amd_iommu=off
 \ No newline at end of file
 diff --git a/manifest.yaml b/manifest.yaml
-index 69594e6c..2816c1a8 100644
+index 69594e6c..f324be78 100644
 --- a/manifest.yaml
 +++ b/manifest.yaml
 @@ -33,3 +33,36 @@ conditional-include:
@@ -23,8 +24,8 @@ index 69594e6c..2816c1a8 100644
  include: manifests/fedora-coreos.yaml
 +
 +ostree-layers:
-+  - overlay/40custom
-+  - overlay/50nvidia-oci-hooks
++  - overlay/51custom
++  - overlay/51nvidia-oci-hooks
 +
 +repos:
 +  - kubernetes
