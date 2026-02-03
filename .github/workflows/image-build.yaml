@@ -44,7 +44,7 @@ jobs:
         mkdir -p overlay.d/51custom/etc/pki/ca-trust/source/anchors
         echo -e "$INTERNAL_CA_CERT" > overlay.d/51custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
 
-        echo "BUILD_TAG=$(date -u +'%Y%m%d.%H%M%S')" | sudo tee -a "$GITHUB_ENV"
+        echo "BUILD_TAG=$(date -u +'%Y.%m%d.%H%M%S')" | sudo tee -a "$GITHUB_ENV"
 
     # Perl is blocked by upstream. Build keepalived without perl dependency.
     - name: Build keepalived package
