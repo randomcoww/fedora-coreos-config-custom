@@ -44,7 +44,7 @@ jobs:
         mkdir -p overlay.d/51custom/etc/pki/ca-trust/source/anchors
         echo -e "$INTERNAL_CA_CERT" > overlay.d/51custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
 
-        FEDORA_VERSION=$(cat build-args.conf | grep BASE_VERSION= | sed 's/^BASE_VERSION=//')
+        FEDORA_VERSION=$(cat build-args.conf | grep VERSION= | sed 's/^VERSION=//')
         echo "FEDORA_VERSION=$FEDORA_VERSION" | sudo tee -a "$GITHUB_ENV"
         echo "BUILD_TAG=${FEDORA_VERSION}.$(date -u +'%Y%m%d.%H')" | sudo tee -a "$GITHUB_ENV"
 
