@@ -15,10 +15,10 @@ index 1bf800cc..478d95cb 100644
 +  - amd_iommu=off
 \ No newline at end of file
 diff --git a/manifest.yaml b/manifest.yaml
-index 69594e6c..f324be78 100644
+index 71ad5f66..e7107c73 100644
 --- a/manifest.yaml
 +++ b/manifest.yaml
-@@ -33,3 +33,36 @@ conditional-include:
+@@ -27,3 +27,36 @@ conditional-include:
          - fedora-riscv-koji
  
  include: manifests/fedora-coreos.yaml
@@ -57,10 +57,10 @@ index 69594e6c..f324be78 100644
 +  - libimobiledevice-utils usbmuxd # mobile tether over USB
 \ No newline at end of file
 diff --git a/manifests/fedora-coreos.yaml b/manifests/fedora-coreos.yaml
-index f2730d1c..ddc7471c 100644
+index 1c708c3d..9db2595f 100644
 --- a/manifests/fedora-coreos.yaml
 +++ b/manifests/fedora-coreos.yaml
-@@ -48,14 +48,8 @@ ostree-layers:
+@@ -51,14 +51,8 @@ ostree-layers:
  packages:
    - fedora-release-coreos
    - fedora-repos-ostree
@@ -75,7 +75,7 @@ index f2730d1c..ddc7471c 100644
    # Introduce a default colored prompt for Fedora's default shell bash.
    # https://github.com/coreos/fedora-coreos-tracker/issues/1567
    - bash-color-prompt
-@@ -153,17 +147,6 @@ postprocess:
+@@ -156,17 +150,6 @@ postprocess:
      # Nuke broken alternatives links
      rm -f /etc/alternatives/*-man
  
