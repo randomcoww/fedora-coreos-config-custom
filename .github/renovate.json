@@ -3,9 +3,9 @@
   "extends": [
     "config:best-practices"
   ],
-  "dockerfile": {
-    "enabled": false
-  },
+  "ignorePresets": [
+    "docker:pinDigests"
+  ],
   "git-submodules": {
     "enabled": true
   },
@@ -36,12 +36,6 @@
     }
   ],
   "packageRules": [
-    {
-      "matchPackageNames": [
-        "quay.io/coreos-assembler/coreos-assembler"
-      ],
-      "pinDigests": false
-    },
     {
       "matchDatasources": [
         "github-releases",
