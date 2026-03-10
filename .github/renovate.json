@@ -3,9 +3,6 @@
   "extends": [
     "config:best-practices"
   ],
-  "ignorePresets": [
-    "docker:pinDigests"
-  ],
   "git-submodules": {
     "enabled": true
   },
@@ -53,6 +50,15 @@
       "automerge": true,
       "ignoreTests": true,
       "groupName": "renovate"
+    },
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchDatasources": [
+        "docker"
+      ],
+      "pinDigests": false
     }
   ]
 }
