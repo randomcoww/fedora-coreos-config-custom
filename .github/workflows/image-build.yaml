@@ -101,9 +101,9 @@ jobs:
         cd $HOME/repo
         git config --global user.email "${{ github.actor }}@users.noreply.github.com"
         git config --global user.name "${{ github.actor }}"
-        git tag -a fedora-coreos-$BUILD_TAG -m "Build fedora-coreos-$BUILD_TAG"
+        git tag -a $BUILD_TAG -m "Build $BUILD_TAG"
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-        git push origin fedora-coreos-$BUILD_TAG
+        git push origin $BUILD_TAG
 
     # TODO: support multiple archs
     - name: Remove old images
