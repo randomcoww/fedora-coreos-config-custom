@@ -3,6 +3,7 @@
   "extends": [
     "config:best-practices"
   ],
+  "maxMajorIncrement": 0,
   "git-submodules": {
     "enabled": true
   },
