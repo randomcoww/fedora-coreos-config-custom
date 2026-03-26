@@ -15,15 +15,16 @@ index 1bf800cc..478d95cb 100644
 +  - amd_iommu=off
 \ No newline at end of file
 diff --git a/manifest.yaml b/manifest.yaml
-index 71ad5f66..71e09201 100644
+index 71ad5f66..e7107c73 100644
 --- a/manifest.yaml
 +++ b/manifest.yaml
-@@ -27,3 +27,35 @@ conditional-include:
+@@ -27,3 +27,36 @@ conditional-include:
          - fedora-riscv-koji
  
  include: manifests/fedora-coreos.yaml
 +
 +ostree-layers:
++  - overlay/51custom
 +  - overlay/51nvidia-oci-hooks
 +
 +repos:
