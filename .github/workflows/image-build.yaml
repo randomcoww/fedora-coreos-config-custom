@@ -42,10 +42,6 @@ jobs:
         mkdir -p overlay.d/91custom/etc/pki/ca-trust/source/anchors
         echo -e "$INTERNAL_CA_CERT" > overlay.d/91custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
 
-        FEDORA_VERSION=$(cat build-args.conf | grep VERSION= | sed 's/^VERSION=//')
-        echo "FEDORA_VERSION=$FEDORA_VERSION" | sudo tee -a "$GITHUB_ENV"
-        echo "BUILD_TAG=${FEDORA_VERSION}.$(date -u +'%Y%m%d.%H')" | sudo tee -a "$GITHUB_ENV"
-
     # Perl is blocked by upstream. Build keepalived without perl dependency.
     - name: Build keepalived package
       run: |
@@ -58,7 +54,8 @@ jobs:
         mkdir -p $HOME/rpmbuild
         cd $HOME/rpmbuild
 
-        git clone --depth 1 -b f$FEDORA_VERSION \
+        source /etc/os-release
+        git clone --depth 1 -b f$VERSION_ID \
           https://src.fedoraproject.org/rpms/keepalived.git SOURCES/
         cd SOURCES
         spectool -gR keepalived.spec
@@ -83,6 +80,8 @@ jobs:
     - name: Run build
       run: |
         cd $HOME/workspace
+        BUILD_TAG=$(src/config/versionary --build-args="src/config/build-args.conf").$(date -u +%s)
+        echo "BUILD_TAG=$BUILD_TAG" | sudo tee -a "$GITHUB_ENV"
         cosa build --version=$BUILD_TAG
 
     - name: Run buildextend-live
