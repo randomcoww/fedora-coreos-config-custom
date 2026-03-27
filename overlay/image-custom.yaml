@@ -1,0 +1,8 @@
+extra-kargs:
+  - coreos.liveiso.fromram
+  - rd.driver.blacklist=nouveau,nova_core
+  - modprobe.blacklist=nouveau,nova_core
+  - selinux=0
+  - amd_iommu=off
+
+include: image-base.yaml

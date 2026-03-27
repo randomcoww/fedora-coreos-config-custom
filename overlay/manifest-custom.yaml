@@ -1,0 +1,38 @@
+metadata:
+  build_with_buildah: true
+
+ostree-layers:
+  - overlay/91custom
+
+repos:
+  - fedora
+  - fedora-updates
+  - fedora-updates-archive
+  - fedora-updates-testing
+  - kubernetes
+  - cri-o
+
+packages:
+  - vim-minimal
+  - ldns-utils
+  - systemd-networkd
+  - keepalived
+  - haproxy
+  - conntrack-tools
+  - bird
+  - cri-o cri-tools
+  - kubelet
+  - criu criu-libs
+  - bindfs # for coreos-installer to read and write ignition on disk
+  - wireless-regdb
+  - atheros-firmware
+  - brcmfmac-firmware
+  - mt7xxx-firmware
+  - nxpwireless-firmware
+  - realtek-firmware
+  - tiwilink-firmware
+  - iwlwifi-dvm-firmware
+  - iwlwifi-mvm-firmware
+  - libimobiledevice-utils usbmuxd # mobile tether over USB
+
+include: manifests/fedora-coreos.yaml
