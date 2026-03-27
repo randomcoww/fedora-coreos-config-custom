@@ -13,6 +13,8 @@ repos:
   - cri-o
 
 packages:
+  - fedora-release-coreos
+  - bash-color-prompt
   - vim-minimal
   - ldns-utils
   - systemd-networkd
@@ -35,4 +37,4 @@ packages:
   - iwlwifi-mvm-firmware
   - libimobiledevice-utils usbmuxd # mobile tether over USB
 
-include: manifests/fedora-coreos.yaml
+include: manifests/fedora-coreos-base.yaml
