@@ -7,7 +7,6 @@ concurrency:
 
 env:
   COSA_SUPERMIN_MEMORY: 4096
-  VARIANT: custom
 
 jobs:
   build:
@@ -48,13 +47,7 @@ jobs:
       run: |
         mkdir -p $HOME/workspace
         cd $HOME/workspace
-
-        cosa init \
-          --force $HOME/repo/fedora-coreos-config \
-          --variant $VARIANT
-
-        source src/config/build-args-$VARIANT.conf
-        echo "FEDORA_VERSION=$VERSION" | sudo tee -a "$GITHUB_ENV"
+        cosa init --force $HOME/repo/fedora-coreos-config
         echo "BUILD_TAG=$(src/config/versionary).$(date -u +%s)" | sudo tee -a "$GITHUB_ENV"
 
     # Perl is blocked by upstream. Build keepalived without perl dependency.
@@ -69,7 +62,8 @@ jobs:
         mkdir -p $HOME/rpmbuild
         cd $HOME/rpmbuild
 
-        git clone --depth 1 -b f$FEDORA_VERSION \
+        source /etc/os-release
+        git clone --depth 1 -b f$VERSION_ID \
           https://src.fedoraproject.org/rpms/keepalived.git SOURCES/
         cd SOURCES
         spectool -gR keepalived.spec
