@@ -14,6 +14,14 @@ gpgcheck=0
 repo_gpgcheck=0
 priority=10
 
+[cri-o-prerelease]
+name=CRI-O Prerelease
+baseurl=https://download.opensuse.org/repositories/isv:/cri-o:/prerelease:/main/rpm/
+enabled=1
+gpgcheck=0
+repo_gpgcheck=0
+priority=12
+
 [fedora-updates-archive]
 name=Fedora $releasever - $basearch - Updates Archive
 baseurl=https://fedoraproject-updates-archive.fedoraproject.org/fedora/$releasever/$basearch/

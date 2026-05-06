@@ -11,6 +11,7 @@ repos:
   - fedora-updates-testing
   - kubernetes
   - cri-o
+  - cri-o-prerelease
 
 packages:
   - fedora-release-coreos
