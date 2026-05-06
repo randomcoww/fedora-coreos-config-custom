@@ -12,7 +12,6 @@ baseurl=https://download.opensuse.org/repositories/isv:/cri-o:/stable:/v1.36/rpm
 enabled=1
 gpgcheck=0
 repo_gpgcheck=0
-skip_if_unavailable=True
 priority=10
 
 [cri-o-prerelease]

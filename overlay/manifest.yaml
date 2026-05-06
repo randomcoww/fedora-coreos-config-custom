@@ -10,7 +10,6 @@ repos:
   - fedora-updates-archive
   - fedora-updates-testing
   - kubernetes
-  - cri-o
   - cri-o-prerelease
 
 packages:
