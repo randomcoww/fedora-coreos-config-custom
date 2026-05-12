@@ -1,9 +1,0 @@
-packages:
-  kernel:
-    evra: 7.0.4-200.fc44.x86_64
-  kernel-core:
-    evra: 7.0.4-200.fc44.x86_64
-  kernel-modules:
-    evra: 7.0.4-200.fc44.x86_64
-  kernel-modules-core:
-    evra: 7.0.4-200.fc44.x86_64
