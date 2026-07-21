@@ -2,7 +2,7 @@ metadata:
   build_with_buildah: true
 
 ostree-layers:
-  - overlay/91custom
+  - overlay.d/91custom
 
 repos:
   - fedora
