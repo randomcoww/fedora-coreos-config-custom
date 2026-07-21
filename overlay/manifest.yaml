@@ -1,6 +1,3 @@
-metadata:
-  build_with_buildah: true
-
 ostree-layers:
   - overlay.d/91custom
 
@@ -13,28 +10,10 @@ repos:
   - cri-o
 
 packages:
-  - fedora-release-coreos
-  - bash-color-prompt
-  - vim-minimal
-  - ldns-utils
   - systemd-networkd
-  - keepalived
-  - haproxy
-  - conntrack-tools
-  - bird
-  - cri-o cri-tools
-  - kubelet
-  - criu criu-libs
-  - bindfs # for coreos-installer to read and write ignition on disk
-  - wireless-regdb
-  - atheros-firmware
-  - brcmfmac-firmware
-  - mt7xxx-firmware
-  - nxpwireless-firmware
-  - realtek-firmware
-  - tiwilink-firmware
-  - iwlwifi-dvm-firmware
-  - iwlwifi-mvm-firmware
-  - libimobiledevice-utils usbmuxd # mobile tether over USB
+  - keepalived haproxy conntrack-tools bird # gateway
+  - cri-o cri-tools kubelet #kubernetes
+  - wireless-regdb mt7xxx-firmware realtek-firmware # hostapd
+  - bindfs # coreos-installer to read and write ignition on disk
 
 include: manifests/fedora-coreos.yaml
