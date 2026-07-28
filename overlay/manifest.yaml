@@ -12,7 +12,7 @@ repos:
 packages:
   - systemd-networkd
   - keepalived haproxy bird # gateway
-  - cri-o cri-tools kubelet #kubernetes
+  - cri-o cri-tools conntrack-tools kubelet #kubernetes
   - wireless-regdb mt7xxx-firmware realtek-firmware # hostapd
   - bindfs # coreos-installer to read and write ignition on disk
 
