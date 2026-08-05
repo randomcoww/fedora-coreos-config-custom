@@ -40,7 +40,7 @@ jobs:
         cp -r ../overlay/. .
 
         mkdir -p overlay.d/91custom/etc/pki/ca-trust/source/anchors
-        echo -e "$INTERNAL_CA_CERT" > overlay.d/91custom/etc/pki/ca-trust/source/anchors/ca-cert.pem
+        echo -e "$INTERNAL_CA_CERT" > overlay.d/91custom/etc/pki/ca-trust/source/anchors/ca.crt
 
     # COSA will remove anything existing in the build path. Run in dedicated $HOME/workspace path.
     - name: Run init
