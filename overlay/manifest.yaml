@@ -11,6 +11,7 @@ repos:
 
 packages:
   - systemd-networkd
+  - systemd-journal-remote # ingest syslogs
   - keepalived haproxy bird # gateway
   - cri-o cri-tools conntrack-tools kubelet #kubernetes
   - wireless-regdb mt7xxx-firmware realtek-firmware # hostapd
