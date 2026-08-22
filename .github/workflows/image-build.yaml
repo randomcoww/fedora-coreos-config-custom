@@ -48,7 +48,7 @@ jobs:
         mkdir -p $HOME/workspace
         cd $HOME/workspace
         cosa init --force $HOME/repo/fedora-coreos-config
-        echo "BUILD_TAG=$(src/config/versionary)" | sudo tee -a "$GITHUB_ENV"
+        echo "BUILD_TAG=$(src/config/versionary).$(date -u +%s)" | sudo tee -a "$GITHUB_ENV"
 
     # Perl is blocked by upstream. Build keepalived without perl dependency.
     - name: Build keepalived package
