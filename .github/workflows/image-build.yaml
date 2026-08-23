@@ -87,7 +87,7 @@ jobs:
 
         coreos-installer iso kargs modify --append \
           $BUILD_TAG_KARG=$BUILD_TAG \
-          workspace/builds/latest/$(arch)/fedora-*-live-*.iso
+          builds/latest/$(arch)/fedora-*-live-*.iso
 
     - name: Push image
       run: |
