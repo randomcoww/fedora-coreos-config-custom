@@ -85,6 +85,11 @@ jobs:
         cd $HOME/workspace
         cosa buildextend-live
 
+    - name: Add kargs
+      run: |
+        cd $HOME/workspace
+        sleep infinity
+
         coreos-installer iso kargs modify --append \
           $BUILD_TAG_KARG=$BUILD_TAG \
           builds/latest/$(arch)/fedora-*-live-*.iso
