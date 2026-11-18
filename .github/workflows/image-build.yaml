@@ -14,7 +14,7 @@ jobs:
       TAGS_KEEP: 6
     runs-on: cosa-${{ github.event.repository.name }}
     container:
-      image: quay.io/coreos-assembler/coreos-assembler:latest@sha256:d7d82de2f07c8e2d3749be4583dd4097844f34d19e2d957850a00d5e86ec45d8
+      image: quay.io/coreos-assembler/coreos-assembler:latest@sha256:f9f1b154b3c8a6946a720c89913b0531c9b14e998126c3fee45aca8207abaa76
     permissions:
       contents: write
     steps:
